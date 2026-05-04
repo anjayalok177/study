@@ -1,1 +1,1022 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Soal Bahasa Indonesia Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,400;1,500&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1a4731;--teal:#0d6e55;--sage:#4a7c59;--mint:#d4edda;
+  --gold:#c07c2a;--amber:#f5a623;--cream:#faf9f5;--paper:#f2f0e8;
+  --ink:#1c1c2e;--rule:#d6d0c0;--warm-white:#fffef9;
+  --red:#c0392b;--lr:#fdf0ef;--lb:#eef5fb;--lg:#eefaf3;--la:#fdf8e8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+.page{max-width:880px;margin:0 auto;padding:0 16px 72px}
 
+/* ── HEADER ── */
+.hdr{background:var(--forest);color:#fff;padding:0;margin-bottom:28px;border-radius:0 0 16px 16px;overflow:hidden;box-shadow:0 4px 20px rgba(26,71,49,.25)}
+.hdr-stripe{height:5px;background:repeating-linear-gradient(90deg,var(--amber) 0 18px,transparent 18px 24px)}
+.hdr-inner{padding:22px 28px 22px}
+.hdr-top{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.hdr-icon{width:54px;height:54px;background:linear-gradient(135deg,var(--amber),#e8931a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hdr-title{font-family:'Lora',serif;font-size:21px;font-weight:700;line-height:1.2}
+.hdr-sub{font-size:12px;opacity:.65;margin-top:3px}
+.score-bar{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sc-item{text-align:center}
+.sc-item label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.5;display:block;margin-bottom:2px}
+.sc-item span{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;color:var(--amber)}
+.sc-item span.sm{font-size:12px}
+.prog-wrap{flex:1;min-width:150px}
+.prog-wrap label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.5;display:block;margin-bottom:5px}
+.prog-track{background:rgba(255,255,255,.1);border-radius:20px;height:7px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),#f7c059);border-radius:20px;transition:width .4s ease;width:0%}
+
+/* ── SECTION ── */
+.sec-wrap{margin:30px 0 16px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.sec-badge{padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;border-radius:20px;white-space:nowrap}
+.badge-pg{background:var(--lb);color:#1a5276;border:1px solid #a9cce3}
+.badge-pgk{background:var(--lg);color:var(--teal);border:1px solid #a9dfbf}
+.badge-bs{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
+.sec-title{font-family:'Lora',serif;font-size:17px;font-weight:700}
+.sec-line{flex:1;height:1px;background:var(--rule)}
+.sec-instr{font-size:13px;color:#555;background:var(--warm-white);border:1px solid var(--rule);border-left:4px solid var(--amber);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:20px;line-height:1.6}
+
+/* ── TOPIC PILLS ── */
+.topic-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.tp-des{background:#e8f4fd;color:#1a5276;border:1px solid #aed6f1}
+.tp-pro{background:#fef9e7;color:#7d6608;border:1px solid #f9e79f}
+.tp-rek{background:#e8f8f5;color:#0e6655;border:1px solid #a2d9ce}
+.tp-eks{background:#fdf2f8;color:#76448a;border:1px solid #d2b4de}
+.tp-lap{background:#eaf4fb;color:#154360;border:1px solid #a9cce3}
+.tp-arg{background:#fdf0ef;color:#922b21;border:1px solid #f1948a}
+
+/* ── SOAL ── */
+.soal-list{display:flex;flex-direction:column;gap:18px}
+.soal{background:var(--warm-white);border:1.5px solid var(--rule);border-radius:10px;overflow:hidden;transition:box-shadow .2s}
+.soal:not(.done):hover{box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.soal-head{display:flex;align-items:flex-start;gap:12px;padding:14px 16px 12px;border-bottom:1px solid var(--rule)}
+.num-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#fff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .3s}
+.nb-pg{background:var(--teal)}
+.nb-pgk{background:var(--sage)}
+.nb-bs{background:var(--gold)}
+.nb-ok{background:#1e8449!important}
+.nb-err{background:var(--red)!important}
+.soal-q{font-size:14.5px;line-height:1.7;flex:1}
+.soal-q b,.soal-q strong{font-weight:700}
+.soal-q em{font-style:italic;color:#444}
+.soal-q .block-text{display:block;background:var(--paper);border-left:3px solid var(--rule);padding:8px 12px;margin:8px 0;border-radius:0 4px 4px 0;font-size:13.5px;font-style:italic;line-height:1.6}
+
+/* ── OPTIONS ── */
+.opts{padding:10px 14px 12px 58px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:4px;border:1.5px solid transparent;transition:all .15s;user-select:none}
+.opt:hover:not(.locked){background:var(--lb);border-color:#aed6f1}
+.opt.sel{background:var(--lb);border-color:#2e86c1}
+.opt.ok{background:var(--lg)!important;border-color:#27ae60!important}
+.opt.err{background:var(--lr)!important;border-color:var(--red)!important}
+.opt.locked{cursor:default}
+.opt-k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink);background:var(--cream);border:1px solid var(--rule);border-radius:4px;padding:1px 7px;flex-shrink:0;min-width:24px;text-align:center;transition:all .2s}
+.opt.sel .opt-k{background:#2e86c1;color:#fff;border-color:#2e86c1}
+.opt.ok .opt-k{background:#27ae60;color:#fff;border-color:#27ae60}
+.opt.err .opt-k{background:var(--red);color:#fff;border-color:var(--red)}
+.opt-txt{font-size:13.5px;line-height:1.55;padding-top:1px}
+
+/* ── PGK ── */
+.pgk-note{font-size:12px;font-style:italic;color:#777;padding:5px 14px 2px 58px}
+
+/* ── B/S ── */
+.bs-opts{padding:10px 14px 12px 58px;display:flex;gap:12px}
+.bs-btn{padding:8px 28px;border:1.5px solid var(--rule);border-radius:24px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:pointer;background:var(--cream);transition:all .2s;user-select:none}
+.bs-btn:hover:not(.locked){transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.bs-btn.sel-b{border-color:#27ae60;color:#27ae60;background:var(--lg)}
+.bs-btn.sel-s{border-color:var(--red);color:var(--red);background:var(--lr)}
+.bs-btn.r-ok{border-color:#27ae60!important;color:#27ae60!important;background:var(--lg)!important}
+.bs-btn.r-err{border-color:var(--red)!important;color:var(--red)!important;background:var(--lr)!important}
+.bs-btn.locked{cursor:default;transform:none}
+
+/* ── JAWAB BTN ── */
+.jawab-wrap{padding:2px 14px 14px 58px}
+.btn-jawab{background:var(--forest);color:#fff;border:none;padding:9px 26px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s}
+.btn-jawab:hover{background:var(--teal);transform:translateY(-1px)}
+.btn-jawab:disabled{background:#bbb;cursor:not-allowed;transform:none}
+
+/* ── EXPLANATION ── */
+.exp{margin:0 14px 14px;border-radius:8px;border:1px solid var(--rule);background:var(--cream);display:none;animation:fadeUp .3s ease}
+.exp.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.exp-top{padding:12px 14px 10px}
+.exp-pill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.ep-ok{background:#d5f5e3;color:#1e8449}
+.ep-err{background:#fde8e8;color:var(--red)}
+.exp-main{font-size:13.5px;line-height:1.7;background:var(--warm-white);border-left:3px solid var(--amber);padding:10px 13px;border-radius:0 6px 6px 0;margin-bottom:10px}
+.exp-opts{display:flex;flex-direction:column;gap:6px;padding:0 14px 14px}
+.eo{font-size:13px;line-height:1.6;padding:8px 12px;border-radius:5px}
+.eo.c{background:#d5f5e3;border-left:3px solid #27ae60}
+.eo.w{background:#fff0f0;border-left:3px solid #e74c3c}
+
+/* ── RESULT ── */
+.result-banner{display:none;margin:28px 0;padding:28px 24px;border-radius:12px;text-align:center}
+.result-banner.show{display:block;animation:fadeUp .4s ease}
+.rb-great{background:linear-gradient(135deg,#1a4731,#0d6e55)}
+.rb-good{background:linear-gradient(135deg,#1a4731,#2c3e50)}
+.rb-try{background:linear-gradient(135deg,#5d4037,#1a4731)}
+.rb-score{font-family:'Lora',serif;font-size:52px;font-weight:700;color:#fff;margin-bottom:4px}
+.rb-of{font-size:14px;color:rgba(255,255,255,.6)}
+.rb-msg{font-size:17px;font-weight:700;color:var(--amber);margin-top:10px}
+
+/* ── MATERI ── */
+.materi{margin-top:52px}
+.mat-title{font-family:'Lora',serif;font-size:26px;font-weight:700;text-align:center;margin-bottom:6px}
+.mat-sub{text-align:center;font-size:13px;color:#666;font-style:italic;margin-bottom:30px}
+.mat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;justify-content:center}
+.mat-tab{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid var(--rule);background:var(--warm-white);transition:all .2s;font-family:'Nunito',sans-serif}
+.mat-tab:hover{border-color:var(--teal);color:var(--teal)}
+.mat-tab.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+.mat-panels .mat-panel{display:none}
+.mat-panels .mat-panel.active{display:block}
+.mat-card{background:var(--warm-white);border:1.5px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.mc-head{background:var(--forest);color:#fff;padding:13px 18px;display:flex;align-items:center;gap:10px}
+.mc-ico{font-size:18px}
+.mc-ttl{font-family:'Lora',serif;font-size:15px;font-weight:700}
+.mc-body{padding:16px 18px;font-size:13.5px;line-height:1.75}
+.mc-body h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin:14px 0 6px;font-weight:600}
+.mc-body h4:first-child{margin-top:0}
+.mc-body ul{padding-left:18px;margin-bottom:8px}
+.mc-body li{margin-bottom:3px}
+.mc-body li b{font-weight:700}
+.mc-body p{margin-bottom:8px}
+.mc-body table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 10px}
+.mc-body table th{background:var(--paper);padding:6px 10px;text-align:left;font-weight:700;border:1px solid var(--rule)}
+.mc-body table td{padding:6px 10px;border:1px solid var(--rule)}
+.mc-body table tr:nth-child(even) td{background:var(--cream)}
+.mc-body .chip{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;margin:2px;font-family:'JetBrains Mono',monospace;font-weight:600}
+.chip-ok{background:var(--lg);color:#1e8449;border:1px solid #a9dfbf}
+.chip-err{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
+.chip-n{background:var(--la);color:var(--gold);border:1px solid #f9e79f}
+.highlight{background:var(--paper);border-left:3px solid var(--teal);padding:8px 12px;border-radius:0 5px 5px 0;margin:8px 0;font-style:italic;font-size:13px}
+
+@media(max-width:600px){.score-bar{gap:10px}.bs-opts{flex-wrap:wrap}.mat-tabs{gap:6px}.mat-tab{font-size:12px;padding:6px 12px}.opts{padding:10px 10px 12px 44px}.jawab-wrap{padding:2px 10px 12px 44px}.pgk-note{padding:5px 10px 2px 44px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-stripe"></div>
+  <div class="hdr-inner">
+    <div class="hdr-top">
+      <div class="hdr-icon">📖</div>
+      <div>
+        <div class="hdr-title">Latihan Soal Bahasa Indonesia</div>
+        <div class="hdr-sub">Teks Deskripsi · Prosedur · Rekon · Eksplanasi · Laporan · Argumentasi · 50 Soal Interaktif</div>
+      </div>
+    </div>
+    <div class="score-bar">
+      <div class="sc-item"><label>Dijawab</label><span id="s-ans" class="sm">0/50</span></div>
+      <div class="sc-item"><label>Benar</label><span id="s-b">0</span></div>
+      <div class="sc-item"><label>Salah</label><span id="s-s">0</span></div>
+      <div class="sc-item"><label>Nilai</label><span id="s-n">—</span></div>
+      <div class="prog-wrap">
+        <label>Progress</label>
+        <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="qc"></div>
+<div class="result-banner" id="rb"><div class="rb-score" id="rb-sc">0</div><div class="rb-of">dari 50 soal benar</div><div class="rb-msg" id="rb-msg"></div></div>
+
+<!-- ══════════════════════ MATERI ══════════════════════ -->
+<div class="materi">
+  <div class="mat-title">📚 Materi Belajar Lengkap</div>
+  <div class="mat-sub">Mencakup seluruh kisi-kisi — klik tab untuk berpindah materi</div>
+  <div class="mat-tabs">
+    <div class="mat-tab active" onclick="showTab(0)">📝 Teks Deskripsi</div>
+    <div class="mat-tab" onclick="showTab(1)">📋 Teks Prosedur</div>
+    <div class="mat-tab" onclick="showTab(2)">🔄 Teks Rekon</div>
+    <div class="mat-tab" onclick="showTab(3)">🌊 Teks Eksplanasi</div>
+    <div class="mat-tab" onclick="showTab(4)">📊 Teks Laporan</div>
+    <div class="mat-tab" onclick="showTab(5)">💬 Teks Argumentasi</div>
+  </div>
+  <div class="mat-panels">
+
+    <!-- TAB 0: DESKRIPSI -->
+    <div class="mat-panel active">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">📝</span><span class="mc-ttl">Teks Deskripsi — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian</h4>
+          <p>Teks deskripsi adalah teks yang menggambarkan suatu objek (orang, tempat, benda, atau suasana) secara rinci dan detail sehingga pembaca seolah-olah <b>melihat, merasakan, mencium, mendengar, atau menyentuh</b> sendiri objek yang digambarkan.</p>
+          <h4>Struktur Teks Deskripsi</h4>
+          <table>
+            <tr><th>Bagian</th><th>Isi</th><th>Contoh</th></tr>
+            <tr><td><b>Identifikasi</b></td><td>Pengenalan objek yang akan dideskripsikan (nama, lokasi, gambaran umum)</td><td>"Pantai Ora terletak di Pulau Seram, Maluku."</td></tr>
+            <tr><td><b>Deskripsi Bagian</b></td><td>Penggambaran detail bagian-bagian objek secara rinci menggunakan pancaindra</td><td>"Air lautnya berwarna biru tosca jernih. Pasirnya putih bersih. Ombaknya tenang…"</td></tr>
+            <tr><td><b>Simpulan/Kesan</b></td><td>Kesan penulis atau penutup yang merangkum keindahan/keunikan objek</td><td>"Pantai Ora sungguh menjadi surga tersembunyi yang memukau."</td></tr>
+          </table>
+          <h4>Ciri-Ciri Teks Deskripsi</h4>
+          <ul>
+            <li>Menggambarkan objek secara <b>spesifik dan konkret</b></li>
+            <li>Menggunakan banyak <b>kata sifat</b> (adjektiva): indah, jernih, lembut, harum</li>
+            <li>Menggunakan <b>majas</b> untuk memperindah deskripsi (simile, personifikasi, metafora)</li>
+            <li>Menggunakan <b>kalimat indrawi</b> (melibatkan penglihatan, pendengaran, penciuman, perasaan)</li>
+            <li>Bertujuan membuat pembaca seolah <b>mengalami langsung</b></li>
+            <li>Bukan urutan waktu — melainkan <b>urutan ruang/bagian</b></li>
+          </ul>
+          <h4>Topik & Objek Teks Deskripsi</h4>
+          <p>Objek yang tepat: tempat wisata, alam, orang, hewan, suasana, karya seni. <span class="chip chip-ok">✓ Suasana pantai</span> <span class="chip chip-ok">✓ Keindahan Borobudur</span> <span class="chip chip-ok">✓ Sosok seorang tokoh</span> <span class="chip chip-err">✗ Proses hujan</span> <span class="chip chip-err">✗ Cara membuat kue</span></p>
+          <h4>Kata Penghubung dalam Teks Deskripsi</h4>
+          <table>
+            <tr><th>Fungsi</th><th>Kata Penghubung</th></tr>
+            <tr><td>Menambah informasi</td><td>selain itu, di samping itu, bahkan, pun</td></tr>
+            <tr><td>Menunjukkan tempat</td><td>di sana, di sini, di bagian, di sebelah, tepat di</td></tr>
+            <tr><td>Merinci lebih detail</td><td>khususnya, terutama, yakni, yaitu</td></tr>
+            <tr><td>Perbandingan</td><td>seperti, bagaikan, laksana, bak</td></tr>
+          </table>
+          <h4>Tips Melengkapi Paragraf dari Infografis</h4>
+          <p>Ketika melengkapi paragraf deskripsi berdasarkan infografis:</p>
+          <ul>
+            <li>Gunakan <b>data faktual</b> dari infografis, bukan opini</li>
+            <li>Kalimat harus bersifat <b>deskriptif dan informatif</b></li>
+            <li>Tidak boleh mengandung kata subjektif ("menurutku", "seharusnya", "sepertinya")</li>
+            <li>Pilih kalimat yang <b>menyambung secara logis</b> dengan paragraf sebelumnya</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: PROSEDUR -->
+    <div class="mat-panel">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">📋</span><span class="mc-ttl">Teks Prosedur — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian</h4>
+          <p>Teks prosedur adalah teks yang berisi petunjuk atau langkah-langkah untuk <b>melakukan sesuatu secara berurutan</b> agar tujuan tercapai.</p>
+          <h4>Struktur Teks Prosedur</h4>
+          <table>
+            <tr><th>Bagian</th><th>Isi</th></tr>
+            <tr><td><b>Tujuan</b></td><td>Apa yang akan dibuat/dilakukan (judul atau kalimat pembuka)</td></tr>
+            <tr><td><b>Material/Alat-Bahan</b></td><td>Bahan atau alat yang diperlukan (jika ada)</td></tr>
+            <tr><td><b>Langkah-Langkah</b></td><td>Urutan cara melakukan kegiatan secara kronologis dan sekuensial</td></tr>
+          </table>
+          <h4>Ciri-Ciri Langkah-Langkah</h4>
+          <ul>
+            <li>Bersifat <b>kronologis</b> (berurutan waktu) dan <b>sekuensial</b> (tidak bisa dibalik)</li>
+            <li>Menggunakan kalimat <b>perintah/imperatif</b>: "panaskan", "tuangkan", "tekan tombol"</li>
+            <li>Menggunakan kata urutan: pertama, kedua, selanjutnya, kemudian, terakhir</li>
+            <li>Kalimat singkat, padat, dan jelas</li>
+          </ul>
+          <h4>Kosakata Teknis</h4>
+          <p>Istilah khusus yang berkaitan dengan bidang tertentu dalam teks prosedur:</p>
+          <table>
+            <tr><th>Bidang</th><th>Contoh Kosakata Teknis</th></tr>
+            <tr><td>Memasak</td><td>wajan, tumis, sauté, blanch, api sedang, aduk rata</td></tr>
+            <tr><td>Teknologi</td><td>klik, unduh, unggah, log in, screenshot, browser</td></tr>
+            <tr><td>Kesehatan</td><td>steril, dosis, kompres, antiseptik, sublingual</td></tr>
+            <tr><td>Otomotif</td><td>radiator, karburator, torque, celah klep</td></tr>
+          </table>
+          <h4>Kata Serapan dalam Teks Prosedur</h4>
+          <table>
+            <tr><th>Kata Serapan</th><th>Asal Bahasa</th><th>Keterangan</th></tr>
+            <tr><td>unduh ↔ <i>download</i></td><td>Inggris</td><td>mengambil file dari internet</td></tr>
+            <tr><td>unggah ↔ <i>upload</i></td><td>Inggris</td><td>mengirim file ke internet</td></tr>
+            <tr><td>klik ↔ <i>click</i></td><td>Inggris</td><td>menekan tombol mouse</td></tr>
+            <tr><td>browser ↔ peramban</td><td>Inggris</td><td>aplikasi menjelajah internet</td></tr>
+            <tr><td>sauté ↔ menumis</td><td>Prancis</td><td>memasak cepat di api besar</td></tr>
+          </table>
+          <h4>Kalimat Fakta vs. Kalimat Opini</h4>
+          <table>
+            <tr><th>Kalimat Fakta</th><th>Kalimat Opini</th></tr>
+            <tr><td>Dapat dibuktikan kebenarannya</td><td>Berisi pendapat/penilaian subjektif</td></tr>
+            <tr><td>Bersifat objektif</td><td>Bersifat subjektif</td></tr>
+            <tr><td>Tidak menggunakan kata pendapat</td><td>Menggunakan: <i>menurutku, sebaiknya, saya rasa, sepertinya, seharusnya</i></td></tr>
+            <tr><td><b>Contoh</b>: "Air mendidih pada 100°C."</td><td><b>Contoh</b>: "Menurutku cara ini lebih enak."</td></tr>
+            <tr><td><b>Contoh</b>: "Beras mengandung karbohidrat."</td><td><b>Contoh</b>: "Sebaiknya gunakan nasi merah."</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: REKON -->
+    <div class="mat-panel">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">🔄</span><span class="mc-ttl">Teks Rekon (Recount) — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian & Tujuan</h4>
+          <p><b>Teks rekon</b> (recount text) adalah teks yang menceritakan kembali suatu peristiwa, pengalaman, atau kejadian di masa lalu secara <b>kronologis</b>.</p>
+          <p><b>Tujuan:</b> (1) Memberikan informasi tentang peristiwa yang telah terjadi, dan/atau (2) Menghibur pembaca dengan narasi pengalaman yang menarik.</p>
+          <h4>Struktur Teks Rekon</h4>
+          <table>
+            <tr><th>Bagian</th><th>Isi</th><th>Contoh</th></tr>
+            <tr><td><b>Orientasi</b></td><td>Pengenalan: siapa, apa, kapan, di mana peristiwa terjadi</td><td>"Pada Sabtu, 10 Juni 2023, saya mengunjungi…"</td></tr>
+            <tr><td><b>Peristiwa/Rekaman</b></td><td>Urutan peristiwa/kejadian yang dialami</td><td>"Pertama kami tiba di… Kemudian kami…"</td></tr>
+            <tr><td><b>Reorientasi</b></td><td>Penutup: komentar, perasaan, atau kesan penulis</td><td>"Pengalaman ini sungguh tak terlupakan…"</td></tr>
+          </table>
+          <h4>Kata Penghubung Temporal</h4>
+          <p>Menunjukkan urutan waktu dalam peristiwa:</p>
+          <table>
+            <tr><th>Jenis</th><th>Contoh</th></tr>
+            <tr><td>Urutan</td><td>pertama-tama, kemudian, setelah itu, lalu, berikutnya, akhirnya, terakhir</td></tr>
+            <tr><td>Waktu spesifik</td><td>pada pukul, saat itu, ketika, sewaktu, tatkala</td></tr>
+            <tr><td>Durasi</td><td>selama, sepanjang, dalam waktu, hingga</td></tr>
+          </table>
+          <div class="highlight">⚠️ Jangan salah dengan kata hubung kausalitas (oleh karena itu, sehingga, dengan demikian) — itu bukan temporal!</div>
+          <h4>Ciri Kebahasaan Teks Rekon</h4>
+          <ul>
+            <li><b>Verba material</b> (kata kerja tindakan): pergi, makan, berlari, melihat, mengunjungi</li>
+            <li><b>Kata keterangan waktu lampau</b>: kemarin, minggu lalu, pada tahun 2023, saat itu</li>
+            <li><b>Konjungsi temporal</b>: kemudian, setelah itu, lalu, akhirnya</li>
+            <li><b>Orang pertama</b>: saya, kami, aku — atau orang ketiga: dia, mereka</li>
+            <li>Dominan menggunakan <b>kalimat lampau</b></li>
+          </ul>
+          <h4>Jenis Kata (Kelas Kata) dalam Teks Rekon</h4>
+          <table>
+            <tr><th>Kelas Kata</th><th>Definisi</th><th>Contoh</th></tr>
+            <tr><td><b>Nomina</b> (kata benda)</td><td>Nama orang, tempat, benda</td><td>pantai, sekolah, buku, Jakarta</td></tr>
+            <tr><td><b>Verba</b> (kata kerja)</td><td>Menyatakan tindakan/perbuatan</td><td>berlari, makan, mengunjungi, pergi</td></tr>
+            <tr><td><b>Adjektiva</b> (kata sifat)</td><td>Menerangkan sifat/keadaan</td><td>indah, cepat, besar, melelahkan</td></tr>
+            <tr><td><b>Adverbia</b> (kata keterangan)</td><td>Menerangkan verba/adjektiva</td><td>sangat, terlalu, kemarin, dengan cepat</td></tr>
+            <tr><td><b>Konjungsi</b> (kata hubung)</td><td>Menghubungkan kata/klausa</td><td>dan, tetapi, kemudian, karena</td></tr>
+            <tr><td><b>Pronomina</b> (kata ganti)</td><td>Menggantikan nomina</td><td>saya, kami, mereka, itu, ini</td></tr>
+          </table>
+          <h4>Tips Menemukan Ide Pokok Paragraf</h4>
+          <ul>
+            <li>Baca seluruh paragraf terlebih dahulu</li>
+            <li>Cari kalimat yang <b>paling umum</b> dan menjadi inti pembahasan</li>
+            <li>Kalimat lain dalam paragraf = kalimat penjelas ide pokok</li>
+            <li>Ide pokok bisa di <b>awal</b> (deduktif), <b>akhir</b> (induktif), atau <b>awal dan akhir</b> (campuran)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: EKSPLANASI -->
+    <div class="mat-panel">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">🌊</span><span class="mc-ttl">Teks Eksplanasi — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian</h4>
+          <p>Teks eksplanasi adalah teks yang menjelaskan <b>proses terjadinya</b> suatu fenomena alam, sosial, budaya, atau ilmiah secara <b>sebab-akibat</b>.</p>
+          <h4>Struktur Teks Eksplanasi</h4>
+          <table>
+            <tr><th>Bagian</th><th>Isi</th><th>Contoh Topik Gempa</th></tr>
+            <tr><td><b>Pernyataan Umum</b></td><td>Pengenalan fenomena yang akan dijelaskan</td><td>"Gempa bumi adalah getaran di permukaan bumi…"</td></tr>
+            <tr><td><b>Deret Penjelas</b></td><td>Rangkaian sebab-akibat yang menjelaskan bagaimana/mengapa fenomena terjadi</td><td>"Ketika dua lempeng bertumbukan, tekanan terakumulasi… Kemudian…"</td></tr>
+            <tr><td><b>Interpretasi/Simpulan</b></td><td>Kesimpulan, komentar, atau penilaian penulis tentang fenomena</td><td>"Gempa bumi merupakan fenomena alam yang tidak bisa dihindari…"</td></tr>
+          </table>
+          <h4>Ciri Kebahasaan Teks Eksplanasi</h4>
+          <ul>
+            <li>Menggunakan <b>konjungsi kausalitas</b>: karena, sebab, sehingga, oleh karena itu, akibatnya</li>
+            <li>Menggunakan <b>konjungsi temporal</b>: kemudian, lalu, setelah itu (untuk urutan proses)</li>
+            <li>Menggunakan <b>istilah teknis/ilmiah</b>: lempeng tektonik, kondensasi, evaporasi</li>
+            <li>Bersifat <b>informatif dan objektif</b></li>
+            <li>Menggunakan <b>kalimat pasif</b>: terbentuk, disebabkan, dipengaruhi</li>
+          </ul>
+          <h4>Majas dalam Teks Eksplanasi</h4>
+          <table>
+            <tr><th>Majas</th><th>Definisi</th><th>Contoh</th></tr>
+            <tr><td><b>Personifikasi</b></td><td>Memberikan sifat/perilaku manusia kepada benda mati atau alam</td><td>"Angin <i>berbisik</i> lembut di antara dedaunan." "Matahari <i>tersenyum</i> malu."</td></tr>
+            <tr><td><b>Metafora</b></td><td>Perbandingan langsung tanpa kata penghubung (seperti, bak)</td><td>"Dia adalah <i>bintang</i> di keluarganya." "Waktu adalah <i>uang</i>."</td></tr>
+            <tr><td><b>Simile</b></td><td>Perbandingan menggunakan kata: seperti, bak, bagaikan, laksana</td><td>"Kulitnya <i>seperti</i> salju." "Ombak <i>bagaikan</i> tembok raksasa."</td></tr>
+            <tr><td><b>Hiperbola</b></td><td>Melebih-lebihkan suatu keadaan</td><td>"Suaranya menggelegar <i>membelah langit</i>." "Sudah <i>sejuta kali</i> aku mengatakan."</td></tr>
+            <tr><td><b>Repetisi</b></td><td>Pengulangan kata/frasa untuk penekanan</td><td>"Air, air, dan air — itulah kebutuhan utama makhluk hidup."</td></tr>
+            <tr><td><b>Litotes</b></td><td>Merendahkan diri/melemahkan pernyataan</td><td>"Silakan mampir ke gubuk saya yang sederhana ini."</td></tr>
+          </table>
+          <div class="highlight">💡 Kunci membedakan majas: Personifikasi = benda berperilaku manusia | Metafora = A adalah B | Simile = A seperti B | Hiperbola = berlebihan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: LAPORAN -->
+    <div class="mat-panel">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">📊</span><span class="mc-ttl">Teks Laporan — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian Teks Laporan Hasil Observasi</h4>
+          <p>Teks laporan hasil observasi (LHO) adalah teks yang menyajikan informasi <b>faktual dan objektif</b> tentang suatu objek atau fenomena berdasarkan hasil <b>pengamatan langsung</b> (observasi).</p>
+          <h4>Ciri-Ciri Teks LHO</h4>
+          <ul>
+            <li>Bersifat <b>faktual</b> dan <b>ilmiah</b> (bukan opini atau imajinasi)</li>
+            <li>Menggunakan bahasa <b>baku dan formal</b></li>
+            <li>Berdasarkan hasil <b>pengamatan nyata</b></li>
+            <li>Menyajikan informasi secara <b>sistematis</b></li>
+            <li>Objek yang dilaporkan bersifat <b>umum</b> (bisa berlaku untuk semua jenis objek serupa)</li>
+          </ul>
+          <h4>Kohesi dan Koherensi</h4>
+          <table>
+            <tr><th>Konsep</th><th>Definisi</th><th>Alat</th><th>Contoh</th></tr>
+            <tr><td><b>Kohesi</b></td><td>Keterkaitan <b>BENTUK</b> kebahasaan antarkalimat/antarparagraf</td><td>Kata ganti (ia, mereka, itu), konjungsi, pengulangan kata, sinonim</td><td>"Komodo hidup di Pulau Rinca. <u>Hewan ini</u> adalah reptil terbesar…"</td></tr>
+            <tr><td><b>Koherensi</b></td><td>Keterkaitan <b>MAKNA/ISI</b> antarkalimat sehingga teks bermakna</td><td>Logika pikiran yang runtut, kalimat-kalimat mendukung satu topik</td><td>Setiap kalimat dalam paragraf membicarakan hal yang berkaitan dan relevan</td></tr>
+          </table>
+          <div class="highlight">⚠️ Ingat: Kohesi = bentuk (gramatikal) | Koherensi = makna (logis/semantis)</div>
+          <h4>Kata Serapan yang Sering Keliru</h4>
+          <table>
+            <tr><th>Salah ❌</th><th>Benar ✅</th><th>Asal</th></tr>
+            <tr><td>aktifitas</td><td><b>aktivitas</b></td><td>activity (Inggris)</td></tr>
+            <tr><td>analisa</td><td><b>analisis</b></td><td>analysis (Inggris)</td></tr>
+            <tr><td>praktek</td><td><b>praktik</b></td><td>practice (Inggris)</td></tr>
+            <tr><td>konkrit/kongkrit</td><td><b>konkret</b></td><td>concreet (Belanda)</td></tr>
+            <tr><td>sistim</td><td><b>sistem</b></td><td>system (Inggris)</td></tr>
+            <tr><td>nasehat</td><td><b>nasihat</b></td><td>nasihat (Arab)</td></tr>
+            <tr><td>ijin</td><td><b>izin</b></td><td>izin (Arab)</td></tr>
+          </table>
+          <h4>Esai — Pengertian & Langkah Menulis</h4>
+          <p>Esai adalah karangan prosa yang membahas suatu masalah dari sudut pandang penulis secara <b>subjektif</b> namun tetap berdasarkan fakta/argumentasi.</p>
+          <p><b>Langkah-langkah menulis esai:</b></p>
+          <ul>
+            <li><b>1.</b> Tentukan topik dan sudut pandang yang akan dibahas</li>
+            <li><b>2.</b> Kumpulkan data, fakta, dan referensi pendukung</li>
+            <li><b>3.</b> Buat kerangka/outline: pendahuluan → isi → penutup</li>
+            <li><b>4.</b> Tulis draf pertama sesuai kerangka</li>
+            <li><b>5.</b> Revisi: periksa logika, kohesi, koherensi, dan ejaan</li>
+          </ul>
+          <h4>Cara Menulis Kesimpulan yang Baik</h4>
+          <ul>
+            <li>Merangkum poin-poin utama bacaan</li>
+            <li>Bersifat <b>objektif</b> berdasarkan isi teks</li>
+            <li>Tidak menambahkan informasi baru</li>
+            <li>Tidak menggunakan kata subjektif berlebihan</li>
+            <li>Singkat, padat, dan jelas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ARGUMENTASI -->
+    <div class="mat-panel">
+      <div class="mat-card">
+        <div class="mc-head"><span class="mc-ico">💬</span><span class="mc-ttl">Teks Argumentasi — Lengkap</span></div>
+        <div class="mc-body">
+          <h4>Pengertian</h4>
+          <p>Teks argumentasi adalah teks yang menyampaikan <b>pendapat</b> disertai <b>bukti, data, dan alasan logis</b> dengan tujuan <b>memengaruhi atau meyakinkan pembaca</b>.</p>
+          <h4>Ciri-Ciri Teks Argumentasi</h4>
+          <ul>
+            <li>Mengandung <b>tesis/pernyataan posisi</b> yang jelas</li>
+            <li>Dilengkapi <b>fakta, data, dan alasan</b> yang logis</li>
+            <li>Bertujuan <b>meyakinkan</b> pembaca atas pendapat penulis</li>
+            <li>Menggunakan <b>bahasa yang tegas dan meyakinkan</b></li>
+            <li>Terdapat <b>simpulan</b> yang memperkuat argumen</li>
+            <li>Berbeda dari teks persuasi: argumentasi menekankan <b>logika dan bukti</b>, bukan bujukan emosional</li>
+          </ul>
+          <h4>Ciri Kebahasaan Teks Argumentasi</h4>
+          <table>
+            <tr><th>Kebahasaan</th><th>Contoh</th></tr>
+            <tr><td><b>Konjungsi penyebaban</b></td><td>karena, sebab, sehingga, oleh sebab itu, oleh karena itu, akibatnya</td></tr>
+            <tr><td><b>Kata modalitas</b></td><td>harus, seharusnya, semestinya, perlu, wajib</td></tr>
+            <tr><td><b>Bahasa persuasif</b></td><td>mari, hendaknya, harapannya, sudah saatnya</td></tr>
+            <tr><td><b>Kalimat fakta</b></td><td>Berisi data angka, penelitian, pernyataan yang dapat diverifikasi</td></tr>
+            <tr><td><b>Kalimat opini</b></td><td>Berisi pendapat penulis yang diargumentasikan</td></tr>
+          </table>
+          <h4>Membuat Simpulan Bacaan Argumentasi</h4>
+          <ul>
+            <li>Tentukan <b>posisi/tesis</b> penulis: mendukung atau menentang?</li>
+            <li>Identifikasi <b>argumen utama</b> yang digunakan</li>
+            <li>Simpulkan dalam 1–2 kalimat yang <b>merangkum isi keseluruhan</b></li>
+            <li>Simpulan harus <b>objektif</b> (tidak perlu setuju/tidak setuju dengan penulis)</li>
+          </ul>
+          <h4>Jenis Paragraf Berdasarkan Letak Kalimat Utama</h4>
+          <table>
+            <tr><th>Jenis</th><th>Letak Kalimat Utama</th><th>Contoh Polanya</th></tr>
+            <tr><td><b>Deduktif</b></td><td>Di <b>awal</b> paragraf</td><td>Umum → Khusus (kalimat utama → kalimat penjelas)</td></tr>
+            <tr><td><b>Induktif</b></td><td>Di <b>akhir</b> paragraf</td><td>Khusus → Umum (kalimat penjelas → kalimat utama)</td></tr>
+            <tr><td><b>Campuran</b></td><td>Di <b>awal dan akhir</b></td><td>Umum → Khusus → Umum (dipertegas)</td></tr>
+            <tr><td><b>Ineratif</b></td><td>Di <b>tengah</b> paragraf</td><td>Khusus → Umum → Khusus</td></tr>
+            <tr><td><b>Deskriptif/Naratif</b></td><td><b>Tidak jelas</b> (tersebar)</td><td>Semua kalimat sama kedudukannya</td></tr>
+          </table>
+          <div class="highlight">💡 Cara mudah: deduktif = kalimat utama di depan (umum dulu, rinci belakangan). Induktif = kalimat utama di belakang (rinci dulu, simpulan akhir).</div>
+          <h4>Perbedaan Fakta vs Opini dalam Argumentasi</h4>
+          <table>
+            <tr><th></th><th>Fakta</th><th>Opini</th></tr>
+            <tr><td><b>Sifat</b></td><td>Objektif, dapat dibuktikan</td><td>Subjektif, berupa pendapat</td></tr>
+            <tr><td><b>Penanda</b></td><td>Angka, data, hasil penelitian</td><td>"menurutku", "saya rasa", "seharusnya", "sepertinya"</td></tr>
+            <tr><td><b>Contoh</b></td><td>"Indonesia memiliki 17.508 pulau."</td><td>"Indonesia adalah negara paling indah di dunia."</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end mat-panels -->
+</div><!-- end materi -->
+
+</div><!-- end page -->
+
+<script>
+// ── TAB SWITCHING ──
+function showTab(i){
+  document.querySelectorAll('.mat-tab').forEach((t,j)=>t.classList.toggle('active',i===j));
+  document.querySelectorAll('.mat-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
+}
+
+// ── QUESTION DATA ──
+const K=['A','B','C','D','E'];
+const Q=[
+// ─── PILIHAN GANDA 1-25 ───
+{n:1,t:'pg',tp:'tp-des',tl:'Deskripsi',
+ q:'Struktur teks deskripsi yang benar adalah…',
+ o:['Orientasi → Komplikasi → Resolusi','Identifikasi → Deskripsi Bagian → Simpulan/Kesan','Pernyataan Umum → Deret Penjelas → Interpretasi','Tesis → Argumen → Penegasan Ulang'],
+ a:1,
+ e:'Teks deskripsi memiliki tiga bagian struktur: <b>Identifikasi</b> (pengenalan objek), <b>Deskripsi Bagian</b> (penggambaran detail bagian-bagian objek secara indrawi), dan <b>Simpulan/Kesan</b> (penutup yang merangkum keindahan atau keunikan objek).',
+ oe:['❌ Orientasi → Komplikasi → Resolusi = struktur <b>teks narasi/cerita</b>, bukan deskripsi.','✅ <b>Identifikasi → Deskripsi Bagian → Simpulan/Kesan</b> = struktur teks deskripsi yang tepat.','❌ Pernyataan Umum → Deret Penjelas → Interpretasi = struktur <b>teks eksplanasi</b>.','❌ Tesis → Argumen → Penegasan Ulang = struktur <b>teks argumentasi/eksposisi</b>.']
+},
+{n:2,t:'pg',tp:'tp-des',tl:'Deskripsi',
+ q:'Ciri utama yang membedakan teks deskripsi dengan jenis teks lainnya adalah…',
+ o:['Menceritakan pengalaman pribadi secara kronologis','Menjelaskan sebab-akibat suatu fenomena alam','Menggambarkan objek secara detail sehingga pembaca seolah melihat, merasakan, atau mengalami sendiri','Meyakinkan pembaca dengan pendapat dan bukti yang logis'],
+ a:2,
+ e:'Teks deskripsi bertujuan menggambarkan objek (orang, tempat, benda, suasana) secara rinci dengan <b>mengaktifkan pancaindra pembaca</b> — seolah melihat, mendengar, mencium, merasakan sendiri. Inilah yang membedakannya dari teks lain.',
+ oe:['❌ Menceritakan pengalaman secara kronologis = ciri <b>teks rekon</b>.','❌ Menjelaskan sebab-akibat fenomena = ciri <b>teks eksplanasi</b>.','✅ <b>Menggambarkan objek secara detail sehingga pembaca seolah mengalami sendiri</b> = ciri khas teks deskripsi.','❌ Meyakinkan dengan pendapat dan bukti = ciri <b>teks argumentasi</b>.']
+},
+{n:3,t:'pg',tp:'tp-des',tl:'Deskripsi',
+ q:'Topik yang paling tepat untuk dikembangkan menjadi teks deskripsi adalah…',
+ o:['Mengapa gempa bumi dapat terjadi','Cara membuat batik tulis','Keindahan Candi Borobudur yang megah dari dekat','Manfaat membaca buku bagi pelajar'],
+ a:2,
+ e:'Objek teks deskripsi adalah hal-hal yang dapat <b>digambarkan secara indrawi</b>. "Keindahan Candi Borobudur dari dekat" dapat dideskripsikan melalui detail visual (ukiran batu, stupa, relief), suasana, tekstur, dan sebagainya.',
+ oe:['❌ "Mengapa gempa bumi terjadi" menanyakan <b>sebab-akibat</b> = topik teks <b>eksplanasi</b>.','❌ "Cara membuat batik tulis" berisi <b>langkah-langkah</b> = topik teks <b>prosedur</b>.','✅ <b>Keindahan Candi Borobudur</b> = objek tempat yang dapat digambarkan secara detail dan indrawi = tepat untuk deskripsi.','❌ "Manfaat membaca buku" berisi <b>argumentasi/informasi</b> = topik teks <b>eksposisi/argumentasi</b>.']
+},
+{n:4,t:'pg',tp:'tp-des',tl:'Deskripsi',
+ q:'Bacalah penggalan paragraf berikut!\n<span class="block-text">"Pantai Ora terletak di Pulau Seram, Maluku. ___, air lautnya berwarna biru tosca yang sangat jernih hingga ke dasar. ___, hamparan pasirnya berwarna putih bersih bagaikan tepung halus."</span>\nKata penghubung yang paling tepat untuk melengkapi paragraf tersebut adalah…',
+ o:['Selain itu — Kemudian','Di sana — Selain itu','Pertama — Kedua','Oleh karena itu — Meskipun demikian'],
+ a:1,
+ e:'"<b>Di sana</b>" merujuk pada lokasi yang sudah disebutkan (Pantai Ora), membentuk keterangan tempat. "<b>Selain itu</b>" menambahkan deskripsi berikutnya (pasir putih) sebagai informasi tambahan. Keduanya kohesif dan sesuai konteks deskripsi tempat.',
+ oe:['❌ "Selain itu — Kemudian" → "Kemudian" biasanya digunakan untuk urutan waktu/langkah, kurang tepat untuk deskripsi paralel.','✅ <b>Di sana</b> (merujuk lokasi Pantai Ora) + <b>Selain itu</b> (menambah informasi deskripsi baru) = paling tepat.','❌ "Pertama — Kedua" = kata penghubung urutan/langkah, cocok untuk teks <b>prosedur</b>, bukan deskripsi.','❌ "Oleh karena itu — Meskipun demikian" = kata hubung <b>sebab-akibat</b> dan <b>perlawanan</b>, tidak cocok untuk deskripsi.']
+},
+{n:5,t:'pg',tp:'tp-des',tl:'Deskripsi',
+ q:'Perhatikan data infografis berikut:\n<span class="block-text">Taman Nasional Komodo | Luas: 1.817 km² | Hewan unggulan: Komodo | Pulau utama: Komodo, Rinca, Padar | Status UNESCO: Warisan Dunia sejak 1991</span>\nKalimat yang paling tepat untuk melengkapi paragraf deskripsi berdasarkan infografis tersebut adalah…',
+ o:['"Taman Nasional Komodo seharusnya dijaga lebih ketat oleh pemerintah dan masyarakat sekitar."','"Taman Nasional Komodo yang diakui UNESCO sejak 1991 membentang seluas 1.817 km² dan mencakup tiga pulau utama: Komodo, Rinca, dan Padar."','"Menurutku, Taman Nasional Komodo adalah destinasi wisata terbaik di Indonesia."','"Taman Nasional Komodo mengalami berbagai masalah lingkungan yang membutuhkan perhatian serius."'],
+ a:1,
+ e:'Melengkapi paragraf deskripsi dari infografis harus menggunakan <b>data faktual</b> dari infografis secara <b>deskriptif dan objektif</b>, tanpa opini. Opsi B merangkum status UNESCO, luas wilayah, dan pulau-pulau utama secara tepat dan faktual.',
+ oe:['❌ "Seharusnya dijaga lebih ketat" = <b>opini/saran</b>, bukan deskripsi faktual dari infografis.','✅ Merangkum <b>semua data faktual</b> dari infografis (status UNESCO, luas, pulau utama) dalam satu kalimat deskriptif. Tepat!','❌ "Menurutku…" = kata subjektif yang menunjukkan <b>opini pribadi</b>, tidak sesuai untuk deskripsi berdasarkan infografis.','❌ "Mengalami berbagai masalah lingkungan" = informasi yang <b>tidak ada dalam infografis</b> — tidak boleh ditambahkan.']
+},
+{n:6,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Struktur teks prosedur yang benar adalah…',
+ o:['Tujuan → Alat/Bahan → Langkah-Langkah','Orientasi → Peristiwa → Reorientasi','Identifikasi → Deskripsi Bagian → Simpulan','Tesis → Argumen → Penegasan Ulang'],
+ a:0,
+ e:'Teks prosedur memiliki tiga bagian struktur: <b>Tujuan</b> (apa yang akan dicapai/dibuat), <b>Alat/Bahan</b> (material yang diperlukan, jika ada), dan <b>Langkah-Langkah</b> (urutan cara melakukan secara kronologis).',
+ oe:['✅ <b>Tujuan → Alat/Bahan → Langkah-Langkah</b> = struktur teks prosedur yang tepat.','❌ Orientasi → Peristiwa → Reorientasi = struktur <b>teks rekon</b>.','❌ Identifikasi → Deskripsi Bagian → Simpulan = struktur <b>teks deskripsi</b>.','❌ Tesis → Argumen → Penegasan Ulang = struktur <b>teks argumentasi</b>.']
+},
+{n:7,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Ciri khas langkah-langkah dalam teks prosedur adalah…',
+ o:['Menggunakan urutan acak yang dapat diubah-ubah sesuai keinginan','Disusun secara kronologis dan berurutan — tidak dapat dibalik urutannya','Berisi pendapat penulis tentang cara terbaik melakukan sesuatu','Menggunakan kalimat pasif secara dominan tanpa kata perintah'],
+ a:1,
+ e:'Langkah dalam teks prosedur bersifat <b>kronologis</b> (berurutan sesuai waktu) dan <b>sekuensial</b> (harus dilakukan berurutan). Jika urutannya dibalik, tujuan tidak akan tercapai atau hasilnya akan berbeda/gagal.',
+ oe:['❌ Langkah prosedur <b>tidak acak</b> — harus berurutan. Urutan yang salah = hasil yang gagal.','✅ <b>Kronologis dan sekuensial</b> = ciri utama langkah-langkah teks prosedur. Tidak bisa dibalik sesuka hati.','❌ Berisi pendapat = ciri teks <b>argumentasi/opini</b>. Teks prosedur berisi instruksi objektif.','❌ Teks prosedur justru dominan menggunakan kalimat <b>aktif perintah (imperatif)</b>: "panaskan", "masukkan", "tekan".']
+},
+{n:8,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Perhatikan kalimat berikut:\n<span class="block-text">"Panaskan wajan dengan api sedang, lalu tuangkan minyak goreng secukupnya."</span>\nKosakata teknis bidang memasak yang terdapat dalam kalimat tersebut adalah…',
+ o:['Panaskan dan tuangkan','Wajan dan api sedang','Secukupnya dan lalu','Minyak goreng dan lalu'],
+ a:1,
+ e:'<b>Kosakata teknis</b> adalah istilah khusus yang berkaitan dengan bidang tertentu. "<b>Wajan</b>" (alat masak khusus berbentuk bulat cekung) dan "<b>api sedang</b>" (tingkat intensitas panas dalam memasak) adalah kosakata teknis bidang kuliner/memasak.',
+ oe:['❌ "Panaskan" dan "tuangkan" adalah kata kerja (verba) umum — bisa digunakan di luar konteks memasak pula.','✅ <b>Wajan</b> (alat masak khusus) dan <b>api sedang</b> (istilah teknis tingkat panas memasak) = kosakata teknis memasak.','❌ "Secukupnya" adalah kata keterangan kuantitas umum; "lalu" adalah kata hubung temporal — bukan kosakata teknis.','❌ "Minyak goreng" adalah bahan masak umum; "lalu" adalah kata hubung temporal — tidak termasuk kosakata teknis.']
+},
+{n:9,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Manakah pasangan kata serapan dan padanan bahasa Indonesianya yang paling tepat?',
+ o:['"download" → unduh | "upload" → unggah | "click" → klik','Berlari → jogging | Makan → dining | Tidur → sleeping','"browser" → layar | "log in" → masuk akun | "file" → berkas data','Hijau → green | Merah → red | Biru → blue'],
+ a:0,
+ e:'Kata serapan adalah kata yang berasal dari bahasa asing dan disesuaikan dengan kaidah bahasa Indonesia. "<b>Unduh</b>" (download), "<b>unggah</b>" (upload), dan "<b>klik</b>" (click) adalah kata serapan resmi dalam KBBI untuk konteks teknologi digital.',
+ oe:['✅ <b>Unduh/unggah/klik</b> = kata serapan yang sudah dibakukan dalam KBBI sebagai padanan teknologi dari bahasa Inggris.','❌ Ini bukan contoh kata serapan — ini adalah kata Indonesia dan terjemahan Inggrisnya (bukan kata yang diserap ke bahasa Indonesia).','❌ "Browser" → "peramban" (bukan layar); "log in" → "masuk/masuk akun" relatif benar; "file" → "berkas" (bukan berkas data). Pasangan ini tidak tepat.','❌ Ini bukan kata serapan — ini adalah kosakata dasar bahasa Indonesia beserta terjemahan Inggrisnya.']
+},
+{n:10,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Manakah yang merupakan kalimat fakta dalam teks prosedur memasak?',
+ o:['"Sebaiknya gunakan air mineral agar masakan terasa lebih lezat."','"Air mendidih pada suhu 100°C di permukaan laut."','"Menurutku, cara menggoreng ini adalah yang paling enak."','"Sepertinya bahan ini tidak terlalu penting dalam resep ini."'],
+ a:1,
+ e:'Kalimat fakta adalah pernyataan yang dapat <b>dibuktikan kebenarannya secara objektif</b>. "Air mendidih pada suhu 100°C di permukaan laut" adalah <b>fakta ilmiah</b> yang dapat diverifikasi dan dibuktikan secara saintifik.',
+ oe:['❌ "Sebaiknya" = kata opini/saran. Kalimat ini berisi <b>anjuran subjektif</b>, bukan fakta yang bisa dibuktikan.','✅ <b>"Air mendidih pada 100°C di permukaan laut"</b> = fakta ilmiah yang terukur dan dapat diverifikasi. Ini adalah kalimat fakta.','❌ "Menurutku" = penanda opini yang jelas. Ini adalah <b>pendapat pribadi</b>, bukan fakta.','❌ "Sepertinya" = kata ketidakpastian yang menandai <b>opini/perkiraan subjektif</b>, bukan fakta.']
+},
+{n:11,t:'pg',tp:'tp-pro',tl:'Prosedur',
+ q:'Kalimat opini dalam teks prosedur paling mudah dikenali dari penggunaan…',
+ o:['Data atau angka yang terukur dan spesifik','Hasil penelitian yang dapat dikutip dari jurnal ilmiah','Kata subjektif seperti "sebaiknya", "menurut saya", "lebih baik", "saya rasa"','Urutan langkah yang sistematis dan berurutan'],
+ a:2,
+ e:'Kalimat opini berisi pendapat atau penilaian <b>subjektif</b> yang belum tentu dapat dibuktikan. Penandanya adalah penggunaan kata-kata seperti "<b>sebaiknya</b>", "<b>menurut saya</b>", "<b>lebih baik</b>", "<b>saya rasa</b>", "<b>seharusnya</b>", "<b>sepertinya</b>".',
+ oe:['❌ Data dan angka yang terukur justru merupakan penanda <b>kalimat fakta</b>.','❌ Hasil penelitian dari jurnal adalah penanda <b>kalimat fakta/data ilmiah</b>, bukan opini.','✅ <b>Kata subjektif</b> seperti "sebaiknya, menurut saya, lebih baik, saya rasa" = penanda khas kalimat opini.','❌ Urutan langkah sistematis adalah ciri <b>struktur teks prosedur</b> secara umum, bukan penanda kalimat opini.']
+},
+{n:12,t:'pg',tp:'tp-rek',tl:'Rekon',
+ q:'Teks rekon (recount) adalah jenis teks yang bertujuan…',
+ o:['Menjelaskan proses terjadinya suatu fenomena alam secara sebab-akibat','Menceritakan kembali peristiwa atau pengalaman di masa lalu secara kronologis','Menggambarkan suatu objek secara detail menggunakan pancaindra','Meyakinkan pembaca dengan argumen dan fakta yang logis'],
+ a:1,
+ e:'Teks rekon (<i>recount text</i>) berasal dari kata "<i>recount</i>" = menceritakan kembali. Teks ini berfungsi untuk <b>menceritakan kembali peristiwa, pengalaman, atau kejadian di masa lalu secara kronologis</b>.',
+ oe:['❌ Menjelaskan proses fenomena secara sebab-akibat = tujuan <b>teks eksplanasi</b>.','✅ <b>Menceritakan kembali peristiwa/pengalaman masa lalu secara kronologis</b> = tujuan utama teks rekon.','❌ Menggambarkan objek secara detail = tujuan <b>teks deskripsi</b>.','❌ Meyakinkan pembaca dengan argumen = tujuan <b>teks argumentasi</b>.']
+},
+{n:13,t:'pg',tp:'tp-rek',tl:'Rekon',
+ q:'Manakah yang termasuk kata penghubung temporal yang tepat digunakan dalam teks rekon?',
+ o:['"Oleh karena itu", "dengan demikian", "akibatnya"','"Meskipun", "walaupun", "sekalipun"','"Pertama-tama", "kemudian", "setelah itu", "akhirnya"','"Misalnya", "contohnya", "seperti halnya"'],
+ a:2,
+ e:'Kata penghubung <b>temporal</b> menunjukkan urutan waktu. "<b>Pertama-tama, kemudian, setelah itu, akhirnya</b>" adalah kata penghubung temporal yang menunjukkan kronologi peristiwa — sangat khas dalam teks rekon.',
+ oe:['❌ "Oleh karena itu, dengan demikian, akibatnya" = kata hubung <b>kausalitas</b> (sebab-akibat), bukan temporal.','❌ "Meskipun, walaupun, sekalipun" = kata hubung <b>konsesi/perlawanan</b>, bukan temporal.','✅ <b>"Pertama-tama, kemudian, setelah itu, akhirnya"</b> = kata penghubung <b>temporal</b> yang menunjukkan urutan waktu peristiwa. Tepat untuk teks rekon.','❌ "Misalnya, contohnya, seperti halnya" = kata penghubung <b>ilustrasi/contoh</b>, bukan temporal.']
+},
+{n:14,t:'pg',tp:'tp-rek',tl:'Rekon',
+ q:'Ciri kebahasaan yang paling khas dalam teks rekon adalah…',
+ o:['Menggunakan kalimat perintah dan kosakata teknis bidang tertentu','Menggunakan verba material dan keterangan waktu lampau','Menggunakan kata hubung kausalitas dan kalimat majemuk sebab-akibat','Menggunakan istilah ilmiah dan banyak kalimat definisi'],
+ a:1,
+ e:'Ciri kebahasaan teks rekon: (1) <b>verba material</b> (kata kerja tindakan nyata: pergi, makan, mengunjungi), (2) <b>keterangan waktu lampau</b> (kemarin, minggu lalu, tahun 2023), (3) konjungsi temporal, dan (4) berpusat pada orang pertama/ketiga.',
+ oe:['❌ Kalimat perintah + kosakata teknis = ciri kebahasaan <b>teks prosedur</b>.','✅ <b>Verba material + keterangan waktu lampau</b> = ciri khas teks rekon. Contoh: "Kami <i>mengunjungi</i> (verba material) pantai <i>minggu lalu</i> (waktu lampau)."','❌ Kata hubung kausalitas + sebab-akibat = ciri kebahasaan <b>teks eksplanasi</b>.','❌ Istilah ilmiah + kalimat definisi = ciri kebahasaan <b>teks eksplanasi atau laporan ilmiah</b>.']
+},
+{n:15,t:'pg',tp:'tp-rek',tl:'Rekon',
+ q:'Bacalah paragraf berikut!\n<span class="block-text">"Liburan semester lalu, aku dan keluargaku mengunjungi Taman Safari Bogor. Kami berangkat pagi-pagi sekali agar tidak terjebak kemacetan. Sesampainya di sana, kami langsung menuju area safari drive untuk melihat berbagai satwa liar dari dekat."</span>\nIde pokok paragraf tersebut adalah…',
+ o:['Kemacetan di jalan menuju Taman Safari Bogor','Keberangkatan pagi-pagi untuk menghindari macet','Kunjungan keluarga ke Taman Safari Bogor saat liburan semester','Pengalaman melihat satwa liar dari dekat di safari drive'],
+ a:2,
+ e:'<b>Ide pokok</b> adalah gagasan utama yang menjadi inti paragraf. Kalimat pertama "Liburan semester lalu, aku dan keluargaku <b>mengunjungi Taman Safari Bogor</b>" adalah kalimat utama. Semua kalimat lainnya menjelaskan detail dari kunjungan tersebut.',
+ oe:['❌ Kemacetan hanya disebutkan sebagai alasan berangkat pagi — bukan ide pokok, melainkan kalimat penjelas.','❌ Berangkat pagi adalah detail dari perjalanan, bukan ide utama paragraf.','✅ <b>Kunjungan keluarga ke Taman Safari Bogor saat liburan semester</b> = ide pokok. Kalimat 1 sebagai kalimat utama, kalimat 2 dan 3 adalah penjelasnya.','❌ Melihat satwa liar hanya merupakan salah satu aktivitas yang dilakukan, bukan ide utama paragraf.']
+},
+{n:16,t:'pg',tp:'tp-rek',tl:'Rekon',
+ q:'Dalam kalimat "Kami berlari dengan cepat menuju gerbang taman", kata "berlari" termasuk jenis kata…',
+ o:['Kata sifat (adjektiva)','Kata benda (nomina)','Kata kerja (verba)','Kata keterangan (adverbia)'],
+ a:2,
+ e:'"<b>Berlari</b>" adalah kata kerja (verba) karena menyatakan <b>tindakan atau aktivitas</b> yang dilakukan subjek (kami). Dalam teks rekon, kata kerja tindakan seperti ini disebut <b>verba material</b>. Adapun "cepat" dalam kalimat itu berfungsi sebagai keterangan cara (adverbia cara).', 
+ oe:['❌ Kata sifat (adjektiva) menerangkan sifat/keadaan sesuatu, contoh: <i>cepat, indah, besar</i>. "Berlari" bukan kata sifat.','❌ Kata benda (nomina) adalah nama orang, tempat, atau benda: <i>gerbang, taman</i>. "Berlari" bukan kata benda.','✅ <b>Kata kerja (verba)</b> menyatakan tindakan: berlari, makan, pergi, mengunjungi. "Berlari" = verba material dalam teks rekon.','❌ Kata keterangan (adverbia) menerangkan verba atau adjektiva. "Cepat" dalam kalimat ini adalah adverbia cara, bukan "berlari".']
+},
+{n:17,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Struktur teks eksplanasi yang benar adalah…',
+ o:['Identifikasi → Deskripsi Bagian → Simpulan/Kesan','Pernyataan Umum → Deret Penjelas → Interpretasi/Simpulan','Tujuan → Alat/Bahan → Langkah-Langkah','Orientasi → Komplikasi → Resolusi'],
+ a:1,
+ e:'Teks eksplanasi memiliki tiga struktur: (1) <b>Pernyataan Umum</b> — pengenalan fenomena, (2) <b>Deret Penjelas</b> — rangkaian sebab-akibat yang menjelaskan bagaimana/mengapa fenomena terjadi, (3) <b>Interpretasi/Simpulan</b> — komentar atau penilaian akhir.',
+ oe:['❌ Identifikasi → Deskripsi Bagian → Simpulan = struktur <b>teks deskripsi</b>.','✅ <b>Pernyataan Umum → Deret Penjelas → Interpretasi</b> = struktur teks eksplanasi yang tepat.','❌ Tujuan → Alat/Bahan → Langkah-Langkah = struktur <b>teks prosedur</b>.','❌ Orientasi → Komplikasi → Resolusi = struktur <b>teks narasi/cerita</b>.']
+},
+{n:18,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Bacalah kalimat berikut!\n<span class="block-text">"Angin berbisik lembut di antara dedaunan, seakan menyapa setiap pengunjung yang datang."</span>\nMajas yang digunakan dalam kalimat tersebut adalah…',
+ o:['Majas hiperbola','Majas personifikasi','Majas metafora','Majas simile'],
+ a:1,
+ e:'<b>Majas personifikasi</b> memberikan sifat atau perilaku manusia kepada benda mati atau alam. Dalam kalimat itu, "angin" diberi kemampuan layaknya manusia: "<b>berbisik</b>" dan "<b>menyapa</b>" — keduanya adalah aktivitas manusia.',
+ oe:['❌ Majas <b>hiperbola</b> melebih-lebihkan keadaan secara berlebihan: "suaranya menggelegar membelah langit." Kalimat ini tidak melebih-lebihkan.','✅ <b>Majas personifikasi</b>: angin "berbisik" dan "menyapa" = benda alam diberi perilaku manusia. Ciri khas personifikasi.','❌ Majas <b>metafora</b> membandingkan langsung tanpa kata "seperti": "dia adalah bintang keluarganya." Tidak ada perbandingan langsung di sini.','❌ Majas <b>simile</b> menggunakan kata "seperti, bak, bagaikan, laksana" untuk perbandingan. Kalimat ini tidak menggunakan kata tersebut.']
+},
+{n:19,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Bacalah kalimat berikut!\n<span class="block-text">"Kemarahannya meluap seperti gunung berapi yang memuntahkan lahar panas."</span>\nMajas yang digunakan adalah…',
+ o:['Majas personifikasi','Majas metafora','Majas simile','Majas hiperbola'],
+ a:2,
+ e:'<b>Majas simile</b> adalah majas perbandingan yang menggunakan kata penghubung perbandingan eksplisit: <b>seperti, bak, bagaikan, laksana, seumpama</b>. Kalimat ini menggunakan kata "<b>seperti</b>" untuk membandingkan kemarahan dengan gunung berapi.',
+ oe:['❌ Majas <b>personifikasi</b> memberi sifat manusia pada benda mati. Di sini tidak ada benda yang diberi perilaku manusia.','❌ Majas <b>metafora</b> adalah perbandingan <i>langsung</i> tanpa "seperti/bak": "kemarahannya <i>adalah</i> gunung berapi." Kalimat ini masih memakai "seperti".','✅ <b>Majas simile</b>: perbandingan menggunakan kata "<b>seperti</b>" secara eksplisit. "Kemarahannya seperti gunung berapi" = perbandingan eksplisit.','❌ Majas <b>hiperbola</b> melebih-lebihkan: "kemarahannya menghancurkan seluruh dunia." Kalimat ini lebih pada perbandingan, bukan melebih-lebihkan.']
+},
+{n:20,t:'pg',tp:'tp-lap',tl:'Laporan',
+ q:'Teks laporan hasil observasi adalah teks yang…',
+ o:['Menceritakan kembali pengalaman pribadi penulis secara kronologis','Menyajikan informasi faktual tentang suatu objek berdasarkan hasil pengamatan','Mengungkapkan pendapat penulis tentang suatu isu sosial dengan argumen','Menjelaskan prosedur melakukan sesuatu langkah demi langkah'],
+ a:1,
+ e:'Teks laporan hasil observasi (LHO) menyajikan informasi <b>faktual dan objektif</b> tentang suatu objek (hewan, tumbuhan, fenomena) berdasarkan hasil <b>pengamatan/observasi langsung</b> yang sistematis.',
+ oe:['❌ Menceritakan pengalaman pribadi = ciri <b>teks rekon</b>.','✅ <b>Informasi faktual berdasarkan hasil pengamatan</b> = definisi teks laporan hasil observasi yang tepat.','❌ Mengungkapkan pendapat dengan argumen = ciri <b>teks argumentasi</b>.','❌ Menjelaskan prosedur langkah demi langkah = ciri <b>teks prosedur</b>.']
+},
+{n:21,t:'pg',tp:'tp-lap',tl:'Laporan',
+ q:'Kohesi dalam sebuah teks berarti…',
+ o:['Kesesuaian isi teks dengan topik yang dibahas secara keseluruhan','Keterkaitan bentuk/unsur kebahasaan antarkalimat (kata ganti, konjungsi, pengulangan kata)','Kemampuan teks untuk memengaruhi dan menggerakkan pembaca','Kejelasan sistematika dan urutan penulisan laporan'],
+ a:1,
+ e:'<b>Kohesi</b> berkaitan dengan keterkaitan <b>BENTUK (gramatikal)</b> antarelemen teks. Dicapai melalui: kata ganti (ia, mereka, itu), konjungsi (dan, tetapi, karena), pengulangan kata (repetisi), dan sinonim.',
+ oe:['❌ Kesesuaian isi dengan topik = lebih mendekati definisi <b>koherensi</b> (keterkaitan makna), bukan kohesi bentuk.','✅ <b>Keterkaitan bentuk kebahasaan</b> (kata ganti, konjungsi, pengulangan) = definisi kohesi yang tepat.','❌ Kemampuan memengaruhi pembaca = ciri <b>teks persuasi/argumentasi</b>, bukan definisi kohesi.','❌ Kejelasan sistematika penulisan = aspek <b>struktur teks</b>, bukan definisi kohesi.']
+},
+{n:22,t:'pg',tp:'tp-lap',tl:'Laporan',
+ q:'Manakah pasangan kata serapan yang penulisannya BENAR sesuai KBBI?',
+ o:['"aktifitas" (dari activity)','Analisis (dari analysis)','Praktek (dari practice)','Kongkrit (dari concrete)'],
+ a:1,
+ e:'Penulisan kata serapan yang benar: <b>Analisis</b> (bukan analisa), Aktivitas (bukan aktifitas), Praktik (bukan praktek), Konkret (bukan kongkrit/konkrit). Dari keempat pilihan, hanya "<b>Analisis</b>" yang sudah benar.',
+ oe:['❌ "<b>Aktifitas</b>" salah — yang benar adalah <b>aktivitas</b> (dari bahasa Inggris <i>activity</i>).','✅ <b>Analisis</b> = penulisan yang benar (dari bahasa Inggris <i>analysis</i>). Bukan "analisa" yang sering keliru digunakan.','❌ "<b>Praktek</b>" salah — yang benar adalah <b>praktik</b> (dari bahasa Inggris <i>practice</i>).','❌ "<b>Kongkrit</b>" salah — yang benar adalah <b>konkret</b> (dari bahasa Belanda <i>concreet</i>).']
+},
+{n:23,t:'pg',tp:'tp-lap',tl:'Laporan',
+ q:'Koherensi dalam teks berbeda dengan kohesi karena koherensi menekankan…',
+ o:['Penggunaan kata ganti yang konsisten antar kalimat','Keterkaitan makna dan isi antarkalimat sehingga teks bermakna logis','Penggunaan konjungsi yang tepat sebagai penghubung antarkalimat','Ketepatan pemilihan diksi dan ejaan dalam penulisan'],
+ a:1,
+ e:'<b>Koherensi</b> berkaitan dengan keterkaitan <b>MAKNA/ISI</b> antarkalimat — apakah kalimat-kalimat dalam teks saling berhubungan secara logis dan membentuk satu kesatuan makna yang utuh. Berbeda dengan kohesi yang berkaitan dengan bentuk kebahasaan.',
+ oe:['❌ Penggunaan kata ganti yang konsisten = salah satu alat <b>kohesi</b> (bentuk), bukan koherensi.','✅ <b>Keterkaitan makna dan isi antarkalimat</b> = definisi koherensi yang tepat. Teks koherensi = teks yang bermakna logis.','❌ Penggunaan konjungsi = alat <b>kohesi</b> (bentuk gramatikal), bukan koherensi.','❌ Ketepatan diksi dan ejaan = aspek <b>kebahasaan/tata bahasa</b>, bukan definisi koherensi.']
+},
+{n:24,t:'pg',tp:'tp-lap',tl:'Laporan',
+ q:'Simpulan yang paling tepat dari teks laporan tentang tingginya angka sampah plastik di laut Indonesia adalah…',
+ o:['"Pemerintah harus segera menghukum masyarakat yang membuang sampah sembarangan ke laut."','"Indonesia perlu meningkatkan kesadaran masyarakat dan mengembangkan kebijakan pengelolaan sampah plastik secara terpadu."','"Sampah plastik di laut Indonesia tidak perlu dikhawatirkan karena laut cukup luas untuk menampungnya."','"Saya percaya Indonesia bisa mengatasi masalah sampah plastik jika semua orang mau peduli."'],
+ a:1,
+ e:'Simpulan yang baik harus: (1) <b>objektif</b> berdasarkan isi teks, (2) <b>merangkum isi</b> secara logis, (3) tidak mengandung opini berlebihan/subjektif. Opsi B merespons masalah (sampah plastik) dengan solusi yang terukur dan logis.',
+ oe:['❌ "Harus segera menghukum" = pendapat yang <b>terlalu subjektif dan emosional</b>, tidak mencerminkan simpulan objektif laporan.','✅ <b>"Perlu meningkatkan kesadaran dan kebijakan terpadu"</b> = simpulan objektif yang merespons isi laporan secara logis dan terukur.','❌ "Tidak perlu dikhawatirkan" = <b>bertentangan</b> dengan isi laporan yang justru menunjukkan masalah serius.','❌ "Saya percaya…" = mengandung kata subjektif ("saya percaya") yang tidak cocok untuk simpulan laporan yang objektif.']
+},
+{n:25,t:'pg',tp:'tp-arg',tl:'Argumentasi',
+ q:'Ciri utama teks argumentasi yang membedakannya dari jenis teks lain adalah…',
+ o:['Menggambarkan objek secara rinci sehingga pembaca seolah mengalami sendiri','Menceritakan kembali peristiwa secara kronologis dari masa lalu','Menyampaikan pendapat yang didukung bukti dan alasan logis untuk memengaruhi pembaca','Menjelaskan proses terjadinya suatu fenomena secara sebab-akibat'],
+ a:2,
+ e:'Teks argumentasi bertujuan <b>memengaruhi dan meyakinkan pembaca</b> melalui penyampaian pendapat/tesis yang didukung oleh <b>bukti, data, fakta, dan alasan yang logis</b>. Inilah ciri utama yang membedakannya dari teks lain.',
+ oe:['❌ Menggambarkan objek secara rinci = ciri khas <b>teks deskripsi</b>.','❌ Menceritakan peristiwa secara kronologis = ciri khas <b>teks rekon</b>.','✅ <b>Pendapat + bukti + logis + memengaruhi pembaca</b> = ciri utama dan definisi teks argumentasi.','❌ Menjelaskan fenomena secara sebab-akibat = ciri khas <b>teks eksplanasi</b>.']
+},
+
+// ─── PGK 26-40 ───
+{n:26,t:'pgk',tp:'tp-des',tl:'Deskripsi',
+ q:'Manakah yang merupakan <b>ciri-ciri teks deskripsi</b> yang benar?',
+ o:['Menggambarkan objek secara detail menggunakan pancaindra (penglihatan, pendengaran, penciuman, perasaan)','Menggunakan banyak kata sifat (adjektiva) dan majas untuk memperindah gambaran','Menceritakan peristiwa secara urut waktu (kronologis)','Bertujuan membuat pembaca seolah melihat, merasakan, atau mengalami sendiri objek yang digambarkan','Menggunakan banyak kalimat perintah (imperatif)'],
+ a:[0,1,3],
+ e:'Ciri teks deskripsi adalah: menggambarkan objek secara indrawi, menggunakan banyak kata sifat dan majas, serta membuat pembaca seolah mengalami sendiri. <b>Kronologis</b> adalah ciri teks rekon; <b>kalimat perintah</b> adalah ciri teks prosedur.',
+ oe:['✅ <b>Menggambarkan objek menggunakan pancaindra</b> = ciri utama teks deskripsi.','✅ <b>Kata sifat dan majas</b> = alat bahasa khas teks deskripsi untuk memperindah gambaran.','❌ <b>Menceritakan peristiwa secara kronologis</b> = ciri <b>teks rekon</b>, bukan deskripsi.','✅ <b>Pembaca seolah mengalami sendiri</b> = tujuan utama teks deskripsi. Benar.','❌ <b>Banyak kalimat perintah</b> = ciri <b>teks prosedur</b>, bukan deskripsi.']
+},
+{n:27,t:'pgk',tp:'tp-pro',tl:'Prosedur',
+ q:'Manakah yang termasuk <b>bagian struktur teks prosedur</b>?',
+ o:['Tujuan','Komplikasi','Alat dan Bahan','Langkah-Langkah','Interpretasi/Simpulan'],
+ a:[0,2,3],
+ e:'Struktur teks prosedur terdiri dari: <b>Tujuan</b> (apa yang dicapai), <b>Alat dan Bahan</b> (jika diperlukan), dan <b>Langkah-Langkah</b> (urutan cara). "Komplikasi" adalah bagian teks narasi; "Interpretasi" adalah bagian teks eksplanasi.',
+ oe:['✅ <b>Tujuan</b> = bagian pertama teks prosedur. Berisi apa yang akan dicapai/dibuat.','❌ <b>Komplikasi</b> = bagian struktur <b>teks narasi/cerita</b>, bukan prosedur.','✅ <b>Alat dan Bahan</b> = bagian kedua teks prosedur (opsional, jika diperlukan).','✅ <b>Langkah-Langkah</b> = bagian utama teks prosedur — urutan cara melakukan sesuatu.','❌ <b>Interpretasi/Simpulan</b> = bagian struktur <b>teks eksplanasi</b>, bukan prosedur.']
+},
+{n:28,t:'pgk',tp:'tp-pro',tl:'Prosedur',
+ q:'Manakah yang merupakan <b>kalimat fakta</b> (bukan opini)?',
+ o:['"Gunung Rinjani memiliki ketinggian 3.726 meter di atas permukaan laut."','"Menurutku, mendaki Gunung Rinjani sangat melelahkan dan tidak layak dicoba."','"Danau Segara Anak berada di kawah Gunung Rinjani."','"Sebaiknya mendaki Gunung Rinjani saat musim kemarau saja."','"Indonesia adalah negara kepulauan terbesar di dunia dengan lebih dari 17.000 pulau."'],
+ a:[0,2,4],
+ e:'Kalimat fakta dapat <b>dibuktikan kebenarannya secara objektif</b>. Opsi B mengandung "menurutku" (opini); Opsi D mengandung "sebaiknya" (saran/opini). Opsi A, C, E adalah pernyataan yang dapat diverifikasi secara objektif.',
+ oe:['✅ <b>"Ketinggian 3.726 meter"</b> = data faktual yang terukur dan dapat diverifikasi. Ini kalimat fakta.','❌ <b>"Menurutku"</b> = penanda opini/pendapat subjektif. Ini bukan kalimat fakta.','✅ <b>"Danau Segara Anak di kawah Rinjani"</b> = fakta geografis yang dapat diverifikasi.','❌ <b>"Sebaiknya"</b> = penanda saran/anjuran subjektif. Ini kalimat opini, bukan fakta.','✅ <b>"Negara kepulauan terbesar di dunia"</b> = fakta yang dapat diverifikasi berdasarkan data geografis.']
+},
+{n:29,t:'pgk',tp:'tp-rek',tl:'Rekon',
+ q:'Manakah yang merupakan <b>ciri kebahasaan teks rekon</b>?',
+ o:['Menggunakan kata kerja tindakan (verba material): pergi, makan, berlari, mengunjungi','Menggunakan konjungsi temporal: kemudian, setelah itu, lalu, akhirnya','Menggunakan kalimat definisi: "…adalah…", "…merupakan…"','Menggunakan kata keterangan waktu lampau: kemarin, minggu lalu, tahun 2023','Menggunakan banyak kalimat perintah (imperatif)'],
+ a:[0,1,3],
+ e:'Ciri kebahasaan teks rekon: <b>verba material</b> (kata kerja tindakan), <b>konjungsi temporal</b> (penanda urutan waktu), dan <b>keterangan waktu lampau</b>. Kalimat definisi adalah ciri teks laporan/eksplanasi; kalimat perintah adalah ciri teks prosedur.',
+ oe:['✅ <b>Verba material</b> (pergi, makan, mengunjungi) = ciri utama teks rekon untuk mengungkapkan tindakan yang terjadi.','✅ <b>Konjungsi temporal</b> (kemudian, setelah itu, lalu) = penanda urutan kronologis peristiwa dalam teks rekon.','❌ <b>Kalimat definisi</b> (…adalah…) = ciri kebahasaan <b>teks laporan/eksplanasi</b>, bukan rekon.','✅ <b>Keterangan waktu lampau</b> (kemarin, minggu lalu) = penanda bahwa peristiwa sudah terjadi di masa lalu.','❌ <b>Kalimat perintah (imperatif)</b> = ciri kebahasaan <b>teks prosedur</b>, bukan rekon.']
+},
+{n:30,t:'pgk',tp:'tp-rek',tl:'Rekon',
+ q:'Manakah yang merupakan <b>kata penghubung temporal</b>?',
+ o:['Kemudian','Oleh karena itu','Setelah itu','Lalu','Dengan demikian'],
+ a:[0,2,3],
+ e:'Kata penghubung <b>temporal</b> menunjukkan hubungan waktu/urutan kejadian. "Kemudian", "setelah itu", dan "lalu" menunjukkan urutan waktu. "Oleh karena itu" dan "dengan demikian" adalah kata hubung <b>kausalitas/akibat</b>.',
+ oe:['✅ <b>Kemudian</b> = penanda temporal urutan (sesuatu terjadi setelah sesuatu yang lain). Benar.','❌ <b>Oleh karena itu</b> = kata hubung <b>akibat/kausalitas</b>, bukan temporal.','✅ <b>Setelah itu</b> = penanda temporal yang menunjukkan urutan peristiwa. Benar.','✅ <b>Lalu</b> = kata penghubung temporal yang menunjukkan urutan kejadian. Benar.','❌ <b>Dengan demikian</b> = kata hubung <b>simpulan/akibat</b>, bukan temporal.']
+},
+{n:31,t:'pgk',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Manakah yang merupakan <b>bagian dari struktur teks eksplanasi</b>?',
+ o:['Pernyataan Umum','Orientasi','Deret Penjelas','Simpulan/Interpretasi','Komplikasi'],
+ a:[0,2,3],
+ e:'Struktur teks eksplanasi: <b>Pernyataan Umum</b> (pengenalan fenomena) → <b>Deret Penjelas</b> (rangkaian sebab-akibat) → <b>Interpretasi/Simpulan</b>. "Orientasi" adalah bagian teks rekon; "Komplikasi" adalah bagian teks narasi.',
+ oe:['✅ <b>Pernyataan Umum</b> = bagian pertama teks eksplanasi. Mengenalkan fenomena yang akan dijelaskan.','❌ <b>Orientasi</b> = bagian pertama <b>teks rekon</b> (pengenalan: siapa, kapan, di mana).','✅ <b>Deret Penjelas</b> = bagian inti teks eksplanasi berisi rangkaian sebab-akibat.','✅ <b>Simpulan/Interpretasi</b> = bagian penutup teks eksplanasi berisi penilaian/komentar penulis.','❌ <b>Komplikasi</b> = bagian struktur <b>teks narasi/cerita</b>, bukan eksplanasi.']
+},
+{n:32,t:'pgk',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Manakah kalimat yang mengandung <b>majas</b>?',
+ o:['"Matahari tersenyum malu di balik awan kelabu."','"Suhu udara hari ini mencapai 35 derajat Celsius."','"Ombak berdansa dengan riang di tepi pantai."','"Pohon bambu itu tingginya lebih dari 10 meter."','"Angin menggigit tulang di puncak gunung yang bersalju itu."'],
+ a:[0,2,4],
+ e:'Majas adalah gaya bahasa kiasan. Opsi A (matahari <i>tersenyum</i> = personifikasi), C (ombak <i>berdansa</i> = personifikasi), E (angin <i>menggigit tulang</i> = personifikasi/hiperbola) semuanya mengandung majas. Opsi B dan D adalah pernyataan faktual biasa.',
+ oe:['✅ <b>"Matahari tersenyum malu"</b> = majas <b>personifikasi</b> (matahari diberi perilaku manusia: tersenyum).','❌ <b>"Suhu 35°C"</b> = pernyataan faktual/data terukur. Tidak mengandung majas.','✅ <b>"Ombak berdansa dengan riang"</b> = majas <b>personifikasi</b> (ombak diberi perilaku manusia: berdansa).','❌ <b>"Tingginya lebih dari 10 meter"</b> = pernyataan faktual terukur. Tidak mengandung majas.','✅ <b>"Angin menggigit tulang"</b> = majas <b>personifikasi</b> dan <b>hiperbola</b> (angin diberi kemampuan menggigit; efeknya dilebih-lebihkan).']
+},
+{n:33,t:'pgk',tp:'tp-lap',tl:'Laporan',
+ q:'Manakah pernyataan yang <b>benar</b> tentang kohesi dan koherensi teks?',
+ o:['Kohesi berkaitan dengan keterkaitan bentuk kebahasaan antarkalimat','Koherensi berkaitan dengan keterkaitan makna/isi antarkalimat','Kohesi dan koherensi tidak berpengaruh terhadap kualitas teks','Penggunaan kata ganti (ia, mereka, itu) adalah salah satu alat kohesi','Teks yang koherensi berarti setiap kalimatnya berhubungan secara makna dan logis'],
+ a:[0,1,3,4],
+ e:'<b>Kohesi</b> = keterkaitan BENTUK (kata ganti, konjungsi, repetisi). <b>Koherensi</b> = keterkaitan MAKNA/ISI (logika antarkalimat). Keduanya sangat penting untuk kualitas teks. Kata ganti adalah alat kohesi. Teks koherensi berarti bermakna logis.',
+ oe:['✅ <b>Kohesi = keterkaitan bentuk kebahasaan</b>. Benar.','✅ <b>Koherensi = keterkaitan makna/isi</b>. Benar.','❌ <b>Kohesi dan koherensi sangat berpengaruh</b> terhadap kualitas teks — teks yang baik harus memiliki keduanya.','✅ <b>Kata ganti (ia, mereka, itu)</b> = alat kohesi yang menghubungkan kalimat secara gramatikal. Benar.','✅ <b>Teks koherensi = kalimat-kalimat berhubungan secara makna/logis</b>. Benar.']
+},
+{n:34,t:'pgk',tp:'tp-lap',tl:'Laporan',
+ q:'Manakah yang merupakan <b>langkah-langkah menulis teks laporan observasi</b> yang benar?',
+ o:['Menentukan objek yang akan diobservasi','Melakukan pengamatan langsung dan mencatat data secara sistematis','Menulis laporan berdasarkan hasil observasi menggunakan bahasa baku','Membuat karangan fiksi berdasarkan imajinasi tanpa observasi','Menyusun laporan dengan struktur: pernyataan umum → deskripsi bagian → simpulan'],
+ a:[0,1,2,4],
+ e:'Langkah menulis laporan observasi: (1) <b>tentukan objek</b>, (2) <b>lakukan pengamatan</b> dan catat data, (3) <b>tulis laporan</b> berdasarkan observasi dalam bahasa baku, (4) susun dengan <b>struktur yang tepat</b>. Membuat karangan fiksi bertentangan dengan prinsip laporan observasi.',
+ oe:['✅ <b>Menentukan objek observasi</b> = langkah pertama yang wajib dilakukan.','✅ <b>Melakukan pengamatan dan mencatat data</b> = inti dari observasi — harus dilakukan secara sistematis.','✅ <b>Menulis laporan berdasarkan hasil observasi</b> dalam bahasa baku = langkah penulisan yang benar.','❌ <b>Karangan fiksi/imajinasi</b> BERTENTANGAN dengan prinsip laporan observasi yang harus faktual dan berdasar pengamatan nyata.','✅ <b>Struktur laporan yang tepat</b> (pernyataan umum → deskripsi bagian → simpulan) = langkah penting dalam penyusunan.']
+},
+{n:35,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
+ q:'Manakah yang merupakan <b>ciri teks argumentasi</b>?',
+ o:['Mengandung pendapat atau tesis yang jelas','Dilengkapi dengan fakta, data, dan alasan yang logis','Bertujuan meyakinkan pembaca atas pendapat penulis','Menggunakan urutan waktu yang ketat (kronologis)','Mengandung simpulan yang memperkuat argumen'],
+ a:[0,1,2,4],
+ e:'Ciri teks argumentasi: <b>tesis jelas</b>, <b>dilengkapi fakta dan alasan logis</b>, <b>bertujuan meyakinkan</b>, dan <b>ada simpulan</b> yang memperkuat. "Urutan waktu yang ketat (kronologis)" adalah ciri <b>teks rekon</b>, bukan argumentasi.',
+ oe:['✅ <b>Pendapat/tesis yang jelas</b> = fondasi utama teks argumentasi.','✅ <b>Fakta, data, dan alasan logis</b> = pendukung argumen yang membuat teks argumentasi meyakinkan.','✅ <b>Meyakinkan pembaca</b> = tujuan utama teks argumentasi.','❌ <b>Urutan waktu yang ketat (kronologis)</b> = ciri <b>teks rekon</b>, bukan argumentasi.','✅ <b>Simpulan yang memperkuat argumen</b> = bagian penutup yang penting dalam teks argumentasi.']
+},
+{n:36,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
+ q:'Manakah yang merupakan <b>ciri kebahasaan teks argumentasi</b>?',
+ o:['Menggunakan konjungsi penyebaban: karena, sehingga, oleh sebab itu','Menggunakan kata-kata yang bersifat persuasif: hendaknya, sudah saatnya','Dominan menggunakan kalimat perintah tanpa alasan','Menggunakan kalimat fakta yang dapat diverifikasi sebagai pendukung','Menggunakan kata modalitas: harus, seharusnya, semestinya, perlu'],
+ a:[0,1,3,4],
+ e:'Kebahasaan teks argumentasi: konjungsi kausalitas, kata persuasif, kalimat fakta sebagai data, dan kata modalitas. Kalimat perintah tanpa alasan adalah ciri teks prosedur, bukan argumentasi yang harus disertai alasan logis.',
+ oe:['✅ <b>Konjungsi penyebaban</b> (karena, sehingga, oleh sebab itu) = alat kebahasaan utama dalam argumentasi untuk menunjukkan hubungan logis.','✅ <b>Kata persuasif</b> (hendaknya, sudah saatnya) = bahasa yang digunakan untuk memengaruhi pembaca.','❌ <b>Kalimat perintah tanpa alasan</b> = ciri teks <b>prosedur</b>. Argumentasi menggunakan kalimat yang disertai alasan logis.','✅ <b>Kalimat fakta yang dapat diverifikasi</b> = data pendukung yang membuat argumen lebih kuat dan meyakinkan.','✅ <b>Kata modalitas</b> (harus, seharusnya) = penanda bahwa penulis menyampaikan pendapat tentang apa yang seharusnya terjadi.']
+},
+{n:37,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
+ q:'Berdasarkan letak kalimat utamanya, jenis-jenis paragraf meliputi…',
+ o:['Paragraf deduktif — kalimat utama di awal','Paragraf induktif — kalimat utama di akhir','Paragraf campuran — kalimat utama di awal dan akhir (dipertegas)','Paragraf ineratif — kalimat utama di tengah','Paragraf naratif — tidak memiliki kalimat utama yang jelas (tersebar)'],
+ a:[0,1,2,3,4],
+ e:'Semua pilihan benar! Berdasarkan letak kalimat utama: <b>Deduktif</b> (awal), <b>Induktif</b> (akhir), <b>Campuran</b> (awal+akhir), <b>Ineratif</b> (tengah), <b>Naratif/Deskriptif</b> (kalimat utama tersebar/tidak jelas letaknya).',
+ oe:['✅ <b>Deduktif</b> = kalimat utama di awal → pola: Umum → Khusus.','✅ <b>Induktif</b> = kalimat utama di akhir → pola: Khusus → Umum.','✅ <b>Campuran</b> = kalimat utama di awal dan dipertegas lagi di akhir → pola: Umum → Khusus → Umum.','✅ <b>Ineratif</b> = kalimat utama di tengah → pola: Khusus → Umum → Khusus.','✅ <b>Naratif/Deskriptif</b> = tidak ada kalimat utama yang jelas; semua kalimat memiliki kedudukan yang setara.']
+},
+{n:38,t:'pgk',tp:'tp-des',tl:'Deskripsi',
+ q:'Manakah yang termasuk dalam <b>struktur teks deskripsi</b>?',
+ o:['Identifikasi','Orientasi','Deskripsi Bagian','Simpulan/Kesan','Tesis'],
+ a:[0,2,3],
+ e:'Struktur teks deskripsi terdiri dari: <b>Identifikasi</b>, <b>Deskripsi Bagian</b>, dan <b>Simpulan/Kesan</b>. "Orientasi" adalah bagian teks rekon; "Tesis" adalah bagian teks argumentasi.',
+ oe:['✅ <b>Identifikasi</b> = bagian pertama teks deskripsi (pengenalan objek). Benar.','❌ <b>Orientasi</b> = bagian pertama <b>teks rekon</b> (pengenalan siapa, kapan, di mana).','✅ <b>Deskripsi Bagian</b> = bagian inti teks deskripsi (penggambaran detail bagian-bagian objek). Benar.','✅ <b>Simpulan/Kesan</b> = bagian penutup teks deskripsi (kesan atau komentar penulis). Benar.','❌ <b>Tesis</b> = bagian pertama <b>teks argumentasi</b> (pernyataan posisi/pendapat penulis).']
+},
+{n:39,t:'pgk',tp:'tp-rek',tl:'Rekon',
+ q:'Manakah yang termasuk <b>jenis kata (kelas kata)</b> dalam bahasa Indonesia?',
+ o:['Nomina (kata benda)','Verba (kata kerja)','Adjektiva (kata sifat)','Adverbia (kata keterangan)','Konjungsi (kata hubung)'],
+ a:[0,1,2,3,4],
+ e:'Semua pilihan benar! Kelas kata dalam bahasa Indonesia meliputi: <b>Nomina, Verba, Adjektiva, Adverbia, Konjungsi</b>, dan masih ada lagi: Pronomina (kata ganti), Preposisi (kata depan), Numeralia (kata bilangan), Interjeksi (kata seru).',
+ oe:['✅ <b>Nomina</b> (kata benda) = nama orang, tempat, benda: pantai, buku, Jakarta.','✅ <b>Verba</b> (kata kerja) = tindakan/keadaan: berlari, makan, tidur, mengunjungi.','✅ <b>Adjektiva</b> (kata sifat) = sifat/keadaan: indah, cepat, besar, merah.','✅ <b>Adverbia</b> (kata keterangan) = menerangkan verba/adjektiva: sangat, terlalu, kemarin.','✅ <b>Konjungsi</b> (kata hubung) = menghubungkan kata/frasa/klausa: dan, tetapi, karena, kemudian.']
+},
+{n:40,t:'pgk',tp:'tp-lap',tl:'Laporan',
+ q:'Manakah kata serapan yang penulisannya sudah <b>benar sesuai KBBI</b>?',
+ o:['Aktivitas (bukan aktifitas)','Analisis (bukan analisa)','Praktik (bukan praktek)','Konkret (bukan kongkrit/konkrit)','Sistem (bukan sistim)'],
+ a:[0,1,2,3,4],
+ e:'Semua pilihan benar! Kata-kata serapan ini sering salah penulisannya. <b>Aktivitas, Analisis, Praktik, Konkret, Sistem</b> adalah penulisan yang baku sesuai KBBI. Variasi yang salah sangat umum ditemukan dalam tulisan sehari-hari.',
+ oe:['✅ <b>Aktivitas</b> (bukan aktifitas) = dari bahasa Inggris <i>activity</i>. Benar sesuai KBBI.','✅ <b>Analisis</b> (bukan analisa) = dari bahasa Inggris <i>analysis</i>. Benar sesuai KBBI.','✅ <b>Praktik</b> (bukan praktek) = dari bahasa Inggris <i>practice</i>. Benar sesuai KBBI.','✅ <b>Konkret</b> (bukan kongkrit/konkrit) = dari bahasa Belanda <i>concreet</i>. Benar sesuai KBBI.','✅ <b>Sistem</b> (bukan sistim) = dari bahasa Inggris <i>system</i>. Benar sesuai KBBI.']
+},
+
+// ─── B/S 41-50 ───
+{n:41,t:'bs',tp:'tp-des',tl:'Deskripsi',
+ q:'Teks deskripsi bertujuan menjelaskan urutan langkah-langkah melakukan sesuatu secara berurutan.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Tujuan teks deskripsi adalah <b>menggambarkan suatu objek</b> (orang, tempat, benda, suasana) secara detail sehingga pembaca seolah mengalami sendiri. Yang berisi langkah-langkah berurutan adalah <b>teks prosedur</b>, bukan teks deskripsi.',
+ oe:['','']
+},
+{n:42,t:'bs',tp:'tp-rek',tl:'Rekon',
+ q:'Konjungsi temporal "kemudian", "setelah itu", dan "lalu" lazim digunakan dalam teks rekon untuk menunjukkan urutan peristiwa.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Konjungsi temporal seperti "kemudian", "setelah itu", dan "lalu" adalah penanda urutan waktu (kronologis) yang khas dalam teks rekon. Fungsinya adalah menghubungkan peristiwa satu ke peristiwa berikutnya dalam narasi pengalaman.',
+ oe:['','']
+},
+{n:43,t:'bs',tp:'tp-pro',tl:'Prosedur',
+ q:'Kalimat "Menurutku, film ini sangat membosankan dan tidak layak ditonton" adalah contoh kalimat fakta.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Kalimat tersebut adalah contoh <b>kalimat opini</b>, bukan fakta. Penandanya adalah kata "<b>menurutku</b>" yang menunjukkan pendapat/penilaian subjektif. Kalimat fakta harus objektif dan dapat dibuktikan kebenarannya, misalnya: "Film ini tayang pada 15 Januari 2024."',
+ oe:['','']
+},
+{n:44,t:'bs',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Struktur teks eksplanasi terdiri dari: Pernyataan Umum → Deret Penjelas → Interpretasi/Simpulan.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Teks eksplanasi memiliki tiga struktur: (1) <b>Pernyataan Umum</b> (mengenalkan fenomena), (2) <b>Deret Penjelas</b> (menjelaskan proses/sebab-akibat secara berurutan), dan (3) <b>Interpretasi/Simpulan</b> (komentar atau penilaian akhir penulis).',
+ oe:['','']
+},
+{n:45,t:'bs',tp:'tp-lap',tl:'Laporan',
+ q:'Kata "analisa" merupakan penulisan kata serapan yang sudah benar menurut KBBI.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Penulisan yang benar menurut KBBI adalah "<b>analisis</b>", bukan "analisa". Kata ini diserap dari bahasa Inggris <i>analysis</i>. Penulisan "analisa" sering digunakan dalam percakapan sehari-hari, tetapi tidak baku. Kesalahan serupa: "praktek" → <b>praktik</b>; "aktifitas" → <b>aktivitas</b>.',
+ oe:['','']
+},
+{n:46,t:'bs',tp:'tp-eks',tl:'Eksplanasi',
+ q:'Majas personifikasi adalah majas yang memberikan sifat atau perilaku manusia kepada benda mati atau alam.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Majas personifikasi memang memberikan sifat, perilaku, atau kemampuan manusia kepada benda mati atau alam. Contoh: "Angin <i>berbisik</i> lembut" (angin diberi kemampuan berbisik seperti manusia), "Pohon <i>melambaikan</i> dahan" (pohon seolah melambaikan tangan).',
+ oe:['','']
+},
+{n:47,t:'bs',tp:'tp-lap',tl:'Laporan',
+ q:'Koherensi dalam teks berarti keterkaitan bentuk kebahasaan (penggunaan kata ganti, konjungsi) antarkalimat.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Yang dimaksud adalah definisi <b>kohesi</b> (keterkaitan BENTUK kebahasaan). <b>Koherensi</b> berkaitan dengan keterkaitan <b>MAKNA/ISI</b> antarkalimat — apakah teks bermakna logis dan runtut. Singkatnya: Kohesi = bentuk; Koherensi = makna.',
+ oe:['','']
+},
+{n:48,t:'bs',tp:'tp-arg',tl:'Argumentasi',
+ q:'Teks argumentasi yang baik harus didukung oleh fakta, data, dan alasan yang logis agar dapat meyakinkan pembaca.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Teks argumentasi yang efektif harus memiliki: (1) tesis/pendapat yang jelas, (2) <b>fakta dan data</b> sebagai bukti, (3) <b>alasan yang logis</b> untuk mendukung pendapat, dan (4) simpulan yang memperkuat argumen. Tanpa dukungan fakta dan logika, argumentasi tidak akan meyakinkan.',
+ oe:['','']
+},
+{n:49,t:'bs',tp:'tp-arg',tl:'Argumentasi',
+ q:'Paragraf induktif adalah paragraf yang kalimat utamanya berada di awal paragraf.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Paragraf <b>induktif</b> adalah paragraf yang kalimat utamanya berada di <b>AKHIR</b> paragraf (pola: khusus → umum — rincian/contoh dulu, simpulan belakangan). Yang kalimat utamanya di awal adalah paragraf <b>deduktif</b> (pola: umum → khusus).',
+ oe:['','']
+},
+{n:50,t:'bs',tp:'tp-pro',tl:'Prosedur',
+ q:'Langkah-langkah dalam teks prosedur bersifat kronologis (berurutan) dan tidak dapat dibalik urutannya sembarangan.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Langkah-langkah teks prosedur bersifat <b>kronologis</b> (berurutan waktu) dan <b>sekuensial</b> (setiap langkah harus dikerjakan sesuai urutan). Jika urutannya dibalik atau dilewati, tujuan tidak akan tercapai atau hasilnya akan berbeda/gagal. Contoh: tidak mungkin menggoreng telur sebelum minyak dipanaskan.',
+ oe:['','']
+}
+];
+
+// ── STATE ──
+let ans=0,benar=0,salah=0;
+const sel={};
+
+// ── RENDER ──
+function render(){
+  const c=document.getElementById('qc');
+  const secs=[
+    {t:'pg',  roman:'I',  label:'Pilihan Ganda',          badge:'badge-pg',  instr:'Pilihlah <b>satu</b> jawaban yang paling tepat, kemudian klik <b>Jawab</b>.'},
+    {t:'pgk', roman:'II', label:'Pilihan Ganda Kompleks',  badge:'badge-pgk', instr:'Pilihlah <b>semua jawaban yang benar</b> (bisa lebih dari satu), kemudian klik <b>Jawab</b>.'},
+    {t:'bs',  roman:'III',label:'Benar / Salah',           badge:'badge-bs',  instr:'Tentukan apakah pernyataan berikut <b>Benar</b> atau <b>Salah</b>, kemudian klik <b>Jawab</b>.'}
+  ];
+  let html='';
+  secs.forEach(s=>{
+    const qs=Q.filter(q=>q.t===s.t);
+    if(!qs.length)return;
+    html+=`<div class="sec-wrap"><div class="sec-head"><div class="sec-badge ${s.badge}">Bagian ${s.roman}</div><div class="sec-title">${s.label}</div><div class="sec-line"></div></div><div class="sec-instr">${s.instr}</div><div class="soal-list">`;
+    qs.forEach(q=>{html+=renderQ(q);});
+    html+='</div></div>';
+  });
+  c.innerHTML=html;
+}
+
+function renderQ(q){
+  const nc=q.t==='pg'?'nb-pg':q.t==='pgk'?'nb-pgk':'nb-bs';
+  let oph='';
+  if(q.t==='pg'||q.t==='pgk'){
+    if(q.t==='pgk')oph+=`<div class="pgk-note">Pilih semua jawaban yang benar.</div>`;
+    oph+='<div class="opts">';
+    q.o.forEach((o,i)=>{oph+=`<div class="opt" id="o-${q.n}-${i}" onclick="selO(${q.n},${i},'${q.t}')"><span class="opt-k">${K[i]}</span><span class="opt-txt">${o}</span></div>`;});
+    oph+='</div>';
+  } else {
+    oph=`<div class="bs-opts"><div class="bs-btn" id="bs-${q.n}-b" onclick="selBS(${q.n},'b')">✓ Benar</div><div class="bs-btn" id="bs-${q.n}-s" onclick="selBS(${q.n},'s')">✗ Salah</div></div>`;
+  }
+  return `<div class="soal" id="soal-${q.n}"><div class="soal-head"><div class="num-badge ${nc}" id="nb-${q.n}">${q.n}</div><div class="soal-q"><div class="topic-pill ${q.tp}">${q.tl}</div><br>${q.q}</div></div>${oph}<div class="jawab-wrap"><button class="btn-jawab" id="btn-${q.n}" onclick="jawab(${q.n})" disabled>Jawab</button></div><div class="exp" id="exp-${q.n}"></div></div>`;
+}
+
+// ── SELECT ──
+function selO(n,i,t){
+  if(document.getElementById(`soal-${n}`).classList.contains('done'))return;
+  const q=Q.find(x=>x.n===n);
+  if(t==='pg'){
+    q.o.forEach((_,j)=>document.getElementById(`o-${n}-${j}`).classList.remove('sel'));
+    document.getElementById(`o-${n}-${i}`).classList.add('sel');
+    sel[n]=i;
+  } else {
+    if(!sel[n])sel[n]=[];
+    const el=document.getElementById(`o-${n}-${i}`);
+    const idx=sel[n].indexOf(i);
+    if(idx===-1){sel[n].push(i);el.classList.add('sel');}
+    else{sel[n].splice(idx,1);el.classList.remove('sel');}
+  }
+  const has=Array.isArray(sel[n])?sel[n].length>0:sel[n]!==undefined;
+  document.getElementById(`btn-${n}`).disabled=!has;
+}
+function selBS(n,v){
+  if(document.getElementById(`soal-${n}`).classList.contains('done'))return;
+  document.getElementById(`bs-${n}-b`).classList.remove('sel-b');
+  document.getElementById(`bs-${n}-s`).classList.remove('sel-s');
+  if(v==='b')document.getElementById(`bs-${n}-b`).classList.add('sel-b');
+  else document.getElementById(`bs-${n}-s`).classList.add('sel-s');
+  sel[n]=v;
+  document.getElementById(`btn-${n}`).disabled=false;
+}
+
+// ── JAWAB ──
+function jawab(n){
+  const q=Q.find(x=>x.n===n);
+  const s=sel[n];
+  if(s===undefined||(Array.isArray(s)&&s.length===0))return;
+  document.getElementById(`soal-${n}`).classList.add('done');
+  document.getElementById(`btn-${n}`).style.display='none';
+  let ok=false;
+  if(q.t==='pg'){ok=s===q.a;lockPG(q,s,ok);}
+  else if(q.t==='pgk'){
+    const ss=[...s].sort();const as=[...q.a].sort();
+    ok=JSON.stringify(ss)===JSON.stringify(as);lockPGK(q,s,ok);
+  } else {ok=s===q.a;lockBS(q,s,ok);}
+  showExp(q,s,ok);
+  ans++;if(ok)benar++;else salah++;
+  updateScore();
+  if(ans===Q.length)showResult();
+}
+function lockPG(q,s,ok){
+  q.o.forEach((_,i)=>{
+    const el=document.getElementById(`o-${q.n}-${i}`);
+    el.classList.add('locked');el.classList.remove('sel');
+    if(i===q.a)el.classList.add('ok');
+    else if(i===s&&!ok)el.classList.add('err');
+  });
+  markN(q.n,ok);
+}
+function lockPGK(q,s,ok){
+  q.o.forEach((_,i)=>{
+    const el=document.getElementById(`o-${q.n}-${i}`);
+    el.classList.add('locked');el.classList.remove('sel');
+    if(q.a.includes(i))el.classList.add('ok');
+    else if(s.includes(i)&&!q.a.includes(i))el.classList.add('err');
+  });
+  markN(q.n,ok);
+}
+function lockBS(q,s,ok){
+  const b=document.getElementById(`bs-${q.n}-b`),sv=document.getElementById(`bs-${q.n}-s`);
+  [b,sv].forEach(x=>{x.classList.add('locked');x.classList.remove('sel-b','sel-s');});
+  if(q.a==='b')b.classList.add('r-ok');else sv.classList.add('r-ok');
+  if(!ok){if(s==='b')b.classList.add('r-err');else sv.classList.add('r-err');}
+  markN(q.n,ok);
+}
+function markN(n,ok){
+  const el=document.getElementById(`nb-${n}`);
+  el.classList.remove('nb-pg','nb-pgk','nb-bs');
+  el.classList.add(ok?'nb-ok':'nb-err');
+  el.textContent=ok?'✓':'✗';
+}
+
+// ── EXPLANATION ──
+function showExp(q,s,ok){
+  const el=document.getElementById(`exp-${q.n}`);
+  const pill=ok?'<span class="exp-pill ep-ok">✓ Jawaban Benar!</span>':'<span class="exp-pill ep-err">✗ Jawaban Salah</span>';
+  let opH='';
+  if(q.t==='pg'){
+    opH='<div class="exp-opts">';
+    q.o.forEach((o,i)=>{const c=i===q.a?'c':'w';opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`;});
+    opH+='</div>';
+  } else if(q.t==='pgk'){
+    opH='<div class="exp-opts">';
+    q.o.forEach((o,i)=>{const c=q.a.includes(i)?'c':'w';opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`;});
+    opH+='</div>';
+  }
+  el.innerHTML=`<div class="exp-top">${pill}<div class="exp-main">${q.e}</div></div>${opH}`;
+  el.classList.add('show');
+}
+
+// ── SCORE ──
+function updateScore(){
+  document.getElementById('s-ans').textContent=`${ans}/50`;
+  document.getElementById('s-b').textContent=benar;
+  document.getElementById('s-s').textContent=salah;
+  document.getElementById('s-n').textContent=ans>0?Math.round(benar/50*100):'—';
+  document.getElementById('prog').style.width=(ans/50*100)+'%';
+}
+function showResult(){
+  const rb=document.getElementById('rb');
+  const pct=Math.round(benar/50*100);
+  document.getElementById('rb-sc').textContent=benar;
+  let msg='',cls='';
+  if(pct>=85){msg='🏆 Luar biasa! Kamu siap menghadapi ulangan Bahasa Indonesia!';cls='rb-great';}
+  else if(pct>=70){msg='👏 Bagus! Pelajari kembali materi yang masih salah.';cls='rb-good';}
+  else{msg='💪 Semangat! Baca materi di bawah lalu coba lagi ya!';cls='rb-try';}
+  document.getElementById('rb-msg').textContent=msg;
+  rb.className=`result-banner show ${cls}`;
+  rb.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+render();
+</script>
+</body>
+</html>
