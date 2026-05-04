@@ -3,1019 +3,1365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latihan Soal Bahasa Indonesia Interaktif</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,400;1,500&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Latihan Soal PPKn Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --forest:#1a4731;--teal:#0d6e55;--sage:#4a7c59;--mint:#d4edda;
-  --gold:#c07c2a;--amber:#f5a623;--cream:#faf9f5;--paper:#f2f0e8;
-  --ink:#1c1c2e;--rule:#d6d0c0;--warm-white:#fffef9;
-  --red:#c0392b;--lr:#fdf0ef;--lb:#eef5fb;--lg:#eefaf3;--la:#fdf8e8;
+  --ink:#1a1a2e;--red:#c0392b;--gold:#b8860b;--cream:#faf8f3;--paper:#f5f0e8;
+  --rule:#d4c9b0;--green:#1e8449;--blue:#1a5276;
+  --light-red:#fdf0ef;--light-blue:#eef4fb;--light-green:#eefaf3;--light-gold:#fdf8e8;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Nunito',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
-.page{max-width:880px;margin:0 auto;padding:0 16px 72px}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh}
+.page{max-width:860px;margin:0 auto;padding:20px 16px 60px}
 
-/* ── HEADER ── */
-.hdr{background:var(--forest);color:#fff;padding:0;margin-bottom:28px;border-radius:0 0 16px 16px;overflow:hidden;box-shadow:0 4px 20px rgba(26,71,49,.25)}
-.hdr-stripe{height:5px;background:repeating-linear-gradient(90deg,var(--amber) 0 18px,transparent 18px 24px)}
-.hdr-inner{padding:22px 28px 22px}
-.hdr-top{display:flex;align-items:center;gap:16px;margin-bottom:16px}
-.hdr-icon{width:54px;height:54px;background:linear-gradient(135deg,var(--amber),#e8931a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
-.hdr-title{font-family:'Lora',serif;font-size:21px;font-weight:700;line-height:1.2}
-.hdr-sub{font-size:12px;opacity:.65;margin-top:3px}
-.score-bar{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.sc-item{text-align:center}
-.sc-item label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.5;display:block;margin-bottom:2px}
-.sc-item span{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;color:var(--amber)}
-.sc-item span.sm{font-size:12px}
-.prog-wrap{flex:1;min-width:150px}
-.prog-wrap label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.5;display:block;margin-bottom:5px}
-.prog-track{background:rgba(255,255,255,.1);border-radius:20px;height:7px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),#f7c059);border-radius:20px;transition:width .4s ease;width:0%}
+/* HEADER */
+.header{background:var(--ink);color:#fff;padding:24px 28px 20px;margin-bottom:24px;border-bottom:4px solid var(--red);border-radius:0 0 4px 4px}
+.header-flag{display:flex;height:6px;margin-bottom:16px}
+.header-flag span{flex:1}
+.header-flag .f1{background:var(--red)}
+.header-flag .f2{background:#fff}
+.header-top{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.garuda{width:52px;height:52px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.h-title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.2}
+.h-sub{font-size:12px;opacity:.65;margin-top:3px;font-style:italic}
+.score-bar{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.score-item{text-align:center}
+.score-item label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.55;display:block}
+.score-item span{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--gold)}
+.score-item span.sm{font-size:13px}
+.progress-wrap{flex:1;min-width:160px}
+.progress-wrap label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.55;display:block;margin-bottom:5px}
+.progress-track{background:rgba(255,255,255,.12);border-radius:20px;height:8px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#e8b84b);border-radius:20px;transition:width .4s ease;width:0%}
 
-/* ── SECTION ── */
-.sec-wrap{margin:30px 0 16px}
-.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.sec-badge{padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;border-radius:20px;white-space:nowrap}
-.badge-pg{background:var(--lb);color:#1a5276;border:1px solid #a9cce3}
-.badge-pgk{background:var(--lg);color:var(--teal);border:1px solid #a9dfbf}
-.badge-bs{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
-.sec-title{font-family:'Lora',serif;font-size:17px;font-weight:700}
+/* SECTION */
+.sec-head{display:flex;align-items:center;gap:12px;margin:28px 0 14px}
+.sec-badge{padding:4px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;border-radius:2px;white-space:nowrap}
+.badge-pg{background:var(--light-blue);color:var(--blue);border-left:3px solid var(--blue)}
+.badge-pgk{background:var(--light-green);color:var(--green);border-left:3px solid var(--green)}
+.badge-bs{background:var(--light-red);color:var(--red);border-left:3px solid var(--red)}
+.sec-title{font-family:'Playfair Display',serif;font-size:16px}
 .sec-line{flex:1;height:1px;background:var(--rule)}
-.sec-instr{font-size:13px;color:#555;background:var(--warm-white);border:1px solid var(--rule);border-left:4px solid var(--amber);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:20px;line-height:1.6}
+.sec-instr{font-size:13px;font-style:italic;color:#555;background:#fff;border:1px solid var(--rule);border-left:3px solid var(--gold);padding:9px 13px;margin-bottom:18px;border-radius:0 4px 4px 0}
 
-/* ── TOPIC PILLS ── */
-.topic-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
-.tp-des{background:#e8f4fd;color:#1a5276;border:1px solid #aed6f1}
-.tp-pro{background:#fef9e7;color:#7d6608;border:1px solid #f9e79f}
-.tp-rek{background:#e8f8f5;color:#0e6655;border:1px solid #a2d9ce}
-.tp-eks{background:#fdf2f8;color:#76448a;border:1px solid #d2b4de}
-.tp-lap{background:#eaf4fb;color:#154360;border:1px solid #a9cce3}
-.tp-arg{background:#fdf0ef;color:#922b21;border:1px solid #f1948a}
-
-/* ── SOAL ── */
+/* SOAL */
 .soal-list{display:flex;flex-direction:column;gap:18px}
-.soal{background:var(--warm-white);border:1.5px solid var(--rule);border-radius:10px;overflow:hidden;transition:box-shadow .2s}
-.soal:not(.done):hover{box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.soal{background:#fff;border:1.5px solid var(--rule);border-radius:8px;overflow:hidden;transition:box-shadow .2s}
+.soal:not(.done):hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.soal.done{opacity:.95}
 .soal-head{display:flex;align-items:flex-start;gap:12px;padding:14px 16px 12px;border-bottom:1px solid var(--rule)}
-.num-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#fff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .3s}
-.nb-pg{background:var(--teal)}
-.nb-pgk{background:var(--sage)}
-.nb-bs{background:var(--gold)}
-.nb-ok{background:#1e8449!important}
-.nb-err{background:var(--red)!important}
-.soal-q{font-size:14.5px;line-height:1.7;flex:1}
-.soal-q b,.soal-q strong{font-weight:700}
+.soal-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#fff;background:var(--ink);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:background .3s}
+.soal-num.pg{background:var(--blue)}
+.soal-num.pgk{background:var(--green)}
+.soal-num.bs-num{background:var(--red)}
+.soal-num.correct{background:var(--green)!important}
+.soal-num.wrong{background:var(--red)!important}
+.soal-q{font-size:14.5px;line-height:1.65;flex:1}
+.soal-q b{font-weight:600}
 .soal-q em{font-style:italic;color:#444}
-.soal-q .block-text{display:block;background:var(--paper);border-left:3px solid var(--rule);padding:8px 12px;margin:8px 0;border-radius:0 4px 4px 0;font-size:13.5px;font-style:italic;line-height:1.6}
 
-/* ── OPTIONS ── */
-.opts{padding:10px 14px 12px 58px}
-.opt{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:4px;border:1.5px solid transparent;transition:all .15s;user-select:none}
-.opt:hover:not(.locked){background:var(--lb);border-color:#aed6f1}
-.opt.sel{background:var(--lb);border-color:#2e86c1}
-.opt.ok{background:var(--lg)!important;border-color:#27ae60!important}
-.opt.err{background:var(--lr)!important;border-color:var(--red)!important}
+/* OPTIONS */
+.opts{padding:10px 14px 14px 56px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:5px;cursor:pointer;transition:background .15s;margin-bottom:4px;border:1.5px solid transparent;user-select:none}
+.opt:hover:not(.locked){background:var(--light-blue);border-color:#c5d9f0}
+.opt.selected{background:var(--light-blue);border-color:var(--blue)}
+.opt.correct-opt{background:#eefaf3!important;border-color:var(--green)!important}
+.opt.wrong-opt{background:var(--light-red)!important;border-color:var(--red)!important}
 .opt.locked{cursor:default}
-.opt-k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink);background:var(--cream);border:1px solid var(--rule);border-radius:4px;padding:1px 7px;flex-shrink:0;min-width:24px;text-align:center;transition:all .2s}
-.opt.sel .opt-k{background:#2e86c1;color:#fff;border-color:#2e86c1}
-.opt.ok .opt-k{background:#27ae60;color:#fff;border-color:#27ae60}
-.opt.err .opt-k{background:var(--red);color:#fff;border-color:var(--red)}
-.opt-txt{font-size:13.5px;line-height:1.55;padding-top:1px}
+.opt-key{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--ink);background:var(--cream);border:1px solid var(--rule);border-radius:3px;padding:1px 6px;flex-shrink:0;min-width:24px;text-align:center;transition:all .2s}
+.opt.selected .opt-key{background:var(--blue);color:#fff;border-color:var(--blue)}
+.opt.correct-opt .opt-key{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.wrong-opt .opt-key{background:var(--red);color:#fff;border-color:var(--red)}
+.opt-text{font-size:13.5px;line-height:1.5;padding-top:1px}
 
-/* ── PGK ── */
-.pgk-note{font-size:12px;font-style:italic;color:#777;padding:5px 14px 2px 58px}
-
-/* ── B/S ── */
-.bs-opts{padding:10px 14px 12px 58px;display:flex;gap:12px}
-.bs-btn{padding:8px 28px;border:1.5px solid var(--rule);border-radius:24px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:pointer;background:var(--cream);transition:all .2s;user-select:none}
-.bs-btn:hover:not(.locked){transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
-.bs-btn.sel-b{border-color:#27ae60;color:#27ae60;background:var(--lg)}
-.bs-btn.sel-s{border-color:var(--red);color:var(--red);background:var(--lr)}
-.bs-btn.r-ok{border-color:#27ae60!important;color:#27ae60!important;background:var(--lg)!important}
-.bs-btn.r-err{border-color:var(--red)!important;color:var(--red)!important;background:var(--lr)!important}
+/* BS BUTTONS */
+.bs-opts{padding:10px 14px 14px 56px;display:flex;gap:10px}
+.bs-btn{padding:8px 28px;border:1.5px solid var(--rule);border-radius:24px;font-size:13px;font-family:'JetBrains Mono',monospace;font-weight:600;cursor:pointer;background:var(--cream);transition:all .2s;user-select:none}
+.bs-btn:hover:not(.locked){transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.bs-btn.benar:not(.locked):hover{border-color:var(--green);color:var(--green);background:var(--light-green)}
+.bs-btn.salah:not(.locked):hover{border-color:var(--red);color:var(--red);background:var(--light-red)}
+.bs-btn.selected-b,.bs-btn.selected-s{transform:none}
+.bs-btn.selected-b{border-color:var(--green);color:var(--green);background:var(--light-green)}
+.bs-btn.selected-s{border-color:var(--red);color:var(--red);background:var(--light-red)}
 .bs-btn.locked{cursor:default;transform:none}
+.bs-btn.result-correct{border-color:var(--green)!important;color:var(--green)!important;background:var(--light-green)!important}
+.bs-btn.result-wrong{border-color:var(--red)!important;color:var(--red)!important;background:var(--light-red)!important}
 
-/* ── JAWAB BTN ── */
-.jawab-wrap{padding:2px 14px 14px 58px}
-.btn-jawab{background:var(--forest);color:#fff;border:none;padding:9px 26px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s}
-.btn-jawab:hover{background:var(--teal);transform:translateY(-1px)}
-.btn-jawab:disabled{background:#bbb;cursor:not-allowed;transform:none}
+/* PGK note */
+.pgk-note{font-size:12px;font-style:italic;color:#777;padding:6px 14px 2px 56px}
 
-/* ── EXPLANATION ── */
-.exp{margin:0 14px 14px;border-radius:8px;border:1px solid var(--rule);background:var(--cream);display:none;animation:fadeUp .3s ease}
-.exp.show{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.exp-top{padding:12px 14px 10px}
-.exp-pill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:10px}
-.ep-ok{background:#d5f5e3;color:#1e8449}
-.ep-err{background:#fde8e8;color:var(--red)}
-.exp-main{font-size:13.5px;line-height:1.7;background:var(--warm-white);border-left:3px solid var(--amber);padding:10px 13px;border-radius:0 6px 6px 0;margin-bottom:10px}
-.exp-opts{display:flex;flex-direction:column;gap:6px;padding:0 14px 14px}
-.eo{font-size:13px;line-height:1.6;padding:8px 12px;border-radius:5px}
-.eo.c{background:#d5f5e3;border-left:3px solid #27ae60}
-.eo.w{background:#fff0f0;border-left:3px solid #e74c3c}
+/* JAWAB BUTTON */
+.jawab-wrap{padding:4px 14px 14px 56px}
+.btn-jawab{background:var(--ink);color:#fff;border:none;padding:9px 24px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.btn-jawab:hover{background:#2c2c4a;transform:translateY(-1px)}
+.btn-jawab:disabled{background:#aaa;cursor:not-allowed;transform:none}
 
-/* ── RESULT ── */
-.result-banner{display:none;margin:28px 0;padding:28px 24px;border-radius:12px;text-align:center}
-.result-banner.show{display:block;animation:fadeUp .4s ease}
-.rb-great{background:linear-gradient(135deg,#1a4731,#0d6e55)}
-.rb-good{background:linear-gradient(135deg,#1a4731,#2c3e50)}
-.rb-try{background:linear-gradient(135deg,#5d4037,#1a4731)}
-.rb-score{font-family:'Lora',serif;font-size:52px;font-weight:700;color:#fff;margin-bottom:4px}
-.rb-of{font-size:14px;color:rgba(255,255,255,.6)}
-.rb-msg{font-size:17px;font-weight:700;color:var(--amber);margin-top:10px}
+/* EXPLANATION */
+.explanation{margin:0 14px 14px;padding:14px 16px;border-radius:6px;border:1px solid var(--rule);background:var(--cream);display:none;animation:fadeIn .3s ease}
+.explanation.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.exp-result{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding:6px 12px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.exp-result.correct{background:#d5f5e3;color:var(--green)}
+.exp-result.wrong{background:#fde8e8;color:var(--red)}
+.exp-general{font-size:13.5px;line-height:1.65;margin-bottom:12px;padding:10px 12px;background:#fff;border-radius:4px;border-left:3px solid var(--gold)}
+.exp-opts{display:flex;flex-direction:column;gap:6px}
+.exp-opt{font-size:13px;line-height:1.55;padding:8px 12px;border-radius:4px}
+.exp-opt.eo-correct{background:#d5f5e3;border-left:3px solid var(--green)}
+.exp-opt.eo-wrong{background:#fff0f0;border-left:3px solid #e74c3c}
+.exp-opt.eo-neutral{background:#f0f4f8;border-left:3px solid #7f8c8d}
 
-/* ── MATERI ── */
-.materi{margin-top:52px}
-.mat-title{font-family:'Lora',serif;font-size:26px;font-weight:700;text-align:center;margin-bottom:6px}
-.mat-sub{text-align:center;font-size:13px;color:#666;font-style:italic;margin-bottom:30px}
-.mat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;justify-content:center}
-.mat-tab{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid var(--rule);background:var(--warm-white);transition:all .2s;font-family:'Nunito',sans-serif}
-.mat-tab:hover{border-color:var(--teal);color:var(--teal)}
-.mat-tab.active{background:var(--forest);color:#fff;border-color:var(--forest)}
-.mat-panels .mat-panel{display:none}
-.mat-panels .mat-panel.active{display:block}
-.mat-card{background:var(--warm-white);border:1.5px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:16px}
-.mc-head{background:var(--forest);color:#fff;padding:13px 18px;display:flex;align-items:center;gap:10px}
-.mc-ico{font-size:18px}
-.mc-ttl{font-family:'Lora',serif;font-size:15px;font-weight:700}
-.mc-body{padding:16px 18px;font-size:13.5px;line-height:1.75}
-.mc-body h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin:14px 0 6px;font-weight:600}
-.mc-body h4:first-child{margin-top:0}
-.mc-body ul{padding-left:18px;margin-bottom:8px}
-.mc-body li{margin-bottom:3px}
-.mc-body li b{font-weight:700}
-.mc-body p{margin-bottom:8px}
-.mc-body table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 10px}
-.mc-body table th{background:var(--paper);padding:6px 10px;text-align:left;font-weight:700;border:1px solid var(--rule)}
-.mc-body table td{padding:6px 10px;border:1px solid var(--rule)}
-.mc-body table tr:nth-child(even) td{background:var(--cream)}
-.mc-body .chip{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;margin:2px;font-family:'JetBrains Mono',monospace;font-weight:600}
-.chip-ok{background:var(--lg);color:#1e8449;border:1px solid #a9dfbf}
-.chip-err{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
-.chip-n{background:var(--la);color:var(--gold);border:1px solid #f9e79f}
-.highlight{background:var(--paper);border-left:3px solid var(--teal);padding:8px 12px;border-radius:0 5px 5px 0;margin:8px 0;font-style:italic;font-size:13px}
+/* RESULT BANNER */
+.result-banner{display:none;margin-top:28px;padding:20px 24px;border-radius:8px;text-align:center}
+.result-banner.show{display:block;animation:fadeIn .4s ease}
+.result-banner.great{background:linear-gradient(135deg,#1a5276,#148f77);color:#fff}
+.result-banner.good{background:linear-gradient(135deg,#1a5276,#2c3e50);color:#fff}
+.result-banner.try{background:linear-gradient(135deg,#7d3c98,#1a5276);color:#fff}
+.rb-score{font-family:'Playfair Display',serif;font-size:48px;margin-bottom:4px}
+.rb-label{font-size:14px;opacity:.8}
+.rb-msg{font-size:16px;margin-top:8px;font-weight:600}
 
-@media(max-width:600px){.score-bar{gap:10px}.bs-opts{flex-wrap:wrap}.mat-tabs{gap:6px}.mat-tab{font-size:12px;padding:6px 12px}.opts{padding:10px 10px 12px 44px}.jawab-wrap{padding:2px 10px 12px 44px}.pgk-note{padding:5px 10px 2px 44px}}
+/* MATERI */
+.materi-section{margin-top:48px}
+.materi-title{font-family:'Playfair Display',serif;font-size:24px;text-align:center;margin-bottom:6px}
+.materi-sub{text-align:center;font-size:13px;color:#666;font-style:italic;margin-bottom:28px}
+.materi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.materi-card{background:#fff;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.mc-head{background:var(--ink);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.mc-icon{font-size:18px}
+.mc-title{font-family:'Playfair Display',serif;font-size:14px}
+.mc-body{padding:14px 16px;font-size:13px;line-height:1.7}
+.mc-body h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin:10px 0 4px;font-family:'JetBrains Mono',monospace}
+.mc-body ul{padding-left:16px;margin-bottom:8px}
+.mc-body li{margin-bottom:2px}
+.mc-body li b{font-weight:600}
+.mc-body .tag{display:inline-block;background:var(--cream);border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-family:'JetBrains Mono',monospace;font-size:11px;margin:2px 2px 2px 0}
+.mc-body .tag.green{background:var(--light-green);border-color:#a9dfbf;color:var(--green)}
+.mc-body .tag.red{background:var(--light-red);border-color:#f5b7b1;color:var(--red)}
+.mc-body .tag.blue{background:var(--light-blue);border-color:#a9cce3;color:var(--blue)}
+.mc-body table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
+.mc-body table th{background:var(--cream);padding:5px 8px;text-align:left;font-weight:600;border:1px solid var(--rule)}
+.mc-body table td{padding:5px 8px;border:1px solid var(--rule)}
+.mc-body table tr:nth-child(even) td{background:#fafafa}
+.full-card{grid-column:1/-1}
+.materi-divider{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:4px 0}
+.materi-divider span{font-family:'Playfair Display',serif;font-size:13px;color:#888;white-space:nowrap}
+.materi-divider::before,.materi-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+@media(max-width:640px){.materi-grid{grid-template-columns:1fr}.full-card{grid-column:1}.score-bar{gap:10px}.bs-opts{flex-wrap:wrap}}
+@media(max-width:480px){.opts{padding:10px 10px 14px 44px}.jawab-wrap{padding:4px 10px 14px 44px}.pgk-note{padding:6px 10px 2px 44px}}
 </style>
 </head>
 <body>
 <div class="page">
 
-<!-- HEADER -->
-<div class="hdr">
-  <div class="hdr-stripe"></div>
-  <div class="hdr-inner">
-    <div class="hdr-top">
-      <div class="hdr-icon">📖</div>
-      <div>
-        <div class="hdr-title">Latihan Soal Bahasa Indonesia</div>
-        <div class="hdr-sub">Teks Deskripsi · Prosedur · Rekon · Eksplanasi · Laporan · Argumentasi · 50 Soal Interaktif</div>
-      </div>
+<div class="header">
+  <div class="header-flag"><span class="f1"></span><span class="f2"></span></div>
+  <div class="header-top">
+    <div class="garuda">🦅</div>
+    <div>
+      <div class="h-title">Latihan Soal PPKn Interaktif</div>
+      <div class="h-sub">Jawab soal lalu baca pembahasan lengkapnya · 50 Soal</div>
     </div>
-    <div class="score-bar">
-      <div class="sc-item"><label>Dijawab</label><span id="s-ans" class="sm">0/50</span></div>
-      <div class="sc-item"><label>Benar</label><span id="s-b">0</span></div>
-      <div class="sc-item"><label>Salah</label><span id="s-s">0</span></div>
-      <div class="sc-item"><label>Nilai</label><span id="s-n">—</span></div>
-      <div class="prog-wrap">
-        <label>Progress</label>
-        <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
-      </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-item"><label>Dijawab</label><span id="s-ans" class="sm">0/50</span></div>
+    <div class="score-item"><label>Benar</label><span id="s-benar">0</span></div>
+    <div class="score-item"><label>Salah</label><span id="s-salah">0</span></div>
+    <div class="score-item"><label>Nilai</label><span id="s-nilai">—</span></div>
+    <div class="progress-wrap">
+      <label>Progress</label>
+      <div class="progress-track"><div class="progress-fill" id="prog"></div></div>
     </div>
   </div>
 </div>
 
-<div id="qc"></div>
-<div class="result-banner" id="rb"><div class="rb-score" id="rb-sc">0</div><div class="rb-of">dari 50 soal benar</div><div class="rb-msg" id="rb-msg"></div></div>
+<div id="questions-container"></div>
+<div class="result-banner" id="result-banner">
+  <div class="rb-score" id="rb-score">0</div>
+  <div class="rb-label">dari 50 soal benar</div>
+  <div class="rb-msg" id="rb-msg"></div>
+</div>
 
-<!-- ══════════════════════ MATERI ══════════════════════ -->
-<div class="materi">
-  <div class="mat-title">📚 Materi Belajar Lengkap</div>
-  <div class="mat-sub">Mencakup seluruh kisi-kisi — klik tab untuk berpindah materi</div>
-  <div class="mat-tabs">
-    <div class="mat-tab active" onclick="showTab(0)">📝 Teks Deskripsi</div>
-    <div class="mat-tab" onclick="showTab(1)">📋 Teks Prosedur</div>
-    <div class="mat-tab" onclick="showTab(2)">🔄 Teks Rekon</div>
-    <div class="mat-tab" onclick="showTab(3)">🌊 Teks Eksplanasi</div>
-    <div class="mat-tab" onclick="showTab(4)">📊 Teks Laporan</div>
-    <div class="mat-tab" onclick="showTab(5)">💬 Teks Argumentasi</div>
-  </div>
-  <div class="mat-panels">
+<!-- ============ MATERI BELAJAR ============ -->
+<div class="materi-section">
+  <div class="materi-title">📚 Materi Belajar Lengkap</div>
+  <div class="materi-sub">Mencakup seluruh topik dalam kisi-kisi · Pelajari sebelum ulangan!</div>
 
-    <!-- TAB 0: DESKRIPSI -->
-    <div class="mat-panel active">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">📝</span><span class="mc-ttl">Teks Deskripsi — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian</h4>
-          <p>Teks deskripsi adalah teks yang menggambarkan suatu objek (orang, tempat, benda, atau suasana) secara rinci dan detail sehingga pembaca seolah-olah <b>melihat, merasakan, mencium, mendengar, atau menyentuh</b> sendiri objek yang digambarkan.</p>
-          <h4>Struktur Teks Deskripsi</h4>
-          <table>
-            <tr><th>Bagian</th><th>Isi</th><th>Contoh</th></tr>
-            <tr><td><b>Identifikasi</b></td><td>Pengenalan objek yang akan dideskripsikan (nama, lokasi, gambaran umum)</td><td>"Pantai Ora terletak di Pulau Seram, Maluku."</td></tr>
-            <tr><td><b>Deskripsi Bagian</b></td><td>Penggambaran detail bagian-bagian objek secara rinci menggunakan pancaindra</td><td>"Air lautnya berwarna biru tosca jernih. Pasirnya putih bersih. Ombaknya tenang…"</td></tr>
-            <tr><td><b>Simpulan/Kesan</b></td><td>Kesan penulis atau penutup yang merangkum keindahan/keunikan objek</td><td>"Pantai Ora sungguh menjadi surga tersembunyi yang memukau."</td></tr>
-          </table>
-          <h4>Ciri-Ciri Teks Deskripsi</h4>
-          <ul>
-            <li>Menggambarkan objek secara <b>spesifik dan konkret</b></li>
-            <li>Menggunakan banyak <b>kata sifat</b> (adjektiva): indah, jernih, lembut, harum</li>
-            <li>Menggunakan <b>majas</b> untuk memperindah deskripsi (simile, personifikasi, metafora)</li>
-            <li>Menggunakan <b>kalimat indrawi</b> (melibatkan penglihatan, pendengaran, penciuman, perasaan)</li>
-            <li>Bertujuan membuat pembaca seolah <b>mengalami langsung</b></li>
-            <li>Bukan urutan waktu — melainkan <b>urutan ruang/bagian</b></li>
-          </ul>
-          <h4>Topik & Objek Teks Deskripsi</h4>
-          <p>Objek yang tepat: tempat wisata, alam, orang, hewan, suasana, karya seni. <span class="chip chip-ok">✓ Suasana pantai</span> <span class="chip chip-ok">✓ Keindahan Borobudur</span> <span class="chip chip-ok">✓ Sosok seorang tokoh</span> <span class="chip chip-err">✗ Proses hujan</span> <span class="chip chip-err">✗ Cara membuat kue</span></p>
-          <h4>Kata Penghubung dalam Teks Deskripsi</h4>
-          <table>
-            <tr><th>Fungsi</th><th>Kata Penghubung</th></tr>
-            <tr><td>Menambah informasi</td><td>selain itu, di samping itu, bahkan, pun</td></tr>
-            <tr><td>Menunjukkan tempat</td><td>di sana, di sini, di bagian, di sebelah, tepat di</td></tr>
-            <tr><td>Merinci lebih detail</td><td>khususnya, terutama, yakni, yaitu</td></tr>
-            <tr><td>Perbandingan</td><td>seperti, bagaikan, laksana, bak</td></tr>
-          </table>
-          <h4>Tips Melengkapi Paragraf dari Infografis</h4>
-          <p>Ketika melengkapi paragraf deskripsi berdasarkan infografis:</p>
-          <ul>
-            <li>Gunakan <b>data faktual</b> dari infografis, bukan opini</li>
-            <li>Kalimat harus bersifat <b>deskriptif dan informatif</b></li>
-            <li>Tidak boleh mengandung kata subjektif ("menurutku", "seharusnya", "sepertinya")</li>
-            <li>Pilih kalimat yang <b>menyambung secara logis</b> dengan paragraf sebelumnya</li>
-          </ul>
-        </div>
+  <div class="materi-grid">
+
+    <!-- PERUMUSAN DASAR NEGARA -->
+    <div class="materi-card full-card">
+      <div class="mc-head"><span class="mc-icon">🏛️</span><span class="mc-title">Perumusan Dasar Negara & Sejarah Kemerdekaan</span></div>
+      <div class="mc-body">
+        <h4>Istilah Jepang Penting</h4>
+        <table>
+          <tr><th>Nama Jepang</th><th>Kepanjangan Indonesia</th><th>Keterangan</th></tr>
+          <tr><td><b>Dokuritsu Junbi Cosakai</b></td><td>BPUPKI</td><td>Badan Penyelidik Usaha-usaha Persiapan Kemerdekaan Indonesia — dibentuk 29 Apr 1945</td></tr>
+          <tr><td><b>Dokuritsu Junbi Inkai</b></td><td>PPKI</td><td>Panitia Persiapan Kemerdekaan Indonesia — dibentuk 7 Agt 1945</td></tr>
+          <tr><td>Chuo Sangi-in</td><td>Dewan Pertimbangan Pusat</td><td>Lembaga penasihat pemerintah Jepang</td></tr>
+          <tr><td>Seinendan</td><td>Barisan Pemuda</td><td>Organisasi pemuda untuk militer Jepang</td></tr>
+          <tr><td>Keibodan</td><td>Korps Kewaspadaan</td><td>Barisan pembantu polisi Jepang</td></tr>
+          <tr><td>Heiho</td><td>Pembantu Prajurit</td><td>Pembantu tentara Jepang dari kalangan pribumi</td></tr>
+        </table>
+        <h4>Tokoh Perumus Dasar Negara (Sidang BPUPKI I)</h4>
+        <ul>
+          <li><b>29 Mei 1945</b> — Mr. Mohammad Yamin: mengusulkan 5 azas (Peri Kebangsaan, Peri Kemanusiaan, Peri Ketuhanan, Peri Kerakyatan, Kesejahteraan Rakyat)</li>
+          <li><b>31 Mei 1945</b> — Mr. Soepomo: mengusulkan konsep negara integralistik (persatuan antara negara dan rakyat)</li>
+          <li><b>1 Juni 1945</b> — Ir. Soekarno: mengusulkan Pancasila (Kebangsaan, Internasionalisme/Perikemanusiaan, Mufakat/Demokrasi, Kesejahteraan Sosial, Ketuhanan Yang Maha Esa)</li>
+        </ul>
+        <h4>Piagam Jakarta (22 Juni 1945)</h4>
+        Ditandatangani oleh Panitia Sembilan. Sila pertama berbunyi: <i>"Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluknya."</i><br><br>
+        Pada <b>18 Agustus 1945</b>, kalimat tersebut diubah menjadi <b>"Ketuhanan Yang Maha Esa"</b> atas usul Moh. Hatta demi menjaga persatuan bangsa.
+        <h4>Tokoh yang Diundang ke Dalat (Vietnam) oleh Jepang</h4>
+        Ir. Soekarno, Drs. Mohammad Hatta, dan Dr. Radjiman Wedyodiningrat — diundang bertemu Marsekal Terauchi untuk mendapat kepastian kemerdekaan Indonesia (9 Agustus 1945).
+        <h4>Hasil Sidang PPKI 18 Agustus 1945</h4>
+        <ul>
+          <li>Mengesahkan dan menetapkan UUD 1945 sebagai konstitusi negara</li>
+          <li>Memilih Ir. Soekarno sebagai Presiden dan Drs. Moh. Hatta sebagai Wakil Presiden</li>
+          <li>Membentuk Komite Nasional Indonesia Pusat (KNIP) untuk membantu Presiden</li>
+        </ul>
+        <h4>Pengakuan Kemerdekaan RI</h4>
+        <ul>
+          <li><b>Mesir</b> — pengakuan <i>de facto</i> pertama: 22 Maret 1946</li>
+          <li><b>India & Australia</b> — mendukung kemerdekaan RI di PBB</li>
+          <li><b>Belanda</b> — pengakuan <i>de jure</i> (KMB): 27 Desember 1949</li>
+        </ul>
       </div>
     </div>
 
-    <!-- TAB 1: PROSEDUR -->
-    <div class="mat-panel">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">📋</span><span class="mc-ttl">Teks Prosedur — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian</h4>
-          <p>Teks prosedur adalah teks yang berisi petunjuk atau langkah-langkah untuk <b>melakukan sesuatu secara berurutan</b> agar tujuan tercapai.</p>
-          <h4>Struktur Teks Prosedur</h4>
-          <table>
-            <tr><th>Bagian</th><th>Isi</th></tr>
-            <tr><td><b>Tujuan</b></td><td>Apa yang akan dibuat/dilakukan (judul atau kalimat pembuka)</td></tr>
-            <tr><td><b>Material/Alat-Bahan</b></td><td>Bahan atau alat yang diperlukan (jika ada)</td></tr>
-            <tr><td><b>Langkah-Langkah</b></td><td>Urutan cara melakukan kegiatan secara kronologis dan sekuensial</td></tr>
-          </table>
-          <h4>Ciri-Ciri Langkah-Langkah</h4>
-          <ul>
-            <li>Bersifat <b>kronologis</b> (berurutan waktu) dan <b>sekuensial</b> (tidak bisa dibalik)</li>
-            <li>Menggunakan kalimat <b>perintah/imperatif</b>: "panaskan", "tuangkan", "tekan tombol"</li>
-            <li>Menggunakan kata urutan: pertama, kedua, selanjutnya, kemudian, terakhir</li>
-            <li>Kalimat singkat, padat, dan jelas</li>
-          </ul>
-          <h4>Kosakata Teknis</h4>
-          <p>Istilah khusus yang berkaitan dengan bidang tertentu dalam teks prosedur:</p>
-          <table>
-            <tr><th>Bidang</th><th>Contoh Kosakata Teknis</th></tr>
-            <tr><td>Memasak</td><td>wajan, tumis, sauté, blanch, api sedang, aduk rata</td></tr>
-            <tr><td>Teknologi</td><td>klik, unduh, unggah, log in, screenshot, browser</td></tr>
-            <tr><td>Kesehatan</td><td>steril, dosis, kompres, antiseptik, sublingual</td></tr>
-            <tr><td>Otomotif</td><td>radiator, karburator, torque, celah klep</td></tr>
-          </table>
-          <h4>Kata Serapan dalam Teks Prosedur</h4>
-          <table>
-            <tr><th>Kata Serapan</th><th>Asal Bahasa</th><th>Keterangan</th></tr>
-            <tr><td>unduh ↔ <i>download</i></td><td>Inggris</td><td>mengambil file dari internet</td></tr>
-            <tr><td>unggah ↔ <i>upload</i></td><td>Inggris</td><td>mengirim file ke internet</td></tr>
-            <tr><td>klik ↔ <i>click</i></td><td>Inggris</td><td>menekan tombol mouse</td></tr>
-            <tr><td>browser ↔ peramban</td><td>Inggris</td><td>aplikasi menjelajah internet</td></tr>
-            <tr><td>sauté ↔ menumis</td><td>Prancis</td><td>memasak cepat di api besar</td></tr>
-          </table>
-          <h4>Kalimat Fakta vs. Kalimat Opini</h4>
-          <table>
-            <tr><th>Kalimat Fakta</th><th>Kalimat Opini</th></tr>
-            <tr><td>Dapat dibuktikan kebenarannya</td><td>Berisi pendapat/penilaian subjektif</td></tr>
-            <tr><td>Bersifat objektif</td><td>Bersifat subjektif</td></tr>
-            <tr><td>Tidak menggunakan kata pendapat</td><td>Menggunakan: <i>menurutku, sebaiknya, saya rasa, sepertinya, seharusnya</i></td></tr>
-            <tr><td><b>Contoh</b>: "Air mendidih pada 100°C."</td><td><b>Contoh</b>: "Menurutku cara ini lebih enak."</td></tr>
-            <tr><td><b>Contoh</b>: "Beras mengandung karbohidrat."</td><td><b>Contoh</b>: "Sebaiknya gunakan nasi merah."</td></tr>
-          </table>
-        </div>
+    <!-- PANCASILA -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">⭐</span><span class="mc-title">Pancasila — Lambang, Fungsi & Kedudukan</span></div>
+      <div class="mc-body">
+        <h4>5 Sila & Lambangnya</h4>
+        <table>
+          <tr><th>Sila</th><th>Bunyi</th><th>Lambang</th></tr>
+          <tr><td>1</td><td>Ketuhanan Yang Maha Esa</td><td>🌟 Bintang Emas</td></tr>
+          <tr><td>2</td><td>Kemanusiaan yang Adil dan Beradab</td><td>⛓️ Rantai Emas</td></tr>
+          <tr><td>3</td><td>Persatuan Indonesia</td><td>🌳 Pohon Beringin</td></tr>
+          <tr><td>4</td><td>Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</td><td>🐃 Kepala Banteng</td></tr>
+          <tr><td>5</td><td>Keadilan Sosial bagi Seluruh Rakyat Indonesia</td><td>🌾 Padi dan Kapas</td></tr>
+        </table>
+        <h4>Fungsi & Kedudukan Pancasila</h4>
+        <ul>
+          <li><b>Dasar Negara</b> — landasan penyelenggaraan pemerintahan</li>
+          <li><b>Pandangan Hidup Bangsa</b> — pedoman dalam kehidupan bermasyarakat</li>
+          <li><b>Sumber Hukum Nasional</b> — sumber dari segala sumber hukum</li>
+          <li><b>Perjanjian Luhur</b> — disepakati para pendiri bangsa</li>
+          <li><b>Pemersatu Bangsa</b> — mempersatukan keberagaman Indonesia</li>
+          <li><b>Ideologi Negara</b> — falsafah hidup berbangsa dan bernegara</li>
+          <li><b>Cita-cita dan Tujuan Bangsa</b> — arah yang ingin dicapai</li>
+        </ul>
+        <h4>Implementasi Per Sila</h4>
+        <ul>
+          <li><b>Sila 1</b>: berdoa, toleransi beragama, menghormati agama lain</li>
+          <li><b>Sila 2</b>: menolong sesama, menghormati HAM, tidak diskriminasi</li>
+          <li><b>Sila 3</b>: gotong royong, mencintai produk lokal, menjaga persatuan</li>
+          <li><b>Sila 4</b>: musyawarah, menerima kekalahan dengan lapang dada</li>
+          <li><b>Sila 5</b>: berbagi, tidak menimbun kekayaan, kerja keras</li>
+        </ul>
+        <h4>Bhinneka Tunggal Ika</h4>
+        Diambil dari kitab Sutasoma karya Mpu Tantular. Artinya: <i>"Berbeda-beda tetapi tetap satu jua."</i> Landasan filosofisnya adalah <b>Sila ke-3</b> (Persatuan Indonesia).
       </div>
     </div>
 
-    <!-- TAB 2: REKON -->
-    <div class="mat-panel">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">🔄</span><span class="mc-ttl">Teks Rekon (Recount) — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian & Tujuan</h4>
-          <p><b>Teks rekon</b> (recount text) adalah teks yang menceritakan kembali suatu peristiwa, pengalaman, atau kejadian di masa lalu secara <b>kronologis</b>.</p>
-          <p><b>Tujuan:</b> (1) Memberikan informasi tentang peristiwa yang telah terjadi, dan/atau (2) Menghibur pembaca dengan narasi pengalaman yang menarik.</p>
-          <h4>Struktur Teks Rekon</h4>
-          <table>
-            <tr><th>Bagian</th><th>Isi</th><th>Contoh</th></tr>
-            <tr><td><b>Orientasi</b></td><td>Pengenalan: siapa, apa, kapan, di mana peristiwa terjadi</td><td>"Pada Sabtu, 10 Juni 2023, saya mengunjungi…"</td></tr>
-            <tr><td><b>Peristiwa/Rekaman</b></td><td>Urutan peristiwa/kejadian yang dialami</td><td>"Pertama kami tiba di… Kemudian kami…"</td></tr>
-            <tr><td><b>Reorientasi</b></td><td>Penutup: komentar, perasaan, atau kesan penulis</td><td>"Pengalaman ini sungguh tak terlupakan…"</td></tr>
-          </table>
-          <h4>Kata Penghubung Temporal</h4>
-          <p>Menunjukkan urutan waktu dalam peristiwa:</p>
-          <table>
-            <tr><th>Jenis</th><th>Contoh</th></tr>
-            <tr><td>Urutan</td><td>pertama-tama, kemudian, setelah itu, lalu, berikutnya, akhirnya, terakhir</td></tr>
-            <tr><td>Waktu spesifik</td><td>pada pukul, saat itu, ketika, sewaktu, tatkala</td></tr>
-            <tr><td>Durasi</td><td>selama, sepanjang, dalam waktu, hingga</td></tr>
-          </table>
-          <div class="highlight">⚠️ Jangan salah dengan kata hubung kausalitas (oleh karena itu, sehingga, dengan demikian) — itu bukan temporal!</div>
-          <h4>Ciri Kebahasaan Teks Rekon</h4>
-          <ul>
-            <li><b>Verba material</b> (kata kerja tindakan): pergi, makan, berlari, melihat, mengunjungi</li>
-            <li><b>Kata keterangan waktu lampau</b>: kemarin, minggu lalu, pada tahun 2023, saat itu</li>
-            <li><b>Konjungsi temporal</b>: kemudian, setelah itu, lalu, akhirnya</li>
-            <li><b>Orang pertama</b>: saya, kami, aku — atau orang ketiga: dia, mereka</li>
-            <li>Dominan menggunakan <b>kalimat lampau</b></li>
-          </ul>
-          <h4>Jenis Kata (Kelas Kata) dalam Teks Rekon</h4>
-          <table>
-            <tr><th>Kelas Kata</th><th>Definisi</th><th>Contoh</th></tr>
-            <tr><td><b>Nomina</b> (kata benda)</td><td>Nama orang, tempat, benda</td><td>pantai, sekolah, buku, Jakarta</td></tr>
-            <tr><td><b>Verba</b> (kata kerja)</td><td>Menyatakan tindakan/perbuatan</td><td>berlari, makan, mengunjungi, pergi</td></tr>
-            <tr><td><b>Adjektiva</b> (kata sifat)</td><td>Menerangkan sifat/keadaan</td><td>indah, cepat, besar, melelahkan</td></tr>
-            <tr><td><b>Adverbia</b> (kata keterangan)</td><td>Menerangkan verba/adjektiva</td><td>sangat, terlalu, kemarin, dengan cepat</td></tr>
-            <tr><td><b>Konjungsi</b> (kata hubung)</td><td>Menghubungkan kata/klausa</td><td>dan, tetapi, kemudian, karena</td></tr>
-            <tr><td><b>Pronomina</b> (kata ganti)</td><td>Menggantikan nomina</td><td>saya, kami, mereka, itu, ini</td></tr>
-          </table>
-          <h4>Tips Menemukan Ide Pokok Paragraf</h4>
-          <ul>
-            <li>Baca seluruh paragraf terlebih dahulu</li>
-            <li>Cari kalimat yang <b>paling umum</b> dan menjadi inti pembahasan</li>
-            <li>Kalimat lain dalam paragraf = kalimat penjelas ide pokok</li>
-            <li>Ide pokok bisa di <b>awal</b> (deduktif), <b>akhir</b> (induktif), atau <b>awal dan akhir</b> (campuran)</li>
-          </ul>
-        </div>
+    <!-- UUD 1945 & LEMBAGA NEGARA -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">📜</span><span class="mc-title">UUD 1945 & Lembaga Negara</span></div>
+      <div class="mc-body">
+        <h4>Pembukaan UUD NRI 1945</h4>
+        <ul>
+          <li><b>Alinea I</b>: Kemerdekaan adalah hak segala bangsa → dasar perjuangan</li>
+          <li><b>Alinea II</b>: Cita-cita bangsa Indonesia (merdeka, bersatu, berdaulat, adil, makmur)</li>
+          <li><b>Alinea III</b>: Pernyataan kemerdekaan Indonesia atas berkat rahmat Allah</li>
+          <li><b>Alinea IV</b>: <b>Tujuan Negara</b> + Dasar Negara Pancasila + Bentuk Negara Republik</li>
+        </ul>
+        <h4>4 Tujuan Negara (Alinea IV)</h4>
+        <ul>
+          <li>Melindungi segenap bangsa dan tumpah darah Indonesia</li>
+          <li>Memajukan kesejahteraan umum</li>
+          <li>Mencerdaskan kehidupan bangsa</li>
+          <li>Ikut melaksanakan ketertiban dunia berdasarkan kemerdekaan, perdamaian abadi, dan keadilan sosial</li>
+        </ul>
+        <h4>Pasal-Pasal Penting</h4>
+        <table>
+          <tr><th>Pasal</th><th>Isi</th></tr>
+          <tr><td><b>1 (1)</b></td><td>NKRI berbentuk Republik</td></tr>
+          <tr><td><b>29 (2)</b></td><td>Jaminan kebebasan beragama dan beribadah</td></tr>
+          <tr><td><b>22E</b></td><td>Pemilihan Umum (Langsung, Umum, Bebas, Rahasia, Jujur, Adil)</td></tr>
+          <tr><td><b>31 (1)</b></td><td>Hak setiap warga negara mendapat pendidikan</td></tr>
+          <tr><td><b>28A</b></td><td>Hak untuk hidup dan mempertahankan kehidupan</td></tr>
+          <tr><td><b>28E (1)</b></td><td>Hak memeluk agama & kepercayaan</td></tr>
+        </table>
+        <h4>Lembaga Negara</h4>
+        <table>
+          <tr><th>Jenis</th><th>Lembaga</th></tr>
+          <tr><td><b>Legislatif</b></td><td>DPR, DPD, MPR</td></tr>
+          <tr><td><b>Eksekutif</b></td><td>Presiden & Wakil Presiden, Kabinet</td></tr>
+          <tr><td><b>Yudikatif</b></td><td>Mahkamah Agung (MA), Mahkamah Konstitusi (MK), Komisi Yudisial (KY)</td></tr>
+          <tr><td><b>Independen</b></td><td>BPK (keuangan), KPK, KPU, Komnas HAM</td></tr>
+        </table>
+        <p><b>MK</b> berwenang: menguji UU terhadap UUD, sengketa lembaga negara, pembubaran parpol, sengketa pemilu. <b>MA</b>: mengadili perkara kasasi, menguji peraturan di bawah UU.</p>
       </div>
     </div>
 
-    <!-- TAB 3: EKSPLANASI -->
-    <div class="mat-panel">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">🌊</span><span class="mc-ttl">Teks Eksplanasi — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian</h4>
-          <p>Teks eksplanasi adalah teks yang menjelaskan <b>proses terjadinya</b> suatu fenomena alam, sosial, budaya, atau ilmiah secara <b>sebab-akibat</b>.</p>
-          <h4>Struktur Teks Eksplanasi</h4>
-          <table>
-            <tr><th>Bagian</th><th>Isi</th><th>Contoh Topik Gempa</th></tr>
-            <tr><td><b>Pernyataan Umum</b></td><td>Pengenalan fenomena yang akan dijelaskan</td><td>"Gempa bumi adalah getaran di permukaan bumi…"</td></tr>
-            <tr><td><b>Deret Penjelas</b></td><td>Rangkaian sebab-akibat yang menjelaskan bagaimana/mengapa fenomena terjadi</td><td>"Ketika dua lempeng bertumbukan, tekanan terakumulasi… Kemudian…"</td></tr>
-            <tr><td><b>Interpretasi/Simpulan</b></td><td>Kesimpulan, komentar, atau penilaian penulis tentang fenomena</td><td>"Gempa bumi merupakan fenomena alam yang tidak bisa dihindari…"</td></tr>
-          </table>
-          <h4>Ciri Kebahasaan Teks Eksplanasi</h4>
-          <ul>
-            <li>Menggunakan <b>konjungsi kausalitas</b>: karena, sebab, sehingga, oleh karena itu, akibatnya</li>
-            <li>Menggunakan <b>konjungsi temporal</b>: kemudian, lalu, setelah itu (untuk urutan proses)</li>
-            <li>Menggunakan <b>istilah teknis/ilmiah</b>: lempeng tektonik, kondensasi, evaporasi</li>
-            <li>Bersifat <b>informatif dan objektif</b></li>
-            <li>Menggunakan <b>kalimat pasif</b>: terbentuk, disebabkan, dipengaruhi</li>
-          </ul>
-          <h4>Majas dalam Teks Eksplanasi</h4>
-          <table>
-            <tr><th>Majas</th><th>Definisi</th><th>Contoh</th></tr>
-            <tr><td><b>Personifikasi</b></td><td>Memberikan sifat/perilaku manusia kepada benda mati atau alam</td><td>"Angin <i>berbisik</i> lembut di antara dedaunan." "Matahari <i>tersenyum</i> malu."</td></tr>
-            <tr><td><b>Metafora</b></td><td>Perbandingan langsung tanpa kata penghubung (seperti, bak)</td><td>"Dia adalah <i>bintang</i> di keluarganya." "Waktu adalah <i>uang</i>."</td></tr>
-            <tr><td><b>Simile</b></td><td>Perbandingan menggunakan kata: seperti, bak, bagaikan, laksana</td><td>"Kulitnya <i>seperti</i> salju." "Ombak <i>bagaikan</i> tembok raksasa."</td></tr>
-            <tr><td><b>Hiperbola</b></td><td>Melebih-lebihkan suatu keadaan</td><td>"Suaranya menggelegar <i>membelah langit</i>." "Sudah <i>sejuta kali</i> aku mengatakan."</td></tr>
-            <tr><td><b>Repetisi</b></td><td>Pengulangan kata/frasa untuk penekanan</td><td>"Air, air, dan air — itulah kebutuhan utama makhluk hidup."</td></tr>
-            <tr><td><b>Litotes</b></td><td>Merendahkan diri/melemahkan pernyataan</td><td>"Silakan mampir ke gubuk saya yang sederhana ini."</td></tr>
-          </table>
-          <div class="highlight">💡 Kunci membedakan majas: Personifikasi = benda berperilaku manusia | Metafora = A adalah B | Simile = A seperti B | Hiperbola = berlebihan</div>
-        </div>
+    <!-- NORMA -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">⚖️</span><span class="mc-title">Norma dalam Kehidupan</span></div>
+      <div class="mc-body">
+        <h4>4 Jenis Norma</h4>
+        <table>
+          <tr><th>Norma</th><th>Sumber</th><th>Sanksi</th><th>Contoh</th></tr>
+          <tr><td><b>Agama</b></td><td>Ajaran Tuhan/agama</td><td>Dosa (dari Tuhan)</td><td>Berdoa sebelum makan, tidak mencuri</td></tr>
+          <tr><td><b>Kesusilaan</b></td><td>Hati nurani/kesadaran diri</td><td>Rasa malu/bersalah dari diri sendiri</td><td>Jujur meski tidak ada yang melihat, tidak menyakiti</td></tr>
+          <tr><td><b>Kesopanan</b></td><td>Kebiasaan masyarakat</td><td>Teguran, dikucilkan, dicemooh masyarakat</td><td>Menyapa tetangga, memberi salam</td></tr>
+          <tr><td><b>Hukum</b></td><td>Negara/pemerintah</td><td>Tegas & memaksa: penjara, denda</td><td>Membayar pajak, menaati rambu lalu lintas</td></tr>
+        </table>
+        <h4>Tata Urutan Peraturan Perundang-Undangan (UU No. 12 Tahun 2011)</h4>
+        <ol style="padding-left:18px;font-size:13px;line-height:2">
+          <li><b>UUD NRI 1945</b> (tertinggi)</li>
+          <li>Ketetapan MPR (TAP MPR)</li>
+          <li>Undang-Undang (UU) / Peraturan Pemerintah Pengganti UU (Perppu)</li>
+          <li>Peraturan Pemerintah (PP)</li>
+          <li>Peraturan Presiden (Perpres)</li>
+          <li>Peraturan Daerah Provinsi (Perda Prov)</li>
+          <li><b>Peraturan Daerah Kabupaten/Kota</b> (terendah)</li>
+        </ol>
+        <p style="margin-top:6px;font-size:12.5px;color:#666">⚠️ Perpres (urutan 5) lebih tinggi dari Perda Provinsi (urutan 6).</p>
       </div>
     </div>
 
-    <!-- TAB 4: LAPORAN -->
-    <div class="mat-panel">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">📊</span><span class="mc-ttl">Teks Laporan — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian Teks Laporan Hasil Observasi</h4>
-          <p>Teks laporan hasil observasi (LHO) adalah teks yang menyajikan informasi <b>faktual dan objektif</b> tentang suatu objek atau fenomena berdasarkan hasil <b>pengamatan langsung</b> (observasi).</p>
-          <h4>Ciri-Ciri Teks LHO</h4>
-          <ul>
-            <li>Bersifat <b>faktual</b> dan <b>ilmiah</b> (bukan opini atau imajinasi)</li>
-            <li>Menggunakan bahasa <b>baku dan formal</b></li>
-            <li>Berdasarkan hasil <b>pengamatan nyata</b></li>
-            <li>Menyajikan informasi secara <b>sistematis</b></li>
-            <li>Objek yang dilaporkan bersifat <b>umum</b> (bisa berlaku untuk semua jenis objek serupa)</li>
-          </ul>
-          <h4>Kohesi dan Koherensi</h4>
-          <table>
-            <tr><th>Konsep</th><th>Definisi</th><th>Alat</th><th>Contoh</th></tr>
-            <tr><td><b>Kohesi</b></td><td>Keterkaitan <b>BENTUK</b> kebahasaan antarkalimat/antarparagraf</td><td>Kata ganti (ia, mereka, itu), konjungsi, pengulangan kata, sinonim</td><td>"Komodo hidup di Pulau Rinca. <u>Hewan ini</u> adalah reptil terbesar…"</td></tr>
-            <tr><td><b>Koherensi</b></td><td>Keterkaitan <b>MAKNA/ISI</b> antarkalimat sehingga teks bermakna</td><td>Logika pikiran yang runtut, kalimat-kalimat mendukung satu topik</td><td>Setiap kalimat dalam paragraf membicarakan hal yang berkaitan dan relevan</td></tr>
-          </table>
-          <div class="highlight">⚠️ Ingat: Kohesi = bentuk (gramatikal) | Koherensi = makna (logis/semantis)</div>
-          <h4>Kata Serapan yang Sering Keliru</h4>
-          <table>
-            <tr><th>Salah ❌</th><th>Benar ✅</th><th>Asal</th></tr>
-            <tr><td>aktifitas</td><td><b>aktivitas</b></td><td>activity (Inggris)</td></tr>
-            <tr><td>analisa</td><td><b>analisis</b></td><td>analysis (Inggris)</td></tr>
-            <tr><td>praktek</td><td><b>praktik</b></td><td>practice (Inggris)</td></tr>
-            <tr><td>konkrit/kongkrit</td><td><b>konkret</b></td><td>concreet (Belanda)</td></tr>
-            <tr><td>sistim</td><td><b>sistem</b></td><td>system (Inggris)</td></tr>
-            <tr><td>nasehat</td><td><b>nasihat</b></td><td>nasihat (Arab)</td></tr>
-            <tr><td>ijin</td><td><b>izin</b></td><td>izin (Arab)</td></tr>
-          </table>
-          <h4>Esai — Pengertian & Langkah Menulis</h4>
-          <p>Esai adalah karangan prosa yang membahas suatu masalah dari sudut pandang penulis secara <b>subjektif</b> namun tetap berdasarkan fakta/argumentasi.</p>
-          <p><b>Langkah-langkah menulis esai:</b></p>
-          <ul>
-            <li><b>1.</b> Tentukan topik dan sudut pandang yang akan dibahas</li>
-            <li><b>2.</b> Kumpulkan data, fakta, dan referensi pendukung</li>
-            <li><b>3.</b> Buat kerangka/outline: pendahuluan → isi → penutup</li>
-            <li><b>4.</b> Tulis draf pertama sesuai kerangka</li>
-            <li><b>5.</b> Revisi: periksa logika, kohesi, koherensi, dan ejaan</li>
-          </ul>
-          <h4>Cara Menulis Kesimpulan yang Baik</h4>
-          <ul>
-            <li>Merangkum poin-poin utama bacaan</li>
-            <li>Bersifat <b>objektif</b> berdasarkan isi teks</li>
-            <li>Tidak menambahkan informasi baru</li>
-            <li>Tidak menggunakan kata subjektif berlebihan</li>
-            <li>Singkat, padat, dan jelas</li>
-          </ul>
-        </div>
+    <!-- KEBERAGAMAN -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">🌏</span><span class="mc-title">Keberagaman Indonesia</span></div>
+      <div class="mc-body">
+        <h4>Suku Bangsa per Pulau</h4>
+        <ul>
+          <li><b>Jawa</b>: Jawa, Sunda, Madura, Betawi</li>
+          <li><b>Sumatera</b>: Batak, Minangkabau, Aceh, Melayu, Lampung, Rejang</li>
+          <li><b>Kalimantan</b>: Dayak, Banjar, Kutai</li>
+          <li><b>Sulawesi</b>: Bugis, Makassar, Toraja, Minahasa, Gorontalo</li>
+          <li><b>Papua</b>: Asmat, Dani, Biak, Serui</li>
+          <li><b>Bali & NTT</b>: Bali, Sasak (NTB), Manggarai, Flores</li>
+        </ul>
+        <h4>Persebaran Ras di Indonesia</h4>
+        <ul>
+          <li><b>Ras Mongoloid</b>: Jawa, Sumatera, Kalimantan (wilayah barat)</li>
+          <li><b>Ras Melanesoid</b>: Papua, NTT, Maluku (wilayah timur)</li>
+          <li><b>Ras Campuran</b>: terjadi di wilayah peralihan (Maluku, NTT)</li>
+        </ul>
+        <h4>Garis Pembagi Wilayah Fauna</h4>
+        <ul>
+          <li><b>Garis Wallace</b>: memisahkan fauna tipe Asia (barat) & peralihan (Sulawesi, NTT)</li>
+          <li><b>Garis Weber</b>: memisahkan fauna peralihan & tipe Australia (Papua, Maluku)</li>
+        </ul>
+        <h4>Julukan Indonesia</h4>
+        <ul>
+          <li>🟢 <b>Zamrud Khatulistiwa</b> — kaya hayati, terletak di ekuator</li>
+          <li>🌊 <b>Nusantara</b> — ribuan pulau (negara kepulauan)</li>
+          <li>🌾 <b>Lumbung Padi Dunia</b> (historis)</li>
+          <li>🌺 <b>Macan Asia</b> — potensi ekonomi besar</li>
+        </ul>
+        <h4>Upacara Kematian Tradisional</h4>
+        <ul>
+          <li><b>Rambu Solo'</b> → Toraja, Sulawesi Selatan (pemakaman megah berhari-hari)</li>
+          <li><b>Ma'nene'</b> → Toraja (ritual membersihkan jenazah leluhur)</li>
+          <li><b>Ngaben</b> → Bali (upacara kremasi Hindu)</li>
+          <li><b>Waruga</b> → Minahasa, Sulawesi Utara (kubur batu kuno)</li>
+          <li><b>Tiwah</b> → Dayak Kalimantan (upacara pemakaman kedua)</li>
+        </ul>
       </div>
     </div>
 
-    <!-- TAB 5: ARGUMENTASI -->
-    <div class="mat-panel">
-      <div class="mat-card">
-        <div class="mc-head"><span class="mc-ico">💬</span><span class="mc-ttl">Teks Argumentasi — Lengkap</span></div>
-        <div class="mc-body">
-          <h4>Pengertian</h4>
-          <p>Teks argumentasi adalah teks yang menyampaikan <b>pendapat</b> disertai <b>bukti, data, dan alasan logis</b> dengan tujuan <b>memengaruhi atau meyakinkan pembaca</b>.</p>
-          <h4>Ciri-Ciri Teks Argumentasi</h4>
-          <ul>
-            <li>Mengandung <b>tesis/pernyataan posisi</b> yang jelas</li>
-            <li>Dilengkapi <b>fakta, data, dan alasan</b> yang logis</li>
-            <li>Bertujuan <b>meyakinkan</b> pembaca atas pendapat penulis</li>
-            <li>Menggunakan <b>bahasa yang tegas dan meyakinkan</b></li>
-            <li>Terdapat <b>simpulan</b> yang memperkuat argumen</li>
-            <li>Berbeda dari teks persuasi: argumentasi menekankan <b>logika dan bukti</b>, bukan bujukan emosional</li>
-          </ul>
-          <h4>Ciri Kebahasaan Teks Argumentasi</h4>
-          <table>
-            <tr><th>Kebahasaan</th><th>Contoh</th></tr>
-            <tr><td><b>Konjungsi penyebaban</b></td><td>karena, sebab, sehingga, oleh sebab itu, oleh karena itu, akibatnya</td></tr>
-            <tr><td><b>Kata modalitas</b></td><td>harus, seharusnya, semestinya, perlu, wajib</td></tr>
-            <tr><td><b>Bahasa persuasif</b></td><td>mari, hendaknya, harapannya, sudah saatnya</td></tr>
-            <tr><td><b>Kalimat fakta</b></td><td>Berisi data angka, penelitian, pernyataan yang dapat diverifikasi</td></tr>
-            <tr><td><b>Kalimat opini</b></td><td>Berisi pendapat penulis yang diargumentasikan</td></tr>
-          </table>
-          <h4>Membuat Simpulan Bacaan Argumentasi</h4>
-          <ul>
-            <li>Tentukan <b>posisi/tesis</b> penulis: mendukung atau menentang?</li>
-            <li>Identifikasi <b>argumen utama</b> yang digunakan</li>
-            <li>Simpulkan dalam 1–2 kalimat yang <b>merangkum isi keseluruhan</b></li>
-            <li>Simpulan harus <b>objektif</b> (tidak perlu setuju/tidak setuju dengan penulis)</li>
-          </ul>
-          <h4>Jenis Paragraf Berdasarkan Letak Kalimat Utama</h4>
-          <table>
-            <tr><th>Jenis</th><th>Letak Kalimat Utama</th><th>Contoh Polanya</th></tr>
-            <tr><td><b>Deduktif</b></td><td>Di <b>awal</b> paragraf</td><td>Umum → Khusus (kalimat utama → kalimat penjelas)</td></tr>
-            <tr><td><b>Induktif</b></td><td>Di <b>akhir</b> paragraf</td><td>Khusus → Umum (kalimat penjelas → kalimat utama)</td></tr>
-            <tr><td><b>Campuran</b></td><td>Di <b>awal dan akhir</b></td><td>Umum → Khusus → Umum (dipertegas)</td></tr>
-            <tr><td><b>Ineratif</b></td><td>Di <b>tengah</b> paragraf</td><td>Khusus → Umum → Khusus</td></tr>
-            <tr><td><b>Deskriptif/Naratif</b></td><td><b>Tidak jelas</b> (tersebar)</td><td>Semua kalimat sama kedudukannya</td></tr>
-          </table>
-          <div class="highlight">💡 Cara mudah: deduktif = kalimat utama di depan (umum dulu, rinci belakangan). Induktif = kalimat utama di belakang (rinci dulu, simpulan akhir).</div>
-          <h4>Perbedaan Fakta vs Opini dalam Argumentasi</h4>
-          <table>
-            <tr><th></th><th>Fakta</th><th>Opini</th></tr>
-            <tr><td><b>Sifat</b></td><td>Objektif, dapat dibuktikan</td><td>Subjektif, berupa pendapat</td></tr>
-            <tr><td><b>Penanda</b></td><td>Angka, data, hasil penelitian</td><td>"menurutku", "saya rasa", "seharusnya", "sepertinya"</td></tr>
-            <tr><td><b>Contoh</b></td><td>"Indonesia memiliki 17.508 pulau."</td><td>"Indonesia adalah negara paling indah di dunia."</td></tr>
-          </table>
-        </div>
+    <!-- AGAMA -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">🕌</span><span class="mc-title">Keberagaman Agama di Indonesia</span></div>
+      <div class="mc-body">
+        <h4>6 Agama Resmi di Indonesia</h4>
+        <table>
+          <tr><th>Agama</th><th>Kitab Suci</th><th>Tempat Ibadah</th><th>Pemuka Agama</th></tr>
+          <tr><td><b>Islam</b></td><td>Al-Qur'an</td><td>Masjid</td><td>Ustaz / Kiai / Ulama</td></tr>
+          <tr><td><b>Kristen Protestan</b></td><td>Alkitab</td><td>Gereja</td><td>Pendeta</td></tr>
+          <tr><td><b>Kristen Katolik</b></td><td>Alkitab</td><td>Gereja/Katedral</td><td>Pastur / Romo</td></tr>
+          <tr><td><b>Hindu</b></td><td>Weda</td><td>Pura</td><td>Pandita / Pedanda</td></tr>
+          <tr><td><b>Buddha</b></td><td>Tripitaka</td><td>Vihara</td><td>Biksu / Bhikku</td></tr>
+          <tr><td><b>Konghucu</b></td><td>Sishu Wujing</td><td>Kelenteng</td><td>Xueshi / Jiaosheng</td></tr>
+        </table>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--red)">⚠️ Ingat: Biksu/Bhikku = pemuka Buddha, <u>bukan</u> Kristen! Pemuka Kristen = Pendeta/Pastur.</p>
       </div>
     </div>
 
-  </div><!-- end mat-panels -->
-</div><!-- end materi -->
+    <!-- HAK DAN KEWAJIBAN -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">🤝</span><span class="mc-title">Hak dan Kewajiban</span></div>
+      <div class="mc-body">
+        <h4>Di Lingkungan Keluarga</h4>
+        <table>
+          <tr><th>Hak Anak</th><th>Kewajiban Anak</th></tr>
+          <tr><td>Mendapat kasih sayang orang tua</td><td>Menghormati & menaati orang tua</td></tr>
+          <tr><td>Mendapat pendidikan yang layak</td><td>Membantu pekerjaan rumah</td></tr>
+          <tr><td>Mendapat perlindungan dari kekerasan</td><td>Belajar dengan sungguh-sungguh</td></tr>
+          <tr><td>Mendapat nafkah/kebutuhan hidup</td><td>Menjaga nama baik keluarga</td></tr>
+        </table>
+        <h4>Di Lingkungan Sekolah</h4>
+        <table>
+          <tr><th>Hak Siswa</th><th>Kewajiban Siswa</th></tr>
+          <tr><td>Mendapat pengajaran dari guru</td><td>Mematuhi tata tertib sekolah</td></tr>
+          <tr><td>Menggunakan fasilitas sekolah</td><td>Mengikuti pembelajaran</td></tr>
+          <tr><td>Mendapat penilaian yang adil</td><td>Mengerjakan tugas dengan jujur</td></tr>
+        </table>
+        <h4>Di Lingkungan Masyarakat</h4>
+        <table>
+          <tr><th>Hak Warga</th><th>Kewajiban Warga</th></tr>
+          <tr><td>Mendapat keamanan & ketertiban</td><td>Membayar iuran RT/RW</td></tr>
+          <tr><td>Menggunakan fasilitas umum</td><td>Menjaga kebersihan lingkungan</td></tr>
+          <tr><td>Berpartisipasi dalam pengambilan keputusan</td><td>Ikut serta dalam gotong royong</td></tr>
+        </table>
+        <h4>Gotong Royong</h4>
+        Dilakukan secara <b>sukarela</b>, bersama-sama, untuk kepentingan bersama, <b>tanpa mengharapkan imbalan</b>. Inilah yang membedakan gotong royong dari kerja sama biasa.
+      </div>
+    </div>
+
+    <!-- MENJAGA NKRI -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">🛡️</span><span class="mc-title">Menjaga NKRI & Globalisasi</span></div>
+      <div class="mc-body">
+        <h4>Tantangan Menjaga NKRI di Era Digital</h4>
+        <ul>
+          <li>Penyebaran <b>hoaks</b> dan <b>ujaran kebencian</b> di media sosial</li>
+          <li>Radikalisme dan terorisme yang masuk melalui internet</li>
+          <li>Separatisme dan ancaman disintegrasi bangsa</li>
+          <li>Pengaruh budaya asing yang menggerus identitas nasional</li>
+          <li>Cybercrime dan kejahatan siber</li>
+        </ul>
+        <h4>Solusi Bijak Menghadapi Hoaks</h4>
+        <ul>
+          <li><b>Saring sebelum Sharing</b> — verifikasi dulu sebelum menyebar</li>
+          <li>Cek ke sumber terpercaya: cekfakta.id, media resmi, pemerintah</li>
+          <li>Perhatikan sumber berita — apakah media terpercaya?</li>
+          <li>Jangan terbawa emosi — hoaks sering menggunakan judul provokatif</li>
+          <li>Laporkan konten hoaks ke platform/Kominfo</li>
+        </ul>
+        <h4>Sikap Bijak terhadap Globalisasi</h4>
+        <ul>
+          <li>✅ Menyaring budaya asing yang masuk</li>
+          <li>✅ Mempertahankan jati diri dan budaya lokal</li>
+          <li>✅ Memanfaatkan teknologi untuk belajar dan berinovasi</li>
+          <li>✅ Menggunakan media sosial secara bertanggung jawab</li>
+          <li>❌ Menolak SEMUA pengaruh luar (tidak realistis)</li>
+          <li>❌ Menyerap budaya asing secara membabi-buta</li>
+        </ul>
+        <h4>Penyampaian Pendapat (UU No. 9/1998)</h4>
+        Wajib diberitahukan ke Polri min. 3×24 jam sebelumnya. <br>
+        <b>Lokasi DILARANG:</b> Istana Kepresidenan, tempat ibadah, instalasi militer, rumah sakit, pelabuhan, stasiun, terminal, objek vital nasional. <br>
+        <b>Lokasi DIPERBOLEHKAN:</b> lapangan terbuka umum, taman kota, depan gedung DPR/MPR (dengan kondisi tertib).
+      </div>
+    </div>
+
+    <!-- BUDAYA & UNESCO -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">🎭</span><span class="mc-title">Budaya Nasional & Warisan UNESCO</span></div>
+      <div class="mc-body">
+        <h4>Warisan Budaya Indonesia yang Diakui UNESCO</h4>
+        <ul>
+          <li>🦋 <b>Batik</b> (2009) — seni kain celup lilin</li>
+          <li>🎭 <b>Wayang</b> (2003/2008) — pertunjukan boneka tradisional</li>
+          <li>🗡️ <b>Keris</b> (2005/2008) — senjata tradisional bertuah</li>
+          <li>🎵 <b>Angklung</b> (2010) — alat musik bambu Sunda</li>
+          <li>🚣 <b>Tari Saman</b> (2011) — tari massal Aceh</li>
+          <li>🥁 <b>Noken</b> (2012) — tas rajut Papua</li>
+          <li>🎶 <b>Tiga Genre Tradisional Tari Bali</b> (2015)</li>
+          <li>🏄 <b>Tradisi Pencak Silat</b> (2019)</li>
+          <li>🎪 <b>Pantun</b> (2020) — bersama Malaysia</li>
+        </ul>
+        <h4>Syarat Budaya Daerah → Budaya Nasional</h4>
+        Harus memiliki nilai-nilai yang <b>universal</b> dan dapat diterima/diakui oleh <b>seluruh lapisan masyarakat Indonesia</b>, tidak hanya suku tertentu.
+        <h4>Filosofi Daerah (Bab 4 Buku Paket)</h4>
+        <ul>
+          <li><b>Tri Hita Karana</b> (Bali) — 3 penyebab kebahagiaan: hubungan dengan Tuhan (Parahyangan), sesama manusia (Pawongan), alam (Palemahan)</li>
+          <li><b>Siri' na Pacce'</b> (Bugis/Makassar) — kehormatan diri dan kepedulian sosial</li>
+          <li><b>Memayu Hayuning Bawana</b> (Jawa) — memperindah/menjaga keselamatan dunia</li>
+          <li><b>Huyula</b> (Gorontalo) — gotong royong sebagai nilai luhur</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HARI BESAR & TOKOH -->
+    <div class="materi-card">
+      <div class="mc-head"><span class="mc-icon">📅</span><span class="mc-title">Hari-Hari Besar & Tokoh Nasional</span></div>
+      <div class="mc-body">
+        <h4>Hari Besar Nasional Penting</h4>
+        <table>
+          <tr><th>Tanggal</th><th>Hari Besar</th><th>Catatan</th></tr>
+          <tr><td><b>2 Mei</b></td><td>Hari Pendidikan Nasional</td><td>Lahirnya Ki Hajar Dewantara</td></tr>
+          <tr><td><b>20 Mei</b></td><td>Hari Kebangkitan Nasional</td><td>Berdirinya Budi Utomo (1908)</td></tr>
+          <tr><td><b>1 Juni</b></td><td>Hari Lahir Pancasila</td><td>Soekarno sampaikan Pancasila (1945)</td></tr>
+          <tr><td><b>22 Juni</b></td><td>Hari Jadi DKI Jakarta</td><td>Juga hari Piagam Jakarta ditandatangani (1945)</td></tr>
+          <tr><td><b>17 Agustus</b></td><td>Hari Kemerdekaan RI</td><td>Proklamasi 1945</td></tr>
+          <tr><td><b>28 Oktober</b></td><td>Hari Sumpah Pemuda</td><td>Kongres Pemuda II (1928)</td></tr>
+          <tr><td><b>10 November</b></td><td>Hari Pahlawan</td><td>Pertempuran Surabaya (1945)</td></tr>
+          <tr><td><b>22 Desember</b></td><td>Hari Ibu</td><td>Kongres Perempuan Indonesia I (1928)</td></tr>
+        </table>
+        <h4>Tokoh Penting</h4>
+        <ul>
+          <li><b>W.R. Supratman</b> — pencipta & yang pertama memperdengarkan lagu Indonesia Raya di Kongres Pemuda II (28 Oktober 1928) dengan biola</li>
+          <li><b>R.A. Kartini</b> (1879–1904) — pelopor emansipasi wanita & hak pendidikan perempuan; karyanya "Habis Gelap Terbitlah Terang"</li>
+          <li><b>Cut Nyak Dhien</b> — pahlawan perempuan pejuang di Aceh melawan Belanda</li>
+          <li><b>Ki Hajar Dewantara</b> — Bapak Pendidikan Nasional, pendiri Taman Siswa</li>
+        </ul>
+        <h4>Ibu Kota Provinsi Penting</h4>
+        <table>
+          <tr><th>Provinsi</th><th>Ibu Kota</th></tr>
+          <tr><td>Kalimantan Timur</td><td><b>Samarinda</b></td></tr>
+          <tr><td>Kalimantan Selatan</td><td>Banjarmasin</td></tr>
+          <tr><td>Kalimantan Tengah</td><td>Palangkaraya</td></tr>
+          <tr><td>Kalimantan Utara</td><td>Tanjung Selor</td></tr>
+          <tr><td>Papua</td><td>Jayapura</td></tr>
+          <tr><td>Sulawesi Selatan</td><td>Makassar</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- end materi-grid -->
+</div><!-- end materi-section -->
 
 </div><!-- end page -->
 
 <script>
-// ── TAB SWITCHING ──
-function showTab(i){
-  document.querySelectorAll('.mat-tab').forEach((t,j)=>t.classList.toggle('active',i===j));
-  document.querySelectorAll('.mat-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
-}
+// ─────────────────────────────────────────────
+//  QUESTION DATA
+// ─────────────────────────────────────────────
+const KEYS = ['A','B','C','D','E'];
 
-// ── QUESTION DATA ──
-const K=['A','B','C','D','E'];
-const Q=[
-// ─── PILIHAN GANDA 1-25 ───
-{n:1,t:'pg',tp:'tp-des',tl:'Deskripsi',
- q:'Struktur teks deskripsi yang benar adalah…',
- o:['Orientasi → Komplikasi → Resolusi','Identifikasi → Deskripsi Bagian → Simpulan/Kesan','Pernyataan Umum → Deret Penjelas → Interpretasi','Tesis → Argumen → Penegasan Ulang'],
- a:1,
- e:'Teks deskripsi memiliki tiga bagian struktur: <b>Identifikasi</b> (pengenalan objek), <b>Deskripsi Bagian</b> (penggambaran detail bagian-bagian objek secara indrawi), dan <b>Simpulan/Kesan</b> (penutup yang merangkum keindahan atau keunikan objek).',
- oe:['❌ Orientasi → Komplikasi → Resolusi = struktur <b>teks narasi/cerita</b>, bukan deskripsi.','✅ <b>Identifikasi → Deskripsi Bagian → Simpulan/Kesan</b> = struktur teks deskripsi yang tepat.','❌ Pernyataan Umum → Deret Penjelas → Interpretasi = struktur <b>teks eksplanasi</b>.','❌ Tesis → Argumen → Penegasan Ulang = struktur <b>teks argumentasi/eksposisi</b>.']
-},
-{n:2,t:'pg',tp:'tp-des',tl:'Deskripsi',
- q:'Ciri utama yang membedakan teks deskripsi dengan jenis teks lainnya adalah…',
- o:['Menceritakan pengalaman pribadi secara kronologis','Menjelaskan sebab-akibat suatu fenomena alam','Menggambarkan objek secara detail sehingga pembaca seolah melihat, merasakan, atau mengalami sendiri','Meyakinkan pembaca dengan pendapat dan bukti yang logis'],
- a:2,
- e:'Teks deskripsi bertujuan menggambarkan objek (orang, tempat, benda, suasana) secara rinci dengan <b>mengaktifkan pancaindra pembaca</b> — seolah melihat, mendengar, mencium, merasakan sendiri. Inilah yang membedakannya dari teks lain.',
- oe:['❌ Menceritakan pengalaman secara kronologis = ciri <b>teks rekon</b>.','❌ Menjelaskan sebab-akibat fenomena = ciri <b>teks eksplanasi</b>.','✅ <b>Menggambarkan objek secara detail sehingga pembaca seolah mengalami sendiri</b> = ciri khas teks deskripsi.','❌ Meyakinkan dengan pendapat dan bukti = ciri <b>teks argumentasi</b>.']
-},
-{n:3,t:'pg',tp:'tp-des',tl:'Deskripsi',
- q:'Topik yang paling tepat untuk dikembangkan menjadi teks deskripsi adalah…',
- o:['Mengapa gempa bumi dapat terjadi','Cara membuat batik tulis','Keindahan Candi Borobudur yang megah dari dekat','Manfaat membaca buku bagi pelajar'],
- a:2,
- e:'Objek teks deskripsi adalah hal-hal yang dapat <b>digambarkan secara indrawi</b>. "Keindahan Candi Borobudur dari dekat" dapat dideskripsikan melalui detail visual (ukiran batu, stupa, relief), suasana, tekstur, dan sebagainya.',
- oe:['❌ "Mengapa gempa bumi terjadi" menanyakan <b>sebab-akibat</b> = topik teks <b>eksplanasi</b>.','❌ "Cara membuat batik tulis" berisi <b>langkah-langkah</b> = topik teks <b>prosedur</b>.','✅ <b>Keindahan Candi Borobudur</b> = objek tempat yang dapat digambarkan secara detail dan indrawi = tepat untuk deskripsi.','❌ "Manfaat membaca buku" berisi <b>argumentasi/informasi</b> = topik teks <b>eksposisi/argumentasi</b>.']
-},
-{n:4,t:'pg',tp:'tp-des',tl:'Deskripsi',
- q:'Bacalah penggalan paragraf berikut!\n<span class="block-text">"Pantai Ora terletak di Pulau Seram, Maluku. ___, air lautnya berwarna biru tosca yang sangat jernih hingga ke dasar. ___, hamparan pasirnya berwarna putih bersih bagaikan tepung halus."</span>\nKata penghubung yang paling tepat untuk melengkapi paragraf tersebut adalah…',
- o:['Selain itu — Kemudian','Di sana — Selain itu','Pertama — Kedua','Oleh karena itu — Meskipun demikian'],
- a:1,
- e:'"<b>Di sana</b>" merujuk pada lokasi yang sudah disebutkan (Pantai Ora), membentuk keterangan tempat. "<b>Selain itu</b>" menambahkan deskripsi berikutnya (pasir putih) sebagai informasi tambahan. Keduanya kohesif dan sesuai konteks deskripsi tempat.',
- oe:['❌ "Selain itu — Kemudian" → "Kemudian" biasanya digunakan untuk urutan waktu/langkah, kurang tepat untuk deskripsi paralel.','✅ <b>Di sana</b> (merujuk lokasi Pantai Ora) + <b>Selain itu</b> (menambah informasi deskripsi baru) = paling tepat.','❌ "Pertama — Kedua" = kata penghubung urutan/langkah, cocok untuk teks <b>prosedur</b>, bukan deskripsi.','❌ "Oleh karena itu — Meskipun demikian" = kata hubung <b>sebab-akibat</b> dan <b>perlawanan</b>, tidak cocok untuk deskripsi.']
-},
-{n:5,t:'pg',tp:'tp-des',tl:'Deskripsi',
- q:'Perhatikan data infografis berikut:\n<span class="block-text">Taman Nasional Komodo | Luas: 1.817 km² | Hewan unggulan: Komodo | Pulau utama: Komodo, Rinca, Padar | Status UNESCO: Warisan Dunia sejak 1991</span>\nKalimat yang paling tepat untuk melengkapi paragraf deskripsi berdasarkan infografis tersebut adalah…',
- o:['"Taman Nasional Komodo seharusnya dijaga lebih ketat oleh pemerintah dan masyarakat sekitar."','"Taman Nasional Komodo yang diakui UNESCO sejak 1991 membentang seluas 1.817 km² dan mencakup tiga pulau utama: Komodo, Rinca, dan Padar."','"Menurutku, Taman Nasional Komodo adalah destinasi wisata terbaik di Indonesia."','"Taman Nasional Komodo mengalami berbagai masalah lingkungan yang membutuhkan perhatian serius."'],
- a:1,
- e:'Melengkapi paragraf deskripsi dari infografis harus menggunakan <b>data faktual</b> dari infografis secara <b>deskriptif dan objektif</b>, tanpa opini. Opsi B merangkum status UNESCO, luas wilayah, dan pulau-pulau utama secara tepat dan faktual.',
- oe:['❌ "Seharusnya dijaga lebih ketat" = <b>opini/saran</b>, bukan deskripsi faktual dari infografis.','✅ Merangkum <b>semua data faktual</b> dari infografis (status UNESCO, luas, pulau utama) dalam satu kalimat deskriptif. Tepat!','❌ "Menurutku…" = kata subjektif yang menunjukkan <b>opini pribadi</b>, tidak sesuai untuk deskripsi berdasarkan infografis.','❌ "Mengalami berbagai masalah lingkungan" = informasi yang <b>tidak ada dalam infografis</b> — tidak boleh ditambahkan.']
-},
-{n:6,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Struktur teks prosedur yang benar adalah…',
- o:['Tujuan → Alat/Bahan → Langkah-Langkah','Orientasi → Peristiwa → Reorientasi','Identifikasi → Deskripsi Bagian → Simpulan','Tesis → Argumen → Penegasan Ulang'],
+const Q = [
+// ── PG 1-25 ──
+{n:1,t:'pg',
+ q:'Badan penyelidik yang dibentuk Jepang untuk mempersiapkan kemerdekaan Indonesia dikenal dengan istilah Jepang yaitu…',
+ o:['Dokuritsu Junbi Cosakai','Chuo Sangi-in','Seinendan','Keibodan'],
  a:0,
- e:'Teks prosedur memiliki tiga bagian struktur: <b>Tujuan</b> (apa yang akan dicapai/dibuat), <b>Alat/Bahan</b> (material yang diperlukan, jika ada), dan <b>Langkah-Langkah</b> (urutan cara melakukan secara kronologis).',
- oe:['✅ <b>Tujuan → Alat/Bahan → Langkah-Langkah</b> = struktur teks prosedur yang tepat.','❌ Orientasi → Peristiwa → Reorientasi = struktur <b>teks rekon</b>.','❌ Identifikasi → Deskripsi Bagian → Simpulan = struktur <b>teks deskripsi</b>.','❌ Tesis → Argumen → Penegasan Ulang = struktur <b>teks argumentasi</b>.']
+ e:'<b>BPUPKI</b> (Badan Penyelidik Usaha-usaha Persiapan Kemerdekaan Indonesia) dalam bahasa Jepang bernama <b>Dokuritsu Junbi Cosakai</b>, dibentuk Jepang pada 29 April 1945 dan mulai bertugas 28 Mei 1945.',
+ oe:[
+  '✅ <b>Dokuritsu Junbi Cosakai</b> = nama resmi Jepang untuk BPUPKI. Inilah jawaban yang benar.',
+  '❌ <b>Chuo Sangi-in</b> = Dewan Pertimbangan Pusat, lembaga penasihat pemerintah Jepang — tidak terkait persiapan kemerdekaan.',
+  '❌ <b>Seinendan</b> = barisan pemuda bentukan Jepang untuk keperluan militer, bukan lembaga persiapan kemerdekaan.',
+  '❌ <b>Keibodan</b> = korps kewaspadaan/pembantu polisi bentukan Jepang, tidak berkaitan dengan perumusan dasar negara.'
+ ]
 },
-{n:7,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Ciri khas langkah-langkah dalam teks prosedur adalah…',
- o:['Menggunakan urutan acak yang dapat diubah-ubah sesuai keinginan','Disusun secara kronologis dan berurutan — tidak dapat dibalik urutannya','Berisi pendapat penulis tentang cara terbaik melakukan sesuatu','Menggunakan kalimat pasif secara dominan tanpa kata perintah'],
+{n:2,t:'pg',
+ q:'Rani selalu membuang sampah pada tempatnya meskipun tidak ada yang melihat. Perilaku Rani tersebut mencerminkan penerapan norma…',
+ o:['Norma hukum','Norma agama','Norma kesusilaan','Norma kesopanan'],
+ a:2,
+ e:'<b>Norma kesusilaan</b> bersumber dari hati nurani dan kesadaran diri sendiri. Karena Rani berbuat benar <i>meskipun tidak ada yang melihat</i>, motivasinya murni berasal dari dalam diri (bukan karena takut hukuman atau penilaian orang lain).',
+ oe:[
+  '❌ <b>Norma hukum</b> sanksinya tegas dari negara (penjara, denda) dan umumnya berupa aturan tertulis. Membuang sampah tidak secara langsung diatur hukum nasional.',
+  '❌ <b>Norma agama</b> bersumber dari ajaran Tuhan melalui kitab suci. Meski berkaitan, ciri khasnya adalah sanksi dosa, bukan dorongan hati nurani sosial.',
+  '✅ <b>Norma kesusilaan</b> bersumber dari hati nurani manusia itu sendiri, tanpa perlu pengawasan orang lain. "Meskipun tidak ada yang melihat" = ciri khas norma kesusilaan.',
+  '❌ <b>Norma kesopanan</b> bersumber dari kebiasaan/adat masyarakat dan biasanya mengatur hubungan antarpersona secara langsung (misal: cara berpakaian, cara menyapa).'
+ ]
+},
+{n:3,t:'pg',
+ q:'Piagam Jakarta ditandatangani pada tanggal 22 Juni 1945. Kalimat yang kemudian diubah dalam sila pertama Piagam Jakarta adalah…',
+ o:['Ketuhanan yang Maha Esa','Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluknya','Kemanusiaan yang adil dan beradab','Persatuan Indonesia'],
  a:1,
- e:'Langkah dalam teks prosedur bersifat <b>kronologis</b> (berurutan sesuai waktu) dan <b>sekuensial</b> (harus dilakukan berurutan). Jika urutannya dibalik, tujuan tidak akan tercapai atau hasilnya akan berbeda/gagal.',
- oe:['❌ Langkah prosedur <b>tidak acak</b> — harus berurutan. Urutan yang salah = hasil yang gagal.','✅ <b>Kronologis dan sekuensial</b> = ciri utama langkah-langkah teks prosedur. Tidak bisa dibalik sesuka hati.','❌ Berisi pendapat = ciri teks <b>argumentasi/opini</b>. Teks prosedur berisi instruksi objektif.','❌ Teks prosedur justru dominan menggunakan kalimat <b>aktif perintah (imperatif)</b>: "panaskan", "masukkan", "tekan".']
+ e:'Sila pertama dalam Piagam Jakarta berbunyi <i>"Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluknya."</i> Pada 18 Agustus 1945, atas usulan Moh. Hatta demi menjaga persatuan bangsa, kalimat tersebut diubah menjadi <b>"Ketuhanan Yang Maha Esa."</b>',
+ oe:[
+  '❌ <b>"Ketuhanan yang Maha Esa"</b> adalah bunyi sila pertama SETELAH diubah pada 18 Agustus 1945 — ini hasil perubahan, bukan yang diubah.',
+  '✅ Inilah bunyi asli sila pertama Piagam Jakarta yang kemudian diubah. Kalimat ini dirasa memberatkan warga non-Muslim dan dikhawatirkan memecah persatuan.',
+  '❌ <b>"Kemanusiaan yang adil dan beradab"</b> adalah sila kedua — tidak mengalami perubahan sama sekali.',
+  '❌ <b>"Persatuan Indonesia"</b> adalah sila ketiga — tidak mengalami perubahan.'
+ ]
 },
-{n:8,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Perhatikan kalimat berikut:\n<span class="block-text">"Panaskan wajan dengan api sedang, lalu tuangkan minyak goreng secukupnya."</span>\nKosakata teknis bidang memasak yang terdapat dalam kalimat tersebut adalah…',
- o:['Panaskan dan tuangkan','Wajan dan api sedang','Secukupnya dan lalu','Minyak goreng dan lalu'],
- a:1,
- e:'<b>Kosakata teknis</b> adalah istilah khusus yang berkaitan dengan bidang tertentu. "<b>Wajan</b>" (alat masak khusus berbentuk bulat cekung) dan "<b>api sedang</b>" (tingkat intensitas panas dalam memasak) adalah kosakata teknis bidang kuliner/memasak.',
- oe:['❌ "Panaskan" dan "tuangkan" adalah kata kerja (verba) umum — bisa digunakan di luar konteks memasak pula.','✅ <b>Wajan</b> (alat masak khusus) dan <b>api sedang</b> (istilah teknis tingkat panas memasak) = kosakata teknis memasak.','❌ "Secukupnya" adalah kata keterangan kuantitas umum; "lalu" adalah kata hubung temporal — bukan kosakata teknis.','❌ "Minyak goreng" adalah bahan masak umum; "lalu" adalah kata hubung temporal — tidak termasuk kosakata teknis.']
-},
-{n:9,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Manakah pasangan kata serapan dan padanan bahasa Indonesianya yang paling tepat?',
- o:['"download" → unduh | "upload" → unggah | "click" → klik','Berlari → jogging | Makan → dining | Tidur → sleeping','"browser" → layar | "log in" → masuk akun | "file" → berkas data','Hijau → green | Merah → red | Biru → blue'],
+{n:4,t:'pg',
+ q:'Berikut yang merupakan suku bangsa asli di Pulau Jawa adalah…',
+ o:['Sunda, Jawa, dan Madura','Batak, Minang, dan Betawi','Dayak, Bugis, dan Toraja','Bali, Sasak, dan Sumbawa'],
  a:0,
- e:'Kata serapan adalah kata yang berasal dari bahasa asing dan disesuaikan dengan kaidah bahasa Indonesia. "<b>Unduh</b>" (download), "<b>unggah</b>" (upload), dan "<b>klik</b>" (click) adalah kata serapan resmi dalam KBBI untuk konteks teknologi digital.',
- oe:['✅ <b>Unduh/unggah/klik</b> = kata serapan yang sudah dibakukan dalam KBBI sebagai padanan teknologi dari bahasa Inggris.','❌ Ini bukan contoh kata serapan — ini adalah kata Indonesia dan terjemahan Inggrisnya (bukan kata yang diserap ke bahasa Indonesia).','❌ "Browser" → "peramban" (bukan layar); "log in" → "masuk/masuk akun" relatif benar; "file" → "berkas" (bukan berkas data). Pasangan ini tidak tepat.','❌ Ini bukan kata serapan — ini adalah kosakata dasar bahasa Indonesia beserta terjemahan Inggrisnya.']
+ e:'Pulau Jawa dihuni oleh beberapa suku asli: <b>Jawa</b> (Jawa Tengah, DIY, Jawa Timur), <b>Sunda</b> (Jawa Barat, Banten), <b>Madura</b> (Pulau Madura dan pesisir timur Jawa), serta Betawi (Jakarta).',
+ oe:[
+  '✅ <b>Sunda, Jawa, dan Madura</b> adalah tiga suku utama asli Pulau Jawa.',
+  '❌ <b>Batak</b> berasal dari Sumatera Utara, <b>Minang</b> dari Sumatera Barat. Betawi memang ada di Jawa (Jakarta), tapi tidak berpasangan dengan Batak dan Minang.',
+  '❌ <b>Dayak</b> dari Kalimantan, <b>Bugis</b> dan <b>Toraja</b> dari Sulawesi Selatan.',
+  '❌ <b>Bali</b> dari Pulau Bali, <b>Sasak</b> dari Lombok (NTB), <b>Sumbawa</b> dari Pulau Sumbawa (NTB).'
+ ]
 },
-{n:10,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Manakah yang merupakan kalimat fakta dalam teks prosedur memasak?',
- o:['"Sebaiknya gunakan air mineral agar masakan terasa lebih lezat."','"Air mendidih pada suhu 100°C di permukaan laut."','"Menurutku, cara menggoreng ini adalah yang paling enak."','"Sepertinya bahan ini tidak terlalu penting dalam resep ini."'],
+{n:5,t:'pg',
+ q:'Karakteristik yang paling membedakan gotong royong dengan kerja sama biasa adalah…',
+ o:['Dilakukan secara terpaksa demi kepentingan umum','Dilakukan secara sukarela dan bersama-sama demi kepentingan bersama tanpa mengharapkan imbalan','Mengutamakan kepentingan pribadi yang diseimbangkan','Wajib dilaksanakan berdasarkan perintah pemerintah'],
  a:1,
- e:'Kalimat fakta adalah pernyataan yang dapat <b>dibuktikan kebenarannya secara objektif</b>. "Air mendidih pada suhu 100°C di permukaan laut" adalah <b>fakta ilmiah</b> yang dapat diverifikasi dan dibuktikan secara saintifik.',
- oe:['❌ "Sebaiknya" = kata opini/saran. Kalimat ini berisi <b>anjuran subjektif</b>, bukan fakta yang bisa dibuktikan.','✅ <b>"Air mendidih pada 100°C di permukaan laut"</b> = fakta ilmiah yang terukur dan dapat diverifikasi. Ini adalah kalimat fakta.','❌ "Menurutku" = penanda opini yang jelas. Ini adalah <b>pendapat pribadi</b>, bukan fakta.','❌ "Sepertinya" = kata ketidakpastian yang menandai <b>opini/perkiraan subjektif</b>, bukan fakta.']
+ e:'<b>Gotong royong</b> memiliki empat ciri khas: (1) <i>sukarela</i> — tidak ada paksaan, (2) <i>bersama-sama</i> — dilakukan secara kolektif, (3) <i>kepentingan bersama</i> — bukan untuk individu tertentu, dan (4) <i>tanpa imbalan</i> — tidak ada motif ekonomi. Inilah yang membedakannya dari kerja sama biasa.',
+ oe:[
+  '❌ Gotong royong justru harus dilakukan dengan <b>keikhlasan</b>, bukan terpaksa. Paksaan bertentangan dengan nilai gotong royong.',
+  '✅ Empat kata kunci: <b>sukarela + bersama-sama + kepentingan bersama + tanpa imbalan</b> = karakteristik utama gotong royong yang membedakannya dari kerja sama biasa.',
+  '❌ Gotong royong mengutamakan kepentingan <b>bersama/umum</b>, bukan kepentingan pribadi.',
+  '❌ Gotong royong lahir dari <b>kesadaran masyarakat sendiri</b>, bukan atas perintah pemerintah.'
+ ]
 },
-{n:11,t:'pg',tp:'tp-pro',tl:'Prosedur',
- q:'Kalimat opini dalam teks prosedur paling mudah dikenali dari penggunaan…',
- o:['Data atau angka yang terukur dan spesifik','Hasil penelitian yang dapat dikutip dari jurnal ilmiah','Kata subjektif seperti "sebaiknya", "menurut saya", "lebih baik", "saya rasa"','Urutan langkah yang sistematis dan berurutan'],
+{n:6,t:'pg',
+ q:'Negara pertama yang mengakui kemerdekaan Indonesia secara de facto adalah…',
+ o:['Amerika Serikat','Mesir','India','Australia'],
+ a:1,
+ e:'<b>Mesir</b> menjadi negara pertama yang mengakui kemerdekaan Indonesia secara <i>de facto</i> pada <b>22 Maret 1946</b>. Pengakuan ini didorong solidaritas sesama negara Muslim dan gerakan anti-kolonialisme yang dipelopori Liga Arab.',
+ oe:[
+  '❌ <b>Amerika Serikat</b> baru mengakui RI secara penuh setelah Konferensi Meja Bundar (KMB) pada akhir 1949.',
+  '✅ <b>Mesir</b> adalah negara pertama yang mengakui RI secara de facto (22 Maret 1946), disusul Suriah, Irak, Afghanistan, dan Arab Saudi.',
+  '❌ <b>India</b> memberikan dukungan moral dan diplomatik, namun bukan pengakuan de facto pertama.',
+  '❌ <b>Australia</b> pada awalnya justru memperlihatkan sikap mendukung Belanda. Kemudian serikat buruh Australia memboikot kapal Belanda sebagai bentuk dukungan terhadap RI.'
+ ]
+},
+{n:7,t:'pg',
+ q:'Pancasila berfungsi sebagai pandangan hidup bangsa, artinya…',
+ o:['Pancasila menjadi dasar penyelenggaraan pemerintahan negara','Pancasila menjadi pedoman dan petunjuk dalam kehidupan bermasyarakat, berbangsa, dan bernegara','Pancasila menjadi sumber dari segala sumber hukum','Pancasila menjadi alat pemersatu bangsa dari berbagai suku'],
+ a:1,
+ e:'Pancasila sebagai <b>pandangan hidup bangsa</b> (weltanschauung) berarti Pancasila menjadi pedoman, petunjuk, dan arah bagi seluruh rakyat Indonesia dalam menjalani kehidupan sehari-hari.',
+ oe:[
+  '❌ "Dasar penyelenggaraan pemerintahan" adalah fungsi Pancasila sebagai <b>dasar negara</b> — berbeda dengan pandangan hidup.',
+  '✅ <b>Pandangan hidup bangsa</b> = pedoman dan petunjuk dalam kehidupan bermasyarakat, berbangsa, dan bernegara. Inilah definisi yang tepat.',
+  '❌ "Sumber dari segala sumber hukum" adalah fungsi Pancasila sebagai <b>sumber hukum nasional</b>.',
+  '❌ "Alat pemersatu bangsa" adalah salah satu fungsi Pancasila, tapi bukan definisi dari "pandangan hidup bangsa".'
+ ]
+},
+{n:8,t:'pg',
+ q:'Berdasarkan UUD NRI 1945, bentuk negara Indonesia adalah…',
+ o:['Negara federal dengan bentuk pemerintahan kerajaan','Negara kesatuan dengan bentuk pemerintahan republik','Negara konfederasi dengan sistem parlementer','Negara serikat dengan sistem presidensial'],
+ a:1,
+ e:'Pasal 1 ayat (1) UUD NRI 1945 secara tegas menyatakan: <i>"Negara Indonesia ialah Negara Kesatuan, yang berbentuk Republik."</i> Jadi bentuk negara = <b>Kesatuan</b>, bentuk pemerintahan = <b>Republik</b>.',
+ oe:[
+  '❌ Indonesia bukan negara <b>federal</b> (tidak terbagi menjadi negara-negara bagian yang berdaulat) dan bukan <b>kerajaan</b>.',
+  '✅ <b>Kesatuan</b> (Pasal 1 ayat 1) + <b>Republik</b> (Pasal 1 ayat 1) = persis bunyi UUD NRI 1945.',
+  '❌ Indonesia bukan <b>konfederasi</b> (gabungan negara berdaulat) dan tidak menggunakan sistem parlementer murni.',
+  '❌ Indonesia adalah negara <b>kesatuan</b>, bukan negara serikat. Meskipun benar menggunakan sistem presidensial.'
+ ]
+},
+{n:9,t:'pg',
+ q:'Wewenang yang dimiliki lembaga yudikatif di Indonesia adalah…',
+ o:['Membuat undang-undang dan APBN','Menguji undang-undang terhadap UUD dan mengadili perkara','Menjalankan pemerintahan dan kebijakan negara','Mengawasi keuangan negara secara independen'],
+ a:1,
+ e:'Lembaga yudikatif (MK, MA, KY) memegang <b>kekuasaan kehakiman</b>. MK berwenang menguji UU terhadap UUD (judicial review), sedangkan MA berwenang mengadili perkara hukum pada tingkat kasasi.',
+ oe:[
+  '❌ Membuat UU dan APBN adalah wewenang <b>legislatif</b> (DPR bersama Presiden).',
+  '✅ <b>Menguji UU terhadap UUD</b> (oleh MK) dan <b>mengadili perkara</b> (oleh MA) = inti kewenangan lembaga yudikatif.',
+  '❌ Menjalankan pemerintahan adalah kewenangan <b>eksekutif</b> (Presiden dan kabinet).',
+  '❌ Mengawasi keuangan negara adalah wewenang <b>BPK</b> (Badan Pemeriksa Keuangan) yang merupakan lembaga independen.'
+ ]
+},
+{n:10,t:'pg',
+ q:'Hari Pendidikan Nasional diperingati setiap tanggal…',
+ o:['2 Mei','20 Mei','28 Oktober','22 Desember'],
+ a:0,
+ e:'<b>Hari Pendidikan Nasional</b> diperingati setiap <b>2 Mei</b>, bertepatan dengan tanggal kelahiran <b>Ki Hajar Dewantara</b> (Raden Mas Soewardi Soerjaningrat), Bapak Pendidikan Nasional Indonesia.',
+ oe:[
+  '✅ <b>2 Mei = Hari Pendidikan Nasional</b> (Hardiknas), hari lahir Ki Hajar Dewantara.',
+  '❌ <b>20 Mei</b> = Hari Kebangkitan Nasional, memperingati berdirinya Budi Utomo (1908).',
+  '❌ <b>28 Oktober</b> = Hari Sumpah Pemuda, memperingati Kongres Pemuda II (1928).',
+  '❌ <b>22 Desember</b> = Hari Ibu, memperingati Kongres Perempuan Indonesia I (1928).'
+ ]
+},
+{n:11,t:'pg',
+ q:'Tokoh yang memperdengarkan lagu Indonesia Raya untuk pertama kalinya dalam Kongres Pemuda II pada tahun 1928 adalah…',
+ o:['Wage Rudolf Supratman','Soekarno','Mohammad Hatta','Agus Salim'],
+ a:0,
+ e:'<b>W.R. Supratman</b> adalah pencipta lagu Indonesia Raya. Pada Kongres Pemuda II (28 Oktober 1928) di Jakarta, ia memperdengarkan lagu Indonesia Raya untuk pertama kali dengan memainkan biola.',
+ oe:[
+  '✅ <b>W.R. Supratman</b> menciptakan dan pertama kali memperdengarkan lagu Indonesia Raya di Kongres Pemuda II dengan biola.',
+  '❌ <b>Soekarno</b> adalah Proklamator dan Presiden RI pertama, bukan yang memperdengarkan Indonesia Raya di Kongres Pemuda II.',
+  '❌ <b>Mohammad Hatta</b> adalah Proklamator dan Wakil Presiden pertama RI, tidak terkait dengan lagu Indonesia Raya di Kongres Pemuda II.',
+  '❌ <b>Agus Salim</b> adalah diplomat dan tokoh pergerakan nasional, bukan yang memperdengarkan Indonesia Raya.'
+ ]
+},
+{n:12,t:'pg',
+ q:'Syarat utama agar budaya daerah dapat diangkat menjadi budaya nasional adalah…',
+ o:['Berasal dari suku mayoritas di Indonesia','Mendapatkan pengakuan dari negara lain terlebih dahulu','Memiliki nilai-nilai yang dapat diterima dan diakui oleh seluruh masyarakat Indonesia','Sudah dipentaskan di tingkat internasional minimal tiga kali'],
  a:2,
- e:'Kalimat opini berisi pendapat atau penilaian <b>subjektif</b> yang belum tentu dapat dibuktikan. Penandanya adalah penggunaan kata-kata seperti "<b>sebaiknya</b>", "<b>menurut saya</b>", "<b>lebih baik</b>", "<b>saya rasa</b>", "<b>seharusnya</b>", "<b>sepertinya</b>".',
- oe:['❌ Data dan angka yang terukur justru merupakan penanda <b>kalimat fakta</b>.','❌ Hasil penelitian dari jurnal adalah penanda <b>kalimat fakta/data ilmiah</b>, bukan opini.','✅ <b>Kata subjektif</b> seperti "sebaiknya, menurut saya, lebih baik, saya rasa" = penanda khas kalimat opini.','❌ Urutan langkah sistematis adalah ciri <b>struktur teks prosedur</b> secara umum, bukan penanda kalimat opini.']
+ e:'Agar budaya daerah bisa menjadi budaya nasional, nilai-nilai yang terkandung di dalamnya harus bersifat <b>universal</b> — dapat diterima dan diakui oleh seluruh lapisan masyarakat Indonesia dari berbagai suku, agama, dan latar belakang.',
+ oe:[
+  '❌ Berasal dari suku <b>mayoritas</b> bukan syarat. Prinsip keadilan mengharuskan semua suku diperlakukan setara — tidak ada hierarki budaya.',
+  '❌ Pengakuan <b>negara lain</b> bukan syarat utama — banyak budaya lokal yang kaya belum populer di internasional namun sangat bernilai nasional.',
+  '✅ <b>Nilai-nilai yang universal dan dapat diterima seluruh masyarakat Indonesia</b> = syarat utama. Contoh: batik, wayang, keris — dapat dinikmati semua kalangan.',
+  '❌ Tampil di tingkat <b>internasional</b> adalah dampak/akibat dari pengakuan, bukan prasyarat untuk menjadi budaya nasional.'
+ ]
 },
-{n:12,t:'pg',tp:'tp-rek',tl:'Rekon',
- q:'Teks rekon (recount) adalah jenis teks yang bertujuan…',
- o:['Menjelaskan proses terjadinya suatu fenomena alam secara sebab-akibat','Menceritakan kembali peristiwa atau pengalaman di masa lalu secara kronologis','Menggambarkan suatu objek secara detail menggunakan pancaindra','Meyakinkan pembaca dengan argumen dan fakta yang logis'],
- a:1,
- e:'Teks rekon (<i>recount text</i>) berasal dari kata "<i>recount</i>" = menceritakan kembali. Teks ini berfungsi untuk <b>menceritakan kembali peristiwa, pengalaman, atau kejadian di masa lalu secara kronologis</b>.',
- oe:['❌ Menjelaskan proses fenomena secara sebab-akibat = tujuan <b>teks eksplanasi</b>.','✅ <b>Menceritakan kembali peristiwa/pengalaman masa lalu secara kronologis</b> = tujuan utama teks rekon.','❌ Menggambarkan objek secara detail = tujuan <b>teks deskripsi</b>.','❌ Meyakinkan pembaca dengan argumen = tujuan <b>teks argumentasi</b>.']
+{n:13,t:'pg',
+ q:'Letak tujuan negara Indonesia terdapat dalam Pembukaan UUD NRI 1945 alinea ke…',
+ o:['Alinea pertama','Alinea kedua','Alinea ketiga','Alinea keempat'],
+ a:3,
+ e:'<b>Alinea keempat</b> Pembukaan UUD NRI 1945 memuat: (1) tujuan negara, (2) dasar negara Pancasila, (3) bentuk negara Republik, dan (4) pernyataan merdeka dalam UUD.',
+ oe:[
+  '❌ <b>Alinea pertama</b> menyatakan bahwa kemerdekaan adalah hak segala bangsa dan penjajahan bertentangan dengan perikemanusiaan.',
+  '❌ <b>Alinea kedua</b> berisi cita-cita perjuangan bangsa (negara yang merdeka, bersatu, berdaulat, adil, makmur).',
+  '❌ <b>Alinea ketiga</b> berisi pernyataan kemerdekaan Indonesia atas berkat rahmat Allah Yang Maha Kuasa.',
+  '✅ <b>Alinea keempat</b> memuat 4 tujuan negara: melindungi, memajukan kesejahteraan, mencerdaskan, dan ikut ketertiban dunia — plus dasar negara Pancasila.'
+ ]
 },
-{n:13,t:'pg',tp:'tp-rek',tl:'Rekon',
- q:'Manakah yang termasuk kata penghubung temporal yang tepat digunakan dalam teks rekon?',
- o:['"Oleh karena itu", "dengan demikian", "akibatnya"','"Meskipun", "walaupun", "sekalipun"','"Pertama-tama", "kemudian", "setelah itu", "akhirnya"','"Misalnya", "contohnya", "seperti halnya"'],
+{n:14,t:'pg',
+ q:'Semboyan Bhinneka Tunggal Ika berlandaskan pada sila Pancasila ke…',
+ o:['Sila ke-1 (Ketuhanan Yang Maha Esa)','Sila ke-2 (Kemanusiaan yang Adil dan Beradab)','Sila ke-3 (Persatuan Indonesia)','Sila ke-4 (Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan)'],
  a:2,
- e:'Kata penghubung <b>temporal</b> menunjukkan urutan waktu. "<b>Pertama-tama, kemudian, setelah itu, akhirnya</b>" adalah kata penghubung temporal yang menunjukkan kronologi peristiwa — sangat khas dalam teks rekon.',
- oe:['❌ "Oleh karena itu, dengan demikian, akibatnya" = kata hubung <b>kausalitas</b> (sebab-akibat), bukan temporal.','❌ "Meskipun, walaupun, sekalipun" = kata hubung <b>konsesi/perlawanan</b>, bukan temporal.','✅ <b>"Pertama-tama, kemudian, setelah itu, akhirnya"</b> = kata penghubung <b>temporal</b> yang menunjukkan urutan waktu peristiwa. Tepat untuk teks rekon.','❌ "Misalnya, contohnya, seperti halnya" = kata penghubung <b>ilustrasi/contoh</b>, bukan temporal.']
+ e:'<i>Bhinneka Tunggal Ika</i> berarti "berbeda-beda tetapi tetap satu jua." Semboyan ini paling erat dengan <b>Sila ke-3 (Persatuan Indonesia)</b> yang menegaskan bahwa meski beragam suku, agama, dan budaya, Indonesia tetap satu.',
+ oe:[
+  '❌ <b>Sila ke-1</b> tentang keyakinan kepada Tuhan YME — berkaitan dengan religiusitas, bukan tentang keberagaman dalam persatuan.',
+  '❌ <b>Sila ke-2</b> tentang penghormatan HAM dan kemanusiaan — lebih berkaitan dengan martabat manusia, bukan persatuan dalam keberagaman.',
+  '✅ <b>Sila ke-3 (Persatuan Indonesia)</b> adalah landasan filosofis Bhinneka Tunggal Ika — menyatukan keberagaman dalam satu bangsa.',
+  '❌ <b>Sila ke-4</b> tentang demokrasi dan musyawarah — berkaitan dengan cara pengambilan keputusan, bukan persatuan dalam keberagaman.'
+ ]
 },
-{n:14,t:'pg',tp:'tp-rek',tl:'Rekon',
- q:'Ciri kebahasaan yang paling khas dalam teks rekon adalah…',
- o:['Menggunakan kalimat perintah dan kosakata teknis bidang tertentu','Menggunakan verba material dan keterangan waktu lampau','Menggunakan kata hubung kausalitas dan kalimat majemuk sebab-akibat','Menggunakan istilah ilmiah dan banyak kalimat definisi'],
- a:1,
- e:'Ciri kebahasaan teks rekon: (1) <b>verba material</b> (kata kerja tindakan nyata: pergi, makan, mengunjungi), (2) <b>keterangan waktu lampau</b> (kemarin, minggu lalu, tahun 2023), (3) konjungsi temporal, dan (4) berpusat pada orang pertama/ketiga.',
- oe:['❌ Kalimat perintah + kosakata teknis = ciri kebahasaan <b>teks prosedur</b>.','✅ <b>Verba material + keterangan waktu lampau</b> = ciri khas teks rekon. Contoh: "Kami <i>mengunjungi</i> (verba material) pantai <i>minggu lalu</i> (waktu lampau)."','❌ Kata hubung kausalitas + sebab-akibat = ciri kebahasaan <b>teks eksplanasi</b>.','❌ Istilah ilmiah + kalimat definisi = ciri kebahasaan <b>teks eksplanasi atau laporan ilmiah</b>.']
-},
-{n:15,t:'pg',tp:'tp-rek',tl:'Rekon',
- q:'Bacalah paragraf berikut!\n<span class="block-text">"Liburan semester lalu, aku dan keluargaku mengunjungi Taman Safari Bogor. Kami berangkat pagi-pagi sekali agar tidak terjebak kemacetan. Sesampainya di sana, kami langsung menuju area safari drive untuk melihat berbagai satwa liar dari dekat."</span>\nIde pokok paragraf tersebut adalah…',
- o:['Kemacetan di jalan menuju Taman Safari Bogor','Keberangkatan pagi-pagi untuk menghindari macet','Kunjungan keluarga ke Taman Safari Bogor saat liburan semester','Pengalaman melihat satwa liar dari dekat di safari drive'],
+{n:15,t:'pg',
+ q:'Berikut yang merupakan kewajiban seorang siswa di sekolah adalah…',
+ o:['Mendapatkan nilai yang baik dari guru','Menerima bimbingan dan pengajaran dari guru','Mematuhi tata tertib sekolah dan mengikuti pembelajaran','Menggunakan fasilitas sekolah yang tersedia'],
  a:2,
- e:'<b>Ide pokok</b> adalah gagasan utama yang menjadi inti paragraf. Kalimat pertama "Liburan semester lalu, aku dan keluargaku <b>mengunjungi Taman Safari Bogor</b>" adalah kalimat utama. Semua kalimat lainnya menjelaskan detail dari kunjungan tersebut.',
- oe:['❌ Kemacetan hanya disebutkan sebagai alasan berangkat pagi — bukan ide pokok, melainkan kalimat penjelas.','❌ Berangkat pagi adalah detail dari perjalanan, bukan ide utama paragraf.','✅ <b>Kunjungan keluarga ke Taman Safari Bogor saat liburan semester</b> = ide pokok. Kalimat 1 sebagai kalimat utama, kalimat 2 dan 3 adalah penjelasnya.','❌ Melihat satwa liar hanya merupakan salah satu aktivitas yang dilakukan, bukan ide utama paragraf.']
+ e:'<b>Kewajiban</b> adalah sesuatu yang harus dilakukan/dilaksanakan. <b>Hak</b> adalah sesuatu yang boleh diterima/dinikmati. Mematuhi tata tertib dan mengikuti pembelajaran adalah <i>sesuatu yang harus dilakukan</i> oleh setiap siswa.',
+ oe:[
+  '❌ Mendapatkan nilai yang baik adalah <b>hasil</b> dari usaha belajar — ini adalah konsekuensi, bukan kewajiban yang harus dilaksanakan.',
+  '❌ Menerima bimbingan dan pengajaran dari guru adalah <b>hak</b> siswa yang wajib dipenuhi oleh sekolah.',
+  '✅ <b>Mematuhi tata tertib dan mengikuti pembelajaran</b> = kewajiban siswa. Ini adalah sesuatu yang harus dilakukan sebagai konsekuensi menjadi siswa.',
+  '❌ Menggunakan fasilitas sekolah adalah <b>hak</b> siswa, bukan kewajiban.'
+ ]
 },
-{n:16,t:'pg',tp:'tp-rek',tl:'Rekon',
- q:'Dalam kalimat "Kami berlari dengan cepat menuju gerbang taman", kata "berlari" termasuk jenis kata…',
- o:['Kata sifat (adjektiva)','Kata benda (nomina)','Kata kerja (verba)','Kata keterangan (adverbia)'],
+{n:16,t:'pg',
+ q:'Jaminan negara atas kebebasan memeluk agama dan beribadat menurut agama masing-masing diatur dalam UUD NRI 1945 pasal…',
+ o:['Pasal 28A','Pasal 28E ayat (1)','Pasal 29 ayat (2)','Pasal 31 ayat (1)'],
  a:2,
- e:'"<b>Berlari</b>" adalah kata kerja (verba) karena menyatakan <b>tindakan atau aktivitas</b> yang dilakukan subjek (kami). Dalam teks rekon, kata kerja tindakan seperti ini disebut <b>verba material</b>. Adapun "cepat" dalam kalimat itu berfungsi sebagai keterangan cara (adverbia cara).', 
- oe:['❌ Kata sifat (adjektiva) menerangkan sifat/keadaan sesuatu, contoh: <i>cepat, indah, besar</i>. "Berlari" bukan kata sifat.','❌ Kata benda (nomina) adalah nama orang, tempat, atau benda: <i>gerbang, taman</i>. "Berlari" bukan kata benda.','✅ <b>Kata kerja (verba)</b> menyatakan tindakan: berlari, makan, pergi, mengunjungi. "Berlari" = verba material dalam teks rekon.','❌ Kata keterangan (adverbia) menerangkan verba atau adjektiva. "Cepat" dalam kalimat ini adalah adverbia cara, bukan "berlari".']
+ e:'<b>Pasal 29 ayat (2)</b> UUD NRI 1945 berbunyi: <i>"Negara menjamin kemerdekaan tiap-tiap penduduk untuk memeluk agamanya masing-masing dan untuk beribadat menurut agamanya dan kepercayaannya itu."</i>',
+ oe:[
+  '❌ <b>Pasal 28A</b> mengatur hak setiap orang untuk hidup dan mempertahankan kehidupannya.',
+  '❌ <b>Pasal 28E ayat (1)</b> juga menyebut kebebasan beragama, namun Pasal 29 ayat (2) adalah pasal <i>khusus</i> yang secara spesifik menyatakan <b>jaminan negara</b> atas kebebasan beragama.',
+  '✅ <b>Pasal 29 ayat (2)</b> adalah pasal utama tentang jaminan negara atas kebebasan beragama dan beribadah bagi seluruh penduduk Indonesia.',
+  '❌ <b>Pasal 31 ayat (1)</b> mengatur hak setiap warga negara untuk mendapatkan pendidikan.'
+ ]
 },
-{n:17,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
- q:'Struktur teks eksplanasi yang benar adalah…',
- o:['Identifikasi → Deskripsi Bagian → Simpulan/Kesan','Pernyataan Umum → Deret Penjelas → Interpretasi/Simpulan','Tujuan → Alat/Bahan → Langkah-Langkah','Orientasi → Komplikasi → Resolusi'],
+{n:17,t:'pg',
+ q:'Tokoh perempuan Indonesia yang dikenal sebagai pelopor emansipasi wanita dan memperjuangkan hak pendidikan bagi perempuan adalah…',
+ o:['Cut Nyak Dhien','Raden Ajeng Kartini','Martha Christina Tiahahu','Nyi Ageng Serang'],
  a:1,
- e:'Teks eksplanasi memiliki tiga struktur: (1) <b>Pernyataan Umum</b> — pengenalan fenomena, (2) <b>Deret Penjelas</b> — rangkaian sebab-akibat yang menjelaskan bagaimana/mengapa fenomena terjadi, (3) <b>Interpretasi/Simpulan</b> — komentar atau penilaian akhir.',
- oe:['❌ Identifikasi → Deskripsi Bagian → Simpulan = struktur <b>teks deskripsi</b>.','✅ <b>Pernyataan Umum → Deret Penjelas → Interpretasi</b> = struktur teks eksplanasi yang tepat.','❌ Tujuan → Alat/Bahan → Langkah-Langkah = struktur <b>teks prosedur</b>.','❌ Orientasi → Komplikasi → Resolusi = struktur <b>teks narasi/cerita</b>.']
+ e:'<b>R.A. Kartini</b> (21 April 1879 – 17 September 1904) adalah pahlawan nasional yang memperjuangkan emansipasi dan hak pendidikan perempuan Indonesia. Surat-suratnya diterbitkan dalam buku <i>"Habis Gelap Terbitlah Terang."</i>',
+ oe:[
+  '❌ <b>Cut Nyak Dhien</b> adalah pahlawan perempuan yang berjuang secara fisik melawan penjajah Belanda di Aceh — bukan pelopor emansipasi pendidikan.',
+  '✅ <b>R.A. Kartini</b> = pelopor emansipasi perempuan dan pejuang hak pendidikan perempuan Indonesia. Hari Kartini diperingati setiap 21 April.',
+  '❌ <b>Martha Christina Tiahahu</b> adalah pahlawan perempuan yang berjuang melawan Belanda di Maluku (1817).',
+  '❌ <b>Nyi Ageng Serang</b> adalah pahlawan perempuan yang berjuang melawan Belanda di Jawa bersama Pangeran Diponegoro.'
+ ]
 },
-{n:18,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
- q:'Bacalah kalimat berikut!\n<span class="block-text">"Angin berbisik lembut di antara dedaunan, seakan menyapa setiap pengunjung yang datang."</span>\nMajas yang digunakan dalam kalimat tersebut adalah…',
- o:['Majas hiperbola','Majas personifikasi','Majas metafora','Majas simile'],
+{n:18,t:'pg',
+ q:'Bentuk penyampaian pendapat di muka umum yang paling demokratis dan sesuai dengan aturan adalah…',
+ o:['Unjuk rasa dengan memblokir jalan raya secara sepihak','Demonstrasi damai yang sudah diberitahukan kepada pihak berwajib sebelumnya','Pawai malam hari tanpa izin di pusat kota','Penyebaran pamflet tanpa identitas yang jelas'],
  a:1,
- e:'<b>Majas personifikasi</b> memberikan sifat atau perilaku manusia kepada benda mati atau alam. Dalam kalimat itu, "angin" diberi kemampuan layaknya manusia: "<b>berbisik</b>" dan "<b>menyapa</b>" — keduanya adalah aktivitas manusia.',
- oe:['❌ Majas <b>hiperbola</b> melebih-lebihkan keadaan secara berlebihan: "suaranya menggelegar membelah langit." Kalimat ini tidak melebih-lebihkan.','✅ <b>Majas personifikasi</b>: angin "berbisik" dan "menyapa" = benda alam diberi perilaku manusia. Ciri khas personifikasi.','❌ Majas <b>metafora</b> membandingkan langsung tanpa kata "seperti": "dia adalah bintang keluarganya." Tidak ada perbandingan langsung di sini.','❌ Majas <b>simile</b> menggunakan kata "seperti, bak, bagaikan, laksana" untuk perbandingan. Kalimat ini tidak menggunakan kata tersebut.']
+ e:'UU No. 9 Tahun 1998 mengatur bahwa unjuk rasa harus diberitahukan kepada Polri minimal <b>3×24 jam</b> sebelumnya. Demonstrasi <b>damai + dengan pemberitahuan</b> = bentuk paling demokratis dan sah secara hukum.',
+ oe:[
+  '❌ Memblokir jalan raya <b>sepihak</b> melanggar hak orang lain (kemacetan, hambatan ambulans), bisa dijerat hukum.',
+  '✅ <b>Demonstrasi damai dengan pemberitahuan ke Polri</b> sesuai UU No. 9/1998 = paling demokratis, menghormati hak semua pihak.',
+  '❌ Pawai malam tanpa izin berpotensi mengganggu ketertiban umum, keamanan, dan tidak sesuai prosedur UU 9/1998.',
+  '❌ Pamflet tanpa identitas tidak transparan — tidak mencerminkan akuntabilitas yang demokratis dan berpotensi menyebarkan fitnah.'
+ ]
 },
-{n:19,t:'pg',tp:'tp-eks',tl:'Eksplanasi',
- q:'Bacalah kalimat berikut!\n<span class="block-text">"Kemarahannya meluap seperti gunung berapi yang memuntahkan lahar panas."</span>\nMajas yang digunakan adalah…',
- o:['Majas personifikasi','Majas metafora','Majas simile','Majas hiperbola'],
+{n:19,t:'pg',
+ q:'Berdasarkan UU No. 9 Tahun 1998, lokasi yang dilarang untuk dijadikan tempat unjuk rasa adalah…',
+ o:['Lapangan terbuka di depan kantor walikota','Taman kota','Di lingkungan Istana Kepresidenan dan instalasi militer','Alun-alun kabupaten'],
  a:2,
- e:'<b>Majas simile</b> adalah majas perbandingan yang menggunakan kata penghubung perbandingan eksplisit: <b>seperti, bak, bagaikan, laksana, seumpama</b>. Kalimat ini menggunakan kata "<b>seperti</b>" untuk membandingkan kemarahan dengan gunung berapi.',
- oe:['❌ Majas <b>personifikasi</b> memberi sifat manusia pada benda mati. Di sini tidak ada benda yang diberi perilaku manusia.','❌ Majas <b>metafora</b> adalah perbandingan <i>langsung</i> tanpa "seperti/bak": "kemarahannya <i>adalah</i> gunung berapi." Kalimat ini masih memakai "seperti".','✅ <b>Majas simile</b>: perbandingan menggunakan kata "<b>seperti</b>" secara eksplisit. "Kemarahannya seperti gunung berapi" = perbandingan eksplisit.','❌ Majas <b>hiperbola</b> melebih-lebihkan: "kemarahannya menghancurkan seluruh dunia." Kalimat ini lebih pada perbandingan, bukan melebih-lebihkan.']
+ e:'UU No. 9 Tahun 1998 Pasal 9 ayat (2) melarang unjuk rasa di: <b>lingkungan istana kepresidenan</b>, tempat ibadah, <b>instalasi militer</b>, rumah sakit, pelabuhan udara/laut, stasiun KA, terminal angkutan darat, dan objek vital nasional.',
+ oe:[
+  '❌ Lapangan di depan kantor walikota umumnya termasuk tempat terbuka umum yang <b>diperbolehkan</b> untuk unjuk rasa.',
+  '❌ Taman kota adalah tempat terbuka umum yang <b>diperbolehkan</b> untuk penyampaian pendapat.',
+  '✅ <b>Lingkungan Istana Kepresidenan dan instalasi militer</b> secara eksplisit disebutkan dalam UU No. 9/1998 sebagai lokasi yang dilarang.',
+  '❌ Alun-alun kabupaten merupakan tempat terbuka umum yang <b>diperbolehkan</b> untuk kegiatan unjuk rasa.'
+ ]
 },
-{n:20,t:'pg',tp:'tp-lap',tl:'Laporan',
- q:'Teks laporan hasil observasi adalah teks yang…',
- o:['Menceritakan kembali pengalaman pribadi penulis secara kronologis','Menyajikan informasi faktual tentang suatu objek berdasarkan hasil pengamatan','Mengungkapkan pendapat penulis tentang suatu isu sosial dengan argumen','Menjelaskan prosedur melakukan sesuatu langkah demi langkah'],
- a:1,
- e:'Teks laporan hasil observasi (LHO) menyajikan informasi <b>faktual dan objektif</b> tentang suatu objek (hewan, tumbuhan, fenomena) berdasarkan hasil <b>pengamatan/observasi langsung</b> yang sistematis.',
- oe:['❌ Menceritakan pengalaman pribadi = ciri <b>teks rekon</b>.','✅ <b>Informasi faktual berdasarkan hasil pengamatan</b> = definisi teks laporan hasil observasi yang tepat.','❌ Mengungkapkan pendapat dengan argumen = ciri <b>teks argumentasi</b>.','❌ Menjelaskan prosedur langkah demi langkah = ciri <b>teks prosedur</b>.']
-},
-{n:21,t:'pg',tp:'tp-lap',tl:'Laporan',
- q:'Kohesi dalam sebuah teks berarti…',
- o:['Kesesuaian isi teks dengan topik yang dibahas secara keseluruhan','Keterkaitan bentuk/unsur kebahasaan antarkalimat (kata ganti, konjungsi, pengulangan kata)','Kemampuan teks untuk memengaruhi dan menggerakkan pembaca','Kejelasan sistematika dan urutan penulisan laporan'],
- a:1,
- e:'<b>Kohesi</b> berkaitan dengan keterkaitan <b>BENTUK (gramatikal)</b> antarelemen teks. Dicapai melalui: kata ganti (ia, mereka, itu), konjungsi (dan, tetapi, karena), pengulangan kata (repetisi), dan sinonim.',
- oe:['❌ Kesesuaian isi dengan topik = lebih mendekati definisi <b>koherensi</b> (keterkaitan makna), bukan kohesi bentuk.','✅ <b>Keterkaitan bentuk kebahasaan</b> (kata ganti, konjungsi, pengulangan) = definisi kohesi yang tepat.','❌ Kemampuan memengaruhi pembaca = ciri <b>teks persuasi/argumentasi</b>, bukan definisi kohesi.','❌ Kejelasan sistematika penulisan = aspek <b>struktur teks</b>, bukan definisi kohesi.']
-},
-{n:22,t:'pg',tp:'tp-lap',tl:'Laporan',
- q:'Manakah pasangan kata serapan yang penulisannya BENAR sesuai KBBI?',
- o:['"aktifitas" (dari activity)','Analisis (dari analysis)','Praktek (dari practice)','Kongkrit (dari concrete)'],
- a:1,
- e:'Penulisan kata serapan yang benar: <b>Analisis</b> (bukan analisa), Aktivitas (bukan aktifitas), Praktik (bukan praktek), Konkret (bukan kongkrit/konkrit). Dari keempat pilihan, hanya "<b>Analisis</b>" yang sudah benar.',
- oe:['❌ "<b>Aktifitas</b>" salah — yang benar adalah <b>aktivitas</b> (dari bahasa Inggris <i>activity</i>).','✅ <b>Analisis</b> = penulisan yang benar (dari bahasa Inggris <i>analysis</i>). Bukan "analisa" yang sering keliru digunakan.','❌ "<b>Praktek</b>" salah — yang benar adalah <b>praktik</b> (dari bahasa Inggris <i>practice</i>).','❌ "<b>Kongkrit</b>" salah — yang benar adalah <b>konkret</b> (dari bahasa Belanda <i>concreet</i>).']
-},
-{n:23,t:'pg',tp:'tp-lap',tl:'Laporan',
- q:'Koherensi dalam teks berbeda dengan kohesi karena koherensi menekankan…',
- o:['Penggunaan kata ganti yang konsisten antar kalimat','Keterkaitan makna dan isi antarkalimat sehingga teks bermakna logis','Penggunaan konjungsi yang tepat sebagai penghubung antarkalimat','Ketepatan pemilihan diksi dan ejaan dalam penulisan'],
- a:1,
- e:'<b>Koherensi</b> berkaitan dengan keterkaitan <b>MAKNA/ISI</b> antarkalimat — apakah kalimat-kalimat dalam teks saling berhubungan secara logis dan membentuk satu kesatuan makna yang utuh. Berbeda dengan kohesi yang berkaitan dengan bentuk kebahasaan.',
- oe:['❌ Penggunaan kata ganti yang konsisten = salah satu alat <b>kohesi</b> (bentuk), bukan koherensi.','✅ <b>Keterkaitan makna dan isi antarkalimat</b> = definisi koherensi yang tepat. Teks koherensi = teks yang bermakna logis.','❌ Penggunaan konjungsi = alat <b>kohesi</b> (bentuk gramatikal), bukan koherensi.','❌ Ketepatan diksi dan ejaan = aspek <b>kebahasaan/tata bahasa</b>, bukan definisi koherensi.']
-},
-{n:24,t:'pg',tp:'tp-lap',tl:'Laporan',
- q:'Simpulan yang paling tepat dari teks laporan tentang tingginya angka sampah plastik di laut Indonesia adalah…',
- o:['"Pemerintah harus segera menghukum masyarakat yang membuang sampah sembarangan ke laut."','"Indonesia perlu meningkatkan kesadaran masyarakat dan mengembangkan kebijakan pengelolaan sampah plastik secara terpadu."','"Sampah plastik di laut Indonesia tidak perlu dikhawatirkan karena laut cukup luas untuk menampungnya."','"Saya percaya Indonesia bisa mengatasi masalah sampah plastik jika semua orang mau peduli."'],
- a:1,
- e:'Simpulan yang baik harus: (1) <b>objektif</b> berdasarkan isi teks, (2) <b>merangkum isi</b> secara logis, (3) tidak mengandung opini berlebihan/subjektif. Opsi B merespons masalah (sampah plastik) dengan solusi yang terukur dan logis.',
- oe:['❌ "Harus segera menghukum" = pendapat yang <b>terlalu subjektif dan emosional</b>, tidak mencerminkan simpulan objektif laporan.','✅ <b>"Perlu meningkatkan kesadaran dan kebijakan terpadu"</b> = simpulan objektif yang merespons isi laporan secara logis dan terukur.','❌ "Tidak perlu dikhawatirkan" = <b>bertentangan</b> dengan isi laporan yang justru menunjukkan masalah serius.','❌ "Saya percaya…" = mengandung kata subjektif ("saya percaya") yang tidak cocok untuk simpulan laporan yang objektif.']
-},
-{n:25,t:'pg',tp:'tp-arg',tl:'Argumentasi',
- q:'Ciri utama teks argumentasi yang membedakannya dari jenis teks lain adalah…',
- o:['Menggambarkan objek secara rinci sehingga pembaca seolah mengalami sendiri','Menceritakan kembali peristiwa secara kronologis dari masa lalu','Menyampaikan pendapat yang didukung bukti dan alasan logis untuk memengaruhi pembaca','Menjelaskan proses terjadinya suatu fenomena secara sebab-akibat'],
+{n:20,t:'pg',
+ q:'Ketika terjadi perbedaan pendapat dalam rapat OSIS, sikap yang paling bijak adalah…',
+ o:['Memaksa pendapat sendiri agar diterima oleh semua anggota','Keluar dari rapat karena merasa pendapatnya tidak dihargai','Menghormati perbedaan dan mencari solusi melalui musyawarah mufakat','Diam saja dan membiarkan ketua memutuskan segalanya'],
  a:2,
- e:'Teks argumentasi bertujuan <b>memengaruhi dan meyakinkan pembaca</b> melalui penyampaian pendapat/tesis yang didukung oleh <b>bukti, data, fakta, dan alasan yang logis</b>. Inilah ciri utama yang membedakannya dari teks lain.',
- oe:['❌ Menggambarkan objek secara rinci = ciri khas <b>teks deskripsi</b>.','❌ Menceritakan peristiwa secara kronologis = ciri khas <b>teks rekon</b>.','✅ <b>Pendapat + bukti + logis + memengaruhi pembaca</b> = ciri utama dan definisi teks argumentasi.','❌ Menjelaskan fenomena secara sebab-akibat = ciri khas <b>teks eksplanasi</b>.']
+ e:'Nilai demokrasi Pancasila (Sila ke-4) mengajarkan <b>musyawarah untuk mencapai mufakat</b>. Perbedaan pendapat adalah hal wajar dalam demokrasi — diselesaikan dengan saling menghormati, bukan memaksakan kehendak.',
+ oe:[
+  '❌ Memaksa pendapat sendiri adalah sikap <b>otoriter</b> yang merusak semangat demokratis dan kebersamaan dalam organisasi.',
+  '❌ Keluar dari rapat menunjukkan sikap tidak dewasa, tidak bertanggung jawab, dan tidak menghargai proses organisasi.',
+  '✅ <b>Menghormati perbedaan + musyawarah mufakat</b> = cara demokratis sesuai Sila ke-4 Pancasila yang paling bijak.',
+  '❌ Diam saja dan bersikap pasif bukan sikap bijak — setiap anggota memiliki hak dan tanggung jawab untuk menyampaikan pendapat.'
+ ]
+},
+{n:21,t:'pg',
+ q:'Filosofi "Tri Hita Karana" yang mengajarkan keseimbangan hubungan antara manusia dengan Tuhan, sesama manusia, dan alam berasal dari daerah…',
+ o:['Jawa','Bali','Sulawesi Selatan','Kalimantan'],
+ a:1,
+ e:'<b>Tri Hita Karana</b> adalah filosofi hidup masyarakat <b>Bali</b>. Artinya "tiga penyebab kebahagiaan/kesejahteraan": Parahyangan (hubungan dengan Tuhan), Pawongan (hubungan dengan sesama), Palemahan (hubungan dengan alam).',
+ oe:[
+  '❌ <b>Jawa</b> memiliki filosofi seperti <i>"Memayu Hayuning Bawana"</i> (memperindah/menjaga keselamatan dunia) dan <i>"Hamemayu Hayuning Bawana."</i>',
+  '✅ <b>Tri Hita Karana</b> adalah filosofi khas masyarakat <b>Bali</b> yang menjadi panduan hidup harmonis.',
+  '❌ <b>Sulawesi Selatan</b> (suku Bugis/Makassar) memiliki filosofi <i>"Siri\' na Pacce\'"</i> — kehormatan dan kepedulian/solidaritas sosial.',
+  '❌ <b>Kalimantan</b> (Dayak) memiliki filosofi tersendiri yang menekankan keselarasan dengan alam, namun bukan Tri Hita Karana.'
+ ]
+},
+{n:22,t:'pg',
+ q:'Ibu kota Provinsi Kalimantan Timur adalah…',
+ o:['Banjarmasin','Palangkaraya','Samarinda','Balikpapan'],
+ a:2,
+ e:'<b>Samarinda</b> adalah ibu kota Provinsi Kalimantan Timur. Kalimantan Timur adalah provinsi yang berbatasan dengan wilayah Ibu Kota Nusantara (IKN) yang sedang dibangun.',
+ oe:[
+  '❌ <b>Banjarmasin</b> adalah ibu kota Provinsi <b>Kalimantan Selatan</b>.',
+  '❌ <b>Palangkaraya</b> adalah ibu kota Provinsi <b>Kalimantan Tengah</b>.',
+  '✅ <b>Samarinda</b> = ibu kota Provinsi Kalimantan Timur. Kota terbesar di Kalimantan Timur ini terletak di tepi Sungai Mahakam.',
+  '❌ <b>Balikpapan</b> adalah kota terbesar kedua di Kalimantan Timur dan merupakan pusat ekonomi/bisnis, namun bukan ibu kota provinsi.'
+ ]
+},
+{n:23,t:'pg',
+ q:'Salah satu tantangan terbesar dalam menjaga keutuhan NKRI di era digital adalah…',
+ o:['Terlalu banyak budaya daerah yang perlu dilestarikan','Penyebaran berita hoaks dan ujaran kebencian yang dapat memecah belah persatuan','Terlalu banyak partai politik yang saling bersaing','Kurangnya lagu-lagu nasional yang dihafal generasi muda'],
+ a:1,
+ e:'Di era digital, <b>penyebaran hoaks dan ujaran kebencian</b> melalui media sosial menjadi ancaman nyata bagi persatuan NKRI. Konten provokatif yang menyebar cepat dapat memicu konflik SARA, radikalisme, dan disintegrasi bangsa.',
+ oe:[
+  '❌ Banyaknya budaya daerah justru menjadi kekayaan dan keunikan NKRI — bukan ancaman.',
+  '✅ <b>Hoaks + ujaran kebencian</b> di platform digital adalah tantangan paling nyata bagi keutuhan NKRI saat ini.',
+  '❌ Keberagaman partai adalah bagian normal dari demokrasi — bukan ancaman eksistensial bagi NKRI.',
+  '❌ Kurangnya hafalan lagu nasional adalah masalah budaya/pendidikan, bukan ancaman langsung terhadap keutuhan NKRI.'
+ ]
+},
+{n:24,t:'pg',
+ q:'Sikap yang paling bijak ketika menerima sebuah berita di media sosial yang belum diketahui kebenarannya adalah…',
+ o:['Langsung membagikan agar orang lain juga tahu','Mempercayai berita tersebut karena disebarkan oleh banyak orang','Melakukan verifikasi ke sumber terpercaya sebelum menyebarkannya','Menyebarkannya hanya ke grup keluarga saja'],
+ a:2,
+ e:'Prinsip literasi digital: <b>"Saring sebelum Sharing"</b>. Selalu verifikasi kebenaran berita melalui sumber terpercaya (portal resmi, media nasional kredibel, cekfakta.id) sebelum menyebarkan kepada siapa pun.',
+ oe:[
+  '❌ Membagikan <b>langsung tanpa verifikasi</b> = ikut menyebarkan hoaks yang merugikan banyak pihak dan bisa terjerat UU ITE.',
+  '❌ <b>Banyaknya orang yang menyebar</b> tidak menjamin kebenaran — hoaks justru menyebar lebih cepat karena sensasional.',
+  '✅ <b>Verifikasi ke sumber terpercaya</b> sebelum menyebar = sikap paling bertanggung jawab dan bijak sebagai warga digital.',
+  '❌ Menyebarkan <b>hanya ke keluarga</b> tetap berpotensi menyebarkan hoaks — grup keluarga pun bisa menjadi saluran penyebaran lebih lanjut.'
+ ]
+},
+{n:25,t:'pg',
+ q:'Lagu "Dari Sabang Sampai Merauke" diciptakan oleh R. Soerardjo. Pesan utama yang terkandung dalam lagu tersebut adalah…',
+ o:['Keberanian para pahlawan dalam melawan penjajah','Persatuan dan kesatuan seluruh wilayah Indonesia dari ujung barat hingga timur','Keindahan alam Indonesia yang perlu dijaga','Kecintaan pada ibu pertiwi sebagai tanah kelahiran'],
+ a:1,
+ e:'Sabang (Aceh, ujung barat Indonesia) hingga Merauke (Papua, ujung timur) melambangkan seluruh wilayah NKRI. Pesan utamanya adalah <b>persatuan dan kesatuan</b> — bahwa seluruh wilayah Indonesia adalah satu, dari ujung barat ke timur.',
+ oe:[
+  '❌ Keberanian melawan penjajah lebih mengarah ke lagu seperti <i>"Halo-Halo Bandung"</i> atau <i>"Maju Tak Gentar."</i>',
+  '✅ <b>Persatuan dan kesatuan seluruh wilayah Indonesia</b> — dari Sabang (barat) sampai Merauke (timur) = pesan utama lagu ini.',
+  '❌ Keindahan alam lebih mengarah ke lagu <i>"Tanah Airku"</i> atau <i>"Rayuan Pulau Kelapa."</i>',
+  '❌ Kecintaan pada ibu pertiwi adalah tema umum, tapi pesan <b>spesifik</b> lagu ini adalah kesatuan wilayah dari Sabang hingga Merauke.'
+ ]
 },
 
-// ─── PGK 26-40 ───
-{n:26,t:'pgk',tp:'tp-des',tl:'Deskripsi',
- q:'Manakah yang merupakan <b>ciri-ciri teks deskripsi</b> yang benar?',
- o:['Menggambarkan objek secara detail menggunakan pancaindra (penglihatan, pendengaran, penciuman, perasaan)','Menggunakan banyak kata sifat (adjektiva) dan majas untuk memperindah gambaran','Menceritakan peristiwa secara urut waktu (kronologis)','Bertujuan membuat pembaca seolah melihat, merasakan, atau mengalami sendiri objek yang digambarkan','Menggunakan banyak kalimat perintah (imperatif)'],
+// ── PGK 26-40 ──
+{n:26,t:'pgk',
+ q:'Berikut adalah tokoh-tokoh yang berperan penting dalam sejarah Indonesia. Manakah yang termasuk dalam <b>tiga tokoh utama perumus dasar negara</b> dalam sidang BPUPKI?',
+ o:['Ir. Soekarno','Mr. Mohammad Yamin','Mr. Soepomo','Drs. Mohammad Hatta','Ki Hajar Dewantara'],
+ a:[0,1,2],
+ e:'Dalam Sidang BPUPKI I (29 Mei – 1 Juni 1945), tiga tokoh menyampaikan gagasan dasar negara: <b>Yamin</b> (29 Mei), <b>Soepomo</b> (31 Mei), dan <b>Soekarno</b> (1 Juni 1945 → lahirnya istilah Pancasila).',
+ oe:[
+  '✅ <b>Ir. Soekarno</b> — menyampaikan gagasan Pancasila pada 1 Juni 1945; istilah "Pancasila" berasal dari usulan beliau.',
+  '✅ <b>Mr. Mohammad Yamin</b> — menyampaikan 5 asas dasar negara pada 29 Mei 1945 (pertama maju).',
+  '✅ <b>Mr. Soepomo</b> — menyampaikan konsep negara integralistik pada 31 Mei 1945.',
+  '❌ <b>Drs. Mohammad Hatta</b> — Proklamator dan Wakil Presiden pertama; tidak menyampaikan gagasan dasar negara di sidang BPUPKI.',
+  '❌ <b>Ki Hajar Dewantara</b> — Bapak Pendidikan Nasional, tokoh pendidikan; bukan perumus dasar negara dalam sidang BPUPKI.'
+ ]
+},
+{n:27,t:'pgk',
+ q:'Manakah yang merupakan <b>hasil keputusan sidang PPKI pada tanggal 18 Agustus 1945</b>?',
+ o:['Mengesahkan UUD 1945 sebagai konstitusi negara','Memilih Ir. Soekarno sebagai Presiden dan Moh. Hatta sebagai Wakil Presiden','Membentuk BPUPKI','Membentuk Komite Nasional Indonesia Pusat (KNIP)','Menetapkan Indonesia sebagai negara federal'],
  a:[0,1,3],
- e:'Ciri teks deskripsi adalah: menggambarkan objek secara indrawi, menggunakan banyak kata sifat dan majas, serta membuat pembaca seolah mengalami sendiri. <b>Kronologis</b> adalah ciri teks rekon; <b>kalimat perintah</b> adalah ciri teks prosedur.',
- oe:['✅ <b>Menggambarkan objek menggunakan pancaindra</b> = ciri utama teks deskripsi.','✅ <b>Kata sifat dan majas</b> = alat bahasa khas teks deskripsi untuk memperindah gambaran.','❌ <b>Menceritakan peristiwa secara kronologis</b> = ciri <b>teks rekon</b>, bukan deskripsi.','✅ <b>Pembaca seolah mengalami sendiri</b> = tujuan utama teks deskripsi. Benar.','❌ <b>Banyak kalimat perintah</b> = ciri <b>teks prosedur</b>, bukan deskripsi.']
+ e:'Sidang PPKI 18 Agustus 1945 menghasilkan tiga keputusan penting: <b>mengesahkan UUD 1945</b> (setelah perubahan sila pertama), <b>memilih Presiden dan Wapres</b>, dan <b>membentuk KNIP</b> sebagai pembantu Presiden.',
+ oe:[
+  '✅ <b>Mengesahkan UUD 1945</b> — setelah mengubah sila pertama dari Piagam Jakarta. Benar, ini hasil sidang PPKI 18 Agt 1945.',
+  '✅ <b>Memilih Soekarno–Hatta</b> sebagai Presiden dan Wakil Presiden RI pertama. Benar.',
+  '❌ <b>Membentuk BPUPKI</b> adalah tindakan Jepang (29 April 1945), bukan keputusan sidang PPKI.',
+  '✅ <b>Membentuk KNIP</b> (Komite Nasional Indonesia Pusat) sebagai lembaga pembantu Presiden sebelum DPR terbentuk. Benar.',
+  '❌ <b>Negara federal</b> — Indonesia ditetapkan sebagai negara <b>kesatuan (NKRI)</b>, bukan federal.'
+ ]
 },
-{n:27,t:'pgk',tp:'tp-pro',tl:'Prosedur',
- q:'Manakah yang termasuk <b>bagian struktur teks prosedur</b>?',
- o:['Tujuan','Komplikasi','Alat dan Bahan','Langkah-Langkah','Interpretasi/Simpulan'],
- a:[0,2,3],
- e:'Struktur teks prosedur terdiri dari: <b>Tujuan</b> (apa yang dicapai), <b>Alat dan Bahan</b> (jika diperlukan), dan <b>Langkah-Langkah</b> (urutan cara). "Komplikasi" adalah bagian teks narasi; "Interpretasi" adalah bagian teks eksplanasi.',
- oe:['✅ <b>Tujuan</b> = bagian pertama teks prosedur. Berisi apa yang akan dicapai/dibuat.','❌ <b>Komplikasi</b> = bagian struktur <b>teks narasi/cerita</b>, bukan prosedur.','✅ <b>Alat dan Bahan</b> = bagian kedua teks prosedur (opsional, jika diperlukan).','✅ <b>Langkah-Langkah</b> = bagian utama teks prosedur — urutan cara melakukan sesuatu.','❌ <b>Interpretasi/Simpulan</b> = bagian struktur <b>teks eksplanasi</b>, bukan prosedur.']
+{n:28,t:'pgk',
+ q:'Perhatikan pernyataan-pernyataan berikut. Manakah yang merupakan <b>contoh penerapan norma</b> dalam kehidupan sehari-hari?',
+ o:['Berdoa sebelum makan (norma agama)','Menyapa tetangga saat bertemu (norma kesopanan)','Membayar pajak tepat waktu (norma hukum)','Memukul teman yang tidak sependapat','Tidak mencuri meski tidak ada yang melihat (norma kesusilaan)'],
+ a:[0,1,2,4],
+ e:'Penerapan norma adalah perilaku yang sesuai dengan ketentuan norma yang berlaku (agama, kesusilaan, kesopanan, hukum). Perilaku D (memukul) adalah <b>pelanggaran</b> norma, bukan penerapannya.',
+ oe:[
+  '✅ <b>Berdoa sebelum makan</b> = penerapan norma <b>agama</b> (mengikuti ajaran Tuhan).',
+  '✅ <b>Menyapa tetangga</b> = penerapan norma <b>kesopanan</b> (kebiasaan sopan dalam masyarakat).',
+  '✅ <b>Membayar pajak tepat waktu</b> = penerapan norma <b>hukum</b> (kewajiban warga negara yang diatur undang-undang).',
+  '❌ <b>Memukul teman</b> = PELANGGARAN norma (norma kesopanan, kesusilaan, bahkan hukum). Ini bukan penerapan norma.',
+  '✅ <b>Tidak mencuri meski tidak ada yang melihat</b> = penerapan norma <b>kesusilaan</b> (dorongan dari hati nurani sendiri).'
+ ]
 },
-{n:28,t:'pgk',tp:'tp-pro',tl:'Prosedur',
- q:'Manakah yang merupakan <b>kalimat fakta</b> (bukan opini)?',
- o:['"Gunung Rinjani memiliki ketinggian 3.726 meter di atas permukaan laut."','"Menurutku, mendaki Gunung Rinjani sangat melelahkan dan tidak layak dicoba."','"Danau Segara Anak berada di kawah Gunung Rinjani."','"Sebaiknya mendaki Gunung Rinjani saat musim kemarau saja."','"Indonesia adalah negara kepulauan terbesar di dunia dengan lebih dari 17.000 pulau."'],
- a:[0,2,4],
- e:'Kalimat fakta dapat <b>dibuktikan kebenarannya secara objektif</b>. Opsi B mengandung "menurutku" (opini); Opsi D mengandung "sebaiknya" (saran/opini). Opsi A, C, E adalah pernyataan yang dapat diverifikasi secara objektif.',
- oe:['✅ <b>"Ketinggian 3.726 meter"</b> = data faktual yang terukur dan dapat diverifikasi. Ini kalimat fakta.','❌ <b>"Menurutku"</b> = penanda opini/pendapat subjektif. Ini bukan kalimat fakta.','✅ <b>"Danau Segara Anak di kawah Rinjani"</b> = fakta geografis yang dapat diverifikasi.','❌ <b>"Sebaiknya"</b> = penanda saran/anjuran subjektif. Ini kalimat opini, bukan fakta.','✅ <b>"Negara kepulauan terbesar di dunia"</b> = fakta yang dapat diverifikasi berdasarkan data geografis.']
+{n:29,t:'pgk',
+ q:'Manakah pernyataan tentang keberagaman agama di Indonesia yang <b>benar</b>?',
+ o:['Kitab suci agama Islam adalah Al-Qur\'an','Tempat ibadah agama Hindu adalah Pura','Pemuka agama Kristen disebut Biksu','Kitab suci agama Buddha adalah Tripitaka','Tempat ibadah agama Konghucu disebut Kelenteng'],
+ a:[0,1,3,4],
+ e:'Yang salah adalah <b>opsi C</b>: Biksu/Bhikku adalah pemuka agama <b>Buddha</b>, bukan Kristen. Pemuka agama Kristen adalah <b>Pendeta</b> (Protestan) atau <b>Pastur/Romo</b> (Katolik).',
+ oe:[
+  '✅ <b>Al-Qur\'an</b> = kitab suci Islam. Benar.',
+  '✅ <b>Pura</b> = tempat ibadah Hindu. Benar.',
+  '❌ <b>Biksu/Bhikku</b> = pemuka agama <b>BUDDHA</b>, bukan Kristen! Pemuka Kristen Protestan = Pendeta; Katolik = Pastur/Romo.',
+  '✅ <b>Tripitaka</b> = kitab suci agama Buddha. Benar.',
+  '✅ <b>Kelenteng</b> = tempat ibadah agama Konghucu. Benar.'
+ ]
 },
-{n:29,t:'pgk',tp:'tp-rek',tl:'Rekon',
- q:'Manakah yang merupakan <b>ciri kebahasaan teks rekon</b>?',
- o:['Menggunakan kata kerja tindakan (verba material): pergi, makan, berlari, mengunjungi','Menggunakan konjungsi temporal: kemudian, setelah itu, lalu, akhirnya','Menggunakan kalimat definisi: "…adalah…", "…merupakan…"','Menggunakan kata keterangan waktu lampau: kemarin, minggu lalu, tahun 2023','Menggunakan banyak kalimat perintah (imperatif)'],
+{n:30,t:'pgk',
+ q:'Manakah pernyataan berikut yang <b>benar</b> mengenai wilayah persebaran ras di Indonesia?',
+ o:['Ras Mongoloid banyak dijumpai di wilayah barat Indonesia (Sumatera, Jawa, Kalimantan)','Ras Melanesoid banyak dijumpai di Papua dan Nusa Tenggara Timur','Ras Kaukasoid adalah ras yang mendominasi seluruh wilayah Indonesia','Indonesia memiliki ras campuran akibat proses akulturasi selama berabad-abad'],
  a:[0,1,3],
- e:'Ciri kebahasaan teks rekon: <b>verba material</b> (kata kerja tindakan), <b>konjungsi temporal</b> (penanda urutan waktu), dan <b>keterangan waktu lampau</b>. Kalimat definisi adalah ciri teks laporan/eksplanasi; kalimat perintah adalah ciri teks prosedur.',
- oe:['✅ <b>Verba material</b> (pergi, makan, mengunjungi) = ciri utama teks rekon untuk mengungkapkan tindakan yang terjadi.','✅ <b>Konjungsi temporal</b> (kemudian, setelah itu, lalu) = penanda urutan kronologis peristiwa dalam teks rekon.','❌ <b>Kalimat definisi</b> (…adalah…) = ciri kebahasaan <b>teks laporan/eksplanasi</b>, bukan rekon.','✅ <b>Keterangan waktu lampau</b> (kemarin, minggu lalu) = penanda bahwa peristiwa sudah terjadi di masa lalu.','❌ <b>Kalimat perintah (imperatif)</b> = ciri kebahasaan <b>teks prosedur</b>, bukan rekon.']
+ e:'Indonesia memiliki dua ras utama: <b>Mongoloid</b> (barat) dan <b>Melanesoid</b> (timur/Papua), serta ras campuran di wilayah peralihan. Ras Kaukasoid bukan ras yang mendominasi Indonesia.',
+ oe:[
+  '✅ <b>Ras Mongoloid</b> mendominasi Sumatera, Jawa, Kalimantan, dan Sulawesi bagian barat. Benar.',
+  '✅ <b>Ras Melanesoid</b> banyak dijumpai di Papua, Maluku, dan NTT. Benar.',
+  '❌ <b>Ras Kaukasoid</b> adalah ras yang umum di Eropa, Timur Tengah, dan Asia Selatan — bukan ras yang mendominasi Indonesia.',
+  '✅ <b>Ras campuran</b> ada di wilayah peralihan (antara Mongoloid dan Melanesoid) akibat percampuran budaya dan pernikahan antarras selama berabad-abad. Benar.'
+ ]
 },
-{n:30,t:'pgk',tp:'tp-rek',tl:'Rekon',
- q:'Manakah yang merupakan <b>kata penghubung temporal</b>?',
- o:['Kemudian','Oleh karena itu','Setelah itu','Lalu','Dengan demikian'],
+{n:31,t:'pgk',
+ q:'Perhatikan lembaga-lembaga negara berikut. Manakah yang termasuk dalam lembaga <b>yudikatif</b> di Indonesia?',
+ o:['Mahkamah Konstitusi (MK)','Dewan Perwakilan Rakyat (DPR)','Mahkamah Agung (MA)','Komisi Yudisial (KY)','Badan Pemeriksa Keuangan (BPK)'],
  a:[0,2,3],
- e:'Kata penghubung <b>temporal</b> menunjukkan hubungan waktu/urutan kejadian. "Kemudian", "setelah itu", dan "lalu" menunjukkan urutan waktu. "Oleh karena itu" dan "dengan demikian" adalah kata hubung <b>kausalitas/akibat</b>.',
- oe:['✅ <b>Kemudian</b> = penanda temporal urutan (sesuatu terjadi setelah sesuatu yang lain). Benar.','❌ <b>Oleh karena itu</b> = kata hubung <b>akibat/kausalitas</b>, bukan temporal.','✅ <b>Setelah itu</b> = penanda temporal yang menunjukkan urutan peristiwa. Benar.','✅ <b>Lalu</b> = kata penghubung temporal yang menunjukkan urutan kejadian. Benar.','❌ <b>Dengan demikian</b> = kata hubung <b>simpulan/akibat</b>, bukan temporal.']
+ e:'Lembaga yudikatif Indonesia terdiri dari <b>MK</b> (menguji UU, sengketa konstitusional), <b>MA</b> (mengadili perkara kasasi), dan <b>KY</b> (mengawasi perilaku hakim). DPR = legislatif, BPK = audit keuangan independen.',
+ oe:[
+  '✅ <b>Mahkamah Konstitusi (MK)</b> = lembaga yudikatif. Berwenang menguji UU terhadap UUD, memutus sengketa pemilu, dll.',
+  '❌ <b>DPR</b> = lembaga <b>legislatif</b>. Bertugas membuat UU dan mengawasi jalannya pemerintahan.',
+  '✅ <b>Mahkamah Agung (MA)</b> = lembaga yudikatif. Peradilan tertinggi yang mengadili perkara pada tingkat kasasi.',
+  '✅ <b>Komisi Yudisial (KY)</b> = lembaga yudikatif. Bertugas mengawasi perilaku hakim dan mengusulkan hakim agung.',
+  '❌ <b>BPK</b> (Badan Pemeriksa Keuangan) = lembaga <b>independen/eksaminatif</b> yang bertugas memeriksa pengelolaan keuangan negara.'
+ ]
 },
-{n:31,t:'pgk',tp:'tp-eks',tl:'Eksplanasi',
- q:'Manakah yang merupakan <b>bagian dari struktur teks eksplanasi</b>?',
- o:['Pernyataan Umum','Orientasi','Deret Penjelas','Simpulan/Interpretasi','Komplikasi'],
+{n:32,t:'pgk',
+ q:'Manakah <b>sikap-sikap bijak</b> dalam menghadapi globalisasi dan pemanfaatan teknologi?',
+ o:['Menyaring budaya asing yang masuk dengan tetap mempertahankan jati diri bangsa','Memanfaatkan teknologi untuk belajar dan berinovasi','Menolak semua pengaruh luar karena dianggap merusak budaya lokal','Menggunakan media sosial secara bertanggung jawab dan etis','Menyebarkan hoaks agar lebih cepat dikenal di dunia maya'],
+ a:[0,1,3],
+ e:'Sikap bijak terhadap globalisasi bukan menolak semua pengaruh luar (tidak realistis), melainkan <b>menyaring</b> yang baik, <b>memanfaatkan</b> teknologi secara positif, dan <b>bertanggung jawab</b> dalam bermedia sosial.',
+ oe:[
+  '✅ <b>Menyaring budaya asing</b> sambil mempertahankan jati diri = bijak. Ambil yang baik, tolak yang merusak.',
+  '✅ <b>Memanfaatkan teknologi untuk belajar dan berinovasi</b> = bijak. Teknologi adalah alat yang harus digunakan secara positif.',
+  '❌ <b>Menolak SEMUA pengaruh luar</b> = tidak realistis dan merugikan. Banyak ilmu pengetahuan dan teknologi berasal dari luar.',
+  '✅ <b>Media sosial secara bertanggung jawab</b> = bijak. Pikirkan dampak setiap unggahan/komentar.',
+  '❌ <b>Menyebarkan hoaks</b> = tidak bijak, tidak etis, dan dapat terjerat UU ITE. Ini bertentangan dengan nilai kebenaran.'
+ ]
+},
+{n:33,t:'pgk',
+ q:'Alinea keempat Pembukaan UUD NRI 1945 memuat tujuan negara Indonesia. Manakah yang merupakan <b>tujuan negara</b> tersebut?',
+ o:['Melindungi segenap bangsa Indonesia dan seluruh tumpah darah Indonesia','Memajukan kesejahteraan umum','Mencerdaskan kehidupan bangsa','Ikut melaksanakan ketertiban dunia berdasarkan kemerdekaan, perdamaian abadi, dan keadilan sosial','Menjadi negara adidaya di kawasan Asia Tenggara'],
+ a:[0,1,2,3],
+ e:'Alinea IV Pembukaan UUD 1945 memuat tepat <b>4 tujuan negara</b>: (1) melindungi, (2) memajukan kesejahteraan, (3) mencerdaskan kehidupan bangsa, dan (4) ikut ketertiban dunia. "Menjadi adidaya" tidak tercantum.',
+ oe:[
+  '✅ <b>Melindungi segenap bangsa dan seluruh tumpah darah Indonesia</b> = tujuan negara ke-1. Benar.',
+  '✅ <b>Memajukan kesejahteraan umum</b> = tujuan negara ke-2. Benar.',
+  '✅ <b>Mencerdaskan kehidupan bangsa</b> = tujuan negara ke-3. Benar.',
+  '✅ <b>Ikut melaksanakan ketertiban dunia</b> = tujuan negara ke-4 (politik luar negeri bebas aktif). Benar.',
+  '❌ <b>"Menjadi negara adidaya"</b> tidak ada dalam teks Pembukaan UUD 1945 — ini bukan tujuan yang tercantum.'
+ ]
+},
+{n:34,t:'pgk',
+ q:'Manakah yang merupakan <b>hak</b> seorang anak di lingkungan keluarga?',
+ o:['Mendapatkan kasih sayang dan perhatian dari orang tua','Membantu pekerjaan rumah orang tua','Mendapatkan pendidikan yang layak','Mendapatkan perlindungan dari kekerasan','Menghormati dan menaati orang tua'],
  a:[0,2,3],
- e:'Struktur teks eksplanasi: <b>Pernyataan Umum</b> (pengenalan fenomena) → <b>Deret Penjelas</b> (rangkaian sebab-akibat) → <b>Interpretasi/Simpulan</b>. "Orientasi" adalah bagian teks rekon; "Komplikasi" adalah bagian teks narasi.',
- oe:['✅ <b>Pernyataan Umum</b> = bagian pertama teks eksplanasi. Mengenalkan fenomena yang akan dijelaskan.','❌ <b>Orientasi</b> = bagian pertama <b>teks rekon</b> (pengenalan: siapa, kapan, di mana).','✅ <b>Deret Penjelas</b> = bagian inti teks eksplanasi berisi rangkaian sebab-akibat.','✅ <b>Simpulan/Interpretasi</b> = bagian penutup teks eksplanasi berisi penilaian/komentar penulis.','❌ <b>Komplikasi</b> = bagian struktur <b>teks narasi/cerita</b>, bukan eksplanasi.']
+ e:'<b>Hak</b> = sesuatu yang diterima/dinikmati anak. <b>Kewajiban</b> = sesuatu yang harus dilakukan anak. Membantu pekerjaan rumah dan menghormati orang tua adalah <i>kewajiban</i>, bukan hak.',
+ oe:[
+  '✅ <b>Mendapat kasih sayang</b> dari orang tua = hak anak yang wajib dipenuhi.',
+  '❌ <b>Membantu pekerjaan rumah</b> = <b>kewajiban</b> anak sebagai anggota keluarga, bukan hak.',
+  '✅ <b>Mendapat pendidikan yang layak</b> = hak anak yang dilindungi UU (UU No. 23 Tahun 2002 tentang Perlindungan Anak).',
+  '✅ <b>Mendapat perlindungan dari kekerasan</b> = hak dasar anak yang dilindungi negara.',
+  '❌ <b>Menghormati dan menaati orang tua</b> = <b>kewajiban</b> anak kepada orang tua, bukan hak.'
+ ]
 },
-{n:32,t:'pgk',tp:'tp-eks',tl:'Eksplanasi',
- q:'Manakah kalimat yang mengandung <b>majas</b>?',
- o:['"Matahari tersenyum malu di balik awan kelabu."','"Suhu udara hari ini mencapai 35 derajat Celsius."','"Ombak berdansa dengan riang di tepi pantai."','"Pohon bambu itu tingginya lebih dari 10 meter."','"Angin menggigit tulang di puncak gunung yang bersalju itu."'],
- a:[0,2,4],
- e:'Majas adalah gaya bahasa kiasan. Opsi A (matahari <i>tersenyum</i> = personifikasi), C (ombak <i>berdansa</i> = personifikasi), E (angin <i>menggigit tulang</i> = personifikasi/hiperbola) semuanya mengandung majas. Opsi B dan D adalah pernyataan faktual biasa.',
- oe:['✅ <b>"Matahari tersenyum malu"</b> = majas <b>personifikasi</b> (matahari diberi perilaku manusia: tersenyum).','❌ <b>"Suhu 35°C"</b> = pernyataan faktual/data terukur. Tidak mengandung majas.','✅ <b>"Ombak berdansa dengan riang"</b> = majas <b>personifikasi</b> (ombak diberi perilaku manusia: berdansa).','❌ <b>"Tingginya lebih dari 10 meter"</b> = pernyataan faktual terukur. Tidak mengandung majas.','✅ <b>"Angin menggigit tulang"</b> = majas <b>personifikasi</b> dan <b>hiperbola</b> (angin diberi kemampuan menggigit; efeknya dilebih-lebihkan).']
+{n:35,t:'pgk',
+ q:'Berdasarkan UU No. 9 Tahun 1998, manakah lokasi yang <b>diperbolehkan</b> untuk melakukan unjuk rasa?',
+ o:['Lapangan atau taman umum','Di depan gedung DPR/MPR','Di sekitar rumah sakit','Jalan raya yang tidak mengganggu lalu lintas','Di dalam kawasan Istana Negara'],
+ a:[0,1,3],
+ e:'UU No. 9/1998 Pasal 9 melarang unjuk rasa di: istana kepresidenan, tempat ibadah, instalasi militer, <b>rumah sakit</b>, pelabuhan, stasiun, terminal, dan objek vital. DPR/MPR, lapangan umum, dan jalan raya (kondusif) <b>diperbolehkan</b>.',
+ oe:[
+  '✅ <b>Lapangan/taman umum</b> = tempat terbuka yang diperbolehkan untuk unjuk rasa.',
+  '✅ <b>Depan gedung DPR/MPR</b> = diperbolehkan. DPR/MPR bukan termasuk lokasi yang dilarang dalam UU 9/1998.',
+  '❌ <b>Sekitar rumah sakit</b> = <b>dilarang</b>! Rumah sakit secara eksplisit disebutkan dalam UU 9/1998 sebagai lokasi terlarang unjuk rasa.',
+  '✅ <b>Jalan raya yang tidak mengganggu lalu lintas</b> = diperbolehkan, selama tertib dan tidak menutup akses umum.',
+  '❌ <b>Dalam kawasan Istana Negara</b> = <b>dilarang</b>! Istana Kepresidenan secara eksplisit disebutkan sebagai lokasi terlarang.'
+ ]
 },
-{n:33,t:'pgk',tp:'tp-lap',tl:'Laporan',
- q:'Manakah pernyataan yang <b>benar</b> tentang kohesi dan koherensi teks?',
- o:['Kohesi berkaitan dengan keterkaitan bentuk kebahasaan antarkalimat','Koherensi berkaitan dengan keterkaitan makna/isi antarkalimat','Kohesi dan koherensi tidak berpengaruh terhadap kualitas teks','Penggunaan kata ganti (ia, mereka, itu) adalah salah satu alat kohesi','Teks yang koherensi berarti setiap kalimatnya berhubungan secara makna dan logis'],
+{n:36,t:'pgk',
+ q:'Manakah pasangan <b>upacara kematian tradisional</b> dengan <b>daerah asalnya</b> yang benar?',
+ o:['Rambu Solo\' → Toraja, Sulawesi Selatan','Ngaben → Bali','Waruga → Jawa Tengah','Ma\'nene\' → Toraja, Sulawesi Selatan','Tiwah → Dayak, Kalimantan'],
  a:[0,1,3,4],
- e:'<b>Kohesi</b> = keterkaitan BENTUK (kata ganti, konjungsi, repetisi). <b>Koherensi</b> = keterkaitan MAKNA/ISI (logika antarkalimat). Keduanya sangat penting untuk kualitas teks. Kata ganti adalah alat kohesi. Teks koherensi berarti bermakna logis.',
- oe:['✅ <b>Kohesi = keterkaitan bentuk kebahasaan</b>. Benar.','✅ <b>Koherensi = keterkaitan makna/isi</b>. Benar.','❌ <b>Kohesi dan koherensi sangat berpengaruh</b> terhadap kualitas teks — teks yang baik harus memiliki keduanya.','✅ <b>Kata ganti (ia, mereka, itu)</b> = alat kohesi yang menghubungkan kalimat secara gramatikal. Benar.','✅ <b>Teks koherensi = kalimat-kalimat berhubungan secara makna/logis</b>. Benar.']
+ e:'<b>Waruga</b> adalah kubur batu kuno milik masyarakat <b>Minahasa</b> di Sulawesi Utara — bukan dari Jawa Tengah. Pilihan A, B, D, dan E semuanya benar.',
+ oe:[
+  '✅ <b>Rambu Solo\'</b> = upacara pemakaman adat suku Toraja, Sulawesi Selatan. Upacara ini bisa berlangsung berhari-hari. Benar.',
+  '✅ <b>Ngaben</b> = upacara kremasi (pembakaran jenazah) dalam tradisi Hindu Bali. Benar.',
+  '❌ <b>Waruga</b> berasal dari <b>Minahasa, Sulawesi Utara</b> — bukan Jawa Tengah. Waruga adalah sarkofagus/kubur batu kuno berbentuk kotak dengan tutup berbentuk atap.',
+  '✅ <b>Ma\'nene\'</b> = ritual suku Toraja membersihkan dan mendandani jenazah leluhur yang sudah lama dimakamkan. Benar.',
+  '✅ <b>Tiwah</b> = upacara pemakaman kedua suku Dayak di Kalimantan, memindahkan tulang belulang ke sandung (rumah tempat tulang). Benar.'
+ ]
 },
-{n:34,t:'pgk',tp:'tp-lap',tl:'Laporan',
- q:'Manakah yang merupakan <b>langkah-langkah menulis teks laporan observasi</b> yang benar?',
- o:['Menentukan objek yang akan diobservasi','Melakukan pengamatan langsung dan mencatat data secara sistematis','Menulis laporan berdasarkan hasil observasi menggunakan bahasa baku','Membuat karangan fiksi berdasarkan imajinasi tanpa observasi','Menyusun laporan dengan struktur: pernyataan umum → deskripsi bagian → simpulan'],
- a:[0,1,2,4],
- e:'Langkah menulis laporan observasi: (1) <b>tentukan objek</b>, (2) <b>lakukan pengamatan</b> dan catat data, (3) <b>tulis laporan</b> berdasarkan observasi dalam bahasa baku, (4) susun dengan <b>struktur yang tepat</b>. Membuat karangan fiksi bertentangan dengan prinsip laporan observasi.',
- oe:['✅ <b>Menentukan objek observasi</b> = langkah pertama yang wajib dilakukan.','✅ <b>Melakukan pengamatan dan mencatat data</b> = inti dari observasi — harus dilakukan secara sistematis.','✅ <b>Menulis laporan berdasarkan hasil observasi</b> dalam bahasa baku = langkah penulisan yang benar.','❌ <b>Karangan fiksi/imajinasi</b> BERTENTANGAN dengan prinsip laporan observasi yang harus faktual dan berdasar pengamatan nyata.','✅ <b>Struktur laporan yang tepat</b> (pernyataan umum → deskripsi bagian → simpulan) = langkah penting dalam penyusunan.']
+{n:37,t:'pgk',
+ q:'Manakah karya budaya atau warisan Indonesia yang telah <b>diakui oleh UNESCO</b>?',
+ o:['Batik','Wayang','Keris','Angklung','Dangdut'],
+ a:[0,1,2,3],
+ e:'UNESCO telah mengakui berbagai warisan budaya Indonesia, termasuk <b>Batik</b> (2009), <b>Wayang</b> (2008), <b>Keris</b> (2008), dan <b>Angklung</b> (2010) sebagai Warisan Budaya Takbenda. <b>Dangdut</b> belum mendapat pengakuan UNESCO.',
+ oe:[
+  '✅ <b>Batik</b> diakui UNESCO sebagai Warisan Budaya Takbenda pada 2 Oktober 2009 (kini Hari Batik Nasional).',
+  '✅ <b>Wayang</b> diakui UNESCO sebagai Masterpiece of Oral and Intangible Heritage of Humanity pada 2008.',
+  '✅ <b>Keris</b> diakui UNESCO pada 2005 (pengakuan 2008) sebagai warisan budaya Indonesia.',
+  '✅ <b>Angklung</b> diakui UNESCO pada 16 November 2010 sebagai warisan budaya takbenda.',
+  '❌ <b>Dangdut</b> adalah musik populer Indonesia yang sangat dicintai, namun hingga kini belum mendapat pengakuan resmi dari UNESCO.'
+ ]
 },
-{n:35,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
- q:'Manakah yang merupakan <b>ciri teks argumentasi</b>?',
- o:['Mengandung pendapat atau tesis yang jelas','Dilengkapi dengan fakta, data, dan alasan yang logis','Bertujuan meyakinkan pembaca atas pendapat penulis','Menggunakan urutan waktu yang ketat (kronologis)','Mengandung simpulan yang memperkuat argumen'],
- a:[0,1,2,4],
- e:'Ciri teks argumentasi: <b>tesis jelas</b>, <b>dilengkapi fakta dan alasan logis</b>, <b>bertujuan meyakinkan</b>, dan <b>ada simpulan</b> yang memperkuat. "Urutan waktu yang ketat (kronologis)" adalah ciri <b>teks rekon</b>, bukan argumentasi.',
- oe:['✅ <b>Pendapat/tesis yang jelas</b> = fondasi utama teks argumentasi.','✅ <b>Fakta, data, dan alasan logis</b> = pendukung argumen yang membuat teks argumentasi meyakinkan.','✅ <b>Meyakinkan pembaca</b> = tujuan utama teks argumentasi.','❌ <b>Urutan waktu yang ketat (kronologis)</b> = ciri <b>teks rekon</b>, bukan argumentasi.','✅ <b>Simpulan yang memperkuat argumen</b> = bagian penutup yang penting dalam teks argumentasi.']
+{n:38,t:'pgk',
+ q:'Manakah perilaku yang merupakan <b>implementasi dari Sila ke-2 Pancasila</b> (Kemanusiaan yang Adil dan Beradab)?',
+ o:['Menolong korban bencana tanpa memandang suku dan agama','Menghormati hak asasi sesama manusia','Mengutamakan musyawarah dalam mengambil keputusan','Tidak bersikap semena-mena terhadap orang lain','Selalu mendahulukan kepentingan pribadi'],
+ a:[0,1,3],
+ e:'Sila ke-2 berkaitan dengan <b>kemanusiaan, HAM, keadilan, dan keberadaban</b>. Menolong tanpa diskriminasi, menghormati HAM, dan tidak semena-mena = implementasi sila ke-2. Musyawarah = sila ke-4.',
+ oe:[
+  '✅ <b>Menolong tanpa memandang suku dan agama</b> = tidak diskriminatif = wujud kemanusiaan yang adil. Implementasi sila ke-2.',
+  '✅ <b>Menghormati hak asasi sesama manusia</b> = inti dari sila ke-2 "Kemanusiaan yang Adil dan Beradab."',
+  '❌ <b>Mengutamakan musyawarah</b> = implementasi sila ke-<b>4</b> (Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan), bukan sila ke-2.',
+  '✅ <b>Tidak semena-mena terhadap orang lain</b> = menghormati martabat manusia = implementasi sila ke-2.',
+  '❌ <b>Mendahulukan kepentingan pribadi</b> bertentangan dengan nilai kemanusiaan dan keadilan — ini bukan implementasi sila ke-2.'
+ ]
 },
-{n:36,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
- q:'Manakah yang merupakan <b>ciri kebahasaan teks argumentasi</b>?',
- o:['Menggunakan konjungsi penyebaban: karena, sehingga, oleh sebab itu','Menggunakan kata-kata yang bersifat persuasif: hendaknya, sudah saatnya','Dominan menggunakan kalimat perintah tanpa alasan','Menggunakan kalimat fakta yang dapat diverifikasi sebagai pendukung','Menggunakan kata modalitas: harus, seharusnya, semestinya, perlu'],
- a:[0,1,3,4],
- e:'Kebahasaan teks argumentasi: konjungsi kausalitas, kata persuasif, kalimat fakta sebagai data, dan kata modalitas. Kalimat perintah tanpa alasan adalah ciri teks prosedur, bukan argumentasi yang harus disertai alasan logis.',
- oe:['✅ <b>Konjungsi penyebaban</b> (karena, sehingga, oleh sebab itu) = alat kebahasaan utama dalam argumentasi untuk menunjukkan hubungan logis.','✅ <b>Kata persuasif</b> (hendaknya, sudah saatnya) = bahasa yang digunakan untuk memengaruhi pembaca.','❌ <b>Kalimat perintah tanpa alasan</b> = ciri teks <b>prosedur</b>. Argumentasi menggunakan kalimat yang disertai alasan logis.','✅ <b>Kalimat fakta yang dapat diverifikasi</b> = data pendukung yang membuat argumen lebih kuat dan meyakinkan.','✅ <b>Kata modalitas</b> (harus, seharusnya) = penanda bahwa penulis menyampaikan pendapat tentang apa yang seharusnya terjadi.']
-},
-{n:37,t:'pgk',tp:'tp-arg',tl:'Argumentasi',
- q:'Berdasarkan letak kalimat utamanya, jenis-jenis paragraf meliputi…',
- o:['Paragraf deduktif — kalimat utama di awal','Paragraf induktif — kalimat utama di akhir','Paragraf campuran — kalimat utama di awal dan akhir (dipertegas)','Paragraf ineratif — kalimat utama di tengah','Paragraf naratif — tidak memiliki kalimat utama yang jelas (tersebar)'],
+{n:39,t:'pgk',
+ q:'Berdasarkan UU No. 12 Tahun 2011, manakah yang termasuk dalam <b>tata urutan peraturan perundang-undangan</b> di Indonesia?',
+ o:['UUD NRI 1945','Ketetapan MPR (TAP MPR)','Undang-Undang (UU) / Peraturan Pemerintah Pengganti UU (Perppu)','Peraturan Daerah Kabupaten/Kota (Perda Kab/Kota)','Peraturan Presiden (Perpres)'],
  a:[0,1,2,3,4],
- e:'Semua pilihan benar! Berdasarkan letak kalimat utama: <b>Deduktif</b> (awal), <b>Induktif</b> (akhir), <b>Campuran</b> (awal+akhir), <b>Ineratif</b> (tengah), <b>Naratif/Deskriptif</b> (kalimat utama tersebar/tidak jelas letaknya).',
- oe:['✅ <b>Deduktif</b> = kalimat utama di awal → pola: Umum → Khusus.','✅ <b>Induktif</b> = kalimat utama di akhir → pola: Khusus → Umum.','✅ <b>Campuran</b> = kalimat utama di awal dan dipertegas lagi di akhir → pola: Umum → Khusus → Umum.','✅ <b>Ineratif</b> = kalimat utama di tengah → pola: Khusus → Umum → Khusus.','✅ <b>Naratif/Deskriptif</b> = tidak ada kalimat utama yang jelas; semua kalimat memiliki kedudukan yang setara.']
+ e:'Hierarki lengkap UU No. 12/2011: UUD > TAP MPR > UU/Perppu > PP > <b>Perpres</b> > Perda Provinsi > <b>Perda Kab/Kota</b>. Semua pilihan A–E masuk dalam hierarki ini.',
+ oe:[
+  '✅ <b>UUD NRI 1945</b> = urutan <b>tertinggi</b> dalam hierarki peraturan perundang-undangan.',
+  '✅ <b>Ketetapan MPR</b> = urutan ke-2. Diberlakukan kembali melalui UU No. 12 Tahun 2011.',
+  '✅ <b>UU/Perppu</b> = urutan ke-3. UU dibuat DPR + Presiden; Perppu dibuat Presiden dalam keadaan darurat.',
+  '✅ <b>Perda Kabupaten/Kota</b> = urutan <b>terendah</b> (ke-7) dalam hierarki. Ada dalam tata urutan.',
+  '✅ <b>Peraturan Presiden (Perpres)</b> = urutan ke-5, berada di atas Perda Provinsi (ke-6) dan Perda Kab/Kota (ke-7).'
+ ]
 },
-{n:38,t:'pgk',tp:'tp-des',tl:'Deskripsi',
- q:'Manakah yang termasuk dalam <b>struktur teks deskripsi</b>?',
- o:['Identifikasi','Orientasi','Deskripsi Bagian','Simpulan/Kesan','Tesis'],
- a:[0,2,3],
- e:'Struktur teks deskripsi terdiri dari: <b>Identifikasi</b>, <b>Deskripsi Bagian</b>, dan <b>Simpulan/Kesan</b>. "Orientasi" adalah bagian teks rekon; "Tesis" adalah bagian teks argumentasi.',
- oe:['✅ <b>Identifikasi</b> = bagian pertama teks deskripsi (pengenalan objek). Benar.','❌ <b>Orientasi</b> = bagian pertama <b>teks rekon</b> (pengenalan siapa, kapan, di mana).','✅ <b>Deskripsi Bagian</b> = bagian inti teks deskripsi (penggambaran detail bagian-bagian objek). Benar.','✅ <b>Simpulan/Kesan</b> = bagian penutup teks deskripsi (kesan atau komentar penulis). Benar.','❌ <b>Tesis</b> = bagian pertama <b>teks argumentasi</b> (pernyataan posisi/pendapat penulis).']
-},
-{n:39,t:'pgk',tp:'tp-rek',tl:'Rekon',
- q:'Manakah yang termasuk <b>jenis kata (kelas kata)</b> dalam bahasa Indonesia?',
- o:['Nomina (kata benda)','Verba (kata kerja)','Adjektiva (kata sifat)','Adverbia (kata keterangan)','Konjungsi (kata hubung)'],
- a:[0,1,2,3,4],
- e:'Semua pilihan benar! Kelas kata dalam bahasa Indonesia meliputi: <b>Nomina, Verba, Adjektiva, Adverbia, Konjungsi</b>, dan masih ada lagi: Pronomina (kata ganti), Preposisi (kata depan), Numeralia (kata bilangan), Interjeksi (kata seru).',
- oe:['✅ <b>Nomina</b> (kata benda) = nama orang, tempat, benda: pantai, buku, Jakarta.','✅ <b>Verba</b> (kata kerja) = tindakan/keadaan: berlari, makan, tidur, mengunjungi.','✅ <b>Adjektiva</b> (kata sifat) = sifat/keadaan: indah, cepat, besar, merah.','✅ <b>Adverbia</b> (kata keterangan) = menerangkan verba/adjektiva: sangat, terlalu, kemarin.','✅ <b>Konjungsi</b> (kata hubung) = menghubungkan kata/frasa/klausa: dan, tetapi, karena, kemudian.']
-},
-{n:40,t:'pgk',tp:'tp-lap',tl:'Laporan',
- q:'Manakah kata serapan yang penulisannya sudah <b>benar sesuai KBBI</b>?',
- o:['Aktivitas (bukan aktifitas)','Analisis (bukan analisa)','Praktik (bukan praktek)','Konkret (bukan kongkrit/konkrit)','Sistem (bukan sistim)'],
- a:[0,1,2,3,4],
- e:'Semua pilihan benar! Kata-kata serapan ini sering salah penulisannya. <b>Aktivitas, Analisis, Praktik, Konkret, Sistem</b> adalah penulisan yang baku sesuai KBBI. Variasi yang salah sangat umum ditemukan dalam tulisan sehari-hari.',
- oe:['✅ <b>Aktivitas</b> (bukan aktifitas) = dari bahasa Inggris <i>activity</i>. Benar sesuai KBBI.','✅ <b>Analisis</b> (bukan analisa) = dari bahasa Inggris <i>analysis</i>. Benar sesuai KBBI.','✅ <b>Praktik</b> (bukan praktek) = dari bahasa Inggris <i>practice</i>. Benar sesuai KBBI.','✅ <b>Konkret</b> (bukan kongkrit/konkrit) = dari bahasa Belanda <i>concreet</i>. Benar sesuai KBBI.','✅ <b>Sistem</b> (bukan sistim) = dari bahasa Inggris <i>system</i>. Benar sesuai KBBI.']
+{n:40,t:'pgk',
+ q:'Manakah <b>tokoh-tokoh Indonesia</b> yang diundang oleh Jepang ke Dalat (Vietnam) untuk mendapat kepastian persiapan kemerdekaan Indonesia?',
+ o:['Ir. Soekarno','Drs. Mohammad Hatta','Dr. Radjiman Wedyodiningrat','Mr. Soepomo','Ki Hajar Dewantara'],
+ a:[0,1,2],
+ e:'Pada <b>9 Agustus 1945</b>, Marsekal Terauchi mengundang tiga tokoh Indonesia ke Dalat (Vietnam): <b>Soekarno, Hatta,</b> dan <b>Radjiman Wedyodiningrat</b> — untuk memberitahu bahwa Jepang akan segera memberikan kemerdekaan kepada Indonesia.',
+ oe:[
+  '✅ <b>Ir. Soekarno</b> — diundang ke Dalat. Beliau adalah ketua PPKI dan calon Presiden RI.',
+  '✅ <b>Drs. Mohammad Hatta</b> — diundang ke Dalat. Beliau adalah Wakil Ketua PPKI.',
+  '✅ <b>Dr. Radjiman Wedyodiningrat</b> — diundang ke Dalat. Beliau adalah mantan Ketua BPUPKI.',
+  '❌ <b>Mr. Soepomo</b> — tidak diundang ke Dalat. Beliau adalah perumus UUD dan anggota PPKI, tapi tidak termasuk delegasi ke Dalat.',
+  '❌ <b>Ki Hajar Dewantara</b> — tidak diundang ke Dalat. Beliau adalah tokoh pendidikan dan anggota PPKI, tapi bukan bagian delegasi ke Dalat.'
+ ]
 },
 
-// ─── B/S 41-50 ───
-{n:41,t:'bs',tp:'tp-des',tl:'Deskripsi',
- q:'Teks deskripsi bertujuan menjelaskan urutan langkah-langkah melakukan sesuatu secara berurutan.',
- o:['Benar','Salah'],a:'s',
- e:'<b>SALAH.</b> Tujuan teks deskripsi adalah <b>menggambarkan suatu objek</b> (orang, tempat, benda, suasana) secara detail sehingga pembaca seolah mengalami sendiri. Yang berisi langkah-langkah berurutan adalah <b>teks prosedur</b>, bukan teks deskripsi.',
+// ── B/S 41-50 ──
+{n:41,t:'bs',
+ q:'Lambang sila ke-3 Pancasila (Persatuan Indonesia) adalah gambar <b>Pohon Beringin</b>.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Lambang sila ke-3 (Persatuan Indonesia) memang adalah <b>Pohon Beringin</b>, melambangkan pohon yang besar, kokoh, dan menaungi banyak pihak di bawahnya — mewakili persatuan bangsa. Lengkapnya: Sila 1 = Bintang, Sila 2 = Rantai, Sila 3 = Pohon Beringin, Sila 4 = Kepala Banteng, Sila 5 = Padi dan Kapas.',
  oe:['','']
 },
-{n:42,t:'bs',tp:'tp-rek',tl:'Rekon',
- q:'Konjungsi temporal "kemudian", "setelah itu", dan "lalu" lazim digunakan dalam teks rekon untuk menunjukkan urutan peristiwa.',
- o:['Benar','Salah'],a:'b',
- e:'<b>BENAR.</b> Konjungsi temporal seperti "kemudian", "setelah itu", dan "lalu" adalah penanda urutan waktu (kronologis) yang khas dalam teks rekon. Fungsinya adalah menghubungkan peristiwa satu ke peristiwa berikutnya dalam narasi pengalaman.',
+{n:42,t:'bs',
+ q:'Pemuka agama Buddha disebut <b>Biksu/Bhikku</b>, sedangkan pemuka agama Islam disebut <b>Ulama/Kiai</b>.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Biksu/Bhikku = pemuka agama Buddha ✅. Ulama/Kiai = pemuka agama Islam ✅. Ingat perbedaan penting: pemuka Kristen Protestan = <b>Pendeta</b>, Katolik = <b>Pastur/Romo</b>, Hindu = <b>Pandita/Pedanda</b>, Konghucu = <b>Xueshi</b>.',
  oe:['','']
 },
-{n:43,t:'bs',tp:'tp-pro',tl:'Prosedur',
- q:'Kalimat "Menurutku, film ini sangat membosankan dan tidak layak ditonton" adalah contoh kalimat fakta.',
- o:['Benar','Salah'],a:'s',
- e:'<b>SALAH.</b> Kalimat tersebut adalah contoh <b>kalimat opini</b>, bukan fakta. Penandanya adalah kata "<b>menurutku</b>" yang menunjukkan pendapat/penilaian subjektif. Kalimat fakta harus objektif dan dapat dibuktikan kebenarannya, misalnya: "Film ini tayang pada 15 Januari 2024."',
+{n:43,t:'bs',
+ q:'Mr. Mohammad Yamin menyampaikan gagasan dasar negara pada tanggal <b>29 Mei 1945</b>, Ir. Soekarno pada tanggal <b>1 Juni 1945</b>, dan Mr. Soepomo pada tanggal <b>31 Mei 1945</b>.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Urutan penyampaian dalam Sidang BPUPKI I benar: <b>Yamin (29 Mei) → Soepomo (31 Mei) → Soekarno (1 Juni 1945)</b>. Tanggal 1 Juni kemudian diperingati sebagai Hari Lahir Pancasila.',
  oe:['','']
 },
-{n:44,t:'bs',tp:'tp-eks',tl:'Eksplanasi',
- q:'Struktur teks eksplanasi terdiri dari: Pernyataan Umum → Deret Penjelas → Interpretasi/Simpulan.',
- o:['Benar','Salah'],a:'b',
- e:'<b>BENAR.</b> Teks eksplanasi memiliki tiga struktur: (1) <b>Pernyataan Umum</b> (mengenalkan fenomena), (2) <b>Deret Penjelas</b> (menjelaskan proses/sebab-akibat secara berurutan), dan (3) <b>Interpretasi/Simpulan</b> (komentar atau penilaian akhir penulis).',
+{n:44,t:'bs',
+ q:'Indonesia dijuluki <em>"Zamrud Khatulistiwa"</em> karena letaknya yang berada di garis khatulistiwa dan kekayaan alam hayatinya yang luar biasa.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Indonesia dijuluki "Zamrud Khatulistiwa" karena: (1) terletak tepat di garis khatulistiwa (ekuator), dan (2) kaya akan keanekaragaman hayati (hutan tropis, flora-fauna unik) yang berwarna hijau subur bak zamrud. Julukan ini mencerminkan kekayaan alam Indonesia yang luar biasa.',
  oe:['','']
 },
-{n:45,t:'bs',tp:'tp-lap',tl:'Laporan',
- q:'Kata "analisa" merupakan penulisan kata serapan yang sudah benar menurut KBBI.',
- o:['Benar','Salah'],a:'s',
- e:'<b>SALAH.</b> Penulisan yang benar menurut KBBI adalah "<b>analisis</b>", bukan "analisa". Kata ini diserap dari bahasa Inggris <i>analysis</i>. Penulisan "analisa" sering digunakan dalam percakapan sehari-hari, tetapi tidak baku. Kesalahan serupa: "praktek" → <b>praktik</b>; "aktifitas" → <b>aktivitas</b>.',
+{n:45,t:'bs',
+ q:'Berdasarkan UU No. 12 Tahun 2011, Peraturan Daerah Provinsi kedudukannya lebih tinggi daripada Peraturan Presiden.',
+ o:['Benar','Salah'],
+ a:'s',
+ e:'<b>SALAH.</b> Hierarki yang benar adalah: UUD > TAP MPR > UU/Perppu > PP > <b>Peraturan Presiden (ke-5)</b> > <b>Peraturan Daerah Provinsi (ke-6)</b> > Perda Kab/Kota. Jadi <b>Perpres lebih tinggi</b> dari Perda Provinsi, bukan sebaliknya.',
  oe:['','']
 },
-{n:46,t:'bs',tp:'tp-eks',tl:'Eksplanasi',
- q:'Majas personifikasi adalah majas yang memberikan sifat atau perilaku manusia kepada benda mati atau alam.',
- o:['Benar','Salah'],a:'b',
- e:'<b>BENAR.</b> Majas personifikasi memang memberikan sifat, perilaku, atau kemampuan manusia kepada benda mati atau alam. Contoh: "Angin <i>berbisik</i> lembut" (angin diberi kemampuan berbisik seperti manusia), "Pohon <i>melambaikan</i> dahan" (pohon seolah melambaikan tangan).',
+{n:46,t:'bs',
+ q:'Pasal 22E UUD NRI 1945 mengatur tentang Pemilihan Umum (Pemilu) yang dilaksanakan secara langsung, umum, bebas, rahasia, jujur, dan adil.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Pasal 22E UUD NRI 1945 memang mengatur tentang Pemilihan Umum. Asas pemilu Indonesia dikenal dengan singkatan <b>LUBER JURDIL</b>: <b>L</b>angsung, <b>U</b>mum, <b>B</b>ebas, <b>R</b>ahasia, <b>Jur</b>jur, dan <b>A</b>dil.',
  oe:['','']
 },
-{n:47,t:'bs',tp:'tp-lap',tl:'Laporan',
- q:'Koherensi dalam teks berarti keterkaitan bentuk kebahasaan (penggunaan kata ganti, konjungsi) antarkalimat.',
- o:['Benar','Salah'],a:'s',
- e:'<b>SALAH.</b> Yang dimaksud adalah definisi <b>kohesi</b> (keterkaitan BENTUK kebahasaan). <b>Koherensi</b> berkaitan dengan keterkaitan <b>MAKNA/ISI</b> antarkalimat — apakah teks bermakna logis dan runtut. Singkatnya: Kohesi = bentuk; Koherensi = makna.',
+{n:47,t:'bs',
+ q:'Membayar iuran RT setiap bulan merupakan contoh <b>kewajiban</b> warga di lingkungan masyarakat.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Membayar iuran RT/RW adalah <b>kewajiban</b> warga masyarakat — sesuatu yang harus dilakukan sebagai kontribusi pada pembiayaan lingkungan tempat tinggal bersama. Sebagai imbalannya, warga berhak atas fasilitas dan keamanan lingkungan yang didanai dari iuran tersebut.',
  oe:['','']
 },
-{n:48,t:'bs',tp:'tp-arg',tl:'Argumentasi',
- q:'Teks argumentasi yang baik harus didukung oleh fakta, data, dan alasan yang logis agar dapat meyakinkan pembaca.',
- o:['Benar','Salah'],a:'b',
- e:'<b>BENAR.</b> Teks argumentasi yang efektif harus memiliki: (1) tesis/pendapat yang jelas, (2) <b>fakta dan data</b> sebagai bukti, (3) <b>alasan yang logis</b> untuk mendukung pendapat, dan (4) simpulan yang memperkuat argumen. Tanpa dukungan fakta dan logika, argumentasi tidak akan meyakinkan.',
+{n:48,t:'bs',
+ q:'Garis Wallace adalah garis imajiner yang memisahkan wilayah fauna Asia (barat) dengan fauna peralihan, sementara Garis Weber memisahkan fauna peralihan dengan fauna tipe Australia (timur).',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Garis Wallace (Alfred Russel Wallace) memisahkan fauna tipe Asia (Sumatera, Jawa, Kalimantan) dengan zona peralihan (Sulawesi, NTT). Garis Weber memisahkan zona peralihan dengan fauna tipe Australia (Papua, Maluku). Keduanya adalah garis biogeografis penting.',
  oe:['','']
 },
-{n:49,t:'bs',tp:'tp-arg',tl:'Argumentasi',
- q:'Paragraf induktif adalah paragraf yang kalimat utamanya berada di awal paragraf.',
- o:['Benar','Salah'],a:'s',
- e:'<b>SALAH.</b> Paragraf <b>induktif</b> adalah paragraf yang kalimat utamanya berada di <b>AKHIR</b> paragraf (pola: khusus → umum — rincian/contoh dulu, simpulan belakangan). Yang kalimat utamanya di awal adalah paragraf <b>deduktif</b> (pola: umum → khusus).',
+{n:49,t:'bs',
+ q:'Hari Pahlawan diperingati setiap tanggal <b>10 November</b>, memperingati pertempuran besar di Surabaya tahun 1945.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Hari Pahlawan diperingati setiap <b>10 November</b>, memperingati Pertempuran Surabaya (10 November 1945) — salah satu pertempuran terbesar dan terberat dalam sejarah kemerdekaan Indonesia, di mana rakyat Surabaya berjuang melawan tentara Sekutu (NICA) di bawah pimpinan Bung Tomo.',
  oe:['','']
 },
-{n:50,t:'bs',tp:'tp-pro',tl:'Prosedur',
- q:'Langkah-langkah dalam teks prosedur bersifat kronologis (berurutan) dan tidak dapat dibalik urutannya sembarangan.',
- o:['Benar','Salah'],a:'b',
- e:'<b>BENAR.</b> Langkah-langkah teks prosedur bersifat <b>kronologis</b> (berurutan waktu) dan <b>sekuensial</b> (setiap langkah harus dikerjakan sesuai urutan). Jika urutannya dibalik atau dilewati, tujuan tidak akan tercapai atau hasilnya akan berbeda/gagal. Contoh: tidak mungkin menggoreng telur sebelum minyak dipanaskan.',
+{n:50,t:'bs',
+ q:'Sanksi bagi pelanggar norma hukum bersifat tegas dan memaksa (seperti penjara atau denda), sedangkan sanksi pelanggar norma kesopanan hanya berupa sanksi sosial seperti dikucilkan atau dicemooh masyarakat.',
+ o:['Benar','Salah'],
+ a:'b',
+ e:'<b>BENAR.</b> Perbedaan sanksi norma: <b>Hukum</b> = tegas, memaksa, dijalankan negara (penjara, denda). <b>Kesusilaan</b> = rasa malu/bersalah dari diri sendiri. <b>Agama</b> = dosa/azab dari Tuhan. <b>Kesopanan</b> = sanksi sosial (dikucilkan, disindir, dijauhi masyarakat). Pernyataan ini benar.',
  oe:['','']
 }
 ];
 
-// ── STATE ──
-let ans=0,benar=0,salah=0;
-const sel={};
+// ─────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────
+let answered = 0, benar = 0, salah = 0;
+const userSel = {}; // {n: selected}
 
-// ── RENDER ──
-function render(){
-  const c=document.getElementById('qc');
-  const secs=[
-    {t:'pg',  roman:'I',  label:'Pilihan Ganda',          badge:'badge-pg',  instr:'Pilihlah <b>satu</b> jawaban yang paling tepat, kemudian klik <b>Jawab</b>.'},
-    {t:'pgk', roman:'II', label:'Pilihan Ganda Kompleks',  badge:'badge-pgk', instr:'Pilihlah <b>semua jawaban yang benar</b> (bisa lebih dari satu), kemudian klik <b>Jawab</b>.'},
-    {t:'bs',  roman:'III',label:'Benar / Salah',           badge:'badge-bs',  instr:'Tentukan apakah pernyataan berikut <b>Benar</b> atau <b>Salah</b>, kemudian klik <b>Jawab</b>.'}
+// ─────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────
+function render() {
+  const cont = document.getElementById('questions-container');
+  let sections = [
+    {type:'pg',  title:'Pilihan Ganda',          badge:'badge-pg',  instr:'Pilihlah satu jawaban yang paling tepat, kemudian klik tombol <b>Jawab</b>.'},
+    {type:'pgk', title:'Pilihan Ganda Kompleks', badge:'badge-pgk', instr:'Pilihlah <b>semua jawaban yang benar</b> (bisa lebih dari satu), kemudian klik tombol <b>Jawab</b>.'},
+    {type:'bs',  title:'Benar / Salah',          badge:'badge-bs',  instr:'Pilih <b>Benar</b> atau <b>Salah</b> untuk setiap pernyataan, kemudian klik tombol <b>Jawab</b>.'}
   ];
-  let html='';
-  secs.forEach(s=>{
-    const qs=Q.filter(q=>q.t===s.t);
-    if(!qs.length)return;
-    html+=`<div class="sec-wrap"><div class="sec-head"><div class="sec-badge ${s.badge}">Bagian ${s.roman}</div><div class="sec-title">${s.label}</div><div class="sec-line"></div></div><div class="sec-instr">${s.instr}</div><div class="soal-list">`;
-    qs.forEach(q=>{html+=renderQ(q);});
-    html+='</div></div>';
+  let html = '';
+  let secNum = 1;
+  sections.forEach(sec => {
+    const qs = Q.filter(q => q.t === sec.type);
+    if (!qs.length) return;
+    html += `
+      <div class="sec-head">
+        <div class="sec-badge ${sec.badge}">Bagian ${toRoman(secNum++)}</div>
+        <div class="sec-title">${sec.title}</div>
+        <div class="sec-line"></div>
+      </div>
+      <div class="sec-instr">${sec.instr}</div>
+      <div class="soal-list">
+    `;
+    qs.forEach(q => { html += renderQ(q); });
+    html += '</div>';
   });
-  c.innerHTML=html;
+  cont.innerHTML = html;
 }
 
-function renderQ(q){
-  const nc=q.t==='pg'?'nb-pg':q.t==='pgk'?'nb-pgk':'nb-bs';
-  let oph='';
-  if(q.t==='pg'||q.t==='pgk'){
-    if(q.t==='pgk')oph+=`<div class="pgk-note">Pilih semua jawaban yang benar.</div>`;
-    oph+='<div class="opts">';
-    q.o.forEach((o,i)=>{oph+=`<div class="opt" id="o-${q.n}-${i}" onclick="selO(${q.n},${i},'${q.t}')"><span class="opt-k">${K[i]}</span><span class="opt-txt">${o}</span></div>`;});
-    oph+='</div>';
+function toRoman(n) { return ['I','II','III','IV','V'][n-1] || n; }
+
+function renderQ(q) {
+  const numClass = q.t === 'pgk' ? 'pgk' : q.t === 'bs' ? 'bs-num' : 'pg';
+  let optsHtml = '';
+  if (q.t === 'pg' || q.t === 'pgk') {
+    if (q.t === 'pgk') optsHtml += `<div class="pgk-note">Pilih semua jawaban yang benar (bisa lebih dari satu).</div>`;
+    optsHtml += '<div class="opts">';
+    q.o.forEach((opt, i) => {
+      optsHtml += `<div class="opt" id="opt-${q.n}-${i}" onclick="selOpt(${q.n},${i},'${q.t}')">
+        <span class="opt-key">${KEYS[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
   } else {
-    oph=`<div class="bs-opts"><div class="bs-btn" id="bs-${q.n}-b" onclick="selBS(${q.n},'b')">✓ Benar</div><div class="bs-btn" id="bs-${q.n}-s" onclick="selBS(${q.n},'s')">✗ Salah</div></div>`;
+    optsHtml += `<div class="bs-opts">
+      <div class="bs-btn benar" id="bsb-${q.n}-b" onclick="selBS(${q.n},'b')">✓ Benar</div>
+      <div class="bs-btn salah" id="bsb-${q.n}-s" onclick="selBS(${q.n},'s')">✗ Salah</div>
+    </div>`;
   }
-  return `<div class="soal" id="soal-${q.n}"><div class="soal-head"><div class="num-badge ${nc}" id="nb-${q.n}">${q.n}</div><div class="soal-q"><div class="topic-pill ${q.tp}">${q.tl}</div><br>${q.q}</div></div>${oph}<div class="jawab-wrap"><button class="btn-jawab" id="btn-${q.n}" onclick="jawab(${q.n})" disabled>Jawab</button></div><div class="exp" id="exp-${q.n}"></div></div>`;
+  return `
+    <div class="soal" id="soal-${q.n}">
+      <div class="soal-head">
+        <div class="soal-num ${numClass}" id="num-${q.n}">${q.n}</div>
+        <div class="soal-q">${q.q}</div>
+      </div>
+      ${optsHtml}
+      <div class="jawab-wrap">
+        <button class="btn-jawab" id="btn-${q.n}" onclick="jawab(${q.n})" disabled>Jawab</button>
+      </div>
+      <div class="explanation" id="exp-${q.n}"></div>
+    </div>`;
 }
 
-// ── SELECT ──
-function selO(n,i,t){
-  if(document.getElementById(`soal-${n}`).classList.contains('done'))return;
-  const q=Q.find(x=>x.n===n);
-  if(t==='pg'){
-    q.o.forEach((_,j)=>document.getElementById(`o-${n}-${j}`).classList.remove('sel'));
-    document.getElementById(`o-${n}-${i}`).classList.add('sel');
-    sel[n]=i;
+// ─────────────────────────────────────────────
+//  SELECTION
+// ─────────────────────────────────────────────
+function selOpt(n, i, type) {
+  const soal = document.getElementById(`soal-${n}`);
+  if (soal.classList.contains('done')) return;
+  if (type === 'pg') {
+    // deselect all
+    const q = Q.find(x => x.n === n);
+    q.o.forEach((_, j) => {
+      document.getElementById(`opt-${n}-${j}`).classList.remove('selected');
+    });
+    document.getElementById(`opt-${n}-${i}`).classList.add('selected');
+    userSel[n] = i;
   } else {
-    if(!sel[n])sel[n]=[];
-    const el=document.getElementById(`o-${n}-${i}`);
-    const idx=sel[n].indexOf(i);
-    if(idx===-1){sel[n].push(i);el.classList.add('sel');}
-    else{sel[n].splice(idx,1);el.classList.remove('sel');}
+    // pgk toggle
+    if (!userSel[n]) userSel[n] = [];
+    const el = document.getElementById(`opt-${n}-${i}`);
+    const idx = userSel[n].indexOf(i);
+    if (idx === -1) { userSel[n].push(i); el.classList.add('selected'); }
+    else { userSel[n].splice(idx,1); el.classList.remove('selected'); }
   }
-  const has=Array.isArray(sel[n])?sel[n].length>0:sel[n]!==undefined;
-  document.getElementById(`btn-${n}`).disabled=!has;
-}
-function selBS(n,v){
-  if(document.getElementById(`soal-${n}`).classList.contains('done'))return;
-  document.getElementById(`bs-${n}-b`).classList.remove('sel-b');
-  document.getElementById(`bs-${n}-s`).classList.remove('sel-s');
-  if(v==='b')document.getElementById(`bs-${n}-b`).classList.add('sel-b');
-  else document.getElementById(`bs-${n}-s`).classList.add('sel-s');
-  sel[n]=v;
-  document.getElementById(`btn-${n}`).disabled=false;
+  const btn = document.getElementById(`btn-${n}`);
+  const hasSel = Array.isArray(userSel[n]) ? userSel[n].length > 0 : userSel[n] !== undefined;
+  btn.disabled = !hasSel;
 }
 
-// ── JAWAB ──
-function jawab(n){
-  const q=Q.find(x=>x.n===n);
-  const s=sel[n];
-  if(s===undefined||(Array.isArray(s)&&s.length===0))return;
-  document.getElementById(`soal-${n}`).classList.add('done');
-  document.getElementById(`btn-${n}`).style.display='none';
-  let ok=false;
-  if(q.t==='pg'){ok=s===q.a;lockPG(q,s,ok);}
-  else if(q.t==='pgk'){
-    const ss=[...s].sort();const as=[...q.a].sort();
-    ok=JSON.stringify(ss)===JSON.stringify(as);lockPGK(q,s,ok);
-  } else {ok=s===q.a;lockBS(q,s,ok);}
-  showExp(q,s,ok);
-  ans++;if(ok)benar++;else salah++;
+function selBS(n, val) {
+  const soal = document.getElementById(`soal-${n}`);
+  if (soal.classList.contains('done')) return;
+  const bBtn = document.getElementById(`bsb-${n}-b`);
+  const sBtn = document.getElementById(`bsb-${n}-s`);
+  bBtn.classList.remove('selected-b');
+  sBtn.classList.remove('selected-s');
+  if (val === 'b') bBtn.classList.add('selected-b');
+  else sBtn.classList.add('selected-s');
+  userSel[n] = val;
+  document.getElementById(`btn-${n}`).disabled = false;
+}
+
+// ─────────────────────────────────────────────
+//  JAWAB
+// ─────────────────────────────────────────────
+function jawab(n) {
+  const q = Q.find(x => x.n === n);
+  const sel = userSel[n];
+  if (sel === undefined || (Array.isArray(sel) && sel.length === 0)) return;
+
+  const soal = document.getElementById(`soal-${n}`);
+  soal.classList.add('done');
+  document.getElementById(`btn-${n}`).disabled = true;
+  document.getElementById(`btn-${n}`).style.display = 'none';
+
+  let isCorrect = false;
+  if (q.t === 'pg') {
+    isCorrect = sel === q.a;
+    lockPG(q, sel, isCorrect);
+  } else if (q.t === 'pgk') {
+    const sortedSel = [...sel].sort();
+    const sortedAns = [...q.a].sort();
+    isCorrect = JSON.stringify(sortedSel) === JSON.stringify(sortedAns);
+    lockPGK(q, sel, isCorrect);
+  } else {
+    isCorrect = sel === q.a;
+    lockBS(q, sel, isCorrect);
+  }
+
+  showExp(q, sel, isCorrect);
+
+  answered++;
+  if (isCorrect) benar++; else salah++;
   updateScore();
-  if(ans===Q.length)showResult();
-}
-function lockPG(q,s,ok){
-  q.o.forEach((_,i)=>{
-    const el=document.getElementById(`o-${q.n}-${i}`);
-    el.classList.add('locked');el.classList.remove('sel');
-    if(i===q.a)el.classList.add('ok');
-    else if(i===s&&!ok)el.classList.add('err');
-  });
-  markN(q.n,ok);
-}
-function lockPGK(q,s,ok){
-  q.o.forEach((_,i)=>{
-    const el=document.getElementById(`o-${q.n}-${i}`);
-    el.classList.add('locked');el.classList.remove('sel');
-    if(q.a.includes(i))el.classList.add('ok');
-    else if(s.includes(i)&&!q.a.includes(i))el.classList.add('err');
-  });
-  markN(q.n,ok);
-}
-function lockBS(q,s,ok){
-  const b=document.getElementById(`bs-${q.n}-b`),sv=document.getElementById(`bs-${q.n}-s`);
-  [b,sv].forEach(x=>{x.classList.add('locked');x.classList.remove('sel-b','sel-s');});
-  if(q.a==='b')b.classList.add('r-ok');else sv.classList.add('r-ok');
-  if(!ok){if(s==='b')b.classList.add('r-err');else sv.classList.add('r-err');}
-  markN(q.n,ok);
-}
-function markN(n,ok){
-  const el=document.getElementById(`nb-${n}`);
-  el.classList.remove('nb-pg','nb-pgk','nb-bs');
-  el.classList.add(ok?'nb-ok':'nb-err');
-  el.textContent=ok?'✓':'✗';
+
+  if (answered === Q.length) showResult();
 }
 
-// ── EXPLANATION ──
-function showExp(q,s,ok){
-  const el=document.getElementById(`exp-${q.n}`);
-  const pill=ok?'<span class="exp-pill ep-ok">✓ Jawaban Benar!</span>':'<span class="exp-pill ep-err">✗ Jawaban Salah</span>';
-  let opH='';
-  if(q.t==='pg'){
-    opH='<div class="exp-opts">';
-    q.o.forEach((o,i)=>{const c=i===q.a?'c':'w';opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`;});
-    opH+='</div>';
-  } else if(q.t==='pgk'){
-    opH='<div class="exp-opts">';
-    q.o.forEach((o,i)=>{const c=q.a.includes(i)?'c':'w';opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`;});
-    opH+='</div>';
+function lockPG(q, sel, isCorrect) {
+  q.o.forEach((_, i) => {
+    const el = document.getElementById(`opt-${q.n}-${i}`);
+    el.classList.add('locked');
+    el.classList.remove('selected');
+    if (i === q.a) el.classList.add('correct-opt');
+    else if (i === sel && !isCorrect) el.classList.add('wrong-opt');
+  });
+  markNum(q.n, isCorrect);
+}
+
+function lockPGK(q, sel, isCorrect) {
+  q.o.forEach((_, i) => {
+    const el = document.getElementById(`opt-${q.n}-${i}`);
+    el.classList.add('locked');
+    el.classList.remove('selected');
+    const isAns = q.a.includes(i);
+    const isSel = sel.includes(i);
+    if (isAns) el.classList.add('correct-opt');
+    else if (isSel && !isAns) el.classList.add('wrong-opt');
+  });
+  markNum(q.n, isCorrect);
+}
+
+function lockBS(q, sel, isCorrect) {
+  const bBtn = document.getElementById(`bsb-${q.n}-b`);
+  const sBtn = document.getElementById(`bsb-${q.n}-s`);
+  bBtn.classList.add('locked'); sBtn.classList.add('locked');
+  bBtn.classList.remove('selected-b'); sBtn.classList.remove('selected-s');
+  if (q.a === 'b') bBtn.classList.add('result-correct');
+  else sBtn.classList.add('result-correct');
+  if (!isCorrect) {
+    if (sel === 'b') bBtn.classList.add('result-wrong');
+    else sBtn.classList.add('result-wrong');
   }
-  el.innerHTML=`<div class="exp-top">${pill}<div class="exp-main">${q.e}</div></div>${opH}`;
-  el.classList.add('show');
+  markNum(q.n, isCorrect);
 }
 
-// ── SCORE ──
-function updateScore(){
-  document.getElementById('s-ans').textContent=`${ans}/50`;
-  document.getElementById('s-b').textContent=benar;
-  document.getElementById('s-s').textContent=salah;
-  document.getElementById('s-n').textContent=ans>0?Math.round(benar/50*100):'—';
-  document.getElementById('prog').style.width=(ans/50*100)+'%';
-}
-function showResult(){
-  const rb=document.getElementById('rb');
-  const pct=Math.round(benar/50*100);
-  document.getElementById('rb-sc').textContent=benar;
-  let msg='',cls='';
-  if(pct>=85){msg='🏆 Luar biasa! Kamu siap menghadapi ulangan Bahasa Indonesia!';cls='rb-great';}
-  else if(pct>=70){msg='👏 Bagus! Pelajari kembali materi yang masih salah.';cls='rb-good';}
-  else{msg='💪 Semangat! Baca materi di bawah lalu coba lagi ya!';cls='rb-try';}
-  document.getElementById('rb-msg').textContent=msg;
-  rb.className=`result-banner show ${cls}`;
-  rb.scrollIntoView({behavior:'smooth',block:'center'});
+function markNum(n, correct) {
+  const el = document.getElementById(`num-${n}`);
+  el.classList.remove('pg','pgk','bs-num');
+  el.classList.add(correct ? 'correct' : 'wrong');
+  el.textContent = correct ? '✓' : '✗';
 }
 
+// ─────────────────────────────────────────────
+//  EXPLANATION
+// ─────────────────────────────────────────────
+function showExp(q, sel, isCorrect) {
+  const expEl = document.getElementById(`exp-${q.n}`);
+  const resultLabel = isCorrect
+    ? `<span class="exp-result correct">✓ Jawaban Benar!</span>`
+    : `<span class="exp-result wrong">✗ Jawaban Salah</span>`;
+
+  let optsHtml = '';
+  if (q.t === 'pg') {
+    optsHtml = '<div class="exp-opts">';
+    q.o.forEach((opt, i) => {
+      const isAns = i === q.a;
+      const cls = isAns ? 'eo-correct' : 'eo-wrong';
+      optsHtml += `<div class="exp-opt ${cls}"><b>${KEYS[i]}. ${opt}</b><br>${q.oe[i]}</div>`;
+    });
+    optsHtml += '</div>';
+  } else if (q.t === 'pgk') {
+    optsHtml = '<div class="exp-opts">';
+    q.o.forEach((opt, i) => {
+      const isAns = q.a.includes(i);
+      const cls = isAns ? 'eo-correct' : 'eo-wrong';
+      optsHtml += `<div class="exp-opt ${cls}"><b>${KEYS[i]}. ${opt}</b><br>${q.oe[i]}</div>`;
+    });
+    optsHtml += '</div>';
+  }
+
+  expEl.innerHTML = `
+    ${resultLabel}
+    <div class="exp-general">${q.e}</div>
+    ${optsHtml}
+  `;
+  expEl.classList.add('show');
+}
+
+// ─────────────────────────────────────────────
+//  SCORE
+// ─────────────────────────────────────────────
+function updateScore() {
+  document.getElementById('s-ans').textContent = `${answered}/50`;
+  document.getElementById('s-benar').textContent = benar;
+  document.getElementById('s-salah').textContent = salah;
+  const nilai = answered > 0 ? Math.round((benar/50)*100) : '—';
+  document.getElementById('s-nilai').textContent = answered > 0 ? nilai : '—';
+  document.getElementById('prog').style.width = (answered/50*100) + '%';
+}
+
+function showResult() {
+  const banner = document.getElementById('result-banner');
+  const pct = Math.round((benar/50)*100);
+  document.getElementById('rb-score').textContent = benar;
+  let msg = '', cls = '';
+  if (pct >= 85) { msg = '🏆 Luar biasa! Kamu siap menghadapi ulangan!'; cls = 'great'; }
+  else if (pct >= 70) { msg = '👏 Bagus! Pelajari lagi materi yang salah ya.'; cls = 'good'; }
+  else { msg = '💪 Jangan menyerah! Baca materi di bawah dan coba lagi.'; cls = 'try'; }
+  document.getElementById('rb-msg').textContent = msg;
+  banner.className = `result-banner show ${cls}`;
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
 render();
 </script>
 </body>
