@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiqih Interaktif — Asesmen 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b3322;--teal:#0f5132;--sage:#198754;--leaf:#28a745;
+  --gold:#c9a227;--amber:#e6b930;--cream:#faf8f0;--paper:#f0ede2;
+  --ink:#1a1f1a;--rule:#ccc9b8;--warm:#fffef8;--muted:#6b7280;
+  --red:#c0392b;--lr:#fdf0ef;--lb:#e8f4fd;--lg:#eafaf1;--la:#fef9e7;
+  --lp:#f5eafb;--radius:10px;--shadow:0 2px 12px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;font-size:14px}
+.page{max-width:900px;margin:0 auto;padding:0 14px 80px}
+
+/* ── HEADER ── */
+.hdr{background:linear-gradient(155deg,#061e10 0%,#0b3322 45%,#0f5132 100%);color:#fff;margin-bottom:0;border-radius:0 0 24px 24px;overflow:hidden;box-shadow:0 8px 32px rgba(11,51,34,.4);position:relative}
+.hdr-pattern{position:absolute;inset:0;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f5cf50' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hdr-stripe{height:4px;background:linear-gradient(90deg,var(--amber),#f5cf50,var(--gold),var(--amber));background-size:200% 100%;animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+.bismillah{text-align:center;font-family:'Amiri',serif;font-size:21px;color:var(--amber);padding:14px 0 2px;letter-spacing:.05em;text-shadow:0 0 20px rgba(230,185,48,.3)}
+.hdr-inner{padding:10px 24px 22px;position:relative}
+.hdr-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.hdr-icon{width:54px;height:54px;background:linear-gradient(135deg,var(--amber),#b8891a);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.hdr-text h1{font-family:'Amiri',serif;font-size:21px;font-weight:700;line-height:1.2}
+.hdr-text p{font-size:11.5px;opacity:.55;margin-top:3px}
+.score-bar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sc-item{text-align:center;min-width:44px}
+.sc-item label{font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;opacity:.45;display:block;margin-bottom:2px}
+.sc-item span{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;color:var(--amber)}
+.sc-item .sm{font-size:12px}
+.prog-wrap{flex:1;min-width:130px}
+.prog-wrap label{font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;opacity:.45;display:block;margin-bottom:6px}
+.prog-track{background:rgba(255,255,255,.08);border-radius:20px;height:6px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),#f5e060);border-radius:20px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+
+/* ── MAIN NAV TABS ── */
+.main-nav{display:flex;gap:6px;padding:20px 0 0;justify-content:center}
+.main-tab{display:flex;align-items:center;gap:8px;padding:11px 28px;border-radius:12px 12px 0 0;font-size:14px;font-weight:700;cursor:pointer;border:2px solid transparent;border-bottom:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.55);transition:all .25s;position:relative;top:2px}
+.main-tab:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
+.main-tab.active{background:var(--paper);color:var(--teal);border-color:var(--rule);border-bottom-color:var(--paper)}
+.main-tab .tab-ico{font-size:16px}
+
+/* ── PANELS ── */
+.panels{position:relative}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ── MATERI LAYOUT ── */
+.mat-wrap{background:var(--warm);border:1.5px solid var(--rule);border-radius:0 12px 12px 12px;overflow:hidden}
+.mat-sidebar-wrap{display:grid;grid-template-columns:200px 1fr;min-height:600px}
+.mat-sidebar{background:var(--cream);border-right:1.5px solid var(--rule);padding:16px 0}
+.mat-nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);transition:all .2s;border-left:3px solid transparent;line-height:1.3}
+.mat-nav-item:hover{background:rgba(15,81,50,.05);color:var(--teal)}
+.mat-nav-item.active{background:linear-gradient(90deg,rgba(15,81,50,.1),rgba(15,81,50,.03));color:var(--teal);border-left-color:var(--sage)}
+.mat-nav-item .m-ico{font-size:15px;flex-shrink:0}
+.mat-content{padding:24px;overflow-y:auto;max-height:800px}
+.mat-section{display:none}
+.mat-section.active{display:block}
+
+/* ── MATERI CARDS ── */
+.mc{background:var(--warm);border:1.5px solid var(--rule);border-radius:var(--radius);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.mc-head{background:linear-gradient(120deg,#0b3322,#0f5132);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.mc-head-ico{font-size:17px}
+.mc-head-title{font-family:'Amiri',serif;font-size:15px;font-weight:700}
+.mc-body{padding:16px 18px;font-size:13px;line-height:1.8;color:#2d3748}
+.mc-body h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin:14px 0 7px;font-weight:700}
+.mc-body h4:first-child{margin-top:0}
+.mc-body p{margin-bottom:8px}
+.mc-body ul{padding-left:18px;margin-bottom:8px}
+.mc-body li{margin-bottom:4px}
+.mc-body li b{font-weight:700;color:var(--forest)}
+.mc-body strong{font-weight:700;color:var(--forest)}
+.mc-body table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 12px;border-radius:8px;overflow:hidden}
+.mc-body table th{background:var(--teal);color:#fff;padding:8px 12px;text-align:left;font-weight:700;font-size:12px}
+.mc-body table td{padding:7px 12px;border-bottom:1px solid var(--rule)}
+.mc-body table tr:nth-child(even) td{background:#f8f9f0}
+.mc-body table tr:last-child td{border-bottom:none}
+.chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11.5px;margin:2px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.chip-ok{background:var(--lg);color:#1e8449;border:1px solid #a9dfbf}
+.chip-err{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
+.chip-n{background:var(--la);color:#7d6608;border:1px solid #f9e79f}
+.chip-b{background:var(--lb);color:#1a5276;border:1px solid #a9cce3}
+.callout{display:flex;gap:10px;background:var(--la);border:1px solid #f9e79f;border-left:4px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:12.5px;line-height:1.7}
+.callout-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.callout-b{background:var(--lb);border-color:#aed6f1;border-left-color:#2980b9}
+.callout-g{background:var(--lg);border-color:#a9dfbf;border-left-color:var(--sage)}
+.callout-r{background:var(--lr);border-color:#f5b7b1;border-left-color:var(--red)}
+.arabic-box{font-family:'Amiri',serif;font-size:19px;direction:rtl;text-align:center;color:var(--forest);background:var(--la);border:1px solid #e8d98a;padding:12px 18px;border-radius:8px;margin:8px 0;line-height:1.8}
+.arabic-sub{text-align:center;font-size:11px;color:var(--muted);margin-top:-6px;margin-bottom:8px;font-style:italic}
+.num-list{counter-reset:nl;padding:0;list-style:none;margin-bottom:10px}
+.num-list li{counter-increment:nl;display:flex;gap:10px;margin-bottom:6px;align-items:flex-start}
+.num-list li::before{content:counter(nl);background:var(--teal);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.mini-card{background:var(--cream);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:12.5px}
+.mini-card h5{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--sage);font-weight:700;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+
+/* ── QUIZ SECTION ── */
+.quiz-wrap{padding-top:16px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:0 2px}
+.sec-badge{padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:20px;white-space:nowrap}
+.badge-pg{background:var(--lb);color:#1a5276;border:1px solid #a9cce3}
+.badge-pgk{background:var(--lg);color:var(--teal);border:1px solid #a9dfbf}
+.badge-bs{background:var(--lr);color:var(--red);border:1px solid #f5b7b1}
+.sec-title{font-family:'Amiri',serif;font-size:17px;font-weight:700}
+.sec-line{flex:1;height:1px;background:var(--rule)}
+.sec-instr{font-size:12.5px;color:#555;background:var(--warm);border:1px solid var(--rule);border-left:4px solid var(--amber);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:18px;line-height:1.65}
+.soal-list{display:flex;flex-direction:column;gap:16px}
+.soal{background:var(--warm);border:1.5px solid var(--rule);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .15s}
+.soal:not(.done):hover{box-shadow:0 4px 18px rgba(0,0,0,.09);transform:translateY(-1px)}
+.soal-head{display:flex;align-items:flex-start;gap:12px;padding:14px 15px 12px;border-bottom:1px solid var(--rule)}
+.num-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#fff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .3s}
+.nb-pg{background:var(--teal)}
+.nb-pgk{background:var(--sage)}
+.nb-bs{background:var(--gold)}
+.nb-ok{background:#1e8449!important}
+.nb-err{background:var(--red)!important}
+.soal-q{font-size:13.5px;line-height:1.75;flex:1}
+.topic-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.tp-thr{background:#e8f8f5;color:#0e6655;border:1px solid #a2d9ce}
+.tp-shl{background:var(--lb);color:#1a5276;border:1px solid #aed6f1}
+.tp-jam{background:#eaf0fb;color:#1a237e;border:1px solid #9fa8da}
+.tp-pua{background:#fdf9e8;color:#7d6608;border:1px solid #f9e79f}
+.tp-zak{background:var(--lg);color:#1e8449;border:1px solid #a9dfbf}
+.tp-haj{background:#fdf2f8;color:#76448a;border:1px solid #d2b4de}
+.tp-mak{background:#fdf0ef;color:#922b21;border:1px solid #f1948a}
+.tp-jb{background:#e8f4fd;color:#1a5276;border:1px solid #aed6f1}
+.tp-was{background:#fff3e0;color:#e65100;border:1px solid #ffcc80}
+.block-text{display:block;background:var(--paper);border-left:3px solid var(--sage);padding:8px 12px;margin:7px 0;border-radius:0 6px 6px 0;font-size:13px;font-style:italic;line-height:1.65}
+.opts{padding:10px 14px 12px 56px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;margin-bottom:4px;border:1.5px solid transparent;transition:all .15s;user-select:none}
+.opt:hover:not(.locked){background:var(--lb);border-color:#aed6f1}
+.opt.sel{background:var(--lb);border-color:#2e86c1}
+.opt.ok{background:var(--lg)!important;border-color:#27ae60!important}
+.opt.err{background:var(--lr)!important;border-color:var(--red)!important}
+.opt.locked{cursor:default}
+.opt-k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink);background:var(--cream);border:1px solid var(--rule);border-radius:5px;padding:1px 7px;flex-shrink:0;min-width:24px;text-align:center;transition:all .2s}
+.opt.sel .opt-k{background:#2e86c1;color:#fff;border-color:#2e86c1}
+.opt.ok .opt-k{background:#27ae60;color:#fff;border-color:#27ae60}
+.opt.err .opt-k{background:var(--red);color:#fff;border-color:var(--red)}
+.opt-txt{font-size:13px;line-height:1.55;padding-top:1px}
+.pgk-note{font-size:11.5px;font-style:italic;color:var(--muted);padding:4px 14px 2px 56px}
+.bs-opts{padding:10px 14px 12px 56px;display:flex;gap:10px}
+.bs-btn{padding:8px 26px;border:1.5px solid var(--rule);border-radius:24px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;cursor:pointer;background:var(--cream);transition:all .2s;user-select:none}
+.bs-btn:hover:not(.locked){transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.bs-btn.sel-b{border-color:#27ae60;color:#27ae60;background:var(--lg)}
+.bs-btn.sel-s{border-color:var(--red);color:var(--red);background:var(--lr)}
+.bs-btn.r-ok{border-color:#27ae60!important;color:#27ae60!important;background:var(--lg)!important}
+.bs-btn.r-err{border-color:var(--red)!important;color:var(--red)!important;background:var(--lr)!important}
+.bs-btn.locked{cursor:default;transform:none}
+.jawab-wrap{padding:2px 14px 14px 56px}
+.btn-jawab{background:var(--forest);color:#fff;border:none;padding:9px 26px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .2s}
+.btn-jawab:hover{background:var(--teal);transform:translateY(-1px)}
+.btn-jawab:disabled{background:#c5c9c5;cursor:not-allowed;transform:none}
+.exp{margin:0 14px 14px;border-radius:8px;border:1px solid var(--rule);background:var(--cream);display:none;animation:fadeUp .3s ease}
+.exp.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.exp-top{padding:12px 14px 10px}
+.exp-pill{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.ep-ok{background:#d5f5e3;color:#1e8449}
+.ep-err{background:#fde8e8;color:var(--red)}
+.exp-main{font-size:13px;line-height:1.75;background:var(--warm);border-left:3px solid var(--amber);padding:10px 13px;border-radius:0 6px 6px 0;margin-bottom:10px}
+.exp-opts{display:flex;flex-direction:column;gap:5px;padding:0 14px 14px}
+.eo{font-size:12.5px;line-height:1.65;padding:7px 11px;border-radius:6px}
+.eo.c{background:#d5f5e3;border-left:3px solid #27ae60}
+.eo.w{background:#fff0f0;border-left:3px solid #e74c3c}
+.result-banner{display:none;margin:24px 0;padding:28px;border-radius:14px;text-align:center}
+.result-banner.show{display:block;animation:fadeUp .4s ease}
+.rb-great{background:linear-gradient(135deg,#061e10,#0f5132)}
+.rb-good{background:linear-gradient(135deg,#061e10,#1a3a4a)}
+.rb-try{background:linear-gradient(135deg,#3a1f0a,#061e10)}
+.rb-score{font-family:'Amiri',serif;font-size:54px;font-weight:700;color:#fff;margin-bottom:2px}
+.rb-of{font-size:13px;color:rgba(255,255,255,.55)}
+.rb-msg{font-size:16px;font-weight:700;color:var(--amber);margin-top:10px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .mat-sidebar-wrap{grid-template-columns:1fr}
+  .mat-sidebar{border-right:none;border-bottom:1.5px solid var(--rule);display:flex;flex-wrap:wrap;padding:8px}
+  .mat-nav-item{border-left:none;border-bottom:3px solid transparent;padding:7px 10px;font-size:11.5px;border-radius:6px}
+  .mat-nav-item.active{border-left:none;border-bottom-color:var(--sage);background:rgba(15,81,50,.08)}
+  .mat-content{max-height:none}
+  .two-col{grid-template-columns:1fr}
+  .opts{padding:10px 10px 12px 42px}
+  .jawab-wrap{padding:2px 10px 12px 42px}
+  .pgk-note{padding:4px 10px 2px 42px}
+  .bs-opts{padding:10px 10px 12px 42px}
+  .main-tab{padding:9px 16px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-pattern"></div>
+  <div class="hdr-stripe"></div>
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <div class="hdr-inner">
+    <div class="hdr-top">
+      <div class="hdr-icon">🕌</div>
+      <div class="hdr-text">
+        <h1>Fiqih Interaktif — Asesmen 2026</h1>
+        <p>Taharah · Shalat · Puasa · Zakat · Haji · Muamalah · Warisan · 50 Soal</p>
+      </div>
+    </div>
+    <div class="score-bar" id="score-bar" style="display:none">
+      <div class="sc-item"><label>Dijawab</label><span id="s-ans" class="sm">0/50</span></div>
+      <div class="sc-item"><label>Benar</label><span id="s-b">0</span></div>
+      <div class="sc-item"><label>Salah</label><span id="s-s">0</span></div>
+      <div class="sc-item"><label>Nilai</label><span id="s-n">—</span></div>
+      <div class="prog-wrap">
+        <label>Progress</label>
+        <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+      </div>
+    </div>
+    <!-- MAIN TABS inside header -->
+    <div class="main-nav">
+      <div class="main-tab active" id="tab-materi" onclick="switchMain('materi')">
+        <span class="tab-ico">📚</span> Materi Belajar
+      </div>
+      <div class="main-tab" id="tab-soal" onclick="switchMain('soal')">
+        <span class="tab-ico">📝</span> Latihan Soal
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PANELS ══ -->
+<div class="panels">
+
+<!-- ▸ PANEL MATERI -->
+<div class="panel active" id="panel-materi">
+  <div class="mat-wrap">
+    <div class="mat-sidebar-wrap">
+      <!-- Sidebar nav -->
+      <div class="mat-sidebar">
+        <div class="mat-nav-item active" onclick="showMat(0)"><span class="m-ico">💧</span>Taharah</div>
+        <div class="mat-nav-item" onclick="showMat(1)"><span class="m-ico">🕋</span>Shalat Fardhu & Jumat</div>
+        <div class="mat-nav-item" onclick="showMat(2)"><span class="m-ico">🔄</span>Jamak & Sujud Sahwi</div>
+        <div class="mat-nav-item" onclick="showMat(3)"><span class="m-ico">🌙</span>Puasa</div>
+        <div class="mat-nav-item" onclick="showMat(4)"><span class="m-ico">💰</span>Zakat</div>
+        <div class="mat-nav-item" onclick="showMat(5)"><span class="m-ico">🕌</span>Haji & Umrah</div>
+        <div class="mat-nav-item" onclick="showMat(6)"><span class="m-ico">🍽️</span>Makanan & Sembelihan</div>
+        <div class="mat-nav-item" onclick="showMat(7)"><span class="m-ico">🤝</span>Jual Beli & Pinjam</div>
+        <div class="mat-nav-item" onclick="showMat(8)"><span class="m-ico">📜</span>Warisan & Wasiat</div>
+      </div>
+      <!-- Content area -->
+      <div class="mat-content">
+
+        <!-- 0: TAHARAH -->
+        <div class="mat-section active">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">💧</span><span class="mc-head-title">Taharah (Bersuci) — Lengkap</span></div>
+            <div class="mc-body">
+              <h4>Pengertian Taharah</h4>
+              <p><strong>Taharah</strong> secara bahasa berarti <strong>kebersihan dan kesucian</strong>. Secara istilah, taharah adalah bersuci dari najis dan hadas menggunakan air yang suci dan mensucikan (atau dengan tayammum jika tidak ada air), sebagai syarat sahnya ibadah tertentu.</p>
+              <h4>Macam-macam Air</h4>
+              <table>
+                <tr><th>Jenis Air</th><th>Definisi</th><th>Contoh</th></tr>
+                <tr><td><strong>Air Mutlak</strong></td><td>Suci dan dapat mensucikan — boleh digunakan untuk bersuci</td><td>Air hujan, air laut, air sumur, air sungai, air salju, air embun, air mata air</td></tr>
+                <tr><td><strong>Air Musyammas</strong></td><td>Air yang dipanaskan di bawah sinar matahari dalam wadah logam — makruh dipakai bersuci</td><td>Air dalam ember besi yang dijemur</td></tr>
+                <tr><td><strong>Air Musta'mal</strong></td><td>Air yang sudah terpakai untuk bersuci — suci tapi tidak dapat mensucikan</td><td>Air bekas wudhu, air bekas mandi wajib</td></tr>
+                <tr><td><strong>Air Mutanajjis</strong></td><td>Air yang terkena najis — tidak suci dan tidak dapat mensucikan</td><td>Air yang tercampur darah, air got</td></tr>
+              </table>
+              <div class="callout"><span class="callout-icon">💡</span><div>Air laut adalah <strong>air mutlak</strong> yang suci dan mensucikan. Nabi SAW bersabda: <em>"Laut itu suci airnya dan halal bangkainya."</em> (HR. Abu Dawud, Tirmidzi)</div></div>
+              <h4>Macam-macam Hadas</h4>
+              <div class="two-col">
+                <div class="mini-card"><h5>Hadas Kecil</h5><ul><li>Keluarnya sesuatu dari qubul/dubur</li><li>Tidur tidak dalam posisi duduk stabil</li><li>Hilang akal (mabuk, gila)</li><li>Menyentuh kemaluan dengan telapak tangan</li></ul><p style="margin-top:6px"><strong>Cara suci:</strong> Wudhu / tayammum</p></div>
+                <div class="mini-card"><h5>Hadas Besar</h5><ul><li>Jimak (hubungan suami-istri)</li><li>Keluar air mani</li><li>Haid & nifas</li><li>Wiladah (melahirkan)</li></ul><p style="margin-top:6px"><strong>Cara suci:</strong> Mandi wajib</p></div>
+              </div>
+              <h4>Macam-macam Najis</h4>
+              <table>
+                <tr><th>Tingkatan</th><th>Jenis</th><th>Cara Mensucikan</th></tr>
+                <tr><td><strong>Mukhaffafah (ringan)</strong></td><td>Air kencing bayi laki-laki yang belum makan selain ASI</td><td>Cukup dipercikkan air ke tempat najis</td></tr>
+                <tr><td><strong>Mutawassithah (sedang)</strong></td><td>Kotoran manusia, air kencing, darah haid, bangkai</td><td>Disiram dengan air hingga hilang warna, bau, rasa</td></tr>
+                <tr><td><strong>Mughallazhah (berat)</strong></td><td>Najis anjing dan babi</td><td>Dicuci 7 kali, salah satunya dengan tanah</td></tr>
+              </table>
+              <h4>Rukun Wudhu (6 Rukun)</h4>
+              <ol class="num-list">
+                <li>Niat wudhu</li><li>Membasuh muka</li><li>Membasuh kedua tangan hingga siku</li>
+                <li>Mengusap sebagian kepala</li><li>Membasuh kedua kaki hingga mata kaki</li><li>Tertib (berurutan)</li>
+              </ol>
+              <h4>Syarat Tayammum</h4>
+              <ul><li>Tidak ada air atau tidak bisa menggunakannya (sakit)</li><li>Sudah masuk waktu shalat</li><li>Menggunakan debu yang suci</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1: SHALAT -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🕋</span><span class="mc-head-title">Shalat Fardhu &amp; Shalat Jumat</span></div>
+            <div class="mc-body">
+              <h4>Waktu Shalat Fardhu 5 Waktu</h4>
+              <table>
+                <tr><th>Shalat</th><th>Waktu</th><th>Jumlah Rakaat</th></tr>
+                <tr><td><strong>Subuh</strong></td><td>Fajar shadiq s.d. terbit matahari</td><td>2 rakaat</td></tr>
+                <tr><td><strong>Dzuhur</strong></td><td>Matahari tergelincir s.d. bayangan = panjang benda</td><td>4 rakaat</td></tr>
+                <tr><td><strong>Ashar</strong></td><td>Bayangan = panjang benda s.d. terbenam matahari</td><td>4 rakaat</td></tr>
+                <tr><td><strong>Maghrib</strong></td><td>Matahari terbenam s.d. hilangnya mega merah</td><td>3 rakaat</td></tr>
+                <tr><td><strong>Isya</strong></td><td>Hilangnya mega merah s.d. pertengahan malam</td><td>4 rakaat</td></tr>
+              </table>
+              <h4>Syarat Wajib Shalat</h4>
+              <p>Shalat wajib bagi seseorang yang memenuhi syarat: <span class="chip chip-n">Islam</span> <span class="chip chip-n">Baligh</span> <span class="chip chip-n">Berakal</span> <span class="chip chip-n">Suci dari Haid/Nifas</span> <span class="chip chip-n">Telah sampai dakwah</span></p>
+              <h4>Syarat Sah Shalat</h4>
+              <ul>
+                <li><strong>Suci badan</strong> dari hadas dan najis</li>
+                <li><strong>Menutup aurat</strong> — laki-laki: pusar s.d. lutut; perempuan: seluruh tubuh kecuali wajah dan telapak tangan</li>
+                <li><strong>Menghadap kiblat</strong> (Ka&#39;bah di Makkah)</li>
+                <li><strong>Sudah masuk waktu shalat</strong></li>
+                <li><strong>Mengetahui cara shalat</strong></li>
+              </ul>
+              <h4>Rukun Shalat (13 Rukun)</h4>
+              <ol class="num-list">
+                <li>Niat</li><li>Berdiri (jika mampu)</li><li>Takbiratul Ihram</li><li>Membaca Al-Fatihah</li>
+                <li>Rukuk</li><li>Tuma&#39;ninah dalam rukuk</li><li>I&#39;tidal</li><li>Tuma&#39;ninah dalam i&#39;tidal</li>
+                <li>Sujud 2x tiap rakaat</li><li>Tuma&#39;ninah dalam sujud</li><li>Duduk antara dua sujud</li>
+                <li>Tasyahud akhir + duduk</li><li>Salam pertama</li>
+              </ol>
+              <h4>Hal yang Membatalkan Shalat</h4>
+              <ul><li>Berbicara dengan sengaja</li><li>Banyak bergerak diluar gerakan shalat</li><li>Terkena najis</li><li>Terbuka aurat</li><li>Berhadats</li><li>Meninggalkan rukun dengan sengaja</li></ul>
+              <h4>Ketentuan Shalat Jumat</h4>
+              <div class="callout callout-b"><span class="callout-icon">📌</span><div><strong>Shalat Jumat</strong> dilaksanakan pada hari Jumat di waktu Dzuhur, 2 rakaat berjamaah, didahului 2 khutbah. Wajib bagi: <strong>laki-laki muslim, baligh, berakal, merdeka, mukim (tidak musafir), sehat</strong>. Perempuan, musafir, sakit berat: <em>tidak wajib</em> tapi <em>sah</em> jika ikut.</div></div>
+              <h4>Syarat Sah Shalat Jumat</h4>
+              <ul><li>Dilaksanakan di waktu Dzuhur</li><li>Didahului dua khutbah</li><li>Dilaksanakan secara berjamaah (minimal 40 orang menurut sebagian ulama)</li><li>Bertempat di daerah/kawasan permanen</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2: JAMAK & SUJUD SAHWI -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🔄</span><span class="mc-head-title">Shalat Jamak &amp; Sujud Sahwi</span></div>
+            <div class="mc-body">
+              <h4>Pengertian Shalat Jamak</h4>
+              <p><strong>Shalat jamak</strong> adalah menggabungkan dua shalat dan melaksanakannya dalam satu waktu. Hanya boleh untuk pasangan: <strong>Dzuhur &amp; Ashar</strong>, atau <strong>Maghrib &amp; Isya</strong>. Subuh tidak bisa dijamak.</p>
+              <div class="two-col">
+                <div class="mini-card"><h5>Jamak Taqdim</h5><p>Menggabungkan shalat di <strong>waktu shalat pertama</strong> (awal).</p><p style="margin-top:6px"><em>Contoh: Dzuhur &amp; Ashar dikerjakan pada waktu Dzuhur</em></p></div>
+                <div class="mini-card"><h5>Jamak Ta&#39;khir</h5><p>Menggabungkan shalat di <strong>waktu shalat kedua</strong> (akhir).</p><p style="margin-top:6px"><em>Contoh: Dzuhur &amp; Ashar dikerjakan pada waktu Ashar</em></p></div>
+              </div>
+              <h4>Syarat Boleh Menjamak Shalat</h4>
+              <ul><li><strong>Musafir</strong> — dalam perjalanan jauh (±80 km / 2 marhalah)</li><li><strong>Hujan lebat</strong> yang menyulitkan</li><li><strong>Sakit</strong> yang memberatkan</li><li><strong>Kondisi darurat</strong> tertentu</li></ul>
+              <h4>Shalat Jamak Qashar</h4>
+              <p>Musafir boleh juga <strong>mengqashar</strong> (meringkas) shalat 4 rakaat menjadi 2 rakaat: Dzuhur, Ashar, dan Isya. Bisa dilakukan bersamaan (jamak qashar) atau qashar saja.</p>
+              <h4>Sujud Sahwi</h4>
+              <div class="callout callout-g"><span class="callout-icon">📖</span><div><strong>Sujud sahwi</strong> adalah dua sujud tambahan yang dilakukan karena <strong>lupa atau ragu</strong> dalam shalat. Dilakukan sebelum atau sesudah salam (khilaf ulama).</div></div>
+              <h4>Penyebab Sujud Sahwi</h4>
+              <ol class="num-list">
+                <li><strong>Lupa jumlah rakaat</strong> — tidak yakin sudah berapa rakaat</li>
+                <li><strong>Lupa tasyahud awal</strong> — terlanjur berdiri, tidak kembali duduk</li>
+                <li><strong>Lupa qunut</strong> pada Subuh (menurut mazhab Syafi&#39;i)</li>
+                <li><strong>Kelebihan atau kekurangan rukun/sunnah</strong> karena lupa</li>
+                <li><strong>Ragu jumlah rakaat</strong> — ambil yang lebih sedikit lalu sujud sahwi</li>
+              </ol>
+              <h4>Cara Melakukan Sujud Sahwi</h4>
+              <ul><li>Dilakukan setelah tasyahud akhir sebelum salam, atau setelah salam pertama</li><li>Sujud 2 kali seperti sujud biasa</li><li>Membaca: <em>Subhana man la yanamu wa la yashu</em> atau takbir biasa</li><li>Kemudian tasyahud dan salam</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3: PUASA -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🌙</span><span class="mc-head-title">Puasa — Lengkap</span></div>
+            <div class="mc-body">
+              <div class="arabic-box">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ</div>
+              <div class="arabic-sub">QS. Al-Baqarah: 183 — "Wahai orang-orang beriman, diwajibkan atas kalian berpuasa..."</div>
+              <h4>Pengertian Puasa</h4>
+              <p><strong>Puasa</strong> (shaum/shiyam) secara istilah adalah menahan diri dari segala yang membatalkan puasa mulai terbit fajar shadiq hingga terbenam matahari disertai niat.</p>
+              <h4>Syarat Wajib Puasa</h4>
+              <p><span class="chip chip-n">Islam</span> <span class="chip chip-n">Baligh</span> <span class="chip chip-n">Berakal</span> <span class="chip chip-n">Mampu (tidak sakit parah)</span> <span class="chip chip-n">Mukim (bukan musafir)</span> <span class="chip chip-n">Suci dari haid &amp; nifas</span></p>
+              <h4>Syarat Sah Puasa</h4>
+              <ul><li><strong>Islam</strong></li><li><strong>Tamyiz</strong> (dapat membedakan baik/buruk)</li><li><strong>Tidak sedang haid atau nifas</strong></li><li><strong>Niat</strong> di malam hari (sebelum fajar)</li></ul>
+              <h4>Rukun Puasa</h4>
+              <ul><li><strong>Niat</strong> di malam hari</li><li><strong>Menahan diri</strong> dari semua hal yang membatalkan</li></ul>
+              <h4>Hal yang Membatalkan Puasa</h4>
+              <table>
+                <tr><th>Pembatal</th><th>Keterangan</th></tr>
+                <tr><td>Makan dan minum dengan sengaja</td><td>Jika lupa, tidak batal</td></tr>
+                <tr><td>Jimak (hubungan suami-istri) di siang hari</td><td>Wajib kafarat: puasa 60 hari / memerdekakan budak / memberi makan 60 orang</td></tr>
+                <tr><td>Muntah dengan sengaja</td><td>Jika tidak sengaja, tidak batal</td></tr>
+                <tr><td>Haid dan nifas</td><td>Wajib mengqadha</td></tr>
+                <tr><td>Murtad</td><td>Batal dan wajib qadha saat kembali Islam</td></tr>
+                <tr><td>Gila/pingsan sepanjang hari</td><td>Batal tanpa qadha (gila), wajib qadha (pingsan)</td></tr>
+              </table>
+              <h4>Macam-macam Puasa</h4>
+              <ul>
+                <li><strong>Wajib:</strong> Ramadan, qadha, kafarat, nazar</li>
+                <li><strong>Sunnah:</strong> Senin-Kamis, Ayyamul Bidh (13-14-15 bulan Hijriah), Asyura, Arafah, 6 hari Syawal</li>
+                <li><strong>Makruh:</strong> Puasa pada hari Jumat atau Sabtu saja</li>
+                <li><strong>Haram:</strong> Hari Raya Idul Fitri, Idul Adha, Hari Tasyriq (11,12,13 Dzulhijjah)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4: ZAKAT -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">💰</span><span class="mc-head-title">Zakat — Fitrah &amp; Mal</span></div>
+            <div class="mc-body">
+              <h4>Pengertian Zakat</h4>
+              <p><strong>Zakat</strong> berasal dari kata <em>zaka</em> = tumbuh, suci, berkembang. Secara istilah: mengeluarkan sejumlah harta tertentu yang wajib diberikan kepada yang berhak menerimanya.</p>
+              <div class="two-col">
+                <div class="mini-card">
+                  <h5>Zakat Fitrah</h5>
+                  <ul><li>Wajib bagi setiap muslim</li><li>Ukuran: <strong>1 sha&#39; (±2,5 kg)</strong> bahan makanan pokok</li><li>Waktu: Awal Ramadan s.d. sebelum shalat Idul Fitri</li><li>Tujuan: Mensucikan jiwa &amp; membantu fakir miskin di hari raya</li></ul>
+                </div>
+                <div class="mini-card">
+                  <h5>Zakat Mal (Harta)</h5>
+                  <ul><li>Wajib jika harta mencapai nishab &amp; haul</li><li><strong>Haul</strong>: telah dimiliki selama 1 tahun penuh</li><li>Berlaku untuk: emas/perak, perdagangan, pertanian, ternak, tambang</li></ul>
+                </div>
+              </div>
+              <h4>Nishab &amp; Kadar Zakat Mal</h4>
+              <table>
+                <tr><th>Jenis Harta</th><th>Nishab</th><th>Kadar Zakat</th></tr>
+                <tr><td><strong>Emas</strong></td><td>85 gram emas</td><td>2,5%</td></tr>
+                <tr><td><strong>Perak</strong></td><td>595 gram perak</td><td>2,5%</td></tr>
+                <tr><td><strong>Perdagangan</strong></td><td>Setara 85 gram emas</td><td>2,5%</td></tr>
+                <tr><td><strong>Pertanian (irigasi)</strong></td><td>5 wasaq (±653 kg)</td><td>5%</td></tr>
+                <tr><td><strong>Pertanian (tadah hujan)</strong></td><td>5 wasaq (±653 kg)</td><td>10%</td></tr>
+                <tr><td><strong>Tambang</strong></td><td>Setara nishab emas</td><td>2,5% (langsung, tanpa haul)</td></tr>
+              </table>
+              <div class="callout"><span class="callout-icon">⭐</span><div><strong>Nishab zakat emas = ±85 gram emas, kadar = 2,5%</strong>. Contoh: seseorang memiliki 100 gram emas selama 1 tahun → wajib zakat 2,5% × 100g = 2,5 gram emas (atau nilai uangnya).</div></div>
+              <h4>8 Golongan Penerima Zakat (Asnaf)</h4>
+              <ol class="num-list">
+                <li><strong>Fakir</strong> — tidak punya harta dan tidak mampu bekerja</li>
+                <li><strong>Miskin</strong> — punya harta/usaha tapi tidak mencukupi kebutuhan</li>
+                <li><strong>Amil</strong> — pengelola zakat</li>
+                <li><strong>Muallaf</strong> — orang baru masuk Islam</li>
+                <li><strong>Riqab</strong> — budak yang ingin memerdekakan diri</li>
+                <li><strong>Gharimin</strong> — orang yang terlilit hutang</li>
+                <li><strong>Fisabilillah</strong> — pejuang di jalan Allah</li>
+                <li><strong>Ibnu Sabil</strong> — musafir yang kehabisan bekal</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5: HAJI -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🕌</span><span class="mc-head-title">Haji &amp; Umrah</span></div>
+            <div class="mc-body">
+              <h4>Pengertian Haji</h4>
+              <p><strong>Haji</strong> adalah berkunjung ke Baitullah (Ka&#39;bah) di Makkah untuk melaksanakan serangkaian ibadah tertentu pada waktu yang telah ditetapkan. Wajib dilakukan sekali seumur hidup bagi yang mampu.</p>
+              <h4>Syarat Wajib Haji</h4>
+              <p><span class="chip chip-n">Islam</span> <span class="chip chip-n">Baligh</span> <span class="chip chip-n">Berakal</span> <span class="chip chip-n">Merdeka</span> <span class="chip chip-n">Mampu (istitha&#39;ah)</span></p>
+              <div class="callout callout-b"><span class="callout-icon">📌</span><div><strong>Istitha&#39;ah (mampu)</strong> mencakup: mampu secara fisik, finansial (biaya perjalanan dan keluarga yang ditinggal), keamanan perjalanan, dan bagi perempuan ada mahram.</div></div>
+              <h4>Rukun Haji (6 Rukun)</h4>
+              <table>
+                <tr><th>No</th><th>Rukun</th><th>Keterangan</th></tr>
+                <tr><td>1</td><td><strong>Ihram</strong></td><td>Niat memulai haji disertai mengenakan pakaian ihram (2 helai kain putih tanpa jahitan untuk pria)</td></tr>
+                <tr><td>2</td><td><strong>Wukuf di Arafah</strong></td><td>Berdiam diri di Padang Arafah pada 9 Dzulhijjah — rukun terpenting; tidak sah tanpanya</td></tr>
+                <tr><td>3</td><td><strong>Tawaf Ifadah</strong></td><td>Mengelilingi Ka&#39;bah 7 kali berlawanan arah jarum jam</td></tr>
+                <tr><td>4</td><td><strong>Sa&#39;i</strong></td><td>Berlari-lari kecil antara bukit Shafa dan Marwa 7 kali</td></tr>
+                <tr><td>5</td><td><strong>Tahallul</strong></td><td>Mencukur/memotong rambut sebagai tanda keluar dari ihram</td></tr>
+                <tr><td>6</td><td><strong>Tertib</strong></td><td>Melaksanakan rukun sesuai urutan yang ditentukan</td></tr>
+              </table>
+              <h4>Wajib Haji (Jika Ditinggal = Dam)</h4>
+              <ul><li>Ihram dari miqat</li><li>Bermalam di Muzdalifah (malam 10 Dzulhijjah)</li><li>Melempar jumrah</li><li>Bermalam di Mina</li><li>Tawaf wada&#39; (tawaf perpisahan)</li></ul>
+              <h4>Larangan dalam Ihram</h4>
+              <div class="two-col">
+                <div class="mini-card"><h5>Khusus Pria</h5><ul><li>Menutup kepala</li><li>Memakai pakaian berjahit</li></ul></div>
+                <div class="mini-card"><h5>Semua Jamaah</h5><ul><li>Memakai wewangian</li><li>Memotong rambut/kuku</li><li>Membunuh binatang buruan</li><li>Nikah/menikahkan</li><li>Berhubungan suami-istri</li></ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6: MAKANAN & SEMBELIHAN -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🍽️</span><span class="mc-head-title">Makanan Halal, Sembelihan &amp; Aqiqah</span></div>
+            <div class="mc-body">
+              <h4>Kriteria Makanan Halal</h4>
+              <ul><li>Tidak termasuk yang diharamkan Al-Qur&#39;an dan hadits</li><li>Tidak mengandung najis</li><li>Tidak membahayakan kesehatan</li><li>Untuk hewan: disembelih dengan cara yang benar</li></ul>
+              <h4>Hewan yang Diharamkan</h4>
+              <div class="two-col">
+                <div class="mini-card"><h5>Diharamkan Nash (Al-Qur&#39;an)</h5><ul><li>Babi dan semua produknya</li><li>Darah yang mengalir</li><li>Bangkai (kecuali ikan dan belalang)</li><li>Hewan yang disembelih bukan atas nama Allah</li></ul></div>
+                <div class="mini-card"><h5>Diharamkan Hadits</h5><ul><li>Hewan bertaring (singa, harimau, serigala)</li><li>Burung bercakar tajam (elang, garuda)</li><li>Keledai peliharaan</li><li>Hewan yang diperintah dibunuh: kalajengking, tikus</li><li>Hewan yang dilarang dibunuh: semut, lebah, burung hud-hud</li></ul></div>
+              </div>
+              <h4>Syarat Penyembelihan yang Sah</h4>
+              <ol class="num-list">
+                <li><strong>Penyembelih:</strong> Muslim atau Ahli Kitab, berakal, disengaja</li>
+                <li><strong>Alat:</strong> benda tajam yang dapat memutus (bukan gigi/kuku)</li>
+                <li><strong>Cara:</strong> memotong tenggorokan &amp; dua urat leher</li>
+                <li><strong>Niat:</strong> menyebut nama Allah (basmalah) saat menyembelih</li>
+              </ol>
+              <div class="callout callout-r"><span class="callout-icon">⚠️</span><div>Hewan yang tidak disembelih dengan menyebut nama Allah <strong>hukumnya haram</strong> (QS. Al-An&#39;am: 121), kecuali karena lupa menurut sebagian ulama.</div></div>
+              <h4>Aqiqah</h4>
+              <table>
+                <tr><th>Aspek</th><th>Keterangan</th></tr>
+                <tr><td><strong>Hukum</strong></td><td>Sunnah muakkad (sangat dianjurkan)</td></tr>
+                <tr><td><strong>Waktu</strong></td><td>Hari ke-7 setelah kelahiran (bisa ke-14 atau ke-21)</td></tr>
+                <tr><td><strong>Jumlah</strong></td><td>Bayi laki-laki: <strong>2 ekor kambing</strong>; Bayi perempuan: <strong>1 ekor kambing</strong></td></tr>
+                <tr><td><strong>Syarat hewan</strong></td><td>Sama dengan syarat kurban: sehat, tidak cacat, cukup umur</td></tr>
+                <tr><td><strong>Hikmah</strong></td><td>Syukur atas kelahiran, tebusan anak, mempererat silaturahmi</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7: JUAL BELI & PINJAM -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">🤝</span><span class="mc-head-title">Jual Beli, Pinjam Meminjam &amp; Sewa Menyewa</span></div>
+            <div class="mc-body">
+              <h4>Rukun Jual Beli</h4>
+              <ol class="num-list">
+                <li><strong>Penjual dan Pembeli</strong> — keduanya harus berakal, baligh, dan atas kehendak sendiri (tidak dipaksa)</li>
+                <li><strong>Barang (objek)</strong> — harus ada, halal, bisa diserahkan, dan diketahui jenisnya</li>
+                <li><strong>Harga</strong> — jelas jumlahnya dan disepakati</li>
+                <li><strong>Ijab Kabul (Akad)</strong> — pernyataan jual dari penjual dan penerimaan dari pembeli</li>
+              </ol>
+              <h4>Syarat Sah Jual Beli</h4>
+              <ul><li>Barang halal dan suci</li><li>Barang jelas wujud dan jumlahnya</li><li>Dilakukan atas kehendak sendiri (tidak terpaksa)</li><li>Tidak mengandung unsur penipuan (gharar) atau riba</li></ul>
+              <h4>Jenis Transaksi yang Dilarang</h4>
+              <table>
+                <tr><th>Larangan</th><th>Definisi</th><th>Contoh</th></tr>
+                <tr><td><strong>Riba</strong></td><td>Kelebihan/tambahan yang disyaratkan dalam transaksi tukar-menukar</td><td>Meminjam Rp100rb harus mengembalikan Rp120rb</td></tr>
+                <tr><td><strong>Gharar</strong></td><td>Penipuan / ketidakjelasan yang merugikan</td><td>Menjual ikan yang masih di laut</td></tr>
+                <tr><td><strong>Maisir</strong></td><td>Judi — mengambil harta orang lain tanpa imbalan yang jelas</td><td>Taruhan, lotre</td></tr>
+                <tr><td><strong>Talaqqi Rukban</strong></td><td>Mencegat pedagang di luar pasar lalu membeli dengan harga murah</td><td>Monopoli harga pasar</td></tr>
+              </table>
+              <h4>Macam-macam Riba</h4>
+              <ul>
+                <li><strong>Riba Fadhl:</strong> tukar barang sejenis dengan ukuran berbeda (1 kg beras merah dengan 1,5 kg beras putih)</li>
+                <li><strong>Riba Nasi&#39;ah:</strong> tambahan atas hutang karena penundaan pembayaran (bunga bank konvensional)</li>
+                <li><strong>Riba Yad:</strong> jual beli dengan menunda penyerahan tanpa kejelasan</li>
+                <li><strong>Riba Qardh:</strong> meminjamkan dengan syarat mendapat keuntungan/bunga</li>
+              </ul>
+              <div class="callout callout-r"><span class="callout-icon">🚫</span><div>Allah mengharamkan riba: <em>"Allah menghalalkan jual beli dan mengharamkan riba."</em> (QS. Al-Baqarah: 275). Riba termasuk dosa besar yang dilaknat oleh Allah dan Rasul-Nya.</div></div>
+              <h4>Perbedaan Ijarah dan Ujrah</h4>
+              <div class="two-col">
+                <div class="mini-card"><h5>Ijarah (Sewa Menyewa)</h5><p>Akad untuk memanfaatkan barang/jasa dengan memberikan imbalan tertentu dalam waktu tertentu.</p><p style="margin-top:5px"><em>Contoh: Menyewa rumah, sewa kendaraan</em></p></div>
+                <div class="mini-card"><h5>Ujrah (Upah)</h5><p>Imbalan atas jasa yang diberikan seseorang. Merupakan bagian dari ijarah yang berfokus pada manfaat tenaga/keahlian.</p><p style="margin-top:5px"><em>Contoh: Gaji karyawan, upah tukang</em></p></div>
+              </div>
+              <h4>Pinjam Meminjam (Qardh)</h4>
+              <ul><li><strong>Qardh</strong> adalah memberikan harta kepada orang lain untuk dikembalikan dengan jumlah yang sama</li><li>Hukum: <strong>sunnah bagi pemberi, mubah bagi penerima</strong></li><li>Dilarang mensyaratkan tambahan saat pengembalian (riba)</li><li>Membayar lebih dari hutang atas inisiatif peminjam hukumnya: <strong>boleh dan terpuji</strong></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8: WARISAN & WASIAT -->
+        <div class="mat-section">
+          <div class="mc">
+            <div class="mc-head"><span class="mc-head-ico">📜</span><span class="mc-head-title">Warisan &amp; Wasiat</span></div>
+            <div class="mc-body">
+              <h4>Pengertian Warisan (Faraidh)</h4>
+              <p><strong>Warisan (mawaris/faraidh)</strong> adalah bagian harta yang ditinggalkan oleh seseorang yang meninggal dunia untuk dibagikan kepada ahli warisnya sesuai ketentuan syariat Islam.</p>
+              <h4>Urutan Penggunaan Harta Orang Meninggal</h4>
+              <ol class="num-list">
+                <li>Biaya pengurusan jenazah</li>
+                <li>Melunasi hutang-hutang pewaris</li>
+                <li>Menunaikan wasiat (maksimal 1/3 dari sisa harta)</li>
+                <li>Membagikan warisan kepada ahli waris</li>
+              </ol>
+              <h4>Ahli Waris dari Pihak Laki-laki</h4>
+              <ul><li>Anak laki-laki</li><li>Cucu laki-laki (dari anak laki-laki)</li><li>Ayah</li><li>Kakek (dari ayah)</li><li>Saudara laki-laki kandung/seayah/seibu</li><li>Keponakan &amp; paman (dari jalur ayah)</li><li>Suami</li></ul>
+              <h4>Penghalang Warisan (3 Hal)</h4>
+              <table>
+                <tr><th>Penghalang</th><th>Penjelasan</th></tr>
+                <tr><td><strong>Pembunuhan</strong></td><td>Ahli waris yang membunuh pewaris tidak berhak mewarisi hartanya</td></tr>
+                <tr><td><strong>Perbedaan Agama</strong></td><td>Muslim tidak mewarisi dari non-muslim, dan sebaliknya</td></tr>
+                <tr><td><strong>Perbudakan</strong></td><td>Budak tidak dapat mewarisi (sudah tidak relevan zaman modern)</td></tr>
+              </table>
+              <h4>Wasiat</h4>
+              <div class="callout"><span class="callout-icon">📋</span><div><strong>Wasiat</strong> adalah pesan/pernyataan seseorang untuk memberikan hak atau melakukan sesuatu setelah ia meninggal. Hukum: <strong>sunnah</strong> bagi yang memiliki harta dan tanggungan.</div></div>
+              <h4>Ketentuan Wasiat</h4>
+              <ul>
+                <li>Maksimal <strong>1/3 (sepertiga) dari total harta</strong> — lebih dari itu harus seizin ahli waris</li>
+                <li><strong>Tidak boleh</strong> diberikan kepada ahli waris yang sudah berhak mendapat warisan (kecuali disetujui seluruh ahli waris lain)</li>
+                <li>Wasiat berlaku setelah pewasiat meninggal</li>
+                <li>Dapat dicabut selama pewasiat masih hidup</li>
+              </ul>
+              <h4>Syarat Sah Wasiat</h4>
+              <ul>
+                <li><strong>Pewasiat:</strong> berakal, baligh, atas kehendak sendiri</li>
+                <li><strong>Penerima wasiat:</strong> jelas identitasnya, bukan ahli waris (kecuali seizin semua ahli waris)</li>
+                <li><strong>Objek wasiat:</strong> harta/benda jelas, tidak bertentangan dengan syariat</li>
+                <li><strong>Jumlah:</strong> tidak melebihi 1/3 harta</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end mat-content -->
+    </div><!-- end mat-sidebar-wrap -->
+  </div><!-- end mat-wrap -->
+</div><!-- end panel-materi -->
+
+<!-- ▸ PANEL SOAL -->
+<div class="panel" id="panel-soal">
+  <div class="quiz-wrap">
+    <div id="qc"></div>
+    <div class="result-banner" id="rb">
+      <div class="rb-score" id="rb-sc">0</div>
+      <div class="rb-of">dari 50 soal benar</div>
+      <div class="rb-msg" id="rb-msg"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end panels -->
+</div><!-- end page -->
+
+<script>
+// ── MAIN TAB SWITCH ──
+function switchMain(tab) {
+  ['materi','soal'].forEach(t => {
+    document.getElementById('panel-'+t).classList.toggle('active', t===tab);
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+  document.getElementById('score-bar').style.display = (tab==='soal') ? 'flex' : 'none';
+}
+
+// ── MATERI SUB-NAV ──
+function showMat(i) {
+  document.querySelectorAll('.mat-nav-item').forEach((el,j) => el.classList.toggle('active', i===j));
+  document.querySelectorAll('.mat-section').forEach((el,j) => el.classList.toggle('active', i===j));
+}
+
+// ── QUESTIONS ──
+const K = ['A','B','C','D','E'];
+
+const Q = [
+// ─── PILIHAN GANDA 1-29 ───
+{n:1,t:'pg',tp:'tp-thr',tl:'Taharah',
+ q:'Secara istilah, taharah dalam fiqih Islam berarti…',
+ o:['Membersihkan pakaian dan tempat tinggal dari kotoran','Bersuci dari hadas dan najis menggunakan air yang suci mensucikan atau tayammum','Mandi setiap hari agar badan selalu bersih dan harum','Mencuci tangan sebelum makan sebagai bentuk kebersihan'],
+ a:1,
+ e:'Secara <b>istilah fiqih</b>, <b>taharah</b> adalah bersuci dari hadas dan najis menggunakan air yang suci mensucikan (atau tayammum jika tidak ada air), sebagai syarat sahnya ibadah-ibadah tertentu seperti shalat. Taharah bukan sekadar kebersihan fisik biasa.',
+ oe:['❌ Membersihkan pakaian dan rumah adalah kebersihan biasa, bukan definisi taharah secara istilah fiqih.','✅ <b>Bersuci dari hadas dan najis</b> = definisi taharah secara istilah yang tepat dalam fiqih Islam.','❌ Mandi setiap hari adalah higienitas umum — bukan definisi taharah dalam konteks ibadah.','❌ Mencuci tangan sebelum makan adalah sunnah kebersihan umum, bukan pengertian taharah dalam fiqih.']
+},
+{n:2,t:'pg',tp:'tp-thr',tl:'Taharah',
+ q:'Air yang termasuk dalam kategori air mutlak (suci dan mensucikan) adalah…',
+ o:['Air kelapa, air teh, dan air kopi yang masih bersih','Air hujan, air laut, air sumur, dan air sungai','Air bekas wudhu yang masih bening dan tidak berubah warna','Air yang sengaja dicampur sabun untuk memperbanyak busa'],
+ a:1,
+ e:'<b>Air mutlak</b> adalah air alami yang suci (tidak najis) dan dapat mensucikan (boleh dipakai bersuci). Contohnya: <b>air hujan, air laut, air sumur, air sungai, air mata air, air salju, dan air embun</b> — semua air yang masih dalam keadaan alaminya.',
+ oe:['❌ Air kelapa, teh, dan kopi adalah minuman — bukan air murni. Ketiganya suci namun tidak mensucikan.','✅ <b>Air hujan, laut, sumur, sungai</b> = contoh air mutlak yang alami dan dapat digunakan untuk bersuci.','❌ Air bekas wudhu disebut air <b>musta&#39;mal</b> — suci tapi tidak mensucikan menurut mazhab Syafi&#39;i.','❌ Air bercampur sabun sudah tidak murni — tidak termasuk air mutlak.']
+},
+{n:3,t:'pg',tp:'tp-thr',tl:'Taharah',
+ q:'Najis yang cara mensucikannya cukup dipercikkan air ke tempat yang terkena najis adalah najis…',
+ o:['Mughallazhah — najis berat seperti jilatan anjing dan babi','Mutawassithah — najis sedang seperti kotoran manusia','Mukhaffafah — najis ringan seperti air kencing bayi laki-laki yang belum makan selain ASI','Semua jenis najis, selama airnya banyak dan mengalir'],
+ a:2,
+ e:'<b>Najis mukhaffafah</b> (ringan) adalah najis yang cara mensucikannya paling mudah — cukup <b>dipercikkan air</b> ke bagian yang terkena. Contohnya: air kencing bayi laki-laki yang belum mengonsumsi makanan selain ASI. Bukan disiram atau dicuci berulang.',
+ oe:['❌ <b>Mughallazhah</b> (berat) seperti anjing dan babi harus dicuci <b>7 kali, salah satunya dengan tanah</b> — jauh lebih ketat.','❌ <b>Mutawassithah</b> (sedang) harus disiram/dicuci hingga hilang warna, bau, dan rasanya.','✅ <b>Mukhaffafah</b> = najis ringan; cukup dipercikkan air. Berlaku khusus air kencing bayi laki-laki yang masih ASI eksklusif.','❌ Tidak semua najis cukup dipercikkan air — mughallazhah harus dicuci 7 kali dengan tanah.']
+},
+{n:4,t:'pg',tp:'tp-shl',tl:'Shalat',
+ q:'Jumlah rakaat shalat Maghrib adalah…',
+ o:['2 rakaat','3 rakaat','4 rakaat','5 rakaat'],
+ a:1,
+ e:'Shalat <b>Maghrib</b> dilaksanakan 3 rakaat — satu-satunya shalat fardhu yang ganjil rakaatnya. Waktu Maghrib dimulai sejak matahari terbenam hingga hilangnya mega merah di langit barat.',
+ oe:['❌ 2 rakaat = shalat <b>Subuh</b>.','✅ <b>3 rakaat</b> = shalat <b>Maghrib</b>. Satu-satunya shalat fardhu yang berjumlah 3 rakaat.','❌ 4 rakaat = shalat <b>Dzuhur, Ashar, dan Isya</b>.','❌ 5 rakaat bukan termasuk jumlah rakaat shalat fardhu manapun.']
+},
+{n:5,t:'pg',tp:'tp-shl',tl:'Shalat',
+ q:'Yang termasuk syarat wajib shalat adalah…',
+ o:['Menghadap kiblat dan menutup aurat','Islam, baligh, dan berakal sehat','Suci dari hadas dan sudah berwudhu','Membaca Al-Fatihah dan melakukan takbiratul ihram'],
+ a:1,
+ e:'<b>Syarat wajib shalat</b> adalah syarat yang membuat seseorang wajib melaksanakan shalat: <b>Islam, baligh, berakal, suci dari haid/nifas, dan telah sampai dakwah</b>. Sedangkan menghadap kiblat, menutup aurat, dan wudhu termasuk <b>syarat sah</b> shalat.',
+ oe:['❌ Menghadap kiblat dan menutup aurat = <b>syarat sah</b> shalat, bukan syarat wajib.','✅ <b>Islam, baligh, berakal</b> = inti syarat wajib shalat. Tanpa ini seseorang tidak terbebani kewajiban shalat.','❌ Suci dari hadas dan berwudhu = <b>syarat sah</b> shalat yang harus dipenuhi sebelum melaksanakan shalat.','❌ Membaca Al-Fatihah dan takbiratul ihram = <b>rukun shalat</b>, bukan syarat wajib.']
+},
+{n:6,t:'pg',tp:'tp-shl',tl:'Shalat Jumat',
+ q:'Shalat Jumat wajib dilaksanakan oleh…',
+ o:['Semua muslimin dan muslimah tanpa terkecuali setiap hari Jumat','Laki-laki muslim yang baligh, berakal, merdeka, mukim, dan sehat','Perempuan muslim yang sudah baligh dan tidak dalam keadaan haid','Semua orang yang mengaku Islam termasuk anak-anak'],
+ a:1,
+ e:'Shalat Jumat wajib bagi <b>laki-laki muslim yang: baligh, berakal, merdeka, mukim (tidak musafir), dan sehat (tidak sakit berat)</b>. Perempuan, musafir, orang sakit, dan anak-anak tidak wajib — namun sah jika mereka ikut serta.',
+ oe:['❌ Perempuan <b>tidak wajib</b> shalat Jumat — meski boleh dan sah jika ikut.','✅ <b>Laki-laki muslim, baligh, berakal, merdeka, mukim, sehat</b> = syarat wajib shalat Jumat yang tepat.','❌ Perempuan tidak wajib shalat Jumat. Perempuan yang haid juga tidak sah melaksanakannya.','❌ Anak-anak yang belum baligh <b>tidak wajib</b> shalat Jumat — mereka belum terbebani kewajiban syariat.']
+},
+{n:7,t:'pg',tp:'tp-shl',tl:'Shalat Jumat',
+ q:'Ketentuan shalat Jumat yang membedakannya dari shalat Dzuhur biasa adalah…',
+ o:['Dilaksanakan 4 rakaat dengan tambahan bacaan surah panjang','Dilaksanakan 2 rakaat berjamaah dan didahului dua khutbah','Boleh dilaksanakan secara munfarid (sendiri) di rumah masing-masing','Harus dilaksanakan sebelum terbit matahari pada hari Jumat'],
+ a:1,
+ e:'Ketentuan khas shalat Jumat: dilaksanakan <b>2 rakaat</b> (lebih sedikit dari Dzuhur yang 4 rakaat), harus <b>berjamaah</b>, dan didahului <b>dua khutbah</b>. Ini adalah syarat sah shalat Jumat — tanpa khutbah atau tanpa berjamaah, shalat Jumat tidak sah.',
+ oe:['❌ Shalat Jumat hanya <b>2 rakaat</b>, bukan 4 rakaat.','✅ <b>2 rakaat + berjamaah + dua khutbah</b> = ketentuan khas shalat Jumat yang membedakannya dari Dzuhur biasa.','❌ Shalat Jumat <b>tidak sah dilakukan sendiri</b> — berjamaah adalah syarat sahnya.','❌ Shalat Jumat dilaksanakan pada <b>waktu Dzuhur hari Jumat</b>, bukan sebelum terbit matahari.']
+},
+{n:8,t:'pg',tp:'tp-jam',tl:'Shalat Jamak',
+ q:'Shalat jamak taqdim adalah…',
+ o:['Menggabungkan dua shalat dan dikerjakan di waktu shalat yang kedua (akhir)','Menggabungkan dua shalat dan dikerjakan di waktu shalat yang pertama (awal)','Meringkas shalat 4 rakaat menjadi 2 rakaat saat dalam perjalanan','Mengerjakan shalat sendirian tanpa berjamaah karena ada uzur'],
+ a:1,
+ e:'<b>Jamak taqdim</b> (taqdim = dimajukan) adalah menggabungkan dua shalat dan dikerjakan pada <b>waktu shalat pertama (awal)</b>. Contoh: shalat Dzuhur dan Ashar dikerjakan sekaligus pada waktu Dzuhur. Lawannya adalah jamak ta&#39;khir (dikerjakan di waktu shalat kedua).',
+ oe:['❌ Dikerjakan di waktu shalat yang kedua (akhir) = <b>jamak ta&#39;khir</b>, bukan taqdim.','✅ <b>Jamak taqdim = dikerjakan di waktu shalat pertama/awal</b>. Contoh: Dzuhur + Ashar di waktu Dzuhur.','❌ Meringkas 4 rakaat jadi 2 rakaat = <b>qashar</b>, bukan jamak (meski bisa dilakukan bersamaan).','❌ Shalat sendiri karena uzur tidak termasuk definisi shalat jamak.']
+},
+{n:9,t:'pg',tp:'tp-jam',tl:'Sujud Sahwi',
+ q:'Sujud sahwi dilakukan karena…',
+ o:['Sengaja meninggalkan rukun shalat agar shalat lebih cepat selesai','Lupa melaksanakan tasyahud awal atau lupa jumlah rakaat saat shalat','Ingin menambah nilai ibadah dengan melakukan sujud ekstra','Merasakan kantuk yang berat sehingga hampir tertidur saat shalat'],
+ a:1,
+ e:'<b>Sujud sahwi</b> dilakukan karena <b>lupa atau ragu dalam shalat</b> — bukan karena sengaja. Penyebab utama: lupa tasyahud awal, lupa jumlah rakaat, kelebihan/kekurangan rukun karena lupa. Sujud sahwi adalah pengganti/penebus kekurangan yang tidak disengaja.',
+ oe:['❌ Meninggalkan rukun dengan <b>sengaja</b> membatalkan shalat — tidak cukup dengan sujud sahwi.','✅ <b>Lupa tasyahud awal atau lupa jumlah rakaat</b> = penyebab utama sujud sahwi yang benar.','❌ Sujud ekstra untuk menambah nilai bukanlah sujud sahwi — itu justru bisa membatalkan shalat jika tidak ada sebab.','❌ Kantuk dalam shalat tidak termasuk penyebab sujud sahwi.']
+},
+{n:10,t:'pg',tp:'tp-pua',tl:'Puasa',
+ q:'Dasar hukum kewajiban puasa Ramadan terdapat dalam…',
+ o:['QS. Al-Imran: 97 tentang kewajiban haji bagi yang mampu','QS. Al-Baqarah: 183 yang mewajibkan puasa bagi orang-orang beriman','QS. An-Nisa: 103 tentang kewajiban shalat bagi orang beriman','QS. Al-Maidah: 6 tentang tata cara bersuci sebelum shalat'],
+ a:1,
+ e:'Dalil kewajiban puasa Ramadan: <b>QS. Al-Baqarah: 183</b> — <em>"Wahai orang-orang yang beriman, diwajibkan atas kalian berpuasa sebagaimana diwajibkan atas orang-orang sebelum kalian, agar kalian bertakwa."</em> Ayat ini adalah landasan utama kewajiban puasa Ramadan.',
+ oe:['❌ QS. Al-Imran: 97 berbicara tentang kewajiban <b>haji</b>, bukan puasa.','✅ <b>QS. Al-Baqarah: 183</b> = dasar hukum wajib puasa Ramadan yang paling utama.','❌ QS. An-Nisa: 103 berkaitan dengan perintah <b>shalat</b>, khususnya shalat dalam kondisi perang.','❌ QS. Al-Maidah: 6 membahas tentang <b>wudhu dan tayammum</b>, bukan puasa.']
+},
+{n:11,t:'pg',tp:'tp-pua',tl:'Puasa',
+ q:'Yang termasuk syarat wajib puasa Ramadan adalah…',
+ o:['Mampu menghatamkan Al-Qur&#39;an minimal sekali selama Ramadan','Islam, baligh, berakal, mampu, dan mukim (bukan musafir)','Sudah menikah dan menjadi kepala keluarga yang bertanggung jawab','Mengetahui seluruh hukum dan ketentuan puasa secara detail'],
+ a:1,
+ e:'<b>Syarat wajib puasa</b> adalah kondisi yang mewajibkan seseorang untuk berpuasa: <b>Islam, baligh, berakal, mampu (tidak sakit parah), mukim (bukan musafir), dan suci dari haid/nifas</b>. Ini berbeda dari syarat sah puasa.',
+ oe:['❌ Menghatamkan Al-Qur&#39;an bukan syarat wajib puasa — itu amalan sunnah yang sangat dianjurkan di bulan Ramadan.','✅ <b>Islam + baligh + berakal + mampu + mukim</b> = syarat wajib puasa yang benar sesuai fiqih.','❌ Status pernikahan tidak berpengaruh pada kewajiban puasa — anak laki-laki yang sudah baligh pun wajib puasa.','❌ Mengetahui detail hukum puasa tidak termasuk syarat wajib — yang tidak tahu pun tetap wajib puasa jika memenuhi syarat lainnya.']
+},
+{n:12,t:'pg',tp:'tp-zak',tl:'Zakat',
+ q:'Nishab zakat emas adalah…',
+ o:['50 gram emas dengan kadar zakat 1%','85 gram emas dengan kadar zakat 2,5%','100 gram emas dengan kadar zakat 2,5%','Setara nilai 500 gram perak dengan kadar zakat 5%'],
+ a:1,
+ e:'Nishab zakat emas: <b>85 gram emas</b> (setara 20 mitsqal) yang telah dimiliki selama 1 tahun penuh (haul). Kadar zakatnya adalah <b>2,5%</b> dari total emas yang dimiliki. Contoh: Memiliki 100 gram emas → zakat = 2,5% × 100g = 2,5 gram emas.',
+ oe:['❌ 50 gram dengan 1% bukan ketentuan yang tepat. Nishab emas adalah 85 gram dengan 2,5%.','✅ <b>85 gram emas, kadar 2,5%</b> = nishab dan kadar zakat emas yang benar sesuai fiqih kontemporer.','❌ 100 gram emas melebihi nishab (85g) — bukan nishab melainkan contoh harta yang wajib zakat.','❌ 500 gram perak adalah nishab zakat <b>perak</b>, bukan emas. Kadarnya pun 2,5%, bukan 5%.']
+},
+{n:13,t:'pg',tp:'tp-zak',tl:'Zakat',
+ q:'Zakat fitrah wajib dikeluarkan sebesar…',
+ o:['2,5% dari seluruh harta yang dimiliki sepanjang tahun','1 sha&#39; (sekitar 2,5-3 kg) bahan makanan pokok per jiwa','Minimal Rp 50.000 per orang sesuai standar pemerintah','10% dari penghasilan bulan Ramadan'],
+ a:1,
+ e:'Zakat fitrah wajib dikeluarkan sebesar <b>1 sha&#39; (sekitar 2,5–3 kg)</b> bahan makanan pokok (beras, gandum, kurma, dll.) per jiwa. Bisa dikonversikan ke nilai uang setara harga bahan pokok tersebut. Waktu paling utama: sebelum shalat Idul Fitri.',
+ oe:['❌ 2,5% dari harta adalah kadar <b>zakat mal</b>, bukan zakat fitrah.','✅ <b>1 sha&#39; (~2,5-3 kg) makanan pokok per jiwa</b> = ukuran zakat fitrah yang tepat berdasarkan hadits shahih.','❌ Tidak ada ketentuan nominal rupiah yang pasti — tergantung harga bahan makanan pokok setempat.','❌ 10% penghasilan tidak termasuk ketentuan zakat fitrah — itu lebih mendekati ketentuan zakat pertanian.']
+},
+{n:14,t:'pg',tp:'tp-haj',tl:'Haji',
+ q:'Syarat wajib haji yang membedakannya dari ibadah wajib lainnya adalah…',
+ o:['Harus sudah menikah dan memiliki keluarga yang diinggalkan','Istitha&#39;ah (kemampuan) — mampu secara fisik, finansial, dan keamanan','Harus berasal dari negara yang sudah mengadakan hubungan diplomatik dengan Arab Saudi','Wajib memiliki ijazah pendidikan minimal SMA'],
+ a:1,
+ e:'Syarat wajib haji yang khas dan membedakannya adalah <b>istitha&#39;ah (kemampuan)</b> — mencakup kemampuan fisik (sehat), finansial (biaya perjalanan dan nafkah keluarga yang ditinggal), dan keamanan perjalanan. Tanpa kemampuan ini, haji tidak wajib.',
+ oe:['❌ Status pernikahan bukan syarat wajib haji — orang belum menikah pun wajib haji jika mampu.','✅ <b>Istitha&#39;ah (kemampuan)</b> = syarat wajib khas haji yang meliputi fisik, finansial, dan keamanan.','❌ Hubungan diplomatik antarnegara bukan syarat fiqih — ini hanya masalah administrasi perjalanan.','❌ Tingkat pendidikan tidak menjadi syarat dalam fiqih ibadah manapun.']
+},
+{n:15,t:'pg',tp:'tp-haj',tl:'Haji',
+ q:'Wukuf di Arafah dilaksanakan pada…',
+ o:['8 Dzulhijjah (hari Tarwiyah) sepanjang hari hingga malam','9 Dzulhijjah mulai dari tergelincirnya matahari hingga terbit fajar 10 Dzulhijjah','10 Dzulhijjah bersamaan dengan penyembelihan hewan qurban','Setiap malam Jumat selama bulan Dzulhijjah'],
+ a:1,
+ e:'<b>Wukuf di Arafah</b> dilaksanakan pada <b>9 Dzulhijjah</b> (dikenal sebagai Hari Arafah), dimulai setelah tergelincirnya matahari (waktu Dzuhur) hingga terbit fajar 10 Dzulhijjah. Wukuf adalah rukun haji yang paling utama — Nabi SAW bersabda: <em>"Haji itu adalah wukuf."</em>',
+ oe:['❌ 8 Dzulhijjah adalah hari Tarwiyah — jamaah berangkat ke Mina, belum wukuf di Arafah.','✅ <b>9 Dzulhijjah</b> = waktu wukuf di Arafah. Ini adalah hari tersibuk dan terpenting dalam ibadah haji.','❌ 10 Dzulhijjah adalah hari Idul Adha — hari penyembelihan qurban dan melempar jumrah aqabah.','❌ Wukuf hanya dilaksanakan satu hari yaitu 9 Dzulhijjah, bukan setiap malam Jumat.']
+},
+{n:16,t:'pg',tp:'tp-haj',tl:'Haji',
+ q:'Yang dimaksud dengan Sa&#39;i dalam ibadah haji adalah…',
+ o:['Menglilingi Ka&#39;bah sebanyak 7 kali berlawanan arah jarum jam','Berlari-lari kecil antara bukit Shafa dan Marwa sebanyak 7 kali','Melemparkan batu kerikil ke tiga tiang jumrah di Mina','Mencukur atau memotong rambut sebagai tanda selesai ihram'],
+ a:1,
+ e:'<b>Sa&#39;i</b> adalah salah satu rukun haji berupa <b>berjalan/berlari-lari kecil antara bukit Shafa dan Marwa sebanyak 7 kali</b>. Dimulai dari bukit Shafa dan berakhir di Marwa. Sa&#39;i mengenang perjuangan Siti Hajar mencari air untuk Nabi Ismail AS.',
+ oe:['❌ Mengelilingi Ka&#39;bah 7 kali = <b>Tawaf</b>, bukan Sa&#39;i.','✅ <b>Sa&#39;i = berlari-lari kecil Shafa-Marwa 7 kali</b>. Rukun haji yang mengenang perjuangan Hajar AS.','❌ Melempar batu ke tiang jumrah = <b>melempar jumrah</b> — wajib haji, bukan sa&#39;i.','❌ Mencukur/memotong rambut = <b>tahallul</b> — rukun haji terakhir.']
+},
+{n:17,t:'pg',tp:'tp-haj',tl:'Haji',
+ q:'Tahallul dalam ibadah haji adalah…',
+ o:['Niat memulai rangkaian ibadah haji dengan mengenakan pakaian ihram','Berdiam diri di Padang Arafah pada tanggal 9 Dzulhijjah','Mencukur atau memotong rambut minimal 3 helai sebagai tanda keluar dari ihram','Tawaf keliling Ka&#39;bah sebagai perpisahan sebelum meninggalkan Makkah'],
+ a:2,
+ e:'<b>Tahallul</b> adalah rukun haji berupa <b>mencukur atau memotong rambut</b> (minimal 3 helai) sebagai tanda resmi keluar dari status ihram. Setelah tahallul, larangan-larangan ihram sudah tidak berlaku lagi bagi jamaah.',
+ oe:['❌ Niat memulai haji dengan pakaian ihram = <b>Ihram</b> — rukun pertama haji.','❌ Berdiam di Arafah = <b>Wukuf</b> — rukun haji yang paling utama.','✅ <b>Tahallul = mencukur/memotong rambut</b> sebagai tanda keluar dari ihram. Inilah rukun haji kelima.','❌ Tawaf keliling Ka&#39;bah saat perpisahan = <b>Tawaf Wada&#39;</b> — wajib haji, bukan tahallul.']
+},
+{n:18,t:'pg',tp:'tp-mak',tl:'Makanan',
+ q:'Hukum aqiqah dalam fiqih Islam adalah…',
+ o:['Wajib — orang tua berdosa jika tidak melaksanakannya','Sunnah muakkad — sangat dianjurkan namun tidak berdosa jika tidak mampu','Fardhu kifayah — cukup dilakukan oleh sebagian anggota keluarga','Mubah — bebas dilakukan atau tidak tanpa ada anjuran khusus'],
+ a:1,
+ e:'Hukum aqiqah adalah <b>sunnah muakkad</b> (sunnah yang sangat dianjurkan). Artinya: sangat dianjurkan bagi yang mampu, namun tidak berdosa jika benar-benar tidak mampu. Hadits Nabi SAW menegaskan: <em>"Setiap anak tergadaikan dengan aqiqahnya."</em> (HR. Ahmad, Abu Dawud)',
+ oe:['❌ Aqiqah bukan <b>wajib</b> — meninggalkannya tidak berdosa bagi yang tidak mampu.','✅ <b>Sunnah muakkad</b> = hukum aqiqah yang tepat. Sangat dianjurkan dan punya keutamaan besar.','❌ Aqiqah bukan fardhu kifayah — ini adalah tanggung jawab orang tua si bayi khususnya ayah.','❌ Mubah terlalu merendahkan — aqiqah memiliki anjuran dan keutamaan yang kuat dalam hadits.']
+},
+{n:19,t:'pg',tp:'tp-mak',tl:'Aqiqah',
+ q:'Jumlah hewan aqiqah yang benar untuk bayi laki-laki dan perempuan adalah…',
+ o:['1 ekor kambing untuk laki-laki dan 2 ekor kambing untuk perempuan','2 ekor kambing untuk laki-laki dan 1 ekor kambing untuk perempuan','1 ekor sapi untuk laki-laki dan 1 ekor kambing untuk perempuan','3 ekor kambing untuk laki-laki dan 2 ekor kambing untuk perempuan'],
+ a:1,
+ e:'Berdasarkan hadits Nabi SAW: <em>"Bagi anak laki-laki dua ekor kambing yang seimbang, dan bagi anak perempuan satu ekor kambing."</em> (HR. Ahmad, Abu Dawud, Tirmidzi). Maka: <b>bayi laki-laki = 2 kambing, bayi perempuan = 1 kambing</b>.',
+ oe:['❌ Ini terbalik. Bukan 1 untuk laki-laki dan 2 untuk perempuan.','✅ <b>Laki-laki = 2 kambing, Perempuan = 1 kambing</b> = ketentuan aqiqah yang benar berdasarkan hadits shahih.','❌ Tidak ada ketentuan sapi untuk aqiqah laki-laki — ketentuan hadits menyebut kambing.','❌ 3 dan 2 kambing bukan ketentuan yang ada dalam hadits.']
+},
+{n:20,t:'pg',tp:'tp-jb',tl:'Jual Beli',
+ q:'Yang termasuk rukun jual beli dalam fiqih Islam adalah…',
+ o:['Niat jual beli, saksi, dan nota pembelian','Penjual, pembeli, barang, harga, dan ijab kabul','Sertifikasi halal, kontrak tertulis, dan cap notaris','Tawar-menawar, persetujuan harga, dan pengiriman barang'],
+ a:1,
+ e:'Rukun jual beli dalam fiqih: (1) <b>Penjual dan pembeli</b> (berakal, baligh, atas kehendak sendiri), (2) <b>Barang/objek</b> (ada, halal, jelas), (3) <b>Harga</b> (jelas dan disepakati), (4) <b>Ijab kabul (akad)</b> — pernyataan jual dari penjual dan penerimaan dari pembeli.',
+ oe:['❌ Niat tidak termasuk rukun jual beli secara fiqih — saksi dan nota juga bukan rukun.','✅ <b>Penjual + pembeli + barang + harga + ijab kabul</b> = kelima rukun jual beli dalam fiqih Islam.','❌ Sertifikasi halal dan notaris adalah persyaratan hukum modern, bukan rukun jual beli dalam fiqih.','❌ Tawar-menawar dan pengiriman adalah proses transaksi — bukan rukun yang menentukan sah/tidaknya jual beli.']
+},
+{n:21,t:'pg',tp:'tp-jb',tl:'Jual Beli',
+ q:'Riba dalam hutang-piutang terjadi ketika…',
+ o:['Peminjam mengembalikan uang sebelum jatuh tempo yang disepakati','Pemberi pinjaman mensyaratkan adanya tambahan (bunga) atas jumlah pinjaman','Peminjam meminta keringanan karena sedang kesulitan keuangan','Pinjaman diberikan tanpa akad tertulis dan tanpa saksi'],
+ a:1,
+ e:'<b>Riba dalam hutang piutang (riba qardh)</b> terjadi ketika <b>pemberi pinjaman mensyaratkan pengembalian dengan tambahan</b> atas pokok pinjaman — baik disebut bunga, imbalan jasa, atau apapun namanya. Ini diharamkan Allah dalam QS. Al-Baqarah: 275-279.',
+ oe:['❌ Membayar lebih awal dari jatuh tempo adalah hal yang dibolehkan — bahkan terpuji.','✅ <b>Mensyaratkan tambahan (bunga) atas pinjaman</b> = riba yang diharamkan. Inilah bunga bank konvensional.','❌ Meminta keringanan adalah hak peminjam yang sedang kesulitan — ini justru dianjurkan oleh Al-Qur&#39;an (QS. Al-Baqarah: 280).','❌ Tidak ada akad tertulis tidak otomatis menjadi riba — meski lebih baik ada bukti tertulis (QS. Al-Baqarah: 282).']
+},
+{n:22,t:'pg',tp:'tp-jb',tl:'Pinjam Meminjam',
+ q:'Perbedaan utama antara ijarah (sewa menyewa) dan ujrah (upah) adalah…',
+ o:['Ijarah hanya berlaku untuk benda, sedangkan ujrah untuk jasa tenaga manusia','Ijarah khusus untuk tanah dan bangunan, ujrah khusus untuk kendaraan','Ijarah dan ujrah adalah istilah yang sama persis dalam fiqih muamalah','Ijarah hanya boleh di antara sesama muslim, ujrah boleh dengan non-muslim'],
+ a:0,
+ e:'<b>Ijarah</b> (sewa menyewa) adalah akad untuk memanfaatkan <b>barang/aset</b> dengan imbalan tertentu dalam waktu tertentu. <b>Ujrah</b> adalah <b>upah/imbalan atas jasa tenaga</b> seseorang. Keduanya termasuk dalam kategori ijarah, namun ujrah lebih spesifik pada manfaat tenaga/keahlian manusia.',
+ oe:['✅ <b>Ijarah untuk barang/aset, ujrah untuk jasa tenaga manusia</b> = perbedaan utama yang tepat secara fiqih.','❌ Ijarah tidak hanya untuk tanah dan bangunan — berlaku juga untuk kendaraan, peralatan, dll.','❌ Ijarah dan ujrah berbeda — meski keduanya berkaitan, ujrah adalah jenis/bagian dari akad ijarah.','❌ Tidak ada perbedaan berdasarkan agama pihak yang berakad dalam ketentuan ijarah vs ujrah.']
+},
+{n:23,t:'pg',tp:'tp-was',tl:'Warisan',
+ q:'Yang merupakan penghalang seseorang mendapat warisan adalah…',
+ o:['Perbedaan jenis kelamin — perempuan tidak dapat mewarisi dari laki-laki','Perbedaan agama antara pewaris dan ahli waris','Perbedaan kewarganegaraan antara pewaris dan ahli waris','Jarak tempat tinggal yang sangat jauh antara ahli waris dan pewaris'],
+ a:1,
+ e:'Penghalang warisan dalam fiqih Islam ada tiga: (1) <b>Pembunuhan</b> — membunuh pewaris, (2) <b>Perbedaan agama</b> — muslim tidak mewarisi dari non-muslim dan sebaliknya, (3) <b>Perbudakan</b>. Perbedaan jenis kelamin, kewarganegaraan, dan jarak tidak menghalangi warisan.',
+ oe:['❌ Perbedaan jenis kelamin <b>tidak menghalangi</b> warisan. Perempuan tetap berhak mewarisi — hanya berbeda bagiannya.','✅ <b>Perbedaan agama</b> = salah satu penghalang waris. Muslim tidak mewarisi non-muslim, dan sebaliknya (HR. Bukhari-Muslim).','❌ Perbedaan kewarganegaraan tidak dikenal sebagai penghalang waris dalam fiqih Islam.','❌ Jarak tempat tinggal tidak menghalangi hak waris — ahli waris di luar negeri tetap berhak.']
+},
+{n:24,t:'pg',tp:'tp-was',tl:'Wasiat',
+ q:'Ketentuan maksimal harta yang boleh diwasiatkan adalah…',
+ o:['Setengah (1/2) dari total harta peninggalan','Sepertiga (1/3) dari total harta peninggalan','Seperempat (1/4) dari total harta peninggalan','Seluruh harta boleh diwasiatkan jika sudah ada persetujuan ahli waris'],
+ a:1,
+ e:'Berdasarkan hadits: ketika sahabat Sa&#39;ad bin Abi Waqqash bertanya tentang wasiat, Rasulullah bersabda: <em>"Sepertiga, dan sepertiga itu sudah banyak."</em> (HR. Bukhari-Muslim). Wasiat maksimal <b>1/3 (sepertiga) dari total harta</b>. Lebih dari itu harus mendapat persetujuan semua ahli waris.',
+ oe:['❌ Setengah (1/2) melebihi batas maksimal wasiat — tidak diperbolehkan tanpa izin semua ahli waris.','✅ <b>Sepertiga (1/3)</b> = batas maksimal wasiat yang dibolehkan berdasarkan hadits sahih.','❌ Seperempat (1/4) memang di bawah 1/3 sehingga boleh, namun bukan batas maksimalnya.','❌ Seluruh harta tidak bisa diwasiatkan begitu saja — ahli waris memiliki hak yang tidak boleh dilanggar.']
+},
+{n:25,t:'pg',tp:'tp-was',tl:'Wasiat',
+ q:'Apakah wasiat boleh diberikan kepada ahli waris (seperti anak atau istri)?',
+ o:['Boleh tanpa syarat apapun, karena ahli waris lebih berhak menerima harta pewaris','Tidak boleh sama sekali, karena ahli waris sudah mendapat bagian dari warisan','Boleh jika mendapat persetujuan (izin) dari seluruh ahli waris yang lain','Hanya boleh untuk anak sulung sebagai pengganti bagian warisan yang kurang'],
+ a:2,
+ e:'Hadits menyebutkan: <em>"Tidak ada wasiat bagi ahli waris."</em> (HR. Abu Dawud, Tirmidzi). Artinya, secara hukum wasiat kepada ahli waris tidak sah. <b>Namun boleh jika mendapat persetujuan dari seluruh ahli waris yang lain</b> — ini adalah jalan tengah yang disepakati para ulama.',
+ oe:['❌ Wasiat kepada ahli waris tidak boleh tanpa syarat — karena hadits melarangnya untuk mencegah ketidakadilan.','❌ "Tidak boleh sama sekali" terlalu mutlak — boleh jika ada persetujuan seluruh ahli waris lain.','✅ <b>Boleh dengan persetujuan seluruh ahli waris</b> = ketentuan yang tepat berdasarkan ijtihad ulama.','❌ Tidak ada ketentuan khusus untuk anak sulung dalam fiqih warisan maupun wasiat Islam.']
+},
+{n:26,t:'pg',tp:'tp-zak',tl:'Zakat',
+ q:'Berikut ini yang termasuk golongan penerima zakat (asnaf) adalah…',
+ o:['Orang kaya yang masih memiliki tanggungan pajak besar kepada negara','Fakir, miskin, amil, muallaf, riqab, gharimin, fisabilillah, dan ibnu sabil','Seluruh warga muslim tanpa terkecuali di wilayah tersebut','Hanya orang yang sudah terdaftar sebagai penerima bantuan pemerintah'],
+ a:1,
+ e:'Allah SWT menyebutkan 8 golongan penerima zakat dalam QS. At-Taubah: 60: <b>(1) Fakir, (2) Miskin, (3) Amil, (4) Muallaf, (5) Riqab (memerdekakan diri), (6) Gharimin (terlilit hutang), (7) Fisabilillah (jalan Allah), (8) Ibnu Sabil (musafir kehabisan bekal)</b>.',
+ oe:['❌ Orang kaya yang punya hutang pajak bukan termasuk asnaf zakat.','✅ <b>8 asnaf zakat</b> sesuai QS. At-Taubah: 60 = fakir, miskin, amil, muallaf, riqab, gharimin, fisabilillah, ibnu sabil.','❌ Tidak semua warga muslim berhak menerima zakat — hanya yang memenuhi kriteria 8 asnaf.','❌ Status penerima bantuan pemerintah bukan kriteria penerima zakat dalam fiqih.']
+},
+{n:27,t:'pg',tp:'tp-thr',tl:'Taharah',
+ q:'Seseorang yang sedang berwudhu lalu kentut. Apa yang harus dilakukan?',
+ o:['Melanjutkan wudhu dari bagian yang terakhir dibasuh','Mengulangi wudhu dari awal karena wudhu yang sedang dilakukan batal','Cukup beristighfar dan melanjutkan wudhu seperti biasa','Tidak perlu melakukan apapun selama masih belum selesai wudhu'],
+ a:1,
+ e:'Kentut termasuk <b>hadas kecil</b> yang membatalkan wudhu. Jika terjadi saat berwudhu, maka wudhu yang sedang dilakukan dianggap <b>batal dan harus diulang dari awal</b> — termasuk niat — karena wudhu belum selesai sempurna sebelum kentut terjadi.',
+ oe:['❌ Wudhu tidak bisa dilanjutkan dari bagian terakhir karena wudhu tersebut sudah batal sejak kentut.','✅ <b>Mengulangi wudhu dari awal</b> = tindakan yang benar. Kentut membatalkan wudhu yang sedang dilakukan.','❌ Beristighfar tidak menggantikan atau memperbaiki wudhu yang batal.','❌ Wudhu yang belum selesai pun batal ketika terjadi hadas — tidak ada pengecualian.']
+},
+{n:28,t:'pg',tp:'tp-jb',tl:'Jual Beli',
+ q:'Contoh transaksi yang mengandung unsur gharar (penipuan/ketidakjelasan) adalah…',
+ o:['Membeli baju dengan harga yang sudah tertera di label','Menjual ikan yang masih berada di dalam laut dengan jumlah yang tidak pasti','Menyewa rumah selama 1 tahun dengan harga yang disepakati di awal','Membeli sayuran di pasar dengan harga tawar yang disepakati bersama'],
+ a:1,
+ e:'<b>Gharar</b> adalah transaksi yang mengandung unsur ketidakjelasan/ketidakpastian yang merugikan salah satu pihak. "Menjual ikan yang masih di laut" adalah gharar karena: <b>jumlahnya tidak pasti, mungkin tidak dapat ditangkap, dan tidak dapat diserahterimakan saat akad</b>.',
+ oe:['❌ Membeli dengan harga label yang jelas = transaksi yang sah karena harga dan barang jelas.','✅ <b>Menjual ikan di laut</b> = gharar — barang tidak ada, jumlah tidak pasti, tidak bisa diserahkan saat akad.','❌ Sewa rumah dengan harga disepakati di awal adalah ijarah yang sah — objek dan harga jelas.','❌ Tawar menawar yang berakhir dengan kesepakatan adalah transaksi yang sah dan dianjurkan.']
+},
+{n:29,t:'pg',tp:'tp-was',tl:'Warisan',
+ q:'Yang menyebabkan seseorang tidak berhak mendapat warisan meskipun ia adalah ahli waris yang sah adalah…',
+ o:['Ahli waris tersebut tinggal di luar negeri dan sulit dihubungi','Ahli waris tersebut terbukti membunuh pewaris (orang yang meninggal)','Ahli waris tersebut tidak hadir dalam pembagian warisan','Ahli waris tersebut masih anak-anak dan belum bisa mengelola harta'],
+ a:1,
+ e:'<b>Pembunuhan</b> adalah salah satu dari tiga penghalang warisan. Hikmahnya: agar tidak ada orang yang membunuh kerabatnya demi mendapatkan warisan. Hadits: <em>"Pembunuh tidak berhak mewarisi."</em> (HR. Nasa&#39;i). Penghalang lainnya: perbedaan agama dan perbudakan.',
+ oe:['❌ Tempat tinggal di luar negeri tidak menghalangi hak waris — ahli waris tetap berhak meskipun jauh.','✅ <b>Terbukti membunuh pewaris</b> = penghalang waris yang paling tegas. "Pembunuh tidak berhak mewarisi." (HR. Nasa&#39;i)','❌ Tidak hadir dalam pembagian tidak menghapus hak waris — harta tetap menjadi haknya.','❌ Status anak-anak tidak menghalangi hak waris — harta dipegang wali sampai ia dewasa.']
+},
+
+// ─── PGK 30-39 ───
+{n:30,t:'pgk',tp:'tp-thr',tl:'Taharah',
+ q:'Manakah yang termasuk <b>contoh air mutlak</b> (suci dan mensucikan)?',
+ o:['Air hujan yang baru turun dan belum terkena najis',
+    'Air laut yang asin rasanya',
+    'Air bekas wudhu yang masih bening',
+    'Air sumur yang langsung diambil dari dalam tanah',
+    'Air teh manis yang masih bersih dalam gelas'],
+ a:[0,1,3],
+ e:'<b>Air mutlak</b> adalah air alami yang suci dan dapat mensucikan. Contoh: air hujan, air laut, air sumur, air sungai, air mata air, air salju. Air bekas wudhu = air musta&#39;mal (tidak mensucikan). Air teh = air yang sudah berubah jenis (bukan air murni lagi), hukumnya suci tapi tidak mensucikan.',
+ oe:['✅ <b>Air hujan</b> = air mutlak yang paling utama. Allah menyebutnya sebagai "thahuran" (sangat mensucikan) dalam QS. Al-Furqan: 48.','✅ <b>Air laut</b> = air mutlak meski asin. Nabi SAW: "Laut itu suci airnya dan halal bangkainya." (HR. Abu Dawud)','❌ <b>Air bekas wudhu</b> = air musta&#39;mal — suci tapi tidak bisa mensucikan menurut mazhab Syafi&#39;i.','✅ <b>Air sumur</b> = air mutlak yang alami langsung dari tanah. Sah untuk wudhu dan mandi wajib.','❌ <b>Air teh</b> = minuman bukan air murni. Suci tapi tidak mensucikan — tidak bisa untuk wudhu.']
+},
+{n:31,t:'pgk',tp:'tp-shl',tl:'Shalat',
+ q:'Manakah yang termasuk <b>syarat sah shalat</b>?',
+ o:['Suci dari hadas kecil (sudah berwudhu) dan hadas besar',
+    'Menutup aurat sesuai ketentuan syariat',
+    'Menghadap kiblat (arah Ka&#39;bah di Makkah)',
+    'Sudah berusia minimal 7 tahun',
+    'Sudah masuk waktu shalat yang ditentukan'],
+ a:[0,1,2,4],
+ e:'Syarat sah shalat: (1) <b>Suci dari hadas</b>, (2) <b>Menutup aurat</b>, (3) <b>Menghadap kiblat</b>, (4) <b>Sudah masuk waktu shalat</b>, (5) badan, pakaian, dan tempat suci dari najis. Usia minimal 7 tahun adalah anjuran untuk <b>memerintah anak shalat</b>, bukan syarat sah shalat itu sendiri.',
+ oe:['✅ <b>Suci dari hadas</b> (wudhu untuk hadas kecil, mandi wajib untuk hadas besar) = syarat sah shalat yang utama.','✅ <b>Menutup aurat</b> = syarat sah shalat yang ditetapkan Al-Qur&#39;an (QS. Al-A&#39;raf: 31).','✅ <b>Menghadap kiblat</b> = syarat sah shalat kecuali dalam kondisi tertentu (shalat di kendaraan, dll).','❌ <b>Usia minimal 7 tahun</b> bukan syarat sah — itu anjuran mengajari anak shalat. Anak kecil pun shalatnya sah.','✅ <b>Sudah masuk waktu shalat</b> = syarat sah. Shalat sebelum waktunya tidak sah.']
+},
+{n:32,t:'pgk',tp:'tp-jam',tl:'Sujud Sahwi',
+ q:'Manakah yang termasuk <b>penyebab sujud sahwi</b>?',
+ o:['Lupa melakukan tasyahud awal dan terlanjur berdiri untuk rakaat berikutnya',
+    'Ragu tentang jumlah rakaat yang sudah dikerjakan',
+    'Sengaja meninggalkan shalat berjamaah dan shalat sendiri',
+    'Lupa membaca surah setelah Al-Fatihah',
+    'Tidak sengaja kelebihan rakaat karena lupa jumlah rakaat yang sudah dikerjakan'],
+ a:[0,1,4],
+ e:'Penyebab sujud sahwi: (1) <b>Lupa tasyahud awal</b> dan terlanjur berdiri, (2) <b>Ragu jumlah rakaat</b> (ambil yang lebih sedikit, lalu sujud sahwi), (3) <b>Kelebihan atau kekurangan rukun/sunnah</b> karena lupa. Shalat sendiri bukan penyebab sujud sahwi. Lupa surah setelah Fatihah: menurut sebagian ulama cukup sujud sahwi.',
+ oe:['✅ <b>Lupa tasyahud awal</b> dan terlanjur berdiri = penyebab sujud sahwi yang paling umum terjadi.','✅ <b>Ragu jumlah rakaat</b> = penyebab sujud sahwi. Cara: ambil yang lebih sedikit, lanjutkan, sujud sahwi di akhir.','❌ <b>Shalat sendiri</b> tidak ada kaitannya dengan sujud sahwi — sujud sahwi berkaitan dengan lupa dalam shalat.','❌ <b>Lupa surah setelah Fatihah</b> menurut jumhur ulama tidak mengharuskan sujud sahwi karena surah itu sunnah.','✅ <b>Kelebihan rakaat karena lupa</b> = penyebab sujud sahwi — menambah rakaat tanpa disengaja.']
+},
+{n:33,t:'pgk',tp:'tp-pua',tl:'Puasa',
+ q:'Manakah yang termasuk <b>hal yang membatalkan puasa</b>?',
+ o:['Makan dan minum dengan sengaja di siang hari',
+    'Makan dan minum karena lupa (tidak ingat sedang berpuasa)',
+    'Hubungan suami-istri (jimak) di siang hari bulan Ramadan',
+    'Muntah dengan sengaja',
+    'Berkumur-kumur saat wudhu dan tidak ada yang tertelan'],
+ a:[0,2,3],
+ e:'Yang <b>membatalkan puasa</b>: makan/minum <b>sengaja</b>, jimak di siang hari, muntah <b>sengaja</b>. Yang <b>tidak membatalkan</b>: makan/minum karena lupa (hadits: <em>"Sesungguhnya Allah yang memberinya makan dan minum"</em> — HR. Bukhari), berkumur yang tidak tertelan.',
+ oe:['✅ <b>Makan/minum sengaja</b> = membatalkan puasa. Wajib qadha (mengganti di hari lain).','❌ <b>Makan karena lupa</b> = <em>tidak membatalkan</em> puasa. Lanjutkan begitu ingat (HR. Bukhari-Muslim).','✅ <b>Jimak (hubungan suami-istri) siang hari</b> = membatalkan puasa + wajib kafarat yang berat.','✅ <b>Muntah sengaja</b> = membatalkan puasa. Muntah tidak disengaja: tidak membatalkan.','❌ <b>Berkumur dalam wudhu</b> tidak membatalkan puasa selama tidak ada yang tertelan dengan sengaja.']
+},
+{n:34,t:'pgk',tp:'tp-haj',tl:'Haji',
+ q:'Manakah yang termasuk <b>rukun haji</b>?',
+ o:['Ihram — niat memulai ibadah haji dengan pakaian ihram',
+    'Wukuf di Arafah pada 9 Dzulhijjah',
+    'Bermalam di Muzdalifah (mabit)',
+    'Tawaf Ifadah mengelilingi Ka&#39;bah 7 kali',
+    'Sa&#39;i antara bukit Shafa dan Marwa 7 kali'],
+ a:[0,1,3,4],
+ e:'Rukun haji ada 6: Ihram, Wukuf di Arafah, Tawaf Ifadah, Sa&#39;i, Tahallul, Tertib. <b>Mabit (bermalam) di Muzdalifah adalah WAJIB haji</b>, bukan rukun. Perbedaannya: meninggalkan rukun = haji tidak sah; meninggalkan wajib = haji sah tapi kena dam (denda).',
+ oe:['✅ <b>Ihram</b> = rukun pertama haji. Tanpa niat ihram, seluruh rangkaian haji tidak sah.','✅ <b>Wukuf di Arafah</b> = rukun haji yang paling utama. Nabi SAW: "Haji itu adalah wukuf." (HR. Tirmidzi)','❌ <b>Mabit di Muzdalifah</b> = <b>wajib haji</b>, bukan rukun. Meninggalkannya wajib membayar dam.','✅ <b>Tawaf Ifadah</b> = rukun haji ketiga. Tawaf mengelilingi Ka&#39;bah 7 kali berlawanan arah jarum jam.','✅ <b>Sa&#39;i</b> = rukun haji keempat. Berjalan/berlari Shafa-Marwa 7 kali, dimulai dari Shafa.']
+},
+{n:35,t:'pgk',tp:'tp-mak',tl:'Makanan',
+ q:'Manakah hewan yang <b>diharamkan</b> untuk dikonsumsi dalam Islam?',
+ o:['Babi dalam segala bentuk dan olahannya',
+    'Harimau dan singa (hewan bertaring pemangsa)',
+    'Sapi yang disembelih dengan menyebut nama Allah',
+    'Elang dan rajawali (burung bercakar tajam)',
+    'Ikan laut segar yang baru ditangkap'],
+ a:[0,1,3],
+ e:'Yang diharamkan: (1) <b>Babi</b> — haram secara nash Al-Qur&#39;an; (2) <b>Hewan bertaring pemangsa</b> seperti harimau, singa — haram berdasarkan hadits; (3) <b>Burung bercakar tajam</b> seperti elang — haram berdasarkan hadits. Sapi yang disembelih dengan nama Allah = halal. Ikan laut = halal tanpa perlu disembelih.',
+ oe:['✅ <b>Babi</b> = haram secara nash Al-Qur&#39;an (QS. Al-Baqarah: 173, Al-Maidah: 3). Termasuk semua produk olahannya.','✅ <b>Harimau dan singa</b> = haram karena memiliki taring dan merupakan hewan pemangsa (HR. Bukhari-Muslim).','❌ <b>Sapi yang disembelih atas nama Allah</b> = <em>halal</em>. Sapi termasuk hewan halal yang banyak dimakan umat Islam.','✅ <b>Elang dan rajawali</b> = haram karena memiliki cakar tajam untuk menyergap mangsa (HR. Muslim).','❌ <b>Ikan laut</b> = halal secara mutlak. Bahkan bangkai ikan pun halal dimakan menurut hadits.']
+},
+{n:36,t:'pgk',tp:'tp-jb',tl:'Jual Beli',
+ q:'Manakah yang termasuk <b>syarat sah jual beli</b>?',
+ o:['Barang yang diperjualbelikan bersifat halal dan suci',
+    'Barang dapat diserahkan kepada pembeli saat akad',
+    'Harga dan barang tidak harus disebutkan — cukup ada niat yang baik',
+    'Transaksi dilakukan atas dasar suka sama suka (tanpa paksaan)',
+    'Wajib ada saksi minimal dua orang dalam setiap transaksi jual beli'],
+ a:[0,1,3],
+ e:'Syarat sah jual beli: <b>barang halal dan suci</b>, <b>barang dapat diserahkan</b> (bukan gharar), <b>suka sama suka</b> (tanpa paksaan). Harga dan barang harus jelas — tidak cukup hanya niat. Saksi tidak wajib dalam jual beli (wajib dalam akad utang-piutang tertulis menurut QS. Al-Baqarah: 282).',
+ oe:['✅ <b>Barang halal dan suci</b> = syarat sah pertama. Menjual barang haram seperti khamr tidak sah.','✅ <b>Barang dapat diserahkan</b> = syarat sah. Menjual barang yang tidak bisa diserahkan = gharar (haram).','❌ <b>Harga dan barang harus jelas</b> — tidak cukup niat saja. Ketidakjelasan (gharar) membatalkan akad.','✅ <b>Suka sama suka</b> = syarat sah penting. "Jual beli itu hanya sah atas dasar saling ridha." (HR. Ibnu Majah)','❌ <b>Saksi tidak wajib dalam jual beli</b> — kecuali jual beli dengan kredit/hutang yang sebaiknya dicatat (QS. Al-Baqarah: 282).']
+},
+{n:37,t:'pgk',tp:'tp-was',tl:'Warisan',
+ q:'Manakah yang termasuk <b>penghalang mendapatkan warisan</b> dalam Islam?',
+ o:['Membunuh pewaris yang akan mewariskan hartanya',
+    'Perbedaan agama antara pewaris dan ahli waris',
+    'Ahli waris masih kecil dan belum bisa mengelola harta',
+    'Ahli waris hidup dalam kemiskinan dan sangat membutuhkan harta',
+    'Ahli waris berstatus budak (riqab) yang belum merdeka'],
+ a:[0,1,4],
+ e:'Penghalang warisan ada tiga: (1) <b>Pembunuhan</b> — agar tidak ada yang membunuh demi warisan; (2) <b>Perbedaan agama</b> — muslim ≠ mewarisi dari kafir, dan sebaliknya; (3) <b>Perbudakan</b> — budak tidak bisa memiliki harta. Kemiskinan dan usia muda tidak menghalangi hak waris.',
+ oe:['✅ <b>Membunuh pewaris</b> = penghalang waris. "Pembunuh tidak berhak mewarisi." (HR. Nasa&#39;i, Ibnu Majah)','✅ <b>Perbedaan agama</b> = penghalang waris. Muslim tidak mewarisi dari non-muslim (HR. Bukhari-Muslim).','❌ <b>Masih kecil</b> tidak menghalangi hak waris. Harta dikelola wali sampai ia dewasa.','❌ <b>Kemiskinan</b> justru membuat seseorang lebih berhak — tapi kemiskinan bukan penghalang waris.','✅ <b>Berstatus budak</b> = penghalang waris. Budak tidak bisa memiliki harta secara mandiri.']
+},
+{n:38,t:'pgk',tp:'tp-was',tl:'Wasiat',
+ q:'Manakah yang termasuk <b>syarat sah wasiat</b>?',
+ o:['Pewasiat dalam keadaan berakal dan sadar (tidak gila atau terpaksa)',
+    'Objek yang diwasiatkan jelas dan diketahui jenisnya',
+    'Jumlah harta yang diwasiatkan tidak melebihi sepertiga (1/3) dari total harta',
+    'Disaksikan oleh minimal 10 orang anggota keluarga besar',
+    'Wasiat harus dibuat di depan hakim pengadilan agama'],
+ a:[0,1,2],
+ e:'Syarat sah wasiat: (1) <b>Pewasiat berakal sehat dan tidak terpaksa</b>; (2) <b>Objek wasiat jelas</b> (harta/benda yang diwasiatkan diketahui); (3) <b>Tidak melebihi 1/3 harta</b>. Syarat saksi 10 orang dan pengadilan agama tidak ada dalam fiqih — meski saksi dianjurkan untuk menghindari sengketa.',
+ oe:['✅ <b>Pewasiat berakal dan tidak terpaksa</b> = syarat sah utama. Wasiat orang gila atau dipaksa tidak sah.','✅ <b>Objek wasiat jelas</b> = syarat sah. Wasiat yang objeknya tidak jelas (samar) dapat menimbulkan sengketa dan bisa tidak sah.','✅ <b>Tidak melebihi 1/3 harta</b> = syarat sah berdasarkan hadits. Lebih dari itu harus seizin ahli waris.','❌ <b>Saksi 10 orang</b> bukan syarat sah dalam fiqih — cukup ada bukti dan saksi yang wajar.','❌ <b>Pengadilan agama</b> tidak disyaratkan dalam fiqih — meski di Indonesia ini dianjurkan untuk kepastian hukum.']
+},
+{n:39,t:'pgk',tp:'tp-jb',tl:'Pinjam Meminjam',
+ q:'Manakah yang termasuk <b>pernyataan yang benar</b> tentang pinjam meminjam (qardh) dalam Islam?',
+ o:['Hukum memberi pinjaman adalah sunnah — termasuk amal kebaikan yang berpahala',
+    'Pemberi pinjaman boleh mensyaratkan pengembalian dengan tambahan (bunga) jika nilainya kecil',
+    'Peminjam yang membayar lebih dari jumlah hutang atas inisiatif sendiri hukumnya boleh dan terpuji',
+    'Pinjaman berbunga diperbolehkan dalam kondisi darurat ekonomi tanpa batas waktu',
+    'Islam melarang mensyaratkan keuntungan apapun atas pinjaman yang diberikan'],
+ a:[0,2,4],
+ e:'Ketentuan qardh (pinjam meminjam): (1) Memberi pinjaman = <b>sunnah</b> dan bernilai sedekah; (2) <b>Mensyaratkan bunga haram</b> apapun nilainya; (3) Peminjam yang <b>membayar lebih atas inisiatif sendiri</b> = boleh dan terpuji (bukan riba); (4) Riba tetap haram meski kondisi darurat menurut jumhur ulama.',
+ oe:['✅ <b>Memberi pinjaman = sunnah</b>. Nabi SAW: sedekah dilipatgandakan 10x, pinjaman 18x (HR. Ibnu Majah).','❌ <b>Mensyaratkan bunga</b> = riba yang haram, <em>tidak peduli jumlahnya kecil atau besar</em>.','✅ <b>Membayar lebih atas inisiatif sendiri</b> = boleh dan terpuji. Ini bukan riba karena tidak dipersyaratkan.','❌ <b>Riba tidak diperbolehkan dalam kondisi darurat</b> ekonomi biasa. Darurat yang dimaksud sangat ketat kondisinya.','✅ <b>Islam melarang mensyaratkan keuntungan apapun</b> atas pinjaman = ini inti larangan riba qardh.']
+},
+
+// ─── B/S 40-50 ───
+{n:40,t:'bs',tp:'tp-thr',tl:'Taharah',
+ q:'Air laut termasuk air mutlak yang suci dan dapat digunakan untuk bersuci (wudhu dan mandi wajib).',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Air laut adalah <b>air mutlak</b> meskipun asin rasanya. Nabi SAW ditanya tentang air laut, beliau menjawab: <em>"Laut itu suci airnya dan halal bangkainya."</em> (HR. Abu Dawud, Tirmidzi, Nasa&#39;i — hadits sahih). Jadi air laut sah digunakan untuk wudhu, mandi wajib, dan bersuci.',
+ oe:['','']
+},
+{n:41,t:'bs',tp:'tp-shl',tl:'Shalat Jumat',
+ q:'Shalat Jumat wajib dilaksanakan oleh semua muslimin dan muslimah yang sudah baligh tanpa pengecualian.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Shalat Jumat <b>tidak wajib bagi perempuan</b>. Kewajiban shalat Jumat berlaku untuk: laki-laki muslim yang baligh, berakal, merdeka, mukim (tidak dalam perjalanan jauh), dan sehat. Perempuan, musafir, orang sakit, dan anak-anak tidak wajib — meski shalat Jumat mereka tetap sah jika ikut melaksanakan.',
+ oe:['','']
+},
+{n:42,t:'bs',tp:'tp-jam',tl:'Shalat Jamak',
+ q:'Shalat jamak taqdim berarti menggabungkan dua shalat dan dilaksanakan di waktu shalat yang pertama (awal).',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> <b>Jamak taqdim</b> (dari kata taqdim = memajukan/mendahulukan) adalah menggabungkan dua shalat dan mengerjakannya pada <b>waktu shalat pertama</b>. Contoh: Shalat Dzuhur dan Ashar dikerjakan sekaligus pada waktu Dzuhur. Lawannya adalah jamak ta&#39;khir (dikerjakan di waktu shalat yang kedua/akhir).',
+ oe:['','']
+},
+{n:43,t:'bs',tp:'tp-pua',tl:'Puasa',
+ q:'Orang yang makan dan minum karena lupa bahwa ia sedang berpuasa, puasanya batal dan wajib mengqadha.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Orang yang makan atau minum <b>karena lupa</b> sedang berpuasa, <b>puasanya TIDAK batal</b>. Nabi SAW bersabda: <em>"Barang siapa lupa sedang berpuasa lalu makan dan minum, maka hendaklah ia menyempurnakan puasanya. Sesungguhnya Allah yang memberinya makan dan minum."</em> (HR. Bukhari-Muslim). Begitu ingat, langsung berhenti dan lanjutkan puasa.',
+ oe:['','']
+},
+{n:44,t:'bs',tp:'tp-zak',tl:'Zakat',
+ q:'Nishab zakat emas adalah sebesar 85 gram emas dan kadar zakatnya adalah 2,5% per tahun.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Nishab zakat emas adalah <b>85 gram emas</b> (setara 20 mitsqal/dinar emas) yang telah dimiliki selama 1 tahun penuh (haul). Kadar zakatnya adalah <b>2,5%</b> dari total emas yang dimiliki. Ini adalah ketentuan yang disepakati para ulama fiqih kontemporer.',
+ oe:['','']
+},
+{n:45,t:'bs',tp:'tp-haj',tl:'Haji',
+ q:'Wukuf di Arafah adalah rukun haji yang paling utama — haji tidak sah tanpa wukuf meskipun seluruh rukun lainnya sudah terpenuhi.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Wukuf di Arafah adalah <b>rukun haji yang paling utama dan tidak dapat digantikan</b>. Nabi SAW bersabda: <em>"Al-hajju &#39;Arafah"</em> — "Haji itu adalah (wukuf di) Arafah." (HR. Ahmad, Abu Dawud, Tirmidzi). Jika seseorang tidak sempat wukuf di Arafah pada 9 Dzulhijjah, hajinya dinyatakan batal dan harus diulang tahun berikutnya.',
+ oe:['','']
+},
+{n:46,t:'bs',tp:'tp-mak',tl:'Aqiqah',
+ q:'Hukum aqiqah dalam Islam adalah wajib, sehingga orang tua yang tidak melaksanakan aqiqah berdosa besar.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Hukum aqiqah adalah <b>sunnah muakkad</b> (sunnah yang sangat dianjurkan) — bukan wajib. Meninggalkannya tidak berdosa besar, terutama bagi yang benar-benar tidak mampu. Namun sangat dianjurkan bagi yang mampu karena ada hadits yang menyatakan: <em>"Setiap anak tergadaikan dengan aqiqahnya."</em> (HR. Ahmad).',
+ oe:['','']
+},
+{n:47,t:'bs',tp:'tp-jb',tl:'Jual Beli',
+ q:'Dalam Islam, riba diharamkan secara mutlak dalam segala bentuk dan kondisi, termasuk bunga pinjaman bank konvensional.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Riba diharamkan secara tegas dalam Al-Qur&#39;an: <em>"Allah menghalalkan jual beli dan mengharamkan riba."</em> (QS. Al-Baqarah: 275). Bunga pinjaman bank konvensional termasuk <b>riba nasi&#39;ah</b> (tambahan karena penundaan) yang haram. Islam menyediakan alternatif: perbankan syariah dengan akad mudharabah, murabahah, dll.',
+ oe:['','']
+},
+{n:48,t:'bs',tp:'tp-was',tl:'Wasiat',
+ q:'Seseorang boleh mewasiatkan seluruh hartanya kepada siapapun asalkan bukan kepada ahli waris.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> Wasiat dibatasi maksimal <b>sepertiga (1/3) dari total harta</b> peninggalan, bukan boleh seluruhnya. Ini berdasarkan hadits shahih (HR. Bukhari-Muslim): Nabi SAW bersabda "sepertiga, dan sepertiga itu sudah banyak." Mewasiatkan lebih dari 1/3 harta harus mendapat persetujuan semua ahli waris yang berhak.',
+ oe:['','']
+},
+{n:49,t:'bs',tp:'tp-jam',tl:'Shalat Jamak',
+ q:'Shalat Subuh tidak bisa dijamak dengan shalat apapun karena tidak memiliki pasangan dalam pelaksanaan shalat jamak.',
+ o:['Benar','Salah'],a:'b',
+ e:'<b>BENAR.</b> Shalat Subuh <b>tidak bisa dijamak</b> dengan shalat apapun. Pasangan shalat yang boleh dijamak hanya: <b>Dzuhur dengan Ashar</b>, dan <b>Maghrib dengan Isya</b>. Subuh berdiri sendiri karena waktunya yang terpisah jauh. Para ulama sepakat bahwa tidak ada dalil yang membolehkan menjamak Subuh dengan shalat lain.',
+ oe:['','']
+},
+{n:50,t:'bs',tp:'tp-was',tl:'Warisan',
+ q:'Seorang anak yang terbukti membunuh ayahnya tetap berhak mendapat bagian warisan karena hubungan darah tidak bisa dihapus.',
+ o:['Benar','Salah'],a:'s',
+ e:'<b>SALAH.</b> <b>Pembunuhan adalah penghalang warisan</b> yang menghapus hak waris meskipun ada hubungan darah. Nabi SAW bersabda: <em>"Pembunuh tidak berhak mewarisi sesuatu pun dari orang yang ia bunuh."</em> (HR. Nasa&#39;i, Ibnu Majah). Hikmahnya: agar tidak ada yang tergoda membunuh kerabatnya demi mendapatkan harta warisan lebih cepat.',
+ oe:['','']
+}
+];
+
+// ── STATE ──
+let ans=0, benar=0, salah=0;
+const sel = {};
+let quizRendered = false;
+
+// ── MAIN TAB (also renders quiz on first open) ──
+function switchMain(tab) {
+  ['materi','soal'].forEach(t => {
+    document.getElementById('panel-'+t).classList.toggle('active', t===tab);
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+  document.getElementById('score-bar').style.display = (tab==='soal') ? 'flex' : 'none';
+  if (tab==='soal' && !quizRendered) { renderQuiz(); quizRendered=true; }
+}
+
+// ── MATERI NAV ──
+function showMat(i) {
+  document.querySelectorAll('.mat-nav-item').forEach((el,j) => el.classList.toggle('active', i===j));
+  document.querySelectorAll('.mat-section').forEach((el,j) => el.classList.toggle('active', i===j));
+}
+
+// ── QUIZ RENDER ──
+function renderQuiz() {
+  const c = document.getElementById('qc');
+  const secs = [
+    {t:'pg',  roman:'I',   label:'Pilihan Ganda',         badge:'badge-pg',  instr:'Pilihlah <b>satu</b> jawaban yang paling tepat, kemudian klik <b>Jawab</b>.'},
+    {t:'pgk', roman:'II',  label:'Pilihan Ganda Kompleks', badge:'badge-pgk', instr:'Pilihlah <b>semua jawaban yang benar</b> (bisa lebih dari satu pilihan), kemudian klik <b>Jawab</b>.'},
+    {t:'bs',  roman:'III', label:'Benar / Salah',          badge:'badge-bs',  instr:'Tentukan apakah pernyataan berikut <b>Benar</b> atau <b>Salah</b>, kemudian klik <b>Jawab</b>.'}
+  ];
+  let html = '';
+  secs.forEach(s => {
+    const qs = Q.filter(q => q.t === s.t);
+    if (!qs.length) return;
+    html += `<div style="margin:28px 0 14px"><div class="sec-head"><div class="sec-badge ${s.badge}">Bagian ${s.roman}</div><div class="sec-title">${s.label}</div><div class="sec-line"></div></div><div class="sec-instr">${s.instr}</div><div class="soal-list">`;
+    qs.forEach(q => { html += buildQ(q); });
+    html += '</div></div>';
+  });
+  c.innerHTML = html;
+}
+
+function buildQ(q) {
+  const nc = q.t==='pg' ? 'nb-pg' : q.t==='pgk' ? 'nb-pgk' : 'nb-bs';
+  let oph = '';
+  if (q.t==='pg' || q.t==='pgk') {
+    if (q.t==='pgk') oph += `<div class="pgk-note">Pilih semua jawaban yang benar.</div>`;
+    oph += '<div class="opts">';
+    q.o.forEach((o,i) => { oph += `<div class="opt" id="o-${q.n}-${i}" onclick="selO(${q.n},${i},'${q.t}')"><span class="opt-k">${K[i]}</span><span class="opt-txt">${o}</span></div>`; });
+    oph += '</div>';
+  } else {
+    oph = `<div class="bs-opts"><div class="bs-btn" id="bs-${q.n}-b" onclick="selBS(${q.n},'b')">✓ Benar</div><div class="bs-btn" id="bs-${q.n}-s" onclick="selBS(${q.n},'s')">✗ Salah</div></div>`;
+  }
+  return `<div class="soal" id="soal-${q.n}"><div class="soal-head"><div class="num-badge ${nc}" id="nb-${q.n}">${q.n}</div><div class="soal-q"><div class="topic-pill ${q.tp}">${q.tl}</div><br>${q.q}</div></div>${oph}<div class="jawab-wrap"><button class="btn-jawab" id="btn-${q.n}" onclick="jawab(${q.n})" disabled>Jawab</button></div><div class="exp" id="exp-${q.n}"></div></div>`;
+}
+
+function selO(n,i,t) {
+  if (document.getElementById('soal-'+n).classList.contains('done')) return;
+  if (t==='pg') {
+    Q.find(x=>x.n===n).o.forEach((_,j) => document.getElementById('o-'+n+'-'+j).classList.remove('sel'));
+    document.getElementById('o-'+n+'-'+i).classList.add('sel');
+    sel[n] = i;
+  } else {
+    if (!sel[n]) sel[n] = [];
+    const el = document.getElementById('o-'+n+'-'+i);
+    const idx = sel[n].indexOf(i);
+    if (idx===-1) { sel[n].push(i); el.classList.add('sel'); }
+    else { sel[n].splice(idx,1); el.classList.remove('sel'); }
+  }
+  const has = Array.isArray(sel[n]) ? sel[n].length>0 : sel[n]!==undefined;
+  document.getElementById('btn-'+n).disabled = !has;
+}
+
+function selBS(n,v) {
+  if (document.getElementById('soal-'+n).classList.contains('done')) return;
+  ['b','s'].forEach(x => document.getElementById('bs-'+n+'-'+x).classList.remove('sel-b','sel-s'));
+  document.getElementById('bs-'+n+'-'+v).classList.add(v==='b'?'sel-b':'sel-s');
+  sel[n] = v;
+  document.getElementById('btn-'+n).disabled = false;
+}
+
+function jawab(n) {
+  const q = Q.find(x=>x.n===n);
+  const s = sel[n];
+  if (s===undefined||(Array.isArray(s)&&s.length===0)) return;
+  document.getElementById('soal-'+n).classList.add('done');
+  document.getElementById('btn-'+n).style.display = 'none';
+  let ok = false;
+  if (q.t==='pg') { ok = s===q.a; lockPG(q,s,ok); }
+  else if (q.t==='pgk') {
+    const ss=[...s].sort(), as=[...q.a].sort();
+    ok = JSON.stringify(ss)===JSON.stringify(as); lockPGK(q,s,ok);
+  } else { ok = s===q.a; lockBS(q,s,ok); }
+  showExp(q,s,ok);
+  ans++; if(ok) benar++; else salah++;
+  updateScore();
+  if (ans===Q.length) showResult();
+}
+
+function lockPG(q,s,ok) {
+  q.o.forEach((_,i)=>{
+    const el=document.getElementById('o-'+q.n+'-'+i);
+    el.classList.add('locked'); el.classList.remove('sel');
+    if(i===q.a) el.classList.add('ok');
+    else if(i===s&&!ok) el.classList.add('err');
+  });
+  markN(q.n,ok);
+}
+function lockPGK(q,s,ok) {
+  q.o.forEach((_,i)=>{
+    const el=document.getElementById('o-'+q.n+'-'+i);
+    el.classList.add('locked'); el.classList.remove('sel');
+    if(q.a.includes(i)) el.classList.add('ok');
+    else if(s.includes(i)&&!q.a.includes(i)) el.classList.add('err');
+  });
+  markN(q.n,ok);
+}
+function lockBS(q,s,ok) {
+  ['b','s'].forEach(x=>{
+    const el=document.getElementById('bs-'+q.n+'-'+x);
+    el.classList.add('locked'); el.classList.remove('sel-b','sel-s');
+  });
+  document.getElementById('bs-'+q.n+'-'+q.a).classList.add('r-ok');
+  if (!ok) document.getElementById('bs-'+q.n+'-'+s).classList.add('r-err');
+  markN(q.n,ok);
+}
+function markN(n,ok) {
+  const el = document.getElementById('nb-'+n);
+  el.classList.remove('nb-pg','nb-pgk','nb-bs');
+  el.classList.add(ok?'nb-ok':'nb-err');
+  el.textContent = ok?'✓':'✗';
+}
+
+function showExp(q,s,ok) {
+  const el = document.getElementById('exp-'+q.n);
+  const pill = ok ? '<span class="exp-pill ep-ok">✓ Tepat! MasyaAllah</span>' : '<span class="exp-pill ep-err">✗ Kurang Tepat</span>';
+  let opH = '';
+  if (q.t==='pg') {
+    opH = '<div class="exp-opts">';
+    q.o.forEach((o,i)=>{ const c=i===q.a?'c':'w'; opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`; });
+    opH += '</div>';
+  } else if (q.t==='pgk') {
+    opH = '<div class="exp-opts">';
+    q.o.forEach((o,i)=>{ const c=q.a.includes(i)?'c':'w'; opH+=`<div class="eo ${c}"><b>${K[i]}. ${o}</b><br>${q.oe[i]}</div>`; });
+    opH += '</div>';
+  }
+  el.innerHTML = `<div class="exp-top">${pill}<div class="exp-main">${q.e}</div></div>${opH}`;
+  el.classList.add('show');
+}
+
+function updateScore() {
+  document.getElementById('s-ans').textContent = ans+'/50';
+  document.getElementById('s-b').textContent = benar;
+  document.getElementById('s-s').textContent = salah;
+  document.getElementById('s-n').textContent = ans>0 ? Math.round(benar/50*100) : '—';
+  document.getElementById('prog').style.width = (ans/50*100)+'%';
+}
+
+function showResult() {
+  const rb = document.getElementById('rb');
+  const pct = Math.round(benar/50*100);
+  document.getElementById('rb-sc').textContent = benar;
+  let msg='', cls='';
+  if (pct>=85) { msg='🏆 MasyaAllah! Luar biasa — kamu siap menghadapi asesmen Fiqih!'; cls='rb-great'; }
+  else if (pct>=70) { msg='👏 Alhamdulillah! Bagus — pelajari kembali materi yang masih keliru.'; cls='rb-good'; }
+  else { msg='💪 Semangat! Baca materi Fiqih dulu, lalu coba lagi ya!'; cls='rb-try'; }
+  document.getElementById('rb-msg').textContent = msg;
+  rb.className = 'result-banner show '+cls;
+  rb.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>
