@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathAcademy — Belajar Matematika</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #080f1a;
+    --bg2: #0e1a2e;
+    --bg3: #111e33;
+    --card: #0f1e35;
+    --card2: #152540;
+    --border: #1e3355;
+    --gold: #f5a623;
+    --gold2: #fcd26a;
+    --teal: #22d3ee;
+    --teal2: #67e8f9;
+    --red: #f87171;
+    --green: #4ade80;
+    --purple: #a78bfa;
+    --text: #dde6f5;
+    --text2: #8ba3c0;
+    --text3: #4e6a8a;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(34,211,238,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,211,238,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    top: -40%;
+    right: -20%;
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(circle, rgba(245,166,35,.05) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 0 max(24px, 5vw);
+    background: linear-gradient(180deg, rgba(8,15,26,.98) 0%, rgba(8,15,26,.85) 100%);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+  }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--gold), #e07b10);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 0 24px rgba(245,166,35,.4);
+    flex-shrink: 0;
+  }
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .logo-text p {
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .header-badge {
+    margin-left: auto;
+    background: rgba(245,166,35,.12);
+    border: 1px solid rgba(245,166,35,.3);
+    color: var(--gold2);
+    font-size: 11px; font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 60px max(24px, 5vw) 48px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(34,211,238,.08);
+    border: 1px solid rgba(34,211,238,.2);
+    color: var(--teal);
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .hero h2 span { color: var(--gold); }
+  .hero p {
+    font-size: 16px; color: var(--text2);
+    max-width: 560px; margin: 0 auto;
+    line-height: 1.7;
+  }
+  .stats-row {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 36px; flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* ── MAIN WRAPPER ── */
+  .main-wrapper {
+    position: relative; z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 max(16px, 3vw) 80px;
+  }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1; min-width: 180px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 20px;
+    border: none; border-radius: 10px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    transition: all .25s ease;
+    background: transparent; color: var(--text2);
+    text-align: left;
+  }
+  .tab-btn .tab-num {
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    background: rgba(255,255,255,.05);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+    transition: all .25s;
+  }
+  .tab-btn .tab-range {
+    font-size: 10px; color: var(--text3);
+    display: block; margin-top: 2px;
+    font-weight: 400;
+  }
+  .tab-btn:hover {
+    background: rgba(255,255,255,.04);
+    color: var(--text);
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, rgba(245,166,35,.18), rgba(245,166,35,.06));
+    color: var(--gold2);
+    border: 1px solid rgba(245,166,35,.25);
+  }
+  .tab-btn.active .tab-num {
+    background: var(--gold);
+    color: #000;
+  }
+
+  /* ── TAB PANEL ── */
+  .tab-panel { display: none; animation: fadeIn .35s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--white);
+  }
+
+  /* ── TOPIC CARD ── */
+  .topic-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: border-color .25s;
+  }
+  .topic-card:hover { border-color: rgba(245,166,35,.3); }
+  .topic-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 22px 28px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .topic-num {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    flex-shrink: 0;
+  }
+  .num-gold { background: rgba(245,166,35,.15); color: var(--gold); border: 1px solid rgba(245,166,35,.3); }
+  .num-teal { background: rgba(34,211,238,.12); color: var(--teal); border: 1px solid rgba(34,211,238,.25); }
+  .num-purple { background: rgba(167,139,250,.12); color: var(--purple); border: 1px solid rgba(167,139,250,.25); }
+  .num-green { background: rgba(74,222,128,.12); color: var(--green); border: 1px solid rgba(74,222,128,.25); }
+  .num-red { background: rgba(248,113,113,.12); color: var(--red); border: 1px solid rgba(248,113,113,.25); }
+
+  .topic-title {
+    flex: 1;
+  }
+  .topic-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--white);
+  }
+  .topic-title p { font-size: 13px; color: var(--text2); margin-top: 3px; }
+  .topic-toggle {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3);
+    transition: all .25s;
+    flex-shrink: 0;
+  }
+  .topic-card.open .topic-toggle { background: rgba(245,166,35,.12); color: var(--gold); transform: rotate(180deg); border-color: rgba(245,166,35,.3); }
+
+  /* ── TOPIC BODY ── */
+  .topic-body {
+    display: none;
+    padding: 0 28px 28px;
+    border-top: 1px solid var(--border);
+  }
+  .topic-card.open .topic-body { display: block; }
+
+  /* ── CONTENT ELEMENTS ── */
+  .content-block { margin-top: 24px; }
+  .content-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--gold2);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .content-block h4::before {
+    content: '';
+    width: 3px; height: 16px;
+    background: var(--gold);
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .content-block p, .content-block li {
+    font-size: 14px; line-height: 1.8;
+    color: var(--text);
+  }
+  .content-block ul, .content-block ol {
+    padding-left: 20px;
+  }
+  .content-block li { margin-bottom: 6px; }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    background: linear-gradient(135deg, rgba(245,166,35,.07), rgba(245,166,35,.03));
+    border: 1px solid rgba(245,166,35,.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .formula-box .formula-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .formula-box .formula {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; color: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: rgba(34,211,238,.06);
+    border: 1px solid rgba(34,211,238,.2);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-size: 14px; color: var(--teal2);
+    line-height: 1.7;
+  }
+  .info-box strong { color: var(--teal); }
+
+  /* ── EXAMPLE BOX ── */
+  .example-box {
+    background: rgba(167,139,250,.06);
+    border: 1px solid rgba(167,139,250,.2);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .example-box .ex-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .example-box p, .example-box li {
+    font-size: 14px; color: var(--text);
+    line-height: 1.8;
+  }
+  .example-box ol { padding-left: 20px; }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin: 14px 0;
+    cursor: grab;
+  }
+  .table-wrap:active { cursor: grabbing; }
+  .table-wrap table {
+    min-width: 560px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .table-wrap th {
+    background: rgba(245,166,35,.12);
+    color: var(--gold2);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .table-wrap td {
+    padding: 11px 16px;
+    font-size: 13px; color: var(--text);
+    border-bottom: 1px solid rgba(30,51,85,.6);
+    font-family: 'DM Mono', monospace;
+  }
+  .table-wrap tr:last-child td { border-bottom: none; }
+  .table-wrap tr:hover td { background: rgba(255,255,255,.03); }
+
+  /* ── GRID 2-COL ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .mini-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .mini-card h5 {
+    font-size: 13px; font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .mini-card p, .mini-card li {
+    font-size: 13px; color: var(--text2);
+    line-height: 1.7;
+  }
+  .mini-card ul { padding-left: 16px; }
+  .mini-card li { margin-bottom: 4px; }
+
+  /* ── STEP BOXES ── */
+  .steps { margin: 14px 0; }
+  .step {
+    display: flex; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #000;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .step-content strong { color: var(--gold2); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+
+  /* ── SHAPE GRID ── */
+  .shape-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .shape-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .shape-card .shape-icon { font-size: 28px; margin-bottom: 8px; }
+  .shape-card h5 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .shape-card p { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text2); line-height: 1.7; }
+  .shape-card .formula-tag {
+    display: inline-block;
+    background: rgba(245,166,35,.1);
+    border: 1px solid rgba(245,166,35,.2);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin: 3px 2px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text3);
+    font-size: 13px;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .tab-btn { min-width: 100%; }
+    .topic-header { padding: 18px 18px; }
+    .topic-body { padding: 0 18px 22px; }
+    .content-block h4 { font-size: 14px; }
+    .hero { padding: 40px 18px 32px; }
+    .stats-row { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-icon">∑</div>
+    <div class="logo-text">
+      <h1>MathAcademy</h1>
+      <p>Portal Belajar Matematika</p>
+    </div>
+    <div class="header-badge">SMP / MTs</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag"><i class="fas fa-graduation-cap"></i> Kisi-Kisi Materi Ujian</div>
+  <h2>Kuasai <span>Matematika</span><br>dengan Mudah & Terstruktur</h2>
+  <p>15 materi penting tersusun lengkap dengan rumus, penjelasan, dan contoh soal untuk mempersiapkan ujianmu.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">Topik Materi</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tab Kisi-Kisi</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Rumus Penting</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Contoh Soal</div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrapper">
+
+  <!-- TAB NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">
+      <div class="tab-num">1</div>
+      <div>
+        <div>Bilangan & Perbandingan</div>
+        <span class="tab-range">Materi No. 1 — 3</span>
+      </div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(1)">
+      <div class="tab-num">2</div>
+      <div>
+        <div>Aljabar & Bilangan Lanjut</div>
+        <span class="tab-range">Materi No. 4 — 8</span>
+      </div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(2)">
+      <div class="tab-num">3</div>
+      <div>
+        <div>Geometri, Statistika & Peluang</div>
+        <span class="tab-range">Materi No. 9 — 15</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 1: Materi 1–3
+  ══════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-0">
+    <div class="section-header">
+      <h3><i class="fas fa-layer-group"></i> Tab 1 · Materi 1–3</h3>
+      <h2>Bilangan & Perbandingan</h2>
+    </div>
+
+    <!-- MATERI 1 -->
+    <div class="topic-card" id="card-1">
+      <div class="topic-header" onclick="toggleCard('card-1')">
+        <div class="topic-num num-gold">01</div>
+        <div class="topic-title">
+          <h3>Operasi Bilangan Bulat</h3>
+          <p>Penjumlahan, pengurangan, perkalian, pembagian pada bilangan bulat</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian Bilangan Bulat</h4>
+          <p>Bilangan bulat adalah himpunan bilangan yang terdiri dari bilangan bulat negatif, nol, dan bilangan bulat positif. Bilangan bulat dilambangkan dengan <strong>ℤ</strong>.</p>
+          <div class="formula-box">
+            <div class="formula-label">Himpunan Bilangan Bulat</div>
+            <div class="formula">ℤ = { ..., −3, −2, −1, 0, 1, 2, 3, ... }</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Jenis-Jenis Bilangan Bulat</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Bilangan Bulat Negatif</h5>
+              <p>Bilangan yang nilainya kurang dari nol: −1, −2, −3, −100, ...</p>
+              <p style="color:var(--red);margin-top:6px">Semakin kecil angkanya, semakin negatif nilainya. −5 < −1</p>
+            </div>
+            <div class="mini-card">
+              <h5>Nol (0)</h5>
+              <p>Bukan bilangan positif maupun negatif. Merupakan identitas penjumlahan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Bilangan Bulat Positif</h5>
+              <p>Bilangan yang nilainya lebih dari nol: 1, 2, 3, 100, ... Sama dengan bilangan asli.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Garis Bilangan</h5>
+              <p>← −3 &nbsp;−2 &nbsp;−1 &nbsp;0 &nbsp;1 &nbsp;2 &nbsp;3 →</p>
+              <p style="margin-top:6px">Ke kiri = semakin kecil; Ke kanan = semakin besar</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Operasi Penjumlahan & Pengurangan</h4>
+          <div class="info-box">
+            <strong>Aturan Tanda:</strong><br>
+            (+) + (+) = (+) &nbsp;|&nbsp; (−) + (−) = (−)<br>
+            (+) + (−) = tanda dari angka yang lebih besar nilainya<br>
+            a − b = a + (−b) &nbsp;→&nbsp; pengurangan = penjumlahan dengan lawan bilangan
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <ol>
+              <li>7 + (−10) = −3 &nbsp;(karena 10 > 7, hasilnya negatif)</li>
+              <li>−6 + 4 = −2 &nbsp;(karena 6 > 4, hasilnya negatif)</li>
+              <li>−8 − (−3) = −8 + 3 = −5</li>
+              <li>5 − (−7) = 5 + 7 = 12</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Operasi Perkalian & Pembagian</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Operasi</th><th>Aturan Tanda</th><th>Contoh</th><th>Hasil</th></tr></thead>
+              <tbody>
+                <tr><td>(+) × (+)</td><td>Positif × Positif = Positif</td><td>4 × 5</td><td>20</td></tr>
+                <tr><td>(−) × (−)</td><td>Negatif × Negatif = Positif</td><td>−4 × (−5)</td><td>20</td></tr>
+                <tr><td>(+) × (−)</td><td>Positif × Negatif = Negatif</td><td>4 × (−5)</td><td>−20</td></tr>
+                <tr><td>(−) × (+)</td><td>Negatif × Positif = Negatif</td><td>−4 × 5</td><td>−20</td></tr>
+                <tr><td>(+) ÷ (+)</td><td>Positif ÷ Positif = Positif</td><td>20 ÷ 4</td><td>5</td></tr>
+                <tr><td>(−) ÷ (−)</td><td>Negatif ÷ Negatif = Positif</td><td>−20 ÷ (−4)</td><td>5</td></tr>
+                <tr><td>(+) ÷ (−)</td><td>Positif ÷ Negatif = Negatif</td><td>20 ÷ (−4)</td><td>−5</td></tr>
+                <tr><td>(−) ÷ (+)</td><td>Negatif ÷ Positif = Negatif</td><td>−20 ÷ 4</td><td>−5</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Sifat-Sifat Operasi Bilangan Bulat</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Sifat</th><th>Penjumlahan</th><th>Perkalian</th></tr></thead>
+              <tbody>
+                <tr><td>Komutatif</td><td>a + b = b + a</td><td>a × b = b × a</td></tr>
+                <tr><td>Asosiatif</td><td>(a + b) + c = a + (b + c)</td><td>(a × b) × c = a × (b × c)</td></tr>
+                <tr><td>Distributif</td><td colspan="2">a × (b + c) = (a × b) + (a × c)</td></tr>
+                <tr><td>Identitas</td><td>a + 0 = a</td><td>a × 1 = a</td></tr>
+                <tr><td>Invers</td><td>a + (−a) = 0</td><td>a × (1/a) = 1 (a ≠ 0)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Urutan Operasi (Prioritas)</h4>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Tanda kurung</strong> — kerjakan isi kurung terlebih dahulu</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Pangkat & Akar</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Perkalian & Pembagian</strong> — dari kiri ke kanan</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Penjumlahan & Pengurangan</strong> — dari kiri ke kanan</div></div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p>Hitung: 3 + 4 × (−2) − (6 ÷ 3)</p>
+            <p>= 3 + 4 × (−2) − 2 &nbsp;→ selesaikan kurung dahulu</p>
+            <p>= 3 + (−8) − 2 &nbsp;→ selesaikan perkalian</p>
+            <p>= 3 − 8 − 2 = <strong>−7</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-1 -->
+
+    <!-- MATERI 2 -->
+    <div class="topic-card" id="card-2">
+      <div class="topic-header" onclick="toggleCard('card-2')">
+        <div class="topic-num num-teal">02</div>
+        <div class="topic-title">
+          <h3>Operasi Pecahan</h3>
+          <p>Pecahan biasa, campuran, desimal, dan operasi-operasinya</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Jenis-Jenis Pecahan</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Pecahan Biasa</h5>
+              <p>Bentuk a/b, di mana a = pembilang, b = penyebut (b ≠ 0)</p>
+              <p style="margin-top:6px">Contoh: 1/2, 3/4, 7/5</p>
+            </div>
+            <div class="mini-card">
+              <h5>Pecahan Campuran</h5>
+              <p>Gabungan bilangan bulat dan pecahan biasa.</p>
+              <p style="margin-top:6px">Contoh: 2½, 3¾, 1⅓</p>
+            </div>
+            <div class="mini-card">
+              <h5>Pecahan Senilai</h5>
+              <p>Pecahan yang memiliki nilai sama. Diperoleh dengan mengali/membagi pembilang dan penyebut dengan angka yang sama.</p>
+              <p style="margin-top:6px">1/2 = 2/4 = 3/6 = 50/100</p>
+            </div>
+            <div class="mini-card">
+              <h5>Pecahan Desimal</h5>
+              <p>Pecahan dengan penyebut 10, 100, 1000, dst. ditulis dengan koma.</p>
+              <p style="margin-top:6px">1/4 = 0,25 | 3/5 = 0,6 | 7/100 = 0,07</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Menyederhanakan Pecahan</h4>
+          <div class="info-box">
+            Bagi pembilang dan penyebut dengan <strong>FPB (Faktor Persekutuan Terbesar)</strong> keduanya.<br>
+            Contoh: 12/18 → FPB(12,18) = 6 → 12÷6 / 18÷6 = <strong>2/3</strong>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Mengubah Pecahan Campuran</h4>
+          <div class="formula-box">
+            <div class="formula-label">Campuran → Biasa</div>
+            <div class="formula">a b/c = (a × c + b) / c<br>Contoh: 2 3/4 = (2×4 + 3)/4 = 11/4</div>
+          </div>
+          <div class="formula-box">
+            <div class="formula-label">Biasa → Campuran</div>
+            <div class="formula">11/4 = 11 ÷ 4 = 2 sisa 3 → 2 3/4</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Operasi Penjumlahan & Pengurangan</h4>
+          <div class="info-box">
+            <strong>Syarat:</strong> Penyebut harus sama (disamakan dengan KPK penyebutnya)
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Operasi</th><th>Cara</th><th>Contoh</th><th>Hasil</th></tr></thead>
+              <tbody>
+                <tr><td>Penyebut sama</td><td>(a ± b) / c</td><td>3/8 + 1/8</td><td>4/8 = 1/2</td></tr>
+                <tr><td>Penyebut beda</td><td>Samakan penyebut dengan KPK</td><td>1/4 + 1/3</td><td>3/12 + 4/12 = 7/12</td></tr>
+                <tr><td>Pengurangan</td><td>Sama seperti penjumlahan</td><td>5/6 − 1/4</td><td>10/12 − 3/12 = 7/12</td></tr>
+                <tr><td>Campuran</td><td>Ubah ke biasa dulu, lalu samakan</td><td>1½ + 2⅓</td><td>3/2 + 7/3 = 9/6 + 14/6 = 23/6 = 3⅚</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Operasi Perkalian & Pembagian</h4>
+          <div class="formula-box">
+            <div class="formula-label">Perkalian Pecahan</div>
+            <div class="formula">a/b × c/d = (a × c) / (b × d)<br>Contoh: 2/3 × 3/4 = 6/12 = 1/2</div>
+          </div>
+          <div class="formula-box">
+            <div class="formula-label">Pembagian Pecahan</div>
+            <div class="formula">a/b ÷ c/d = a/b × d/c = (a × d) / (b × c)<br>Contoh: 2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Seorang pedagang memiliki 5/6 kg gula. Ia menjual 2/3 bagiannya. Berapa kg gula yang terjual?</p>
+            <p><strong>Jawab:</strong> 5/6 × 2/3 = 10/18 = 5/9 kg</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Konversi Pecahan — Desimal — Persen</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pecahan</th><th>Desimal</th><th>Persen</th><th>Cara Konversi</th></tr></thead>
+              <tbody>
+                <tr><td>1/2</td><td>0,5</td><td>50%</td><td>1 ÷ 2 = 0,5 | × 100 = 50%</td></tr>
+                <tr><td>1/4</td><td>0,25</td><td>25%</td><td>1 ÷ 4 = 0,25 | × 100 = 25%</td></tr>
+                <tr><td>3/4</td><td>0,75</td><td>75%</td><td>3 ÷ 4 = 0,75 | × 100 = 75%</td></tr>
+                <tr><td>1/5</td><td>0,2</td><td>20%</td><td>1 ÷ 5 = 0,2 | × 100 = 20%</td></tr>
+                <tr><td>2/5</td><td>0,4</td><td>40%</td><td>2 ÷ 5 = 0,4 | × 100 = 40%</td></tr>
+                <tr><td>1/8</td><td>0,125</td><td>12,5%</td><td>1 ÷ 8 = 0,125 | × 100 = 12,5%</td></tr>
+                <tr><td>1/3</td><td>0,333...</td><td>33,3%</td><td>1 ÷ 3 = 0,333... (desimal berulang)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-2 -->
+
+    <!-- MATERI 3 -->
+    <div class="topic-card" id="card-3">
+      <div class="topic-header" onclick="toggleCard('card-3')">
+        <div class="topic-num num-purple">03</div>
+        <div class="topic-title">
+          <h3>Perbandingan Senilai & Berbalik Nilai</h3>
+          <p>Memahami relasi dua besaran yang berbanding lurus atau terbalik</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Konsep Perbandingan</h4>
+          <p>Perbandingan adalah cara membandingkan dua besaran sejenis. Perbandingan a terhadap b ditulis <strong>a : b</strong> atau <strong>a/b</strong>.</p>
+          <div class="info-box">
+            <strong>Menyederhanakan Perbandingan:</strong> Bagi kedua suku dengan FPB-nya.<br>
+            Contoh: 12 : 18 → FPB = 6 → <strong>2 : 3</strong>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perbandingan Senilai (Berbanding Lurus)</h4>
+          <p>Dua besaran A dan B bersifat senilai jika ketika A bertambah maka B juga bertambah dengan faktor yang sama, dan sebaliknya.</p>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Perbandingan Senilai</div>
+            <div class="formula">A₁/B₁ = A₂/B₂  ↔  A₁ × B₂ = A₂ × B₁</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Contoh</th><th>A (Barang)</th><th>B (Harga)</th><th>Rasio A/B</th></tr></thead>
+              <tbody>
+                <tr><td>Kondisi 1</td><td>3</td><td>Rp15.000</td><td>1 : 5000</td></tr>
+                <tr><td>Kondisi 2</td><td>7</td><td>Rp35.000</td><td>1 : 5000</td></tr>
+                <tr><td>Kondisi 3</td><td>12</td><td>Rp60.000</td><td>1 : 5000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Jika 5 buku harganya Rp30.000, berapa harga 8 buku?</p>
+            <p><strong>Jawab:</strong> 5/30.000 = 8/x → x = (8 × 30.000)/5 = <strong>Rp48.000</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perbandingan Berbalik Nilai (Berbanding Terbalik)</h4>
+          <p>Dua besaran A dan B bersifat berbalik nilai jika ketika A bertambah maka B berkurang, sehingga hasil kali A × B selalu konstan.</p>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Perbandingan Berbalik Nilai</div>
+            <div class="formula">A₁ × B₁ = A₂ × B₂  ↔  A₁/A₂ = B₂/B₁</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pekerja (A)</th><th>Waktu/hari (B)</th><th>Hasil A × B</th></tr></thead>
+              <tbody>
+                <tr><td>2</td><td>12</td><td>24</td></tr>
+                <tr><td>4</td><td>6</td><td>24</td></tr>
+                <tr><td>6</td><td>4</td><td>24</td></tr>
+                <tr><td>8</td><td>3</td><td>24</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> 4 pekerja dapat menyelesaikan pekerjaan dalam 15 hari. Berapa hari jika dikerjakan 6 orang?</p>
+            <p><strong>Jawab:</strong> 4 × 15 = 6 × x → 60 = 6x → x = <strong>10 hari</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Membedakan Senilai vs Berbalik Nilai</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Aspek</th><th>Senilai</th><th>Berbalik Nilai</th></tr></thead>
+              <tbody>
+                <tr><td>Hubungan</td><td>A naik → B naik</td><td>A naik → B turun</td></tr>
+                <tr><td>Konstanta</td><td>A/B = konstan</td><td>A × B = konstan</td></tr>
+                <tr><td>Rumus</td><td>A₁/B₁ = A₂/B₂</td><td>A₁ × B₁ = A₂ × B₂</td></tr>
+                <tr><td>Contoh</td><td>Banyak barang dan harga total</td><td>Kecepatan dan waktu tempuh</td></tr>
+                <tr><td>Contoh</td><td>Banyak orang dan konsumsi</td><td>Banyak pekerja dan lama selesai</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perbandingan Tiga Besaran</h4>
+          <div class="info-box">
+            Jika perbandingan A : B = p : q dan B : C = q : r, maka A : B : C = p : q : r<br><br>
+            <strong>Contoh:</strong> A : B = 2 : 3 dan B : C = 3 : 5 → A : B : C = 2 : 3 : 5<br>
+            Jika total = 200, maka A = 2/10 × 200 = 40; B = 60; C = 100
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-3 -->
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 2: Materi 4–8
+  ══════════════════════════════════ -->
+  <div class="tab-panel" id="tab-1">
+    <div class="section-header">
+      <h3><i class="fas fa-layer-group"></i> Tab 2 · Materi 4–8</h3>
+      <h2>Aljabar & Bilangan Lanjut</h2>
+    </div>
+
+    <!-- MATERI 4 -->
+    <div class="topic-card" id="card-4">
+      <div class="topic-header" onclick="toggleCard('card-4')">
+        <div class="topic-num num-gold">04</div>
+        <div class="topic-title">
+          <h3>Pangkat dan Akar</h3>
+          <p>Bilangan berpangkat, sifat-sifatnya, akar kuadrat, dan akar pangkat tiga</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian Bilangan Berpangkat</h4>
+          <div class="formula-box">
+            <div class="formula-label">Definisi</div>
+            <div class="formula">aⁿ = a × a × a × ... × a  (sebanyak n faktor)<br>a = basis / pokok, n = eksponen / pangkat<br>Contoh: 2⁴ = 2 × 2 × 2 × 2 = 16</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Sifat-Sifat Bilangan Berpangkat</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Sifat</th><th>Rumus</th><th>Contoh</th><th>Hasil</th></tr></thead>
+              <tbody>
+                <tr><td>Perkalian basis sama</td><td>aᵐ × aⁿ = aᵐ⁺ⁿ</td><td>2³ × 2⁴</td><td>2⁷ = 128</td></tr>
+                <tr><td>Pembagian basis sama</td><td>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</td><td>3⁵ ÷ 3²</td><td>3³ = 27</td></tr>
+                <tr><td>Pangkat dari pangkat</td><td>(aᵐ)ⁿ = aᵐˣⁿ</td><td>(2³)²</td><td>2⁶ = 64</td></tr>
+                <tr><td>Pangkat dari perkalian</td><td>(ab)ⁿ = aⁿ × bⁿ</td><td>(2×3)³</td><td>2³ × 3³ = 216</td></tr>
+                <tr><td>Pangkat nol</td><td>a⁰ = 1 (a ≠ 0)</td><td>5⁰, 100⁰</td><td>1</td></tr>
+                <tr><td>Pangkat negatif</td><td>a⁻ⁿ = 1/aⁿ</td><td>2⁻³</td><td>1/8 = 0,125</td></tr>
+                <tr><td>Pangkat pecahan</td><td>a^(1/n) = ⁿ√a</td><td>8^(1/3)</td><td>∛8 = 2</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Akar Kuadrat (√)</h4>
+          <div class="info-box">
+            √a adalah bilangan x sedemikian sehingga x² = a.<br>
+            <strong>√a × √b = √(ab)</strong> &nbsp;|&nbsp; <strong>√a / √b = √(a/b)</strong>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bilangan (a)</th><th>√a</th><th>Bilangan (a)</th><th>√a</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>1</td><td>64</td><td>8</td></tr>
+                <tr><td>4</td><td>2</td><td>81</td><td>9</td></tr>
+                <tr><td>9</td><td>3</td><td>100</td><td>10</td></tr>
+                <tr><td>16</td><td>4</td><td>121</td><td>11</td></tr>
+                <tr><td>25</td><td>5</td><td>144</td><td>12</td></tr>
+                <tr><td>36</td><td>6</td><td>169</td><td>13</td></tr>
+                <tr><td>49</td><td>7</td><td>196</td><td>14</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Akar Pangkat Tiga (∛)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Definisi</div>
+            <div class="formula">∛a = x jika x³ = a<br>∛8 = 2 (karena 2³ = 8)<br>∛27 = 3 | ∛64 = 4 | ∛125 = 5 | ∛216 = 6</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Menyederhanakan Akar</h4>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content">Faktorkan bilangan dalam akar menjadi faktor kuadrat sempurna.<br><strong>Contoh: √72 = √(36 × 2) = √36 × √2 = 6√2</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content">Penjumlahan akar sejenis: a√c + b√c = (a+b)√c<br><strong>Contoh: 3√5 + 2√5 = 5√5</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content">Perkalian: √a × √b = √(ab)<br><strong>Contoh: √3 × √12 = √36 = 6</strong></div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Notasi Ilmiah (Bilangan Berpangkat 10)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Bentuk Baku</div>
+            <div class="formula">a × 10ⁿ, di mana 1 ≤ a < 10 dan n bilangan bulat<br>Contoh: 3.500.000 = 3,5 × 10⁶<br>0,00045 = 4,5 × 10⁻⁴</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-4 -->
+
+    <!-- MATERI 5 -->
+    <div class="topic-card" id="card-5">
+      <div class="topic-header" onclick="toggleCard('card-5')">
+        <div class="topic-num num-teal">05</div>
+        <div class="topic-title">
+          <h3>Barisan Aritmatika</h3>
+          <p>Pola barisan dengan beda tetap — suku ke-n dan jumlah n suku</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian Barisan Aritmatika</h4>
+          <p>Barisan aritmatika adalah barisan bilangan di mana selisih antara dua suku berurutan selalu tetap (konstan), disebut <strong>beda (b)</strong>.</p>
+          <div class="info-box">
+            <strong>Ciri utama:</strong> U₂ − U₁ = U₃ − U₂ = ... = b (beda)<br>
+            Contoh: 2, 5, 8, 11, 14, ... → beda b = 3<br>
+            Contoh: 20, 15, 10, 5, 0, ... → beda b = −5
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Rumus Suku ke-n</h4>
+          <div class="formula-box">
+            <div class="formula-label">Suku ke-n Barisan Aritmatika</div>
+            <div class="formula">Uₙ = a + (n − 1) × b<br><br>Di mana:<br>Uₙ = suku ke-n<br>a  = suku pertama (U₁)<br>b  = beda (selisih antar suku)<br>n  = nomor suku</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Tentukan suku ke-10 dari barisan 3, 7, 11, 15, ...</p>
+            <p><strong>Jawab:</strong> a = 3, b = 4, n = 10</p>
+            <p>U₁₀ = 3 + (10−1) × 4 = 3 + 36 = <strong>39</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Rumus Jumlah n Suku Pertama (Sn)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Jumlah n Suku Pertama</div>
+            <div class="formula">Sₙ = n/2 × (2a + (n−1) × b)
+Atau jika suku terakhir (l) diketahui:
+Sₙ = n/2 × (a + l)</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Hitung jumlah 20 suku pertama dari barisan 5, 9, 13, 17, ...</p>
+            <p><strong>Jawab:</strong> a = 5, b = 4, n = 20</p>
+            <p>S₂₀ = 20/2 × (2×5 + (20−1)×4)</p>
+            <p>= 10 × (10 + 76) = 10 × 86 = <strong>860</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Barisan Geometri (Bonus)</h4>
+          <div class="info-box">
+            Barisan geometri memiliki <strong>rasio (r)</strong> tetap antar suku.<br>
+            <strong>Uₙ = a × r^(n−1)</strong><br>
+            Contoh: 2, 6, 18, 54, ... → r = 3<br>
+            U₅ = 2 × 3⁴ = 2 × 81 = 162
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Mencari Suku Pertama & Beda</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Suku ke-3 = 13 dan suku ke-7 = 29. Tentukan a dan b!</p>
+            <p>U₃ = a + 2b = 13 ... (i)</p>
+            <p>U₇ = a + 6b = 29 ... (ii)</p>
+            <p>Eliminasi: (ii)−(i): 4b = 16 → <strong>b = 4</strong></p>
+            <p>Substitusi ke (i): a + 8 = 13 → <strong>a = 5</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-5 -->
+
+    <!-- MATERI 6 -->
+    <div class="topic-card" id="card-6">
+      <div class="topic-header" onclick="toggleCard('card-6')">
+        <div class="topic-num num-purple">06</div>
+        <div class="topic-title">
+          <h3>Bunga Tabungan</h3>
+          <p>Bunga tunggal, bunga majemuk, dan perhitungan nilai akhir tabungan</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Konsep Dasar Bunga</h4>
+          <p>Bunga adalah imbalan atas penggunaan uang dalam jangka waktu tertentu. Dinyatakan dalam persentase per periode (umumnya per tahun).</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Istilah Penting</h5>
+              <ul>
+                <li><strong>Modal (M):</strong> Uang awal yang disimpan</li>
+                <li><strong>Bunga (B):</strong> Tambahan atas modal</li>
+                <li><strong>Suku bunga (p):</strong> Persentase bunga per periode</li>
+                <li><strong>Waktu (t):</strong> Lamanya penyimpanan</li>
+                <li><strong>Nilai akhir (NA):</strong> Modal + Bunga</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h5>Jenis Bunga</h5>
+              <ul>
+                <li><strong>Bunga Tunggal:</strong> Bunga dihitung hanya dari modal awal</li>
+                <li><strong>Bunga Majemuk:</strong> Bunga dihitung dari modal + bunga sebelumnya (berbunga-bunga)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Bunga Tunggal (Simple Interest)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Bunga Tunggal</div>
+            <div class="formula">Bunga (B) = M × p × t
+Nilai Akhir (NA) = M + B = M × (1 + p × t)
+
+Di mana:
+M = Modal awal
+p = Suku bunga per tahun (dalam desimal)
+t = Waktu (dalam tahun)</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Modal Rp5.000.000 disimpan selama 3 tahun dengan bunga tunggal 8% per tahun. Hitung bunganya!</p>
+            <p><strong>Jawab:</strong></p>
+            <p>B = 5.000.000 × 0,08 × 3 = <strong>Rp1.200.000</strong></p>
+            <p>NA = 5.000.000 + 1.200.000 = <strong>Rp6.200.000</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Konversi Periode Bunga</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Periode</th><th>Konversi ke Tahun</th><th>Contoh: 12% p.a.</th><th>Bunga per periode</th></tr></thead>
+              <tbody>
+                <tr><td>Per tahun</td><td>t = n</td><td>p = 12%</td><td>12% × modal</td></tr>
+                <tr><td>Per bulan</td><td>t = n/12</td><td>p = 12%/12 = 1%</td><td>1% × modal</td></tr>
+                <tr><td>Per triwulan</td><td>t = n/4</td><td>p = 12%/4 = 3%</td><td>3% × modal</td></tr>
+                <tr><td>Per semester</td><td>t = n/2</td><td>p = 12%/2 = 6%</td><td>6% × modal</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Bunga Majemuk (Compound Interest)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Bunga Majemuk</div>
+            <div class="formula">NA = M × (1 + p)ⁿ
+
+Di mana:
+M  = Modal awal
+p  = Suku bunga per periode (desimal)
+n  = Jumlah periode pemajemukan
+NA = Nilai akhir (modal + bunga kumulatif)</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Modal Rp10.000.000 disimpan 3 tahun, bunga majemuk 10% per tahun. Nilai akhirnya?</p>
+            <p>NA = 10.000.000 × (1 + 0,1)³ = 10.000.000 × 1,331 = <strong>Rp13.310.000</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perbandingan Bunga Tunggal vs Majemuk</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tahun ke-</th><th>Modal Awal</th><th>Bunga Tunggal (10%)</th><th>Bunga Majemuk (10%)</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Rp1.000.000</td><td>Rp1.100.000</td><td>Rp1.100.000</td></tr>
+                <tr><td>2</td><td>Rp1.000.000</td><td>Rp1.200.000</td><td>Rp1.210.000</td></tr>
+                <tr><td>3</td><td>Rp1.000.000</td><td>Rp1.300.000</td><td>Rp1.331.000</td></tr>
+                <tr><td>5</td><td>Rp1.000.000</td><td>Rp1.500.000</td><td>Rp1.610.510</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-6 -->
+
+    <!-- MATERI 7 -->
+    <div class="topic-card" id="card-7">
+      <div class="topic-header" onclick="toggleCard('card-7')">
+        <div class="topic-num num-green">07</div>
+        <div class="topic-title">
+          <h3>KPK dan FPB</h3>
+          <p>Kelipatan Persekutuan Terkecil dan Faktor Persekutuan Terbesar</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Bilangan Prima & Faktorisasi Prima</h4>
+          <div class="info-box">
+            <strong>Bilangan Prima:</strong> Bilangan lebih dari 1 yang hanya habis dibagi oleh 1 dan dirinya sendiri.<br>
+            Bilangan prima: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, ...<br><br>
+            <strong>Faktorisasi Prima:</strong> Menyatakan bilangan sebagai perkalian bilangan-bilangan prima.
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Faktorisasi Prima</div>
+            <p>60 = 2² × 3 × 5</p>
+            <p>84 = 2² × 3 × 7</p>
+            <p>120 = 2³ × 3 × 5</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>FPB (Faktor Persekutuan Terbesar)</h4>
+          <p>FPB adalah bilangan terbesar yang dapat membagi habis semua bilangan yang diberikan.</p>
+          <div class="formula-box">
+            <div class="formula-label">Cara Menghitung FPB</div>
+            <div class="formula">Ambil faktor prima yang SAMA dengan pangkat TERKECIL</div>
+          </div>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content">Faktorisasi prima setiap bilangan<br>36 = 2² × 3² dan 60 = 2² × 3 × 5</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content">Ambil faktor yang ada di KEDUANYA (irisan) dengan pangkat terkecil<br>Faktor sama: 2² dan 3¹</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content">FPB = 2² × 3 = 4 × 3 = <strong>12</strong></div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>KPK (Kelipatan Persekutuan Terkecil)</h4>
+          <p>KPK adalah bilangan terkecil yang habis dibagi oleh semua bilangan yang diberikan.</p>
+          <div class="formula-box">
+            <div class="formula-label">Cara Menghitung KPK</div>
+            <div class="formula">Ambil SEMUA faktor prima dengan pangkat TERBESAR</div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh: KPK dari 12 dan 18</div>
+            <p>12 = 2² × 3</p>
+            <p>18 = 2 × 3²</p>
+            <p>KPK = 2² × 3² = 4 × 9 = <strong>36</strong></p>
+            <p><em>Cek: 36 ÷ 12 = 3 ✓ dan 36 ÷ 18 = 2 ✓</em></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perbandingan FPB vs KPK</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Aspek</th><th>FPB</th><th>KPK</th></tr></thead>
+              <tbody>
+                <tr><td>Kepanjangan</td><td>Faktor Persekutuan Terbesar</td><td>Kelipatan Persekutuan Terkecil</td></tr>
+                <tr><td>Cara ambil</td><td>Faktor sama, pangkat terkecil</td><td>Semua faktor, pangkat terbesar</td></tr>
+                <tr><td>Hubungan</td><td>FPB ≤ bilangan terkecil</td><td>KPK ≥ bilangan terbesar</td></tr>
+                <tr><td>Relasi</td><td colspan="2">FPB × KPK = a × b (untuk dua bilangan)</td></tr>
+                <tr><td>Aplikasi</td><td>Menyederhanakan pecahan, membagi rata</td><td>Menyamakan penyebut, jadwal bertemu</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Aplikasi Soal Cerita</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal KPK</div>
+            <p><strong>Soal:</strong> Lampu A menyala tiap 4 menit, Lampu B tiap 6 menit. Keduanya menyala bersama-sama pada menit ke berapa?</p>
+            <p><strong>Jawab:</strong> KPK(4, 6): 4 = 2² dan 6 = 2 × 3 → KPK = 2² × 3 = <strong>12 menit</strong></p>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal FPB</div>
+            <p><strong>Soal:</strong> 24 pensil dan 36 buku dibagi ke beberapa siswa sama rata tanpa sisa. Berapa siswa terbanyak?</p>
+            <p><strong>Jawab:</strong> FPB(24, 36): 24 = 2³ × 3 dan 36 = 2² × 3² → FPB = 2² × 3 = <strong>12 siswa</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-7 -->
+
+    <!-- MATERI 8 -->
+    <div class="topic-card" id="card-8">
+      <div class="topic-header" onclick="toggleCard('card-8')">
+        <div class="topic-num num-red">08</div>
+        <div class="topic-title">
+          <h3>Persamaan Linear Satu Variabel</h3>
+          <p>PLSV — menentukan nilai variabel yang memenuhi persamaan linear</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian PLSV</h4>
+          <p>Persamaan Linear Satu Variabel (PLSV) adalah persamaan yang mengandung satu variabel dengan pangkat tertinggi 1.</p>
+          <div class="formula-box">
+            <div class="formula-label">Bentuk Umum PLSV</div>
+            <div class="formula">ax + b = c  (a ≠ 0)
+Di mana x = variabel, a = koefisien, b & c = konstanta</div>
+          </div>
+          <div class="info-box">
+            <strong>Himpunan Penyelesaian (HP):</strong> Nilai variabel yang membuat persamaan bernilai benar.<br>
+            Contoh: x + 3 = 7 → x = 4 → HP = {4}
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Prinsip Keseimbangan</h4>
+          <div class="info-box">
+            Persamaan diibaratkan timbangan. Operasi apapun yang dilakukan di ruas kiri HARUS dilakukan juga di ruas kanan.<br>
+            <strong>a = b → a + c = b + c → a × c = b × c</strong>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Langkah-Langkah Menyelesaikan PLSV</h4>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Pisahkan</strong> variabel di ruas kiri dan konstanta di ruas kanan</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Sederhanakan</strong> setiap ruas dengan mengumpulkan suku-suku sejenis</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Bagi</strong> kedua ruas dengan koefisien variabel</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Substitusi</strong> kembali untuk memverifikasi jawaban</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Contoh Penyelesaian</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Persamaan</th><th>Langkah Penyelesaian</th><th>Hasil</th></tr></thead>
+              <tbody>
+                <tr><td>2x + 5 = 13</td><td>2x = 13 − 5 = 8 → x = 8/2</td><td>x = 4</td></tr>
+                <tr><td>3x − 7 = 14</td><td>3x = 14 + 7 = 21 → x = 21/3</td><td>x = 7</td></tr>
+                <tr><td>5 − 2x = 11</td><td>−2x = 11 − 5 = 6 → x = 6/(−2)</td><td>x = −3</td></tr>
+                <tr><td>4(x+2) = 20</td><td>4x + 8 = 20 → 4x = 12 → x = 3</td><td>x = 3</td></tr>
+                <tr><td>2x+3 = x+9</td><td>2x − x = 9 − 3 → x = 6</td><td>x = 6</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>PLSV dengan Pecahan</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Selesaikan x/3 + 2 = x/2 − 1</p>
+            <p><strong>Jawab:</strong> Kalikan semua suku dengan KPK(3,2) = 6</p>
+            <p>6·(x/3) + 6·2 = 6·(x/2) − 6·1</p>
+            <p>2x + 12 = 3x − 6</p>
+            <p>12 + 6 = 3x − 2x → <strong>x = 18</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Soal Cerita PLSV</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Umur Budi 3 kali umur Andi. Selisih umur mereka 16 tahun. Berapa umur masing-masing?</p>
+            <p><strong>Misalkan:</strong> Umur Andi = x, maka umur Budi = 3x</p>
+            <p>3x − x = 16 → 2x = 16 → x = 8</p>
+            <p>Umur Andi = <strong>8 tahun</strong>, Umur Budi = <strong>24 tahun</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-8 -->
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 3: Materi 9–15
+  ══════════════════════════════════ -->
+  <div class="tab-panel" id="tab-2">
+    <div class="section-header">
+      <h3><i class="fas fa-layer-group"></i> Tab 3 · Materi 9–15</h3>
+      <h2>Geometri, Statistika & Peluang</h2>
+    </div>
+
+    <!-- MATERI 9 -->
+    <div class="topic-card" id="card-9">
+      <div class="topic-header" onclick="toggleCard('card-9')">
+        <div class="topic-num num-gold">09</div>
+        <div class="topic-title">
+          <h3>Persamaan Linear Dua Variabel</h3>
+          <p>PLDV — sistem persamaan dengan metode substitusi, eliminasi, dan grafik</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian SPLDV</h4>
+          <div class="formula-box">
+            <div class="formula-label">Bentuk Umum SPLDV</div>
+            <div class="formula">ax + by = c
+dx + ey = f
+Di mana x dan y adalah variabel, a,b,d,e adalah koefisien, c,f adalah konstanta</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Metode Substitusi</h4>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content">Nyatakan salah satu variabel dalam bentuk variabel lain dari satu persamaan.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content">Substitusikan ke persamaan kedua untuk mendapatkan nilai satu variabel.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content">Substitusikan nilai tersebut kembali untuk mendapatkan variabel lainnya.</div></div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh: 2x + y = 10 dan x − y = 2</div>
+            <p>Dari persamaan 2: x = y + 2 ... (substitusikan ke persamaan 1)</p>
+            <p>2(y+2) + y = 10 → 2y + 4 + y = 10 → 3y = 6 → <strong>y = 2</strong></p>
+            <p>x = 2 + 2 = <strong>4</strong> → HP: (4, 2)</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Metode Eliminasi</h4>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-content">Samakan koefisien salah satu variabel (kalikan persamaan jika perlu).</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content">Kurangkan atau jumlahkan kedua persamaan untuk mengeliminasi variabel tersebut.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content">Selesaikan persamaan satu variabel, lalu cari variabel lainnya.</div></div>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh: 3x + 2y = 16 dan 2x − 2y = 4</div>
+            <p>Koefisien y sudah sama (2), tambahkan: (3x+2y)+(2x−2y) = 16+4</p>
+            <p>5x = 20 → <strong>x = 4</strong></p>
+            <p>Substitusi: 3(4) + 2y = 16 → 2y = 4 → <strong>y = 2</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Metode Gabungan (Eliminasi + Substitusi)</h4>
+          <div class="info-box">
+            Paling efisien untuk soal ujian. Gunakan eliminasi untuk mendapatkan satu variabel, lalu substitusi untuk mencari variabel lainnya.
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Soal Cerita SPLDV</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Harga 2 buku + 3 pensil = Rp13.000. Harga 3 buku + 1 pensil = Rp14.000. Harga 1 buku dan 1 pensil?</p>
+            <p>Misalkan: buku = x, pensil = y</p>
+            <p>2x + 3y = 13.000 ... (i)</p>
+            <p>3x + y = 14.000 ... (ii) × 3 → 9x + 3y = 42.000</p>
+            <p>Eliminasi: (9x+3y)−(2x+3y) = 42.000−13.000 → 7x = 29.000 → x = Rp4.000 (buku)</p>
+            <p>3(4.000) + y = 14.000 → y = Rp2.000 (pensil)</p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-9 -->
+
+    <!-- MATERI 10 -->
+    <div class="topic-card" id="card-10">
+      <div class="topic-header" onclick="toggleCard('card-10')">
+        <div class="topic-num num-teal">10</div>
+        <div class="topic-title">
+          <h3>Fungsi dan Relasi</h3>
+          <p>Domain, kodomain, range, dan jenis-jenis fungsi</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Relasi</h4>
+          <p>Relasi adalah hubungan antara elemen-elemen dari dua himpunan (domain dan kodomain). Relasi dapat berupa korespondensi satu-satu, satu-banyak, atau banyak-ke-satu.</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Cara Menyatakan Relasi</h5>
+              <ul>
+                <li>Diagram panah</li>
+                <li>Himpunan pasangan berurutan</li>
+                <li>Diagram Cartesius (grafik)</li>
+                <li>Tabel</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h5>Istilah Penting</h5>
+              <ul>
+                <li><strong>Domain (Df):</strong> Himpunan semua input (x)</li>
+                <li><strong>Kodomain:</strong> Himpunan semua output yang mungkin</li>
+                <li><strong>Range:</strong> Himpunan nilai output yang benar-benar digunakan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Fungsi</h4>
+          <p>Fungsi (pemetaan) adalah relasi khusus di mana setiap elemen domain dipasangkan dengan <strong>tepat satu</strong> elemen kodomain.</p>
+          <div class="info-box">
+            <strong>Syarat Fungsi:</strong> Setiap elemen di domain harus punya tepat satu pasangan di kodomain. Tidak boleh ada elemen domain yang tidak berpasangan atau berpasangan dengan lebih dari satu nilai.
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Jenis Relasi</th><th>Merupakan Fungsi?</th><th>Contoh</th></tr></thead>
+              <tbody>
+                <tr><td>Satu-ke-satu (bijektif)</td><td>✅ Ya</td><td>f(x) = 2x pada bilangan bulat</td></tr>
+                <tr><td>Banyak-ke-satu</td><td>✅ Ya</td><td>f(x) = x² (beda input, sama output)</td></tr>
+                <tr><td>Satu-ke-banyak</td><td>❌ Bukan fungsi</td><td>Satu input punya 2 output</td></tr>
+                <tr><td>Banyak-ke-banyak</td><td>❌ Bukan fungsi</td><td>Tidak beraturan</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Notasi dan Rumus Fungsi</h4>
+          <div class="formula-box">
+            <div class="formula-label">Notasi Fungsi</div>
+            <div class="formula">f : A → B  atau  f(x) = ...
+f(x) dibaca "f dari x" atau "nilai f di x"
+
+Contoh: f(x) = 3x − 2
+f(1) = 3(1) − 2 = 1
+f(5) = 3(5) − 2 = 13
+f(−2) = 3(−2) − 2 = −8</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Menghitung Nilai Fungsi</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Diketahui f(x) = 2x² − 3x + 1. Tentukan f(3) dan f(−1)!</p>
+            <p>f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = <strong>10</strong></p>
+            <p>f(−1) = 2(1) − 3(−1) + 1 = 2 + 3 + 1 = <strong>6</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Fungsi Linear</h4>
+          <div class="formula-box">
+            <div class="formula-label">Bentuk Fungsi Linear</div>
+            <div class="formula">f(x) = ax + b  (a ≠ 0)
+Grafiknya berupa garis lurus.
+Jika a > 0: garis naik | Jika a < 0: garis turun</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-10 -->
+
+    <!-- MATERI 11 -->
+    <div class="topic-card" id="card-11">
+      <div class="topic-header" onclick="toggleCard('card-11')">
+        <div class="topic-num num-purple">11</div>
+        <div class="topic-title">
+          <h3>Bangun Datar</h3>
+          <p>Luas dan keliling berbagai bangun datar: persegi, segitiga, lingkaran, dll.</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Rumus Luas dan Keliling</h4>
+          <div class="shape-grid">
+            <div class="shape-card">
+              <div class="shape-icon">⬛</div>
+              <h5>Persegi</h5>
+              <span class="formula-tag">K = 4s</span>
+              <span class="formula-tag">L = s²</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">s = panjang sisi</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">▬</div>
+              <h5>Persegi Panjang</h5>
+              <span class="formula-tag">K = 2(p+l)</span>
+              <span class="formula-tag">L = p × l</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">p = panjang, l = lebar</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">▲</div>
+              <h5>Segitiga</h5>
+              <span class="formula-tag">K = a+b+c</span>
+              <span class="formula-tag">L = ½ × a × t</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">a = alas, t = tinggi</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">⬟</div>
+              <h5>Jajargenjang</h5>
+              <span class="formula-tag">K = 2(a+b)</span>
+              <span class="formula-tag">L = a × t</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">a = alas, t = tinggi</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">⬡</div>
+              <h5>Trapesium</h5>
+              <span class="formula-tag">K = a+b+c+d</span>
+              <span class="formula-tag">L = ½(a+b)×t</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">a,b = sisi sejajar, t = tinggi</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">⬩</div>
+              <h5>Belah Ketupat</h5>
+              <span class="formula-tag">K = 4s</span>
+              <span class="formula-tag">L = ½ × d₁ × d₂</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">d₁,d₂ = diagonal</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">⬦</div>
+              <h5>Layang-Layang</h5>
+              <span class="formula-tag">K = 2(a+b)</span>
+              <span class="formula-tag">L = ½ × d₁ × d₂</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">a,b = pasangan sisi sama</p>
+            </div>
+            <div class="shape-card">
+              <div class="shape-icon">⭕</div>
+              <h5>Lingkaran</h5>
+              <span class="formula-tag">K = 2πr = πd</span>
+              <span class="formula-tag">L = πr²</span>
+              <p style="font-size:12px;margin-top:8px;color:var(--text3)">r = jari-jari, π ≈ 3,14 atau 22/7</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Teorema Pythagoras</h4>
+          <div class="formula-box">
+            <div class="formula-label">Teorema Pythagoras (Segitiga Siku-Siku)</div>
+            <div class="formula">c² = a² + b²
+c = sisi miring (hipotenusa)
+a, b = sisi siku-siku
+
+Contoh: a=3, b=4 → c = √(9+16) = √25 = 5</div>
+          </div>
+          <div class="info-box">
+            <strong>Tripel Pythagoras umum:</strong> 3-4-5 | 5-12-13 | 8-15-17 | 7-24-25<br>
+            Kelipatannya juga berlaku: 6-8-10 | 9-12-15 | 10-24-26
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Contoh Soal Gabungan</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Sebuah taman berbentuk persegi panjang 20m × 15m. Di tengahnya ada kolam lingkaran berjari-jari 5m. Hitung luas taman yang tidak terpakai kolam!</p>
+            <p>L persegi panjang = 20 × 15 = 300 m²</p>
+            <p>L lingkaran = π × 5² = 3,14 × 25 = 78,5 m²</p>
+            <p>L taman = 300 − 78,5 = <strong>221,5 m²</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-11 -->
+
+    <!-- MATERI 12 -->
+    <div class="topic-card" id="card-12">
+      <div class="topic-header" onclick="toggleCard('card-12')">
+        <div class="topic-num num-green">12</div>
+        <div class="topic-title">
+          <h3>Persamaan Garis Lurus</h3>
+          <p>Gradien, persamaan garis, titik potong, dan hubungan antar garis</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Gradien (Kemiringan)</h4>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Gradien</div>
+            <div class="formula">m = (y₂ − y₁) / (x₂ − x₁)  (dari dua titik)
+m = −(koef x)/(koef y)  (dari persamaan ax + by + c = 0)
+m = tan θ  (θ = sudut dengan sumbu x)</div>
+          </div>
+          <div class="info-box">
+            <strong>m > 0:</strong> garis naik (kanan atas) &nbsp;|&nbsp;
+            <strong>m < 0:</strong> garis turun (kanan bawah)<br>
+            <strong>m = 0:</strong> garis mendatar &nbsp;|&nbsp;
+            <strong>m = ∞:</strong> garis tegak lurus sumbu x
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Bentuk-Bentuk Persamaan Garis</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bentuk</th><th>Rumus</th><th>Keterangan</th><th>Contoh</th></tr></thead>
+              <tbody>
+                <tr><td>Slope-Intercept</td><td>y = mx + c</td><td>m = gradien, c = titik potong y</td><td>y = 2x + 3</td></tr>
+                <tr><td>Point-Slope</td><td>y − y₁ = m(x − x₁)</td><td>melalui titik (x₁,y₁) dengan gradien m</td><td>y−1 = 2(x−2)</td></tr>
+                <tr><td>Two-Point</td><td>(y−y₁)/(y₂−y₁) = (x−x₁)/(x₂−x₁)</td><td>melalui dua titik</td><td>Titik (1,2) & (3,6)</td></tr>
+                <tr><td>Standar</td><td>ax + by + c = 0</td><td>bentuk umum</td><td>2x − y + 3 = 0</td></tr>
+                <tr><td>Intercept</td><td>x/a + y/b = 1</td><td>a = titik potong x, b = titik potong y</td><td>x/3 + y/4 = 1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Hubungan Antar Garis</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Garis Sejajar</h5>
+              <p>Dua garis sejajar jika gradiennya sama.</p>
+              <p style="margin-top:6px;font-family:var(--mono)">m₁ = m₂ dan c₁ ≠ c₂</p>
+              <p style="margin-top:6px">Contoh: y = 2x+1 // y = 2x+5</p>
+            </div>
+            <div class="mini-card">
+              <h5>Garis Tegak Lurus</h5>
+              <p>Dua garis saling tegak lurus jika hasil kali gradiennya = −1.</p>
+              <p style="margin-top:6px;font-family:var(--mono)">m₁ × m₂ = −1</p>
+              <p style="margin-top:6px">Contoh: y = 2x ⊥ y = −½x</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Contoh Lengkap</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> Tentukan persamaan garis melalui (2,1) dan (4,7)!</p>
+            <p>m = (7−1)/(4−2) = 6/2 = 3</p>
+            <p>y − 1 = 3(x − 2) → y − 1 = 3x − 6 → <strong>y = 3x − 5</strong></p>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal 2</div>
+            <p><strong>Soal:</strong> Garis l: 3x + 2y = 12. Tentukan garis yang sejajar l dan melalui (0,4)!</p>
+            <p>m dari l: m = −3/2</p>
+            <p>Garis sejajar punya m yang sama: y = −3/2·x + c</p>
+            <p>Melalui (0,4): 4 = 0 + c → c = 4 → <strong>y = −3/2 x + 4</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-12 -->
+
+    <!-- MATERI 13 -->
+    <div class="topic-card" id="card-13">
+      <div class="topic-header" onclick="toggleCard('card-13')">
+        <div class="topic-num num-red">13</div>
+        <div class="topic-title">
+          <h3>Kekongruennan</h3>
+          <p>Syarat-syarat kekongruennan segitiga dan penerapannya</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Pengertian Kongruen</h4>
+          <p>Dua bangun datar dikatakan kongruen (≅) jika dan hanya jika keduanya memiliki <strong>bentuk dan ukuran yang sama persis</strong>. Satu bangun dapat diperoleh dari bangun lain melalui pencerminan, rotasi, atau translasi (tanpa perubahan ukuran).</p>
+          <div class="info-box">
+            <strong>Simbol:</strong> △ABC ≅ △DEF berarti:<br>
+            Sudut A = Sudut D | Sudut B = Sudut E | Sudut C = Sudut F<br>
+            Sisi AB = DE | Sisi BC = EF | Sisi AC = DF
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Syarat Kekongruennan Segitiga</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Aturan</th><th>Kepanjangan</th><th>Syarat</th><th>Keterangan</th></tr></thead>
+              <tbody>
+                <tr><td><strong>SSS</strong></td><td>Side-Side-Side</td><td>Tiga sisi bersesuaian sama panjang</td><td>Paling mudah dibuktikan</td></tr>
+                <tr><td><strong>SAS</strong></td><td>Side-Angle-Side</td><td>Dua sisi & sudut apit bersesuaian sama</td><td>Sudut harus di antara kedua sisi</td></tr>
+                <tr><td><strong>ASA</strong></td><td>Angle-Side-Angle</td><td>Dua sudut & sisi di antara keduanya sama</td><td>Sisi harus di antara kedua sudut</td></tr>
+                <tr><td><strong>AAS</strong></td><td>Angle-Angle-Side</td><td>Dua sudut & sisi bukan apit sama</td><td>Sisi tidak harus di antara sudut</td></tr>
+                <tr><td><strong>RHS</strong></td><td>Right-Hypotenuse-Side</td><td>Siku-siku, hipotenusa & salah satu sisi sama</td><td>Khusus segitiga siku-siku</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Kesebangunan (Bukan Kongruen)</h4>
+          <div class="info-box">
+            Kesebangunan (∼) artinya bentuk sama tetapi ukuran boleh berbeda. Syarat: semua sudut bersesuaian sama besar DAN rasio semua sisi bersesuaian sama.<br>
+            <strong>Jika △ABC ∼ △DEF maka: AB/DE = BC/EF = AC/DF = k (faktor skala)</strong>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p><strong>Soal:</strong> △ABC ∼ △DEF. AB=6, BC=8, AC=10. DE=9. Tentukan EF dan DF!</p>
+            <p>k = DE/AB = 9/6 = 3/2</p>
+            <p>EF = k × BC = 3/2 × 8 = <strong>12</strong></p>
+            <p>DF = k × AC = 3/2 × 10 = <strong>15</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Teorema Titik Tengah</h4>
+          <div class="info-box">
+            Garis yang menghubungkan titik tengah dua sisi segitiga sejajar dengan sisi ketiga dan panjangnya setengah sisi ketiga tersebut.
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-13 -->
+
+    <!-- MATERI 14 -->
+    <div class="topic-card" id="card-14">
+      <div class="topic-header" onclick="toggleCard('card-14')">
+        <div class="topic-num num-gold">14</div>
+        <div class="topic-title">
+          <h3>Statistika</h3>
+          <p>Pengumpulan, penyajian, dan analisis data — mean, median, modus</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Ukuran Pemusatan Data</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ukuran</th><th>Nama Lain</th><th>Rumus</th><th>Contoh Data: 3,5,7,7,9,10</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Mean</strong></td><td>Rata-rata</td><td>x̄ = Σxᵢ / n</td><td>(3+5+7+7+9+10)/6 = 41/6 ≈ 6,83</td></tr>
+                <tr><td><strong>Median</strong></td><td>Nilai tengah</td><td>Nilai tengah data terurut</td><td>Data genap: (7+7)/2 = 7</td></tr>
+                <tr><td><strong>Modus</strong></td><td>Nilai terbanyak</td><td>Data dengan frekuensi tertinggi</td><td>7 (muncul 2 kali)</td></tr>
+                <tr><td><strong>Range</strong></td><td>Jangkauan</td><td>Nilai max − nilai min</td><td>10 − 3 = 7</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Cara Menentukan Median</h4>
+          <div class="formula-box">
+            <div class="formula-label">Median Data Terurut</div>
+            <div class="formula">Jika n ganjil: Median = data ke-(n+1)/2
+Jika n genap: Median = rata-rata data ke-n/2 dan ke-(n/2)+1
+
+Contoh n=7: Median = data ke-4
+Contoh n=8: Median = rata-rata data ke-4 dan ke-5</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Penyajian Data</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Tabel Frekuensi</h5>
+              <p>Menyusun data dalam tabel yang menunjukkan frekuensi kemunculan setiap nilai.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Diagram Batang</h5>
+              <p>Menggunakan batang-batang tegak atau mendatar untuk menggambarkan frekuensi.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Diagram Lingkaran</h5>
+              <p>Menyajikan data sebagai bagian dari keseluruhan (360°). Sudut = (f/n) × 360°</p>
+            </div>
+            <div class="mini-card">
+              <h5>Diagram Garis</h5>
+              <p>Menunjukkan perubahan data dari waktu ke waktu (data berkala).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Mean dari Tabel Frekuensi</h4>
+          <div class="formula-box">
+            <div class="formula-label">Rumus Mean Berbobot</div>
+            <div class="formula">x̄ = Σ(fᵢ × xᵢ) / Σfᵢ
+fᵢ = frekuensi kelas ke-i
+xᵢ = nilai tengah kelas ke-i</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nilai (x)</th><th>Frekuensi (f)</th><th>f × x</th></tr></thead>
+              <tbody>
+                <tr><td>60</td><td>5</td><td>300</td></tr>
+                <tr><td>70</td><td>8</td><td>560</td></tr>
+                <tr><td>80</td><td>10</td><td>800</td></tr>
+                <tr><td>90</td><td>7</td><td>630</td></tr>
+                <tr><td><strong>Total</strong></td><td><strong>30</strong></td><td><strong>2290</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-box">x̄ = 2290 / 30 ≈ <strong>76,3</strong></div>
+        </div>
+
+        <div class="content-block">
+          <h4>Diagram Lingkaran — Menghitung Sudut</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal</div>
+            <p>Data hobi 40 siswa: Olahraga=15, Membaca=10, Musik=8, Menggambar=7</p>
+            <p>Sudut Olahraga = (15/40) × 360° = <strong>135°</strong></p>
+            <p>Sudut Membaca = (10/40) × 360° = <strong>90°</strong></p>
+            <p>Sudut Musik = (8/40) × 360° = <strong>72°</strong></p>
+            <p>Sudut Menggambar = (7/40) × 360° = <strong>63°</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-14 -->
+
+    <!-- MATERI 15 -->
+    <div class="topic-card" id="card-15">
+      <div class="topic-header" onclick="toggleCard('card-15')">
+        <div class="topic-num num-teal">15</div>
+        <div class="topic-title">
+          <h3>Peluang</h3>
+          <p>Ruang sampel, kejadian, dan menghitung nilai peluang suatu peristiwa</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Konsep Dasar Peluang</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Percobaan</h5>
+              <p>Suatu kegiatan yang memberikan hasil yang dapat diamati. Contoh: melempar dadu, melempar koin.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Ruang Sampel (S)</h5>
+              <p>Himpunan semua hasil yang mungkin dari percobaan. n(S) = jumlah anggota ruang sampel.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Titik Sampel</h5>
+              <p>Setiap hasil yang mungkin dari suatu percobaan (anggota ruang sampel).</p>
+            </div>
+            <div class="mini-card">
+              <h5>Kejadian (A)</h5>
+              <p>Himpunan bagian dari ruang sampel. n(A) = jumlah hasil yang sesuai kejadian.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Rumus Peluang</h4>
+          <div class="formula-box">
+            <div class="formula-label">Peluang Kejadian A</div>
+            <div class="formula">P(A) = n(A) / n(S)
+
+Di mana:
+n(A) = banyak kejadian yang diinginkan
+n(S) = banyak semua kejadian yang mungkin
+0 ≤ P(A) ≤ 1
+
+P(A) = 0 → mustahil terjadi
+P(A) = 1 → pasti terjadi</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Contoh Ruang Sampel</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Percobaan</th><th>Ruang Sampel (S)</th><th>n(S)</th></tr></thead>
+              <tbody>
+                <tr><td>Melempar 1 koin</td><td>{A, G} (Angka, Gambar)</td><td>2</td></tr>
+                <tr><td>Melempar 2 koin</td><td>{AA, AG, GA, GG}</td><td>4</td></tr>
+                <tr><td>Melempar 1 dadu</td><td>{1, 2, 3, 4, 5, 6}</td><td>6</td></tr>
+                <tr><td>Melempar 2 dadu</td><td>{(1,1),(1,2),...,(6,6)}</td><td>36</td></tr>
+                <tr><td>Ambil 1 kartu dari 52</td><td>Semua kombinasi kartu</td><td>52</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Contoh Soal</h4>
+          <div class="example-box">
+            <div class="ex-label">Contoh 1: Melempar Dadu</div>
+            <p><strong>Soal:</strong> Sebuah dadu dilempar sekali. Tentukan peluang munculnya bilangan genap!</p>
+            <p>n(S) = 6 &nbsp;|&nbsp; Kejadian (genap) = {2, 4, 6} → n(A) = 3</p>
+            <p>P(A) = 3/6 = <strong>1/2</strong></p>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh 2: Mengambil Bola</div>
+            <p><strong>Soal:</strong> Kotak berisi 5 bola merah, 3 bola biru, 2 bola hijau. Diambil 1 bola acak. Peluang mendapat bola biru?</p>
+            <p>n(S) = 5+3+2 = 10 &nbsp;|&nbsp; n(A) = 3 (bola biru)</p>
+            <p>P(A) = 3/10 = <strong>0,3 = 30%</strong></p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Peluang Komplemen</h4>
+          <div class="formula-box">
+            <div class="formula-label">Kejadian Komplemen (Bukan A)</div>
+            <div class="formula">P(Aᶜ) = 1 − P(A)
+
+Contoh: Jika P(hujan) = 0,3
+Maka P(tidak hujan) = 1 − 0,3 = 0,7</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Peluang Dua Kejadian</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Jenis</th><th>Rumus</th><th>Keterangan</th></tr></thead>
+              <tbody>
+                <tr><td>A atau B (gabungan)</td><td>P(A∪B) = P(A) + P(B) − P(A∩B)</td><td>Kejadian A atau B atau keduanya</td></tr>
+                <tr><td>A dan B (saling lepas)</td><td>P(A∪B) = P(A) + P(B)</td><td>A dan B tidak bisa terjadi bersamaan</td></tr>
+                <tr><td>A dan B (bebas)</td><td>P(A∩B) = P(A) × P(B)</td><td>Kejadian independen</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <div class="ex-label">Contoh Soal Frekuensi Harapan</div>
+            <p><strong>Soal:</strong> Koin dilempar 200 kali. Berapa kali diharapkan muncul angka?</p>
+            <p>P(angka) = 1/2 &nbsp;|&nbsp; Frekuensi harapan = P × n = 1/2 × 200 = <strong>100 kali</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-15 -->
+  </div>
+
+</div><!-- end main-wrapper -->
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <span>MathAcademy</span> — Portal Belajar Matematika SMP/MTs &nbsp;·&nbsp; Dibuat dengan ♥ untuk siswa Indonesia</p>
+</footer>
+
+<script>
+  // ── TAB SWITCH ──
+  function switchTab(index) {
+    document.querySelectorAll('.tab-panel').forEach((p,i) => {
+      p.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.tab-btn').forEach((b,i) => {
+      b.classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── ACCORDION TOGGLE ──
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  // ── DRAGGABLE TABLES ──
+  document.querySelectorAll('.table-wrap').forEach(wrap => {
+    let isDown = false, startX, scrollLeft;
+    wrap.addEventListener('mousedown', e => {
+      isDown = true;
+      wrap.style.cursor = 'grabbing';
+      startX = e.pageX - wrap.offsetLeft;
+      scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener('mouseleave', () => { isDown = false; wrap.style.cursor = 'grab'; });
+    wrap.addEventListener('mouseup', () => { isDown = false; wrap.style.cursor = 'grab'; });
+    wrap.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - wrap.offsetLeft;
+      wrap.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    });
+    // Touch support
+    let touchStartX, touchScrollLeft;
+    wrap.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].pageX;
+      touchScrollLeft = wrap.scrollLeft;
+    }, { passive: true });
+    wrap.addEventListener('touchmove', e => {
+      const dx = touchStartX - e.touches[0].pageX;
+      wrap.scrollLeft = touchScrollLeft + dx;
+    }, { passive: true });
+  });
+</script>
+</body>
+</html>
