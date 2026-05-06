@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IslamicEdu — Sejarah Kebudayaan Islam</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg:      #06100a;
+    --bg2:     #0b1a10;
+    --bg3:     #0f2016;
+    --card:    #0d1e12;
+    --card2:   #132718;
+    --border:  #1e4028;
+    --gold:    #c9a227;
+    --gold2:   #f0d080;
+    --gold3:   #ffe9a0;
+    --green:   #2d8f50;
+    --green2:  #4dab70;
+    --teal:    #1a9f7a;
+    --teal2:   #3dd6a8;
+    --red:     #e06060;
+    --purple:  #a07ad0;
+    --text:    #d0e8d8;
+    --text2:   #7aaa8a;
+    --text3:   #3d6048;
+    --white:   #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GEOMETRIC ISLAMIC PATTERN BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(30deg, rgba(201,162,39,.025) 1px, transparent 1px),
+      linear-gradient(150deg, rgba(201,162,39,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,159,122,.015) 1px, transparent 1px),
+      linear-gradient(rgba(26,159,122,.015) 1px, transparent 1px);
+    background-size: 60px 60px, 60px 60px, 30px 30px, 30px 30px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    top: -30%;
+    right: -15%;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(201,162,39,.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 0 max(24px, 5vw);
+    background: linear-gradient(180deg, rgba(6,16,10,.98) 0%, rgba(6,16,10,.88) 100%);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+  }
+  .logo-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--gold), #a07a10);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 0 28px rgba(201,162,39,.4);
+    flex-shrink: 0;
+  }
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .logo-text p {
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .header-badge {
+    background: rgba(201,162,39,.12);
+    border: 1px solid rgba(201,162,39,.3);
+    color: var(--gold2);
+    font-size: 11px; font-weight: 600;
+    padding: 5px 12px; border-radius: 20px;
+    letter-spacing: 1px;
+  }
+  .arab-text {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    color: var(--gold);
+    opacity: .7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 60px max(24px, 5vw) 48px;
+  }
+  .hero-crescent {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(201,162,39,.5));
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,159,122,.1);
+    border: 1px solid rgba(26,159,122,.25);
+    color: var(--teal2);
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900; line-height: 1.15;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .hero h2 span { color: var(--gold); }
+  .hero p {
+    font-size: 16px; color: var(--text2);
+    max-width: 580px; margin: 0 auto; line-height: 1.7;
+  }
+  .stats-row {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 36px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: var(--gold);
+  }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .divider-ornament {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 400px; margin: 32px auto 0;
+    color: var(--text3);
+  }
+  .divider-ornament::before, .divider-ornament::after {
+    content: ''; flex: 1;
+    height: 1px; background: var(--border);
+  }
+
+  /* ── MAIN WRAPPER ── */
+  .main-wrapper {
+    position: relative; z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 max(16px, 3vw) 80px;
+  }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    display: flex; gap: 8px;
+    margin-bottom: 32px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 8px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1; min-width: 200px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 20px;
+    border: none; border-radius: 10px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    transition: all .25s ease;
+    background: transparent; color: var(--text2);
+    text-align: left;
+  }
+  .tab-btn .tab-num {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: rgba(255,255,255,.05);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+    transition: all .25s;
+  }
+  .tab-btn .tab-range {
+    font-size: 10px; color: var(--text3);
+    display: block; margin-top: 2px; font-weight: 400;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,.04); color: var(--text); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, rgba(201,162,39,.18), rgba(201,162,39,.06));
+    color: var(--gold2);
+    border: 1px solid rgba(201,162,39,.28);
+  }
+  .tab-btn.active .tab-num { background: var(--gold); color: #000; }
+
+  /* ── TAB PANEL ── */
+  .tab-panel { display: none; animation: fadeIn .35s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--teal2); margin-bottom: 6px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px); color: var(--white);
+  }
+  .section-header p { font-size: 14px; color: var(--text2); margin-top: 6px; line-height: 1.6; }
+
+  /* ── TOPIC CARD ── */
+  .topic-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .topic-card:hover { border-color: rgba(201,162,39,.35); }
+  .topic-card.open { border-color: rgba(201,162,39,.4); box-shadow: 0 0 30px rgba(201,162,39,.07); }
+
+  .topic-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; cursor: pointer;
+    user-select: none;
+    transition: background .2s;
+  }
+  .topic-header:hover { background: rgba(255,255,255,.02); }
+
+  .topic-num {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .num-gold  { background: rgba(201,162,39,.15); color: var(--gold);  border: 1px solid rgba(201,162,39,.3); }
+  .num-green { background: rgba(45,143,80,.15);  color: var(--green2);border: 1px solid rgba(45,143,80,.3); }
+  .num-teal  { background: rgba(26,159,122,.15); color: var(--teal2); border: 1px solid rgba(26,159,122,.3); }
+  .num-purple{ background: rgba(160,122,208,.15);color: var(--purple);border: 1px solid rgba(160,122,208,.3); }
+
+  .topic-icon-area {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: rgba(201,162,39,.08);
+    border: 1px solid rgba(201,162,39,.15);
+  }
+
+  .topic-title { flex: 1; }
+  .topic-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--white);
+    margin-bottom: 3px;
+  }
+  .topic-title p { font-size: 13px; color: var(--text2); line-height: 1.4; }
+
+  .topic-toggle {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(255,255,255,.04);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3); font-size: 12px;
+    transition: all .3s; flex-shrink: 0;
+  }
+  .topic-card.open .topic-toggle { transform: rotate(180deg); color: var(--gold); background: rgba(201,162,39,.1); }
+
+  .topic-body {
+    display: none;
+    padding: 0 24px 28px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+  .topic-card.open .topic-body { display: block; }
+
+  /* ── CONTENT BLOCKS ── */
+  .content-block { margin-top: 24px; }
+  .content-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--gold2); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .content-block h4::before {
+    content: '';
+    width: 3px; height: 16px;
+    background: linear-gradient(to bottom, var(--gold), var(--teal));
+    border-radius: 2px; display: inline-block; flex-shrink: 0;
+  }
+  .content-block p {
+    font-size: 14px; color: var(--text2); line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 680px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* MINI CARD */
+  .mini-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color .2s;
+  }
+  .mini-card:hover { border-color: rgba(201,162,39,.3); }
+  .mini-card h5 {
+    font-size: 13px; font-weight: 600;
+    color: var(--gold2); margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .mini-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* WALI CARD special */
+  .wali-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    transition: border-color .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .wali-card:hover { border-color: rgba(201,162,39,.35); transform: translateY(-2px); }
+  .wali-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .wali-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; font-weight: 600;
+    color: var(--gold); letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 4px;
+    opacity: .8;
+  }
+  .wali-card h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--white); margin-bottom: 4px;
+  }
+  .wali-card .wali-alias { font-size: 12px; color: var(--teal2); margin-bottom: 8px; font-style: italic; }
+  .wali-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* INFO BOX */
+  .info-box {
+    background: rgba(26,159,122,.08);
+    border: 1px solid rgba(26,159,122,.2);
+    border-left: 3px solid var(--teal);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px; color: var(--text);
+    line-height: 1.7; margin-top: 12px;
+  }
+  .info-box strong { color: var(--teal2); }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: rgba(201,162,39,.07);
+    border: 1px solid rgba(201,162,39,.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 14px; color: var(--gold2);
+    line-height: 1.7; margin-top: 12px;
+    font-style: italic;
+  }
+  .quote-box .quote-source { font-size: 12px; color: var(--text3); margin-top: 6px; font-style: normal; }
+
+  /* WARNING / HIGHLIGHT BOX */
+  .highlight-box {
+    background: rgba(201,162,39,.07);
+    border: 1px solid rgba(201,162,39,.18);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px; color: var(--text);
+    line-height: 1.7; margin-top: 12px;
+  }
+  .highlight-box .hl-title {
+    font-weight: 700; color: var(--gold);
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* TIMELINE */
+  .timeline { margin-top: 12px; }
+  .tl-item {
+    display: flex; gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(30,64,40,.5);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date {
+    min-width: 80px;
+    font-family: 'Playfair Display', serif;
+    font-size: 12px; font-weight: 700;
+    color: var(--gold); text-align: right;
+    padding-top: 2px;
+  }
+  .tl-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+    margin-top: 4px;
+    box-shadow: 0 0 8px rgba(201,162,39,.5);
+  }
+  .tl-content h5 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .tl-content p  { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* TABLE */
+  .table-wrap {
+    overflow-x: auto; border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 12px; cursor: grab;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--card2);
+    padding: 12px 16px;
+    font-size: 12px; font-weight: 700;
+    color: var(--gold); text-align: left;
+    letter-spacing: .5px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 11px 16px;
+    font-size: 13px; color: var(--text2);
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  tbody tr:hover td { background: rgba(201,162,39,.03); }
+
+  /* TAG BADGE */
+  .tag {
+    display: inline-block;
+    background: rgba(201,162,39,.1);
+    border: 1px solid rgba(201,162,39,.2);
+    color: var(--gold2); font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: 6px;
+    letter-spacing: .5px; margin-right: 4px; margin-bottom: 4px;
+  }
+  .tag.green { background: rgba(45,143,80,.12); border-color: rgba(45,143,80,.25); color: var(--green2); }
+  .tag.teal  { background: rgba(26,159,122,.12); border-color: rgba(26,159,122,.25); color: var(--teal2); }
+
+  /* PERSON CARD */
+  .person-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color .2s;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .person-card:hover { border-color: rgba(201,162,39,.3); }
+  .person-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700; color: var(--white);
+  }
+  .person-dates { font-size: 12px; color: var(--gold); font-weight: 600; }
+  .person-card p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .person-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+
+  /* ORMAS CARD */
+  .ormas-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    transition: border-color .2s;
+    position: relative; overflow: hidden;
+  }
+  .ormas-card::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, rgba(201,162,39,.08), transparent 70%);
+  }
+  .ormas-card:hover { border-color: rgba(201,162,39,.35); }
+  .ormas-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900; color: var(--gold);
+    opacity: .25; line-height: 1; margin-bottom: 4px;
+  }
+  .ormas-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--white);
+    margin-bottom: 6px;
+  }
+  .ormas-founder { font-size: 12px; color: var(--teal2); margin-bottom: 10px; }
+  .ormas-card p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .ormas-card ul {
+    margin-top: 8px; padding-left: 16px;
+    list-style: none;
+  }
+  .ormas-card ul li {
+    font-size: 13px; color: var(--text2);
+    padding: 3px 0; line-height: 1.5;
+    position: relative; padding-left: 14px;
+  }
+  .ormas-card ul li::before {
+    content: '◆';
+    position: absolute; left: 0;
+    font-size: 7px; color: var(--gold);
+    top: 6px;
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 28px 0 12px; color: var(--text3);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* BANNER HIGHLIGHT */
+  .banner {
+    background: linear-gradient(135deg, rgba(201,162,39,.12), rgba(26,159,122,.08));
+    border: 1px solid rgba(201,162,39,.2);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-top: 20px;
+  }
+  .banner h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700; color: var(--gold2);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .banner p { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+  /* SCROLL TOP */
+  .scroll-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--gold), #a07a10);
+    border: none; border-radius: 12px; cursor: pointer;
+    color: #000; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(201,162,39,.35);
+    z-index: 100; transition: transform .2s;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s, transform .2s;
+  }
+  .scroll-top.visible { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { transform: translateY(-3px); }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    background: rgba(6,16,10,.6);
+  }
+  footer p { font-size: 13px; color: var(--text3); line-height: 1.8; }
+  footer span { color: var(--gold); }
+  .footer-arab {
+    font-family: 'Amiri', serif;
+    font-size: 20px; color: var(--gold);
+    opacity: .6; margin-bottom: 8px; display: block;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .topic-header { padding: 16px; gap: 12px; }
+    .topic-body { padding: 0 16px 22px; }
+    .header-badge { display: none; }
+    .arab-text { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo-icon">☪</div>
+    <div class="logo-text">
+      <h1>IslamicEdu</h1>
+      <p>Sejarah Kebudayaan Islam</p>
+    </div>
+    <div class="header-right">
+      <span class="arab-text">بِسْمِ اللَّهِ</span>
+      <div class="header-badge">MTs / MA Kelas VII–IX</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <span class="hero-crescent">☪</span>
+  <div class="hero-tag"><i class="fas fa-book-open"></i> Portal Pembelajaran Lengkap</div>
+  <h2>Sejarah Kebudayaan <span>Islam</span><br>yang Megah & Mencerahkan</h2>
+  <p>Pelajari perjalanan Islam dari masa Rasulullah ﷺ di Mekah hingga perkembangannya di Nusantara — tersaji secara lengkap, terstruktur, dan mudah dipahami.</p>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Topik Utama</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">17</div>
+      <div class="stat-label">Sub-Materi</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">14+</div>
+      <div class="stat-label">Abad Sejarah</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Tab Pembelajaran</div>
+    </div>
+  </div>
+  <div class="divider-ornament">❖ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ❖</div>
+</div>
+
+<!-- ── MAIN WRAPPER ── -->
+<div class="main-wrapper">
+
+  <!-- ── TAB NAV ── -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">
+      <div class="tab-num">I</div>
+      <div>
+        <span>Dakwah & Khulafaurasyidin</span>
+        <span class="tab-range">Materi 1 – 2 · Periode 610–661 M</span>
+      </div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(1)">
+      <div class="tab-num">II</div>
+      <div>
+        <span>Peradaban Daulah Islam</span>
+        <span class="tab-range">Materi 3 – 4 · Umayyah, Abbasiyah, Ayyubiyah</span>
+      </div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(2)">
+      <div class="tab-num">III</div>
+      <div>
+        <span>Islam di Nusantara</span>
+        <span class="tab-range">Materi 5 · Islamisasi & Kearifan Lokal</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       TAB 1: DAKWAH & KHULAFAURASYIDIN
+  ═══════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-0">
+    <div class="section-header">
+      <h3>☪ Materi 1 &amp; 2</h3>
+      <h2>Dakwah Rasulullah ﷺ &amp; Prestasi Khulafaurasyidin</h2>
+      <p>Perjalanan dakwah Nabi Muhammad ﷺ dari Mekah ke Madinah, serta kepemimpinan empat khalifah yang membentuk peradaban Islam pertama.</p>
+    </div>
+
+    <!-- CARD 1: DAKWAH MEKAH -->
+    <div class="topic-card" id="card-1">
+      <div class="topic-header" onclick="toggleCard('card-1')">
+        <div class="topic-num num-gold">1</div>
+        <div class="topic-icon-area">🕌</div>
+        <div class="topic-title">
+          <h3>Dakwah Rasulullah ﷺ di Mekah (610–622 M)</h3>
+          <p>Wahyu pertama, dakwah sirriyah &amp; jahriyah, hambatan, Isra Mi'raj, hingga Bai'at Aqabah</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Kondisi Arab Pra-Islam (Jahiliyah)</h4>
+          <p>Sebelum Islam datang, masyarakat Arab berada dalam kondisi yang disebut <strong>Jahiliyah</strong> (kebodohan moral). Kondisi sosial mereka ditandai oleh penyembahan berhala (360 berhala di Ka'bah), penindasan kaum lemah, perbudakan, ketimpangan gender (mengubur bayi perempuan hidup-hidup), riba, dan peperangan antar suku yang tiada henti. Secara ekonomi, Mekah merupakan pusat perdagangan yang kaya, khususnya suku Quraisy yang menguasai jalur niaga.</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>☪ Kondisi Keagamaan</h5>
+              <p>360 berhala mengelilingi Ka'bah. Penyembahan berhala dianggap sebagai penghubung kepada Allah yang sudah terlupakan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚔ Kondisi Sosial</h5>
+              <p>Perbudakan legal, wanita tidak punya hak waris, bayi perempuan dikubur hidup-hidup (wa'd al-banat).</p>
+            </div>
+            <div class="mini-card">
+              <h5>💰 Kondisi Ekonomi</h5>
+              <p>Riba merajalela. Kaum Quraisy menguasai perdagangan internasional. Kesenjangan kaya-miskin sangat besar.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏛 Kondisi Politik</h5>
+              <p>Sistem kesukuan (qabilah). Tidak ada pemerintahan terpusat. Konflik antar suku (seperti Perang Bu'ats) berlangsung puluhan tahun.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Biografi Singkat Rasulullah ﷺ</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">570 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Kelahiran</h5>
+                <p>Lahir di Mekah, 12 Rabi'ul Awal, Tahun Gajah. Ayah: Abdullah bin Abdul Muthalib (wafat sebelum beliau lahir). Ibu: Aminah binti Wahab.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">576 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Yatim Piatu</h5>
+                <p>Ibu Aminah wafat. Diasuh kakek Abdul Muthalib, lalu paman Abu Thalib.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">595 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Menikah dengan Khadijah</h5>
+                <p>Menikahi Khadijah binti Khuwailid, janda kaya berusia 40 tahun, sementara beliau 25 tahun. Khadijah adalah istri pertama dan pemeluk Islam pertama.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">610 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Wahyu Pertama — Nubuwwah</h5>
+                <p>Di Gua Hira, Jabal Nur. Malaikat Jibril menyampaikan QS. Al-'Alaq 1–5: <em>"Iqra' bismi Rabbika…"</em> Beliau resmi diangkat sebagai Nabi dan Rasul pada usia 40 tahun.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Fase Dakwah Sirriyah — Sembunyi-Sembunyi (610–613 M)</h4>
+          <p>Selama ± 3 tahun, Rasulullah berdakwah secara rahasia kepada orang-orang terdekat. Strategi ini bertujuan menghindari reaksi keras kaum Quraisy di awal dakwah.</p>
+          <div class="info-box">
+            <strong>As-Sabiqun al-Awwalun</strong> (Orang-orang yang pertama masuk Islam):<br>
+            1. <strong>Khadijah binti Khuwailid</strong> — istri Nabi, perempuan pertama<br>
+            2. <strong>Ali bin Abi Thalib</strong> — anak pertama yang masuk Islam<br>
+            3. <strong>Abu Bakar Ash-Shiddiq</strong> — laki-laki dewasa pertama<br>
+            4. <strong>Zaid bin Haritsah</strong> — bekas budak yang dimerdekakan Nabi<br>
+            5. <strong>Arqam bin Abi Arqam</strong> — rumahnya menjadi markas dakwah pertama (Dar al-Arqam)
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Fase Dakwah Jahriyah — Terbuka (613–622 M)</h4>
+          <p>Setelah turun QS. Al-Hijr: 94 (<em>"Faṣda' bimā tu'maru"</em> — Maka sampaikanlah apa yang diperintahkan kepadamu), Rasulullah mulai berdakwah secara terbuka. Respon masyarakat terpecah: sebagian menerima, sebagian besar menolak keras.</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>📢 Langkah Pertama Dakwah Terbuka</h5>
+              <p>Naik ke Bukit Shafa, menyeru kabilah-kabilah Quraisy. Abu Lahab langsung menolak dengan keras: <em>"Celakalah kamu!"</em> (diabadikan dalam QS. Al-Masad).</p>
+            </div>
+            <div class="mini-card">
+              <h5>🛑 Reaksi Kaum Quraisy</h5>
+              <p>Penolakan keras karena: Islam mengancam bisnis berhala, merusak tatanan sosial, dan merendahkan nenek moyang mereka.</p>
+            </div>
+          </div>
+          <div class="section-divider">Bentuk-bentuk Penyiksaan</div>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>🔥 Penyiksaan Fisik</h5>
+              <p>Bilal bin Rabbah disiksa Abu Jahal (dijemur di padang pasir dengan batu besar di dada). Sumayyah dan Yasir disiksa hingga syahid — syuhada Islam pertama.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📦 Pemboikotan (Shi'b Abi Thalib)</h5>
+              <p>Selama 3 tahun (617–620 M), Bani Hasyim diblokade ekonomi dan sosial oleh Quraisy. Dokumen pemboikotan digantung di Ka'bah.</p>
+            </div>
+            <div class="mini-card">
+              <h5>💔 Tahun Duka ('Amul Huzn)</h5>
+              <p>620 M: Khadijah (istri tercinta) dan Abu Thalib (pelindung) wafat dalam satu tahun. Nabi sangat berduka.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Hijrah ke Habasyah (Abyssinia)</h4>
+          <p>Karena tekanan yang semakin berat, Rasulullah mengizinkan sebagian sahabat berhijrah ke Habasyah (Ethiopia) di bawah perlindungan Raja Najasyi (Ashama bin Abjar), seorang raja Kristen yang adil. Terdapat dua gelombang hijrah:</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Hijrah I (615 M)</h5>
+              <p>12 pria dan 4 wanita. Dipimpin Utsman bin Affan dan Ruqayyah (putri Nabi).</p>
+            </div>
+            <div class="mini-card">
+              <h5>Hijrah II (616 M)</h5>
+              <p>±83 pria dan 18 wanita. Quraisy mengirim utusan untuk meminta pemulangan, namun Najasyi menolak.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Isra' Mi'raj (621 M / 27 Rajab)</h4>
+          <div class="banner">
+            <h5>☪ Peristiwa Agung Isra' Mi'raj</h5>
+            <p><strong>Isra'</strong>: perjalanan malam dari Masjidil Haram ke Masjidil Aqsha (Yerusalem) dengan Buraq. <strong>Mi'raj</strong>: perjalanan vertikal dari Masjidil Aqsha menembus 7 langit hingga Sidratul Muntaha. Di sinilah Nabi menerima perintah <strong>shalat 5 waktu</strong> (awalnya 50 waktu, kemudian dikurangi atas saran Nabi Musa a.s. menjadi 5). Peristiwa ini merupakan mukjizat terbesar sekaligus penguatan iman Nabi setelah Tahun Duka.</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Bai'at Aqabah I &amp; II — Persiapan Hijrah</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>Bai'at Aqabah I (621 M)</h5>
+              <p>12 orang dari Yatsrib (Madinah) berbai'at: tidak menyekutukan Allah, tidak mencuri, tidak berzina, tidak membunuh anak, tidak berdusta, tidak mendurhakai dalam kebaikan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Bai'at Aqabah II (622 M)</h5>
+              <p>73 pria dan 2 wanita. Mereka berjanji membela Nabi sebagaimana membela diri dan keluarga sendiri. Menjadi dasar hijrah besar ke Madinah.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end card-1 -->
+
+    <!-- CARD 2: DAKWAH MADINAH -->
+    <div class="topic-card" id="card-2">
+      <div class="topic-header" onclick="toggleCard('card-2')">
+        <div class="topic-num num-gold">2</div>
+        <div class="topic-icon-area">🕋</div>
+        <div class="topic-title">
+          <h3>Dakwah Rasulullah ﷺ di Madinah (622–632 M)</h3>
+          <p>Hijrah, pembangunan negara Islam, Piagam Madinah, perang-perang besar, hingga Fathu Makkah</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+
+        <div class="content-block">
+          <h4>Hijrah ke Madinah (622 M) — Titik Balik Sejarah</h4>
+          <p>Hijrah Rasulullah dari Mekah ke Madinah pada <strong>12 Rabi'ul Awal 1 Hijriyah (622 M)</strong> merupakan peristiwa paling monumental dalam sejarah Islam. Hijrah ini bukan pelarian, melainkan strategi dakwah untuk membangun basis kekuatan. Peristiwa ini kemudian dijadikan <strong>awal penghitungan Kalender Hijriyah</strong> oleh Khalifah Umar bin Khattab.</p>
+          <div class="info-box">
+            <strong>Rute Hijrah:</strong> Nabi dan Abu Bakar Ash-Shiddiq bersembunyi di <strong>Gua Tsur</strong> selama 3 hari untuk menghindari pengejaran Quraisy. Quraisy menawarkan hadiah 100 unta bagi yang berhasil menangkap Nabi. Mereka tiba di Quba (tepi Madinah) dan membangun <strong>Masjid Quba</strong> — masjid pertama dalam sejarah Islam.
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Langkah Awal Membangun Negara Islam</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>🕌 Masjid Nabawi</h5>
+              <p>Dibangun di atas tanah milik dua anak yatim yang dibeli Nabi. Berfungsi sebagai pusat ibadah, pemerintahan, pendidikan, dan pengadilan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🤝 Persaudaraan Muhajirin-Anshar</h5>
+              <p>Nabi mempersaudarakan (mu'akhah) 45 pasang sahabat Muhajirin (pendatang Mekah) dan Anshar (penduduk asli Madinah). Contoh: Abu Bakar – Kharijah bin Zaid.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📜 Piagam Madinah</h5>
+              <p>Konstitusi tertulis pertama di dunia, mengatur hak dan kewajiban semua penduduk Madinah lintas agama dan suku.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Piagam Madinah (Shahifah al-Madinah)</h4>
+          <p>Piagam Madinah adalah perjanjian tertulis antara kaum Muslim (Muhajirin dan Anshar) dengan kaum Yahudi dan suku-suku Arab di Madinah. Terdiri dari <strong>47 pasal</strong>, merupakan <strong>konstitusi negara modern pertama di dunia</strong>.</p>
+          <div class="highlight-box">
+            <div class="hl-title"><i class="fas fa-scroll"></i> Isi Pokok Piagam Madinah</div>
+            <strong>1.</strong> Semua kelompok membentuk satu umat (ummah waḥidah) dalam bidang pertahanan.<br>
+            <strong>2.</strong> Kaum Yahudi bebas menjalankan agamanya; kaum Muslim bebas menjalankan agamanya (toleransi beragama).<br>
+            <strong>3.</strong> Dilarang saling menyerang di antara anggota perjanjian.<br>
+            <strong>4.</strong> Jika Madinah diserang pihak luar, semua pihak wajib bersama mempertahankan kota.<br>
+            <strong>5.</strong> Muhammad ﷺ sebagai pemimpin tertinggi dalam menyelesaikan perselisihan.
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perang-Perang Penting di Masa Madinah</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Perang</th><th>Tahun</th><th>Kekuatan Muslim</th><th>Lawan</th><th>Hasil</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Badar</strong></td><td>2 H / 624 M</td><td>313 orang</td><td>1.000 orang Quraisy</td><td>✅ Kemenangan Muslim. Pemimpin Quraisy (Abu Jahal) terbunuh.</td></tr>
+                <tr><td><strong>Uhud</strong></td><td>3 H / 625 M</td><td>700 orang</td><td>3.000 orang Quraisy</td><td>⚠ Awalnya menang, lalu berbalik kalah. Hamzah bin Abdul Muthalib syahid. Nabi terluka.</td></tr>
+                <tr><td><strong>Khandaq (Ahzab)</strong></td><td>5 H / 627 M</td><td>3.000 orang</td><td>10.000 koalisi</td><td>✅ Parit (khandaq) ide Salman al-Farisi berhasil menghalau musuh selama 27 hari.</td></tr>
+                <tr><td><strong>Khaibar</strong></td><td>7 H / 628 M</td><td>1.600 orang</td><td>Bani Nadhir di Khaibar</td><td>✅ Kemenangan. Benteng-benteng Khaibar direbut. Ali bin Abi Thalib sebagai pahlawan.</td></tr>
+                <tr><td><strong>Mu'tah</strong></td><td>8 H / 629 M</td><td>3.000 orang</td><td>100.000 tentara Romawi</td><td>⚠ Kalah, namun berhasil kembali. Zaid, Ja'far, Abdullah bin Rawahah syahid.</td></tr>
+                <tr><td><strong>Tabuk</strong></td><td>9 H / 630 M</td><td>30.000 orang</td><td>Tentara Romawi</td><td>✅ Romawi mundur tanpa terjadi perang. Menunjukkan kekuatan militer Muslim.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Perjanjian Hudaibiyah (6 H / 628 M)</h4>
+          <p>Ketika Nabi dan ±1.400 sahabat hendak umrah, Quraisy menghalangi di Hudaibiyah. Tercapailah perjanjian damai 10 tahun yang tampak merugikan Muslim, namun Al-Quran menyebutnya <em>"kemenangan nyata" (fatḥan mubīnā)</em> — QS. Al-Fath:1. Isinya: Muslim boleh umrah tahun depan; jika orang Quraisy lari ke Madinah harus dikembalikan; Islam bisa menyebar bebas ke seluruh Arab selama gencatan senjata.</p>
+        </div>
+
+        <div class="content-block">
+          <h4>Fathu Makkah — Pembebasan Mekah (8 H / 630 M)</h4>
+          <p>Quraisy melanggar Perjanjian Hudaibiyah. Rasulullah memimpin <strong>10.000 pasukan</strong> menuju Mekah. Mekah menyerah tanpa pertumpahan darah berarti. Rasulullah memberikan amnesti umum: <em>"Pergilah, kalian semua bebas."</em> Semua berhala di Ka'bah dirobohkan. Bilal bin Rabbah mengumandangkan azan pertama di atas Ka'bah.</p>
+          <div class="quote-box">
+            "Hari ini bukan hari pembalasan, hari ini adalah hari kasih sayang."
+            <div class="quote-source">— Rasulullah ﷺ saat Fathu Makkah</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h4>Haji Wada' &amp; Wafat Rasulullah (10–11 H / 632 M)</h4>
+          <p>Pada 10 H, Rasulullah memimpin ibadah haji terakhir (Haji Wada') bersama ±140.000 jemaah. Di Arafah, beliau menyampaikan <strong>Khutbah Wada'</strong> yang monumental, menegaskan: kesetaraan manusia, larangan riba, hak-hak wanita, dan pesan menjaga Al-Quran dan Sunnah. Pada <strong>12 Rabi'ul Awal 11 H (8 Juni 632 M)</strong>, Rasulullah ﷺ wafat di Madinah dalam usia 63 tahun, di rumah Aisyah r.a.</p>
+        </div>
+
+      </div>
+    </div><!-- end card-2 -->
+
+    <!-- CARD 3-6: KHULAFAURASYIDIN -->
+    <div class="section-header" style="margin-top:32px;">
+      <h3>⚔ Materi 2 — Lanjutan</h3>
+      <h2>Prestasi Khulafaurasyidin (632–661 M)</h2>
+      <p>Empat khalifah yang memimpin Islam sepeninggal Rasulullah ﷺ dengan kebijaksanaan, keadilan, dan keberanian luar biasa.</p>
+    </div>
+
+    <!-- CARD 3: ABU BAKAR -->
+    <div class="topic-card" id="card-3">
+      <div class="topic-header" onclick="toggleCard('card-3')">
+        <div class="topic-num num-green">3</div>
+        <div class="topic-icon-area">👑</div>
+        <div class="topic-title">
+          <h3>Abu Bakar Ash-Shiddiq (632–634 M)</h3>
+          <p>Khalifah pertama · Perang Riddah · Pengumpulan Al-Quran · Ekspansi awal</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Proses Pengangkatan &amp; Profil</h4>
+          <p>Nama asli: <strong>Abdullah bin Abi Quhafah</strong>. Diangkat melalui musyawarah di <strong>Saqifah Bani Sa'idah</strong> — dipilih oleh kaum Muhajirin dan Anshar. Gelar <strong>Ash-Shiddiq</strong> diberikan karena menjadi orang pertama yang membenarkan peristiwa Isra' Mi'raj. Masa jabatan hanya 2 tahun 3 bulan, namun meninggalkan warisan yang sangat besar.</p>
+        </div>
+        <div class="content-block">
+          <h4>Prestasi Utama Abu Bakar</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>⚔ Perang Riddah</h5>
+              <p>Memerangi kaum murtad, nabi-nabi palsu (Musailamah al-Kadzdzab, Sajah, Al-Aswad al-Ansi, Thulaihah), dan kaum yang menolak membayar zakat. Menegaskan bahwa zakat adalah rukun Islam yang wajib.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📖 Pengumpulan Al-Quran</h5>
+              <p>Atas usulan Umar bin Khattab pasca-Perang Yamamah (banyak hafizh syahid), Zaid bin Tsabit ditugaskan mengumpulkan ayat-ayat Al-Quran menjadi satu mushaf. Mushaf disimpan Abu Bakar, lalu Umar, lalu Hafshah.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🗺 Ekspansi Irak</h5>
+              <p>Khalid bin Walid memimpin pasukan ke Irak, menaklukkan sebagian wilayah Persia (Hirah dan sekitarnya).</p>
+            </div>
+            <div class="mini-card">
+              <h5>🗺 Ekspansi Syria</h5>
+              <p>Mengutus 4 panglima ke wilayah Syam: Abu Ubaidah bin Jarrah, Amr bin Ash, Yazid bin Abi Sufyan, dan Shurahbil bin Hasanah.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Wafat Abu Bakar</h4>
+          <p>Wafat pada <strong>22 Jumadil Akhir 13 H / 634 M</strong> dalam usia 63 tahun karena sakit. Sebelum wafat, beliau berwasiat menunjuk <strong>Umar bin Khattab</strong> sebagai penggantinya. Dimakamkan di samping Rasulullah ﷺ di Masjid Nabawi.</p>
+          <div class="tag">Masa jabatan: 2 tahun 3 bulan</div>
+          <div class="tag green">Wafat wajar (sakit)</div>
+        </div>
+      </div>
+    </div><!-- end card-3 -->
+
+    <!-- CARD 4: UMAR BIN KHATTAB -->
+    <div class="topic-card" id="card-4">
+      <div class="topic-header" onclick="toggleCard('card-4')">
+        <div class="topic-num num-green">4</div>
+        <div class="topic-icon-area">⚔</div>
+        <div class="topic-title">
+          <h3>Umar bin Khattab Al-Faruq (634–644 M)</h3>
+          <p>Khalifah kedua · Ekspansi terbesar · Reformasi birokrasi · Kalender Hijriyah</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Profil &amp; Karakter</h4>
+          <p>Umar bin Khattab mendapatkan gelar <strong>Al-Faruq</strong> (pembeda antara hak dan batil) dari Rasulullah ﷺ. Sebelum masuk Islam, beliau adalah musuh Islam yang paling ditakuti. Masuk Islam pada usia 27 tahun setelah membaca awal surat Thaha. Umar terkenal dengan sifat tegas, adil, zuhud, dan sangat peduli rakyat. Beliau sering menyamar malam hari untuk memantau kondisi rakyatnya.</p>
+        </div>
+        <div class="content-block">
+          <h4>Ekspansi Wilayah Islam</h4>
+          <p>Di bawah kepemimpinan Umar, Islam mencapai ekspansi terluas dalam sejarahnya. Dalam 10 tahun, wilayah Islam meliputi hampir seluruh Timur Tengah.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Wilayah</th><th>Tahun</th><th>Panglima</th><th>Keterangan</th></tr></thead>
+              <tbody>
+                <tr><td>Palestina / Al-Quds</td><td>638 M</td><td>Abu Ubaidah bin Jarrah</td><td>Umar datang langsung menerima kunci Yerusalem dari Patriark Sophronius.</td></tr>
+                <tr><td>Persia (Qadisiyah)</td><td>636 M</td><td>Sa'ad bin Abi Waqqash</td><td>Kekaisaran Sassanid dikalahkan. Ibu kota Ctesiphon direbut.</td></tr>
+                <tr><td>Mesir</td><td>641 M</td><td>Amr bin Ash</td><td>Mesir dibebaskan dari Romawi. Alexandria menjadi ibukota baru.</td></tr>
+                <tr><td>Syria (Yarmuk)</td><td>636 M</td><td>Khalid bin Walid</td><td>Pertempuran Yarmuk menghancurkan kekuatan Romawi di Timur.</td></tr>
+                <tr><td>Nihawand (Persia)</td><td>642 M</td><td>Nu'man bin Muqarrin</td><td>Disebut "Fath al-Futuh" (Kemenangan di atas kemenangan), penaklukan terakhir Persia.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Reformasi &amp; Inovasi Pemerintahan</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>📅 Kalender Hijriyah</h5>
+              <p>Menetapkan peristiwa Hijrah (622 M) sebagai awal tahun Islam. Ditetapkan pada tahun 16 H atas usul Ali bin Abi Thalib. Menggunakan sistem lunar (bulan).</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏛 Sistem Diwan</h5>
+              <p>Mendirikan diwan (kantor administrasi negara): Diwan al-Jund (militer), Diwan al-Mal (keuangan), Diwan al-Kharaj (pajak). Birokrasi Islam pertama.</p>
+            </div>
+            <div class="mini-card">
+              <h5>💰 Bait al-Mal</h5>
+              <p>Mendirikan kas negara (baitul mal) dengan sistem pembukuan. Memberikan tunjangan (atha') kepada seluruh rakyat Muslim berdasarkan jasa ke Islam.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚖ Keadilan Sosial</h5>
+              <p>Tidak mengambil gaji yang besar sebagai khalifah. Terdapat riwayat beliau memikul sendiri karung gandum untuk janda dan anak yatim di Madinah.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Wafat Umar bin Khattab</h4>
+          <p>Pada <strong>25 Dzulhijjah 23 H / 644 M</strong>, Umar ditikam oleh <strong>Abu Lu'luah al-Majusi</strong> (seorang budak Persia milik Mughirah bin Syu'bah) saat memimpin shalat Subuh di Masjid Nabawi. Beliau wafat 3 hari kemudian. Dimakamkan di samping Rasulullah ﷺ dan Abu Bakar.</p>
+          <div class="tag">Masa jabatan: 10 tahun 6 bulan</div>
+          <div class="tag" style="background:rgba(224,96,96,.1);border-color:rgba(224,96,96,.3);color:var(--red)">Syahid (dibunuh)</div>
+        </div>
+      </div>
+    </div><!-- end card-4 -->
+
+    <!-- CARD 5: UTSMAN -->
+    <div class="topic-card" id="card-5">
+      <div class="topic-header" onclick="toggleCard('card-5')">
+        <div class="topic-num num-teal">5</div>
+        <div class="topic-icon-area">📖</div>
+        <div class="topic-title">
+          <h3>Utsman bin Affan Dzun Nurain (644–656 M)</h3>
+          <p>Khalifah ketiga · Kodifikasi Al-Quran · Armada laut · Ekspansi ke Asia &amp; Afrika</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Profil &amp; Proses Pemilihan</h4>
+          <p>Utsman bin Affan mendapat gelar <strong>Dzun Nurain</strong> (pemilik dua cahaya) karena menikahi dua putri Rasulullah: Ruqayyah, lalu setelah wafat menikahi Ummu Kultsum. Dipilih melalui Majelis Syura beranggotakan 6 orang yang dibentuk Umar: Utsman, Ali, Abdurrahman bin Auf, Sa'ad bin Abi Waqqash, Thalhah, Zubair bin Awwam. Masuk Islam dalam golongan as-sabiqun al-awwalun dan termasuk sahabat terkaya.</p>
+        </div>
+        <div class="content-block">
+          <h4>Prestasi Utama</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>📖 Kodifikasi Al-Quran (Mushaf Utsmani)</h5>
+              <p>Karena munculnya perbedaan bacaan Al-Quran di wilayah-wilayah yang baru ditaklukkan, Utsman membentuk panitia dipimpin Zaid bin Tsabit. Mushaf standar ditetapkan dalam 1 dialek (Quraisy/Ahl Madinah) dan disalin menjadi 5 eksemplar yang dikirim ke seluruh wilayah. Ini menyatukan umat Islam dalam satu mushaf hingga kini.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚓ Armada Laut Islam Pertama</h5>
+              <p>Muawiyah bin Abi Sufyan (gubernur Syria) membangun armada laut yang menaklukkan Siprus (648 M) dan menyerang pantai Romawi. Ini adalah angkatan laut Islam pertama.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🗺 Ekspansi ke Asia Tengah</h5>
+              <p>Pasukan Islam menembus Khurasan, Afghanistan, hingga ke pinggiran India. Kekaisaran Sassanid Persia dihancurkan sepenuhnya.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🗺 Ekspansi ke Afrika Utara</h5>
+              <p>Abdullah bin Sa'ad bin Abi Sarh menaklukkan Libya dan Tunisia (Carthage), memperluas Islam ke Afrika Utara.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Akhir Masa Kepemimpinan &amp; Fitnah Pertama</h4>
+          <p>Di masa akhir kepemimpinan Utsman, timbul ketidakpuasan karena banyak pejabat diisi oleh kerabat Utsman dari Bani Umayyah (nepotisme). Abdullah bin Saba' (seorang Yahudi yang berpura-pura masuk Islam) menyebarkan fitnah dan hasutan. Pemberontak dari Mesir, Irak, dan Kufah mengepung rumah Utsman. Pada <strong>17 Dzulhijjah 35 H / 656 M</strong>, Utsman dibunuh oleh pemberontak saat membaca Al-Quran. Peristiwa ini disebut <strong>"Fitnah Pertama" (Al-Fitnah al-Kubra)</strong>.</p>
+          <div class="tag">Masa jabatan: 12 tahun</div>
+          <div class="tag" style="background:rgba(224,96,96,.1);border-color:rgba(224,96,96,.3);color:var(--red)">Syahid (dibunuh)</div>
+        </div>
+      </div>
+    </div><!-- end card-5 -->
+
+    <!-- CARD 6: ALI BIN ABI THALIB -->
+    <div class="topic-card" id="card-6">
+      <div class="topic-header" onclick="toggleCard('card-6')">
+        <div class="topic-num num-teal">6</div>
+        <div class="topic-icon-area">⚖</div>
+        <div class="topic-title">
+          <h3>Ali bin Abi Thalib Karramallahu Wajhah (656–661 M)</h3>
+          <p>Khalifah keempat · Fitnah Kubra · Perang Jamal &amp; Shiffin · Tahkim</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Profil</h4>
+          <p>Ali bin Abi Thalib adalah sepupu sekaligus menantu Rasulullah ﷺ (suami Fatimah az-Zahra). Orang pertama dari golongan anak-anak yang masuk Islam. Dikenal dengan kecerdasan, keberanian, dan kefasihan dalam berbicara. Dijuluki <strong>"Pintu Ilmu"</strong> oleh Rasulullah. Dipilih sebagai khalifah oleh rakyat Madinah setelah pembunuhan Utsman, namun menghadapi krisis terbesar dalam sejarah Islam awal.</p>
+        </div>
+        <div class="content-block">
+          <h4>Fitnah Kubra — Konflik Internal Umat</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">656 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Perang Jamal (Perang Unta)</h5>
+                <p>Ali berhadapan dengan koalisi Aisyah r.a., Thalhah bin Ubaidillah, dan Zubair bin Awwam yang menuntut Ali menghukum pembunuh Utsman. Pertempuran terjadi di dekat Bashrah, Irak. Aisyah memimpin dari atas tandu di punggung unta (karenanya disebut Perang Unta). Ali menang; Thalhah dan Zubair syahid. Aisyah dipulangkan dengan hormat ke Madinah.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">657 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Perang Shiffin</h5>
+                <p>Ali berhadapan dengan Muawiyah bin Abi Sufyan (gubernur Syria) yang juga menuntut keadilan atas kematian Utsman (masih kerabat Muawiyah). Pertempuran berlangsung berbulan-bulan. Ketika pasukan Ali hampir menang, pasukan Muawiyah mengangkat mushaf Al-Quran di ujung tombak sebagai tanda damai.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">657 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Tahkim (Arbitrase)</h5>
+                <p>Disepakati tahkim (arbitrase): wakil Ali adalah Abu Musa Al-Asy'ari, wakil Muawiyah adalah Amr bin Ash. Hasilnya mengecewakan pihak Ali. Kelompok Ali yang menolak tahkim memisahkan diri: disebut <strong>Khawarij</strong> (mereka yang keluar). Ali memerangi Khawarij di Perang Nahrawan (658 M).</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">661 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Syahidnya Ali bin Abi Thalib</h5>
+                <p>Pada <strong>17 Ramadhan 40 H / 661 M</strong>, Ali ditikam Abdurrahman bin Muljam (seorang Khawarij) dengan pedang beracun saat shalat Subuh di Masjid Kufah. Beliau wafat 3 hari kemudian. Dengan wafatnya Ali, berakhirlah era Khulafaurasyidin.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Ringkasan Khulafaurasyidin</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Khalifah</th><th>Periode</th><th>Gelar</th><th>Prestasi Puncak</th><th>Akhir Jabatan</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Abu Bakar</strong></td><td>632–634 M</td><td>Ash-Shiddiq</td><td>Perangi Riddah, Kumpulkan Al-Quran</td><td>Wafat sakit</td></tr>
+                <tr><td><strong>Umar bin Khattab</strong></td><td>634–644 M</td><td>Al-Faruq</td><td>Ekspansi terluas, Kalender Hijriyah, Diwan</td><td>Syahid (dibunuh)</td></tr>
+                <tr><td><strong>Utsman bin Affan</strong></td><td>644–656 M</td><td>Dzun Nurain</td><td>Mushaf Utsmani, Armada laut</td><td>Syahid (dibunuh)</td></tr>
+                <tr><td><strong>Ali bin Abi Thalib</strong></td><td>656–661 M</td><td>Karramallahu Wajhah</td><td>Menjaga persatuan umat dalam fitnah</td><td>Syahid (dibunuh)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-6 -->
+
+  </div><!-- end tab-0 -->
+
+
+  <!-- ═══════════════════════════════════════════
+       TAB 2: PERADABAN DAULAH ISLAM
+  ═══════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-1">
+    <div class="section-header">
+      <h3>🏰 Materi 3 &amp; 4</h3>
+      <h2>Peradaban Daulah Islam: Umayyah, Abbasiyah &amp; Ayyubiyah</h2>
+      <p>Dari dinasti Umayyah yang gemar ekspansi, masa emas Abbasiyah yang melahirkan ribuan ilmuwan, hingga kepahlawanan Salahudin al-Ayyubi membebaskan Baitul Maqdis.</p>
+    </div>
+
+    <!-- CARD 7: UMAYYAH -->
+    <div class="topic-card" id="card-7">
+      <div class="topic-header" onclick="toggleCard('card-7')">
+        <div class="topic-num num-gold">7</div>
+        <div class="topic-icon-area">🏛</div>
+        <div class="topic-title">
+          <h3>Daulah Umayyah (661–750 M)</h3>
+          <p>Dinasti Islam pertama · Pusat di Damaskus · Ekspansi hingga Spanyol &amp; Asia Tengah</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Berdirinya Daulah Umayyah</h4>
+          <p>Daulah Umayyah berdiri setelah <strong>Muawiyah bin Abi Sufyan</strong> mengambil alih kekuasaan dari Hasan bin Ali melalui perjanjian damai pada <strong>Tahun Persatuan ('Am al-Jama'ah, 661 M)</strong>. Muawiyah memindahkan ibu kota dari Kufah ke <strong>Damaskus</strong> (Syria). Sistem pemerintahan berubah dari pemilihan (syura) menjadi <strong>monarki turun-temurun (dinasti)</strong> — perubahan paling fundamental dalam sejarah pemerintahan Islam.</p>
+          <div class="info-box">
+            <strong>Ibu Kota:</strong> Damaskus, Syria &nbsp;|&nbsp; <strong>Pendiri:</strong> Muawiyah bin Abi Sufyan &nbsp;|&nbsp; <strong>Jumlah Khalifah:</strong> 14 khalifah &nbsp;|&nbsp; <strong>Masa:</strong> 661–750 M (±89 tahun)
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Ekspansi Wilayah — Terluas Sepanjang Sejarah Islam</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Wilayah</th><th>Panglima</th><th>Tahun</th></tr></thead>
+              <tbody>
+                <tr><td>Spanyol (Al-Andalus)</td><td>Thariq bin Ziyad, Musa bin Nushair</td><td>711 M</td></tr>
+                <tr><td>India (Sindh)</td><td>Muhammad bin Qasim</td><td>712 M</td></tr>
+                <tr><td>Asia Tengah (Samarkand)</td><td>Qutaibah bin Muslim</td><td>712–715 M</td></tr>
+                <tr><td>Prancis Selatan (Tours)</td><td>Abdurrahman Al-Ghafiqi</td><td>732 M (Dihentikan Charles Martel)</td></tr>
+                <tr><td>Afrika Utara (Maroko)</td><td>Uqbah bin Nafi</td><td>670–683 M</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Kemajuan Peradaban Umayyah</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🏗 Arsitektur Megah</h5>
+              <p><strong>Dome of the Rock / Qubbat al-Sakhra</strong> (691 M) di Yerusalem — karya Abd al-Malik bin Marwan. <strong>Masjid Agung Damaskus / Masjid Umayyah</strong> (715 M) — salah satu masjid tertua dan terindah di dunia.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🌐 Arabisasi Administrasi</h5>
+              <p>Al-Walid I menetapkan bahasa Arab sebagai bahasa resmi administrasi di seluruh wilayah, menggantikan bahasa Yunani, Persia, dan Koptik.</p>
+            </div>
+            <div class="mini-card">
+              <h5>💰 Reformasi Mata Uang</h5>
+              <p>Abd al-Malik bin Marwan mencetak <strong>dinar emas</strong> Islam pertama (696 M) berisi kalimat tauhid — menggantikan mata uang Romawi dan Persia.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📬 Sistem Pos</h5>
+              <p>Dikembangkan jaringan pos (Barid) untuk komunikasi antar wilayah kekhalifahan yang sangat luas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Berakhirnya Daulah Umayyah</h4>
+          <p>Daulah Umayyah digulingkan oleh Revolusi Abbasiyah (750 M). Khalifah terakhir <strong>Marwan II</strong> melarikan diri ke Mesir dan dibunuh di sana. Hampir seluruh anggota keluarga Umayyah dibantai di Abbasiyah. Hanya <strong>Abdurrahman Ad-Dakhil</strong> yang lolos ke Spanyol dan mendirikan <strong>Keamiran Umayyah di Cordoba</strong> (756 M) yang bertahan hingga 1031 M.</p>
+        </div>
+      </div>
+    </div><!-- end card-7 -->
+
+    <!-- CARD 8: UMAR BIN ABDUL AZIZ -->
+    <div class="topic-card" id="card-8">
+      <div class="topic-header" onclick="toggleCard('card-8')">
+        <div class="topic-num num-gold">8</div>
+        <div class="topic-icon-area">⚖</div>
+        <div class="topic-title">
+          <h3>Khalifah Umar bin Abdul Aziz (717–720 M)</h3>
+          <p>Khalifah ke-8 Umayyah · Sang Pembaharu · Keadilan yang Melampaui Zamannya</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Profil &amp; Latar Belakang</h4>
+          <p>Umar bin Abdul Aziz adalah khalifah ke-8 Daulah Umayyah. Ia adalah cucu Umar bin Khattab dari pihak ibunya (ibunya bernama Layla binti Ashim, cucu Umar). Sebelum menjadi khalifah, ia menjabat gubernur Madinah (706–712 M) dan dikenal bijaksana. Masa jabatannya hanya <strong>2 tahun 5 bulan</strong>, namun ia dianggap sebagai <strong>Khalifah Rasyid kelima</strong> oleh banyak ulama.</p>
+        </div>
+        <div class="content-block">
+          <h4>Reformasi-Reformasi Bersejarah</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>💰 Mengembalikan Harta Keluarga</h5>
+              <p>Seluruh harta kekayaan yang dikumpulkan keluarganya selama berkuasa dikembalikan ke Baitul Mal. Termasuk cincin mewah miliknya sendiri.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📜 Menghapus Laknat terhadap Ali</h5>
+              <p>Menghapus tradisi Umayyah yang melaknat Ali bin Abi Thalib dari mimbar Jumat — praktik yang sudah berlangsung selama ±60 tahun sejak Muawiyah.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚖ Pemerataan Zakat</h5>
+              <p>Didistribusikan secara merata sehingga konon tidak ada lagi orang yang berhak menerima zakat di masanya — semua sudah berkecukupan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🌿 Pemberantasan Korupsi</h5>
+              <p>Memecat pejabat korup, melarang gubernur menerima hadiah, dan menetapkan gaji negara yang layak agar tidak perlu mencuri.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🕊 Dakwah Damai</h5>
+              <p>Lebih memprioritaskan dakwah daripada ekspansi militer. Mengirim duta-duta Islam ke Cina dan India. Banyak non-Muslim masuk Islam karena keadilannya.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📋 Hak Non-Muslim</h5>
+              <p>Menghapus jizyah bagi non-Muslim yang masuk Islam dan mengembalikan tanah-tanah yang dirampas secara zalim oleh pejabat sebelumnya.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Wafat &amp; Warisan</h4>
+          <p>Wafat pada <strong>9 Rajab 101 H / 720 M</strong> dalam usia sekitar 39–40 tahun, diduga diracuni oleh keluarga Umayyah yang tidak senang dengan reformasinya. Dikuburkan di Dayr Sam'an, Syria. Ibn Katsir menyebutnya: <em>"Ia adalah khalifah adil yang membagikan harta, menjaga agama, dan menjadi suri teladan."</em></p>
+          <div class="quote-box">
+            "Barangsiapa yang menginginkan kebaikan dunia, carilah dengan ilmu. Barangsiapa menginginkan kebaikan akhirat, carilah dengan ilmu. Dan barangsiapa menginginkan keduanya, carilah dengan ilmu."
+            <div class="quote-source">— Umar bin Abdul Aziz</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-8 -->
+
+    <!-- CARD 9: ABBASIYAH -->
+    <div class="topic-card" id="card-9">
+      <div class="topic-header" onclick="toggleCard('card-9')">
+        <div class="topic-num num-green">9</div>
+        <div class="topic-icon-area">🌟</div>
+        <div class="topic-title">
+          <h3>Daulah Abbasiyah &amp; Zaman Keemasan Islam (750–1258 M)</h3>
+          <p>Baghdad · Bait al-Hikmah · Golden Age · Pencapaian ilmiah yang mengubah dunia</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Berdirinya Daulah Abbasiyah</h4>
+          <p>Daulah Abbasiyah didirikan oleh <strong>Abul Abbas As-Saffah</strong> (750–754 M), keturunan Abbas bin Abdul Muthalib (paman Nabi). Berhasil merebut kekuasaan dari Umayyah melalui Revolusi Abbasiyah yang dimulai dari Khurasan (Persia). Berbeda dengan Umayyah yang bersifat Arab-sentris, Abbasiyah lebih inklusif dengan memasukkan unsur Persia dalam pemerintahan dan ilmu pengetahuan.</p>
+          <div class="info-box">
+            <strong>Ibu Kota:</strong> Baghdad (dibangun Al-Mansur pada 762 M, berbentuk lingkaran sempurna/"Madinah Mudawwarah") &nbsp;|&nbsp; <strong>Khalifah terbanyak:</strong> 37 khalifah &nbsp;|&nbsp; <strong>Masa:</strong> 750–1258 M (508 tahun)
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Era Khalifah-Khalifah Terbesar</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">754–775 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Al-Mansur — Sang Pembangun</h5>
+                <p>Membangun Kota Baghdad sebagai ibu kota berbentuk lingkaran dengan diameter 2,5 km. Mendirikan Istana Emas (Al-Qasr al-Dhahabi). Memulai gerakan penerjemahan karya-karya Yunani, Persia, dan India ke dalam bahasa Arab.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">786–809 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Harun Al-Rasyid — Puncak Kejayaan</h5>
+                <p>Masa paling makmur dan mewah. Baghdad menjadi kota terbesar dan termaju di dunia. Menjalin hubungan diplomatik dengan Charlemagne (Eropa). Kisah Seribu Satu Malam (Alf Layla wa Layla) lahir di era ini. Mendirikan Bait al-Hikmah secara serius.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">813–833 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Al-Ma'mun — Sang Intelektual</h5>
+                <p>Paling bersemangat dalam memajukan ilmu pengetahuan. Bait al-Hikmah mencapai puncaknya. Mendatangkan ratusan penerjemah. Memerintahkan pengukuran keliling bumi yang hasilnya hanya berbeda 4% dari hasil modern. Merestui ilmu kalam Mu'tazilah.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Bait al-Hikmah (House of Wisdom)</h4>
+          <p>Didirikan di Baghdad, Bait al-Hikmah adalah lembaga ilmiah terbesar di dunia pada masanya. Berfungsi sebagai: perpustakaan raksasa, pusat penerjemahan, observatorium astronomi, dan akademi riset. Ribuan manuskrip Yunani (Aristoteles, Plato, Hippocrates, Ptolemy, Euclid), Persia (Zoroastrianisme), dan India (matematika, astronomi) diterjemahkan ke dalam bahasa Arab — menyelamatkan warisan ilmu kuno dan mengembangkannya lebih jauh.</p>
+          <div class="highlight-box">
+            <div class="hl-title">📚 Koleksi Bait al-Hikmah</div>
+            Pada puncaknya, Bait al-Hikmah memiliki lebih dari <strong>400.000 judul buku</strong> — menjadikannya perpustakaan terbesar di dunia saat itu. Ketika Hulagu Khan menghancurkan Baghdad (1258 M), buku-buku dilempar ke Sungai Tigris hingga airnya menjadi hitam tinta selama berhari-hari.
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Faktor Kemunduran &amp; Kehancuran</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🗡 Invasi Mongol (1258 M)</h5>
+              <p>Hulagu Khan (cucu Jenghis Khan) menyerang Baghdad. Khalifah terakhir, Al-Mu'tashim, dibunuh. Baghdad dihancurkan selama 40 hari. Diperkirakan 200.000–800.000 warga tewas.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚔ Perang Salib</h5>
+              <p>Berlangsung 1095–1291 M, menguras sumber daya dan melemahkan stabilitas wilayah Islam di Syam dan Mesir.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏛 Desentralisasi</h5>
+              <p>Dinasti-dinasti kecil (Tahiriyah, Samaniyah, Hamdaniyah, Buwaihiyah) memisahkan diri, khalifah hanya simbol.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎪 Kemewahan Berlebihan</h5>
+              <p>Beberapa khalifah terlena kemewahan, lemah dalam kepemimpinan, dan sangat bergantung pada tentara bayaran Turki (Seljuk).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-9 -->
+
+    <!-- CARD 10: ILMUWAN ABBASIYAH -->
+    <div class="topic-card" id="card-10">
+      <div class="topic-header" onclick="toggleCard('card-10')">
+        <div class="topic-num num-green">10</div>
+        <div class="topic-icon-area">🔬</div>
+        <div class="topic-title">
+          <h3>Ulama &amp; Ilmuwan Masa Abbasiyah</h3>
+          <p>Para raksasa intelektual yang mengubah peradaban dunia: matematika, kedokteran, filsafat, kimia</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Ilmuwan-Ilmuwan Terbesar</h4>
+          <div class="grid-2">
+            <div class="person-card">
+              <div class="person-title">Al-Khawarizmi</div>
+              <div class="person-dates">780–850 M</div>
+              <p>Bapak Aljabar dan Algoritma. Karyanya <em>Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala</em> melahirkan aljabar. Nama "Algoritma" berasal dari transliterasi Latin namanya (Algoritmi). Memperkenalkan sistem angka Arab (0–9) ke Eropa melalui terjemahan Latin karyanya.</p>
+              <div class="person-tags">
+                <span class="tag">Matematika</span><span class="tag teal">Algoritma</span><span class="tag">Aljabar</span>
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Ibnu Sina (Avicenna)</div>
+              <div class="person-dates">980–1037 M</div>
+              <p>Bapak Kedokteran Modern. Menulis <em>Al-Qanun fi al-Thibb</em> (Canon of Medicine) — buku ajar kedokteran yang digunakan di universitas Eropa hingga abad ke-17. Mendefinisikan penyakit menular, karantina, dan anatomi manusia. Juga filsuf, astronomer, dan penyair.</p>
+              <div class="person-tags">
+                <span class="tag">Kedokteran</span><span class="tag">Filsafat</span><span class="tag teal">Farmakologi</span>
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Al-Farabi (Alfarabius)</div>
+              <div class="person-dates">872–950 M</div>
+              <p>Filsuf Islam terbesar setelah Al-Kindi. Dijuluki "Guru Kedua" (Al-Mu'allim al-Tsani) setelah Aristoteles. Menulis <em>Al-Madinah al-Fadhilah</em> (Kota Utama) — filsafat politik Islam. Ahli musik (memetakan teori musik Islam) dan logika.</p>
+              <div class="person-tags">
+                <span class="tag">Filsafat</span><span class="tag">Musik</span><span class="tag green">Logika</span>
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Al-Ghazali (Algazel)</div>
+              <div class="person-dates">1058–1111 M</div>
+              <p>Hujjatul Islam (Pembela Islam). Mahaguru di Universitas Nizhamiyah Baghdad. Menulis <em>Ihya' Ulumuddin</em> — ensiklopedi ilmu-ilmu agama Islam. Karyanya <em>Tahafut al-Falasifah</em> mengkritik filsafat Aristoteles dan berpengaruh besar di Eropa (diterjemahkan oleh Averroes).</p>
+              <div class="person-tags">
+                <span class="tag">Tasawuf</span><span class="tag">Teologi</span><span class="tag teal">Filsafat</span>
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Al-Razi (Rhazes)</div>
+              <div class="person-dates">854–925 M</div>
+              <p>Dokter klinis terbesar di dunia Islam. Orang pertama yang membedakan campak (measles) dari cacar (smallpox) secara ilmiah. Menulis <em>Al-Hawi</em> — ensiklopedi kedokteran 23 jilid. Pelopor etika kedokteran dan uji klinis.</p>
+              <div class="person-tags">
+                <span class="tag">Kedokteran</span><span class="tag green">Kimia</span><span class="tag">Pediatri</span>
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Al-Biruni</div>
+              <div class="person-dates">973–1048 M</div>
+              <p>Polymath Muslim terbesar. Menghitung keliling bumi dengan akurasi luar biasa menggunakan trigonometri. Menulis <em>Kitab al-Hind</em> — kajian antropologi India. Ahli astronomi, matematika, geografi, sejarah, dan mineralogi.</p>
+              <div class="person-tags">
+                <span class="tag">Astronomi</span><span class="tag">Geografi</span><span class="tag teal">Antropologi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Ulama-Ulama Hadits &amp; Fiqh Terbesar</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>Imam Al-Bukhari (810–870 M)</h5>
+              <p>Mengumpulkan <em>Shahih Al-Bukhari</em> — koleksi hadits paling sahih. Menyeleksi 600.000 hadits menjadi 7.275 hadits terverifikasi.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Imam Syafi'i (767–820 M)</h5>
+              <p>Pendiri Mazhab Syafi'i. Pelopor ilmu Ushul Fiqh (metodologi hukum Islam). <em>Al-Risalah</em> adalah buku usul fiqh pertama.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Imam Ahmad bin Hanbal (780–855 M)</h5>
+              <p>Pendiri Mazhab Hambali. Mengumpulkan <em>Musnad Ahmad</em> berisi 40.000 hadits. Simbol keteguhan akidah dalam Fitnah Al-Quran makhluk.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-10 -->
+
+    <!-- CARD 11: AYYUBIYAH -->
+    <div class="topic-card" id="card-11">
+      <div class="topic-header" onclick="toggleCard('card-11')">
+        <div class="topic-num num-teal">11</div>
+        <div class="topic-icon-area">⚔</div>
+        <div class="topic-title">
+          <h3>Daulah Ayyubiyah (1171–1260 M)</h3>
+          <p>Mesir &amp; Syam · Pengganti Fathimiyah · Perang Salib · Pembebasan Yerusalem</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Berdirinya Daulah Ayyubiyah</h4>
+          <p>Daulah Ayyubiyah didirikan oleh <strong>Shalahuddin al-Ayyubi (Yusuf bin Ayyub)</strong> pada <strong>1171 M</strong> setelah menggulingkan Daulah Fathimiyah (Syiah Ismaili) di Mesir. Ayyubiyah adalah keturunan suku Kurdi dari Tikrit (Irak). Berpusat di <strong>Kairo</strong>, kekuasaannya meliputi Mesir, Syam (Syria, Lebanon, Palestina), Yaman, bagian Irak dan Hijaz.</p>
+          <div class="info-box">
+            <strong>Ibu Kota:</strong> Kairo, Mesir &nbsp;|&nbsp; <strong>Pendiri:</strong> Shalahuddin al-Ayyubi &nbsp;|&nbsp; <strong>Masa:</strong> 1171–1260 M &nbsp;|&nbsp; <strong>Warisan:</strong> Benteng Saladin di Kairo, Madrasah-madrasah Sunni
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Perang Salib &amp; Konteks Historis</h4>
+          <p>Perang Salib dimulai 1096 M ketika Paus Urbanus II mengkhotbahkan ekspedisi militer ke Yerusalem. Pasukan Salib (Crusaders) berhasil merebut Yerusalem pada <strong>1099 M</strong> disertai pembantaian massal Muslim dan Yahudi. Selama ±88 tahun, Yerusalem berada di bawah Kerajaan Salib (Kingdom of Jerusalem). Shalahuddin yang kemudian membawa perubahan.</p>
+        </div>
+        <div class="content-block">
+          <h4>Kemajuan Daulah Ayyubiyah</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🏫 Revitalisasi Pendidikan Sunni</h5>
+              <p>Mendirikan ratusan madrasah (sekolah agama) Sunni di Mesir dan Syam untuk menggantikan dominasi Syiah Fathimiyah. Universitas Al-Azhar diubah menjadi Sunni.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏰 Arsitektur Militer</h5>
+              <p><strong>Benteng Saladin (Qal'at al-Jabal)</strong> di Kairo — pertahanan terkuat zamannya. Tembok-tembok kota Kairo dan Yerusalem yang diperkuat.</p>
+            </div>
+            <div class="mini-card">
+              <h5>💼 Perdagangan</h5>
+              <p>Mesir kembali menjadi pusat perdagangan internasional. Pelabuhan Alexandria dan Damietta ramai dengan pedagang dari Italia, Persia, dan India.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🕊 Toleransi Beragama</h5>
+              <p>Setelah membebaskan Yerusalem, Shalahuddin mengizinkan Yahudi dan Kristen kembali tinggal di kota suci dengan aman — kontras dengan kekejaman Pasukan Salib saat merebutnya.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Akhir Daulah Ayyubiyah</h4>
+          <p>Kekuatan Ayyubiyah melemah setelah Shalahuddin wafat (1193 M) karena perpecahan di antara ahli warisnya. Serangan Pasukan Salib ketujuh (1249 M) dipimpin Louis IX dari Prancis sempat merebut Damietta. Pada akhirnya, <strong>Daulah Mamluk</strong> (tentara budak Turki) di bawah Saifuddin Qutuz menggulingkan Ayyubiyah (1260 M) dan berhasil menghentikan invasi Mongol di Pertempuran Ain Jalut.</p>
+        </div>
+      </div>
+    </div><!-- end card-11 -->
+
+    <!-- CARD 12: SALAHUDIN & ILMUWAN AYYUBIYAH -->
+    <div class="topic-card" id="card-12">
+      <div class="topic-header" onclick="toggleCard('card-12')">
+        <div class="topic-num num-teal">12</div>
+        <div class="topic-icon-area">🦁</div>
+        <div class="topic-title">
+          <h3>Salahudin al-Ayyubi &amp; Ilmuwan Ayyubiyah</h3>
+          <p>Pahlawan Islam terbesar · Perang Hattin · Pembebasan Baitul Maqdis · Tokoh ilmu pengetahuan</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Biografi Salahudin al-Ayyubi</h4>
+          <p>Lahir di <strong>Tikrit (Irak), 1137 M</strong>. Nama lengkap: <strong>Shalah ad-Din Yusuf bin Ayyub</strong>. Bermadzhab Syafi'i dalam fiqh dan berpaham Asy'ari dalam akidah. Belajar ilmu agama dan militer sejak muda. Bertugas di bawah komando pamannya Asaduddin Syirkuh di bawah panji Nuruddin Zanki. Ketika Syirkuh wafat di Mesir (1169 M), Shalahuddin ditunjuk sebagai wazir (perdana menteri) Fathimiyah, kemudian mengambil kekuasaan penuh dan mendirikan Daulah Ayyubiyah.</p>
+        </div>
+        <div class="content-block">
+          <h4>Kronologi Perjuangan Besar</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">1171 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Menggulingkan Fathimiyah</h5>
+                <p>Menghapus nama khalifah Fathimiyah dari khutbah Jumat dan mengembalikan Mesir ke pangkuan Abbasiyah-Sunni.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1187 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Pertempuran Hattin (4 Juli 1187 M)</h5>
+                <p>Shalahuddin mengepung dan memotong jalur air Kerajaan Salib. Pasukan Salib dipaksa bertempur dalam kondisi kehausan di dekat Danau Tiberias. Kemenangan telak: Raja Guy de Lusignan ditangkap, Pangeran Reginald de Chatillon dieksekusi langsung oleh Shalahuddin.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1187 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Pembebasan Baitul Maqdis (2 Oktober 1187 M)</h5>
+                <p>Yerusalem dikepung selama beberapa hari. Penduduk Kristen diberi pilihan: menebus diri atau menjadi tawanan. Shalahuddin bahkan membebaskan banyak penduduk miskin secara cuma-cuma. Salib besar di kubah Gereja Makam Suci diturunkan. Masjid Al-Aqsha dibersihkan dan kembali difungsikan untuk shalat.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1189–1192 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Perang Salib III — Menghadapi Richard I</h5>
+                <p>Eropa mengutus Perang Salib III dipimpin Richard I (Lionheart) dari Inggris, Philip II dari Prancis, dan Frederick Barbarossa dari Jerman. Pertempuran Arsuf (1191 M): Shalahuddin kalah namun berhasil mempertahankan Yerusalem. Berakhir dengan <strong>Perjanjian Jaffa (1192 M)</strong>: Muslim mempertahankan Yerusalem; peziarah Kristen boleh berkunjung dengan damai.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1193 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Wafat Shalahuddin</h5>
+                <p>Wafat di Damaskus pada <strong>4 Maret 1193 M</strong>, usia 55 tahun. Saat wafat, harta pribadinya hanya cukup untuk biaya pemakaman — beliau menyumbangkan semua kekayaannya.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Karakter &amp; Akhlak Salahudin</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🕊 Pemaaf &amp; Berjiwa Ksatria</h5>
+              <p>Tidak membalasi kekejaman Pasukan Salib dengan kekerasan serupa. Ketika Yerusalem dibebaskan, tidak ada pembantaian. Richard I sempat sakit; Shalahuddin mengirim dokter dan buah-buahan untuknya.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🌙 Taat Beribadah</h5>
+              <p>Tidak pernah meninggalkan shalat berjamaah. Membaca Al-Quran setiap hari. Senang mendengar hadits dari para ulama bahkan di tengah perjalanan militer.</p>
+            </div>
+          </div>
+          <div class="quote-box">
+            "Saya meraih kemenangan bukan dengan banyaknya pasukan dan senjata, tetapi dengan banyaknya permohonan ampun dan taqwa kepada Allah."
+            <div class="quote-source">— Shalahuddin al-Ayyubi</div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Ilmuwan &amp; Tokoh di Era Ayyubiyah</h4>
+          <div class="grid-2">
+            <div class="person-card">
+              <div class="person-title">Ibnu Rusyd (Averroes)</div>
+              <div class="person-dates">1126–1198 M (Andalusia)</div>
+              <p>Filsuf dan dokter dari Kordoba. Menulis komentar komprehensif atas karya Aristoteles hingga dijuluki "The Commentator" di Eropa. Karyanya mentransfer filsafat Yunani ke Eropa abad pertengahan. Menulis <em>Bidayat al-Mujtahid</em> dalam fiqh Islam.</p>
+              <div class="person-tags"><span class="tag">Filsafat</span><span class="tag">Kedokteran</span><span class="tag green">Fiqh</span></div>
+            </div>
+            <div class="person-card">
+              <div class="person-title">Ibnu Khaldun</div>
+              <div class="person-dates">1332–1406 M (Tunisia)</div>
+              <p>Bapak Sosiologi dan Historiografi Modern. <em>Muqaddimah</em>-nya adalah karya revolusioner tentang teori siklus peradaban (asabiyah), ilmu sosial, dan ekonomi. Mendahului Adam Smith dalam teori ekonomi dan Auguste Comte dalam sosiologi.</p>
+              <div class="person-tags"><span class="tag">Sosiologi</span><span class="tag teal">Sejarah</span><span class="tag">Ekonomi</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-12 -->
+
+  </div><!-- end tab-1 -->
+
+
+  <!-- ═══════════════════════════════════════════
+       TAB 3: ISLAM DI INDONESIA
+  ═══════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-2">
+    <div class="section-header">
+      <h3>🌴 Materi 5</h3>
+      <h2>Islam di Nusantara — Islamisasi, Wali Sanga &amp; Kearifan Lokal</h2>
+      <p>Bagaimana Islam datang, berkembang, dan menyatu harmonis dengan budaya Nusantara melalui jalur damai yang penuh kearifan.</p>
+    </div>
+
+    <!-- CARD 13: ISLAMISASI -->
+    <div class="topic-card" id="card-13">
+      <div class="topic-header" onclick="toggleCard('card-13')">
+        <div class="topic-num num-gold">13</div>
+        <div class="topic-icon-area">🚢</div>
+        <div class="topic-title">
+          <h3>Islamisasi Nusantara</h3>
+          <p>Teori masuknya Islam · Jalur penyebaran · Kerajaan-kerajaan Islam pertama</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Teori-Teori Masuknya Islam ke Indonesia</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Teori</th><th>Pencetus</th><th>Asal</th><th>Waktu</th><th>Bukti &amp; Argumen</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Teori Gujarat</strong></td><td>Moquette, Pijnappel, Snouck Hurgronje</td><td>Gujarat, India</td><td>Abad ke-13 M</td><td>Batu nisan Sultan Malik al-Saleh (1297 M) mirip batu nisan Gujarat. Hubungan perdagangan India–Nusantara.</td></tr>
+                <tr><td><strong>Teori Mekkah/Arab</strong></td><td>Hamka, Van Leur</td><td>Mekkah/Hadramaut, Arab</td><td>Abad ke-7 M</td><td>Catatan Arab tentang perdagangan di Nusantara abad ke-7. Corak Islam Nusantara mirip Islam Arab langsung.</td></tr>
+                <tr><td><strong>Teori Persia</strong></td><td>Hoesein Djajadiningrat</td><td>Persia (Iran)</td><td>Abad ke-13 M</td><td>Kesamaan budaya: peringatan 10 Muharram (Tabuik), kosakata Persia dalam Islam Nusantara.</td></tr>
+                <tr><td><strong>Teori Cina</strong></td><td>Slamet Muljana</td><td>Cina (Muslim Yunnan)</td><td>Abad ke-15 M</td><td>Catatan Dinasti Ming. Peran komunitas Muslim Cina (seperti Cheng Ho) di Nusantara.</td></tr>
+                <tr><td><strong>Teori Benggala</strong></td><td>S.Q. Fatimi</td><td>Benggala (Bangladesh)</td><td>Abad ke-13 M</td><td>Kesamaan corak sufisme dan kaligrafi antara Benggala dan Nusantara.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-box"><strong>Kesimpulan terkini:</strong> Para sejarawan modern cenderung setuju bahwa islamisasi Nusantara adalah proses panjang yang melibatkan <em>berbagai jalur sekaligus</em>, bukan hanya satu sumber. Islam sudah ada sejak abad ke-7 M melalui pedagang Arab, namun islamisasi massal terjadi pada abad ke-13–16 M.</div>
+        </div>
+        <div class="content-block">
+          <h4>Jalur-Jalur Islamisasi</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>🛒 Perdagangan</h5>
+              <p>Pedagang Muslim singgah di pelabuhan Nusantara. Interaksi dagang membuka ruang perkenalan dengan Islam. Pedagang menikah dengan penduduk lokal.</p>
+            </div>
+            <div class="mini-card">
+              <h5>💍 Perkawinan</h5>
+              <p>Pedagang Muslim menikahi putri bangsawan lokal. Anak-anak mereka dibesarkan Muslim. Beberapa raja/raja muda memeluk Islam karena perkawinan ini.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏫 Pendidikan</h5>
+              <p>Ulama mendirikan pesantren dan surau. Santri yang lulus menyebarkan Islam ke daerah asal mereka.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎭 Kesenian</h5>
+              <p>Wayang, gamelan, tembang, dan seni pertunjukan dijadikan media dakwah oleh Wali Sanga. Islam dikemas dalam budaya yang familiar.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🌙 Tasawuf</h5>
+              <p>Pendekatan sufistik yang luwes, menekankan pengalaman batin dan akhlak, lebih mudah diterima masyarakat Nusantara yang memiliki tradisi spiritualisme kuat.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏰 Kekuasaan Politik</h5>
+              <p>Ketika raja masuk Islam, rakyatnya mengikuti. Kerajaan Islam memberikan perlindungan kepada pedagang Muslim dan komunitas Islam.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Kerajaan-Kerajaan Islam di Nusantara</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">1267 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Samudera Pasai (Aceh)</h5>
+                <p>Kerajaan Islam pertama di Nusantara. Batu nisan Sultan Malik al-Saleh bertanggal 1297 M. Dikunjungi Ibnu Battutah (1345 M) yang memuji kemajuannya.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1400 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Kesultanan Malaka (Malaysia)</h5>
+                <p>Pusat perdagangan terpenting Asia Tenggara. Raja Parameswara masuk Islam (1414 M) dan berganti nama Iskandar Syah. Menjadi pusat penyebaran Islam ke seluruh kepulauan.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1478 M</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Kesultanan Demak (Jawa)</h5>
+                <p>Kerajaan Islam pertama di Jawa. Didirikan Raden Patah, didukung penuh Wali Sanga. Menjadi pusat dakwah Islam di Jawa dan kepulauan timur.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Abad 15–16</div>
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <h5>Kerajaan Islam Lain</h5>
+                <p>Aceh, Banten, Cirebon, Mataram Islam (Jawa); Gowa-Tallo (Sulawesi); Ternate-Tidore (Maluku); Banjar (Kalimantan); Siak, Riau (Sumatera).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-13 -->
+
+    <!-- CARD 14: WALI SANGA -->
+    <div class="topic-card" id="card-14">
+      <div class="topic-header" onclick="toggleCard('card-14')">
+        <div class="topic-num num-gold">14</div>
+        <div class="topic-icon-area">🌙</div>
+        <div class="topic-title">
+          <h3>Wali Sanga — Sembilan Wali Penyebar Islam di Jawa</h3>
+          <p>Para ulama penjembatan Islam dan budaya Jawa yang mengislamkan nusantara dengan kearifan dan kreativitas</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Profil 9 Wali</h4>
+          <div class="grid-2">
+            <div class="wali-card">
+              <div class="wali-num">Wali 1</div>
+              <h5>Sunan Gresik</h5>
+              <div class="wali-alias">Maulana Malik Ibrahim · w. 1419 M</div>
+              <p>Dianggap wali pertama yang datang ke Jawa dari Persia/Gujarat. Berdakwah di Gresik, Jawa Timur. Mengajarkan cara bertani dan berdagang dengan jujur sebagai pendekatan dakwah. Dikenal sebagai "Kakek dari Para Wali".</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 2</div>
+              <h5>Sunan Ampel</h5>
+              <div class="wali-alias">Raden Rahmat / Ali Rahmatullah · 1401–1481 M</div>
+              <p>Mendirikan <strong>pesantren pertama di Jawa</strong> di Ampel Denta (Surabaya). Guru dari banyak wali lain. Menantu Raja Majapahit (Bhre Wirabumi). Terkenal dengan ajaran <strong>"Moh Limo"</strong> (menolak 5 hal: main judi, minum minuman keras, madat, mencuri, dan zina).</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 3</div>
+              <h5>Sunan Bonang</h5>
+              <div class="wali-alias">Raden Makhdum Ibrahim · 1465–1525 M</div>
+              <p>Putra Sunan Ampel. Berdakwah di Tuban dan Rembang. Menggubah <strong>tembang Tombo Ati</strong> yang terkenal. Memperkenalkan alat musik <strong>bonang</strong> (gamelan) sebagai media dakwah. Menulis <em>Suluk Wujil</em> — puisi sufistik Jawa.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 4</div>
+              <h5>Sunan Drajat</h5>
+              <div class="wali-alias">Raden Qasim / Syarifuddin · 1470–1522 M</div>
+              <p>Putra Sunan Ampel. Berdakwah di Sedayu, Lamongan. Terkenal dengan dakwah <strong>sosial-ekonomi</strong>: mendirikan panti asuhan, membantu fakir miskin, mengajarkan pertukangan dan pembuatan batik. Ajaran: dahulukan memberi makan dan pakaian baru kemudian mengajak beribadah.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 5</div>
+              <h5>Sunan Kudus</h5>
+              <div class="wali-alias">Ja'far Shadiq · 1400–1550 M</div>
+              <p>Ulama fiqh dan hadits yang ketat. Berdakwah di Kudus. Membangun <strong>Masjid Kudus</strong> dengan menara bergaya Hindu (Menara Kudus). Terkenal melarang penyembelihan sapi untuk menghormati kepercayaan Hindu-Budha penduduk setempat — contoh dakwah toleran.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 6</div>
+              <h5>Sunan Giri</h5>
+              <div class="wali-alias">Raden Paku / Muhammad Ainul Yaqin · 1442–1506 M</div>
+              <p>Mendirikan pondok pesantren di Giri, Gresik — menjadi pusat pendidikan Islam dan pusat politik (menjadi "paus" bagi kerajaan-kerajaan Islam Nusantara). Menciptakan lagu anak-anak islami: <strong>Padang Bulan, Gula Ganti, Cublak-Cublak Suweng</strong>. Dakwah menjangkau Maluku, Kalimantan, dan Sulawesi.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 7</div>
+              <h5>Sunan Kalijaga</h5>
+              <div class="wali-alias">Raden Said / Lokajaya · 1460–1513 M</div>
+              <p>Wali paling populer dan kreatif. Murid Sunan Bonang. Menggunakan <strong>wayang kulit, gamelan, batik, dan tembang macapat</strong> sebagai media dakwah. Menciptakan baju takwa (sorjan), bedug masjid, dan tradisi Sekaten. Dakwah secara halus melalui seni budaya sehingga masyarakat tidak merasa "dipaksa" masuk Islam.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 8</div>
+              <h5>Sunan Muria</h5>
+              <div class="wali-alias">Raden Umar Said · 1450–1551 M</div>
+              <p>Putra Sunan Kalijaga. Berdakwah di lereng Gunung Muria, Kudus. Lebih memilih berdakwah di pedesaan dan kalangan petani-nelayan. Mengajarkan <strong>kesenian gamelan dan wayang</strong>. Meneruskan tradisi dakwah damai ayahnya dengan pendekatan yang lebih personal.</p>
+            </div>
+            <div class="wali-card">
+              <div class="wali-num">Wali 9</div>
+              <h5>Sunan Gunung Jati</h5>
+              <div class="wali-alias">Syarif Hidayatullah / Faletehan · 1448–1568 M</div>
+              <p>Wali paling berpengaruh secara politik. Mendirikan <strong>Kesultanan Cirebon</strong> dan bersekutu dengan <strong>Kesultanan Banten</strong>. Menyebarkan Islam ke Jawa Barat, Banten, dan sebagian Sumatera. Nenek moyang raja-raja Cirebon dan Banten. Mengusir Portugis dari Sunda Kelapa (1527 M) dan mengganti namanya menjadi <strong>Jayakarta</strong>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Metode Dakwah Wali Sanga</h4>
+          <div class="highlight-box">
+            <div class="hl-title">💡 Prinsip Dakwah Wali Sanga</div>
+            Wali Sanga tidak menghapus budaya lokal, melainkan <strong>mengisinya dengan nilai-nilai Islam</strong>. Pendekatan ini disebut <em>akulturasi</em> (penyerapan) dan <em>sinkretisme dakwah</em>. Hasilnya: Islam berkembang pesat tanpa peperangan dan tanpa menghancurkan identitas budaya setempat. Masjid dibangun dengan atap tumpang (meru), wayang tetap ada namun temanya diubah ke kisah para nabi, tembang macapat diisi syair-syair islami.
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-14 -->
+
+    <!-- CARD 15: PESANTREN -->
+    <div class="topic-card" id="card-15">
+      <div class="topic-header" onclick="toggleCard('card-15')">
+        <div class="topic-num num-green">15</div>
+        <div class="topic-icon-area">🎓</div>
+        <div class="topic-title">
+          <h3>Pesantren — Lembaga Pendidikan Islam Asli Nusantara</h3>
+          <p>Sejarah · Komponen · Sistem pendidikan · Peran dalam kemerdekaan &amp; kemodernan</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Sejarah Pesantren</h4>
+          <p>Pesantren merupakan lembaga pendidikan Islam tertua di Indonesia. Asal-usulnya berasal dari tradisi padepokan Hindu-Budha yang kemudian diislamkan oleh para ulama, khususnya oleh <strong>Sunan Ampel</strong> yang mendirikan pesantren di <strong>Ampel Denta, Surabaya</strong> (abad ke-15 M). Kata "pesantren" berasal dari kata <em>santri</em> (murid) yang mendapat awalan pe- dan akhiran -an, yang berarti "tempat para santri". Ada yang menyebut "santri" dari bahasa Sansekerta <em>shastri</em> (orang yang menguasai kitab suci).</p>
+        </div>
+        <div class="content-block">
+          <h4>Lima Komponen Dasar Pesantren (Panca Jiwa)</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>👨‍🏫 Kiai</h5>
+              <p>Pemimpin tertinggi pesantren. Ahli dalam ilmu agama Islam. Menjadi rujukan spiritual dan sosial bagi santri dan masyarakat sekitar.</p>
+            </div>
+            <div class="mini-card">
+              <h5>👨‍🎓 Santri</h5>
+              <p>Murid yang belajar di pesantren. <em>Santri mukim</em>: tinggal di pondok. <em>Santri kalong</em>: datang-pergi dari rumah masing-masing.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🕌 Masjid</h5>
+              <p>Pusat ibadah, pengajian, dan diskusi keilmuan. Di masjid inilah interaksi kiai-santri yang paling intens terjadi.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏠 Pondok</h5>
+              <p>Asrama tempat tinggal santri. Kehidupan kolektif di pondok membentuk karakter kemandirian, kesederhanaan, dan kebersamaan.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📚 Kitab Kuning</h5>
+              <p>Kitab-kitab klasik berbahasa Arab (tanpa harakat/gundul) yang menjadi sumber pengajaran: Nahwu, Sharaf, Fiqh, Hadits, Tafsir, Tasawuf, dll.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Sistem Pengajaran Pesantren</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>📖 Sorogan</h5>
+              <p>Santri membaca kitab satu per satu di hadapan kiai. Kiai menyimak dan mengoreksi langsung. Sangat individual dan intensif — cocok untuk santri tingkat tinggi.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎙 Bandongan / Wetonan</h5>
+              <p>Kiai membacakan kitab, santri menyimak sambil menulis makna di pinggir kitab. Metode massal yang efisien untuk menyampaikan ilmu kepada banyak santri sekaligus.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🔵 Halaqah</h5>
+              <p>Diskusi kelompok melingkar membahas tema tertentu. Melatih kemampuan berpikir kritis dan argumentasi berdasarkan dalil agama.</p>
+            </div>
+            <div class="mini-card">
+              <h5>📝 Musyawarah / Bahts al-Masa'il</h5>
+              <p>Diskusi ilmiah memecahkan masalah hukum Islam kontemporer dengan merujuk kitab-kitab klasik. Tradisi intelektual tertinggi di pesantren.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Jenis-Jenis Pesantren</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>🕯 Pesantren Salafiyah</h5>
+              <p>Hanya mengajarkan ilmu-ilmu agama klasik dari kitab kuning. Mempertahankan tradisi pendidikan pesantren original.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎓 Pesantren Khalafiyah (Modern)</h5>
+              <p>Menggabungkan kurikulum agama dengan ilmu umum (madrasah/sekolah formal). Contoh: Pondok Modern Gontor.</p>
+            </div>
+            <div class="mini-card">
+              <h5>⚖ Pesantren Kombinasi</h5>
+              <p>Memiliki program salafi (kitab kuning) sekaligus sekolah formal (Madrasah Tsanawiyah / Aliyah) dalam satu lingkungan.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Peran Pesantren dalam Sejarah Indonesia</h4>
+          <div class="banner">
+            <h5>⚔ Resolusi Jihad NU — 22 Oktober 1945</h5>
+            <p>KH Hasyim Asy'ari mengeluarkan Resolusi Jihad yang menyatakan bahwa <strong>berjuang mempertahankan kemerdekaan Indonesia adalah FARDHU AIN (wajib bagi setiap Muslim)</strong>. Resolusi ini membakar semangat santri dan ulama pesantren untuk terjun langsung dalam pertempuran, termasuk Pertempuran 10 November 1945 di Surabaya. Tanggal 22 Oktober kemudian ditetapkan sebagai <strong>Hari Santri Nasional</strong> (sejak 2015 M).</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-15 -->
+
+    <!-- CARD 16: KEARIFAN LOKAL -->
+    <div class="topic-card" id="card-16">
+      <div class="topic-header" onclick="toggleCard('card-16')">
+        <div class="topic-num num-teal">16</div>
+        <div class="topic-icon-area">🎭</div>
+        <div class="topic-title">
+          <h3>Kearifan Lokal &amp; Akulturasi Budaya Islam Nusantara</h3>
+          <p>Seni bangunan · Wayang · Gamelan · Batik · Tradisi islami yang berwajah Nusantara</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Arsitektur Islam Nusantara</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🕌 Masjid Atap Tumpang</h5>
+              <p><strong>Masjid Agung Demak</strong> (1479 M) adalah contoh terbaik: atap bertingkat (tumpang) menggantikan kubah Arab — menggabungkan arsitektur Islam dengan tradisi bangunan Jawa/Hindu.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🗼 Menara Kudus</h5>
+              <p>Menara Masjid Kudus berbentuk seperti candi Hindu/Budha. Simbol paling kuat dari akulturasi Islam-Hindu di Nusantara.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🏰 Makam Berundak</h5>
+              <p>Makam para wali dan raja Islam sering berbentuk berundak (bertingkat), mengadopsi gaya piramida Hindu namun diisi dengan nilai Islam.</p>
+            </div>
+            <div class="mini-card">
+              <h5>✍ Kaligrafi Nusantara</h5>
+              <p>Kaligrafi Arab dipadukan dengan motif flora, fauna, dan ornamen lokal — menghasilkan gaya kaligrafi khas Nusantara yang berbeda dari Timur Tengah.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Seni Pertunjukan sebagai Media Dakwah</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>🎭 Wayang Kulit</h5>
+              <p>Sunan Kalijaga mengubah lakon wayang dari epos Hindu (Mahabharata, Ramayana) dengan menyisipkan nilai-nilai Islam. Tokoh Punakawan (Semar, Gareng, Petruk, Bagong) diciptakan untuk menyampaikan pesan moral islami.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🥁 Gamelan</h5>
+              <p>Tradisi gamelan dijadikan pengiring pengajian dan dakwah. Tembang-tembang Jawa diisi syair islami. Bedug (genderang besar) dimasukkan ke masjid sebagai penanda waktu shalat.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎵 Tembang Macapat</h5>
+              <p>Puisi Jawa tradisional (Dandanggula, Pangkur, Kinanthi, dll) diisi dengan syair-syair bermuatan dakwah Islam oleh para wali. Menjadi media pembelajaran agama yang efektif.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Tradisi Islam Nusantara</h4>
+          <div class="grid-2">
+            <div class="mini-card">
+              <h5>🎉 Sekaten</h5>
+              <p>Tradisi perayaan Maulid Nabi di Keraton Yogyakarta/Solo. Bermula dari strategi Wali Sanga mengundang massa dengan pertunjukan gamelan, kemudian disampaikan dakwah Islam. Berlangsung seminggu.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🌙 Grebeg</h5>
+              <p>Upacara kerajaan yang diadaptasi Islam: Grebeg Maulud (Maulid Nabi), Grebeg Syawal (Idul Fitri), Grebeg Besar (Idul Adha). Gunungan berisi hasil bumi diperebutkan sebagai berkah.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🪦 Ziarah Kubur Wali</h5>
+              <p>Tradisi mengunjungi makam Wali Sanga untuk tabaruk (mengambil keberkahan). Menjadi bagian dari wisata religi Islam Nusantara yang khas.</p>
+            </div>
+            <div class="mini-card">
+              <h5>🎨 Batik Bermotif Islami</h5>
+              <p>Batik yang menggabungkan motif flora, geometri Islami, dan kaligrafi. Parang dan Kawung memiliki filosofi yang disesuaikan dengan nilai-nilai Islam.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Pengaruh Islam dalam Bahasa Indonesia</h4>
+          <p>Ribuan kata dalam bahasa Indonesia berasal dari bahasa Arab, bukti kuatnya pengaruh Islam dalam kehidupan sehari-hari:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kata Indonesia</th><th>Asal Arab</th><th>Bidang</th></tr></thead>
+              <tbody>
+                <tr><td>Masjid, Mushalla, Mimbar</td><td>Masjid, Mushalla, Minbar</td><td>Agama/arsitektur</td></tr>
+                <tr><td>Waktu, Abad, Dunia</td><td>Waqt, 'Asr, Dunya</td><td>Konsep waktu</td></tr>
+                <tr><td>Ilmu, Pikir, Khabar/Kabar</td><td>'Ilm, Fikr, Khabar</td><td>Pengetahuan</td></tr>
+                <tr><td>Hakim, Hukum, Aturan</td><td>Hakim, Hukm, Amr</td><td>Hukum/pemerintahan</td></tr>
+                <tr><td>Selamat, Syukur, Sabar</td><td>Salamah, Syukr, Shabr</td><td>Ekspresi moral</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-16 -->
+
+    <!-- CARD 17: ORMAS ISLAM -->
+    <div class="topic-card" id="card-17">
+      <div class="topic-header" onclick="toggleCard('card-17')">
+        <div class="topic-num num-purple">17</div>
+        <div class="topic-icon-area">🤝</div>
+        <div class="topic-title">
+          <h3>Organisasi Kemasyarakatan Islam di Indonesia</h3>
+          <p>Muhammadiyah · Nahdlatul Ulama · Persis · Al-Irsyad · Peran kebangsaan</p>
+        </div>
+        <div class="topic-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="topic-body">
+        <div class="content-block">
+          <h4>Organisasi-Organisasi Islam Terbesar</h4>
+          <div class="grid-2">
+            <div class="ormas-card">
+              <div class="ormas-year">1912</div>
+              <div class="ormas-name">Muhammadiyah</div>
+              <div class="ormas-founder">Pendiri: KH Ahmad Dahlan · Yogyakarta</div>
+              <p>Organisasi Islam modernis terbesar kedua di Indonesia. Berorientasi pada <strong>pembaruan (tajdid)</strong>, memberantas bid'ah, khurafat, dan takhayul. Terinspirasi gerakan salafiyah Muhammad Abduh dari Mesir.</p>
+              <ul>
+                <li>Mendirikan ribuan sekolah modern (SD, SMP, SMA, Universitas)</li>
+                <li>Mendirikan rumah sakit, klinik, dan panti asuhan di seluruh Indonesia</li>
+                <li>Memiliki sayap: Aisyiyah (perempuan), IPM (pelajar), IMM (mahasiswa)</li>
+                <li>Fokus pada amal usaha nyata dan pendidikan modern</li>
+                <li>Memiliki lebih dari 60 juta anggota dan simpatisan</li>
+              </ul>
+            </div>
+            <div class="ormas-card">
+              <div class="ormas-year">1926</div>
+              <div class="ormas-name">Nahdlatul Ulama (NU)</div>
+              <div class="ormas-founder">Pendiri: KH Hasyim Asy'ari · Jombang, Jawa Timur</div>
+              <p>Organisasi Islam terbesar di Indonesia dan kemungkinan terbesar di dunia. Berorientasi <strong>Ahlussunnah wal Jama'ah (Aswaja)</strong>, menerima tradisi pesantren dan kearifan lokal.</p>
+              <ul>
+                <li>Basis kuat di pesantren-pesantren tradisional Jawa</li>
+                <li>Resolusi Jihad (1945) membakar semangat kemerdekaan</li>
+                <li>Sayap: Fatayat (perempuan muda), Ansor (pemuda), IPNU-IPPNU (pelajar)</li>
+                <li>Menerima wayang, tahlilan, yasinan sebagai dakwah kultural</li>
+                <li>Memiliki lebih dari 90 juta anggota</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Organisasi Islam Lain yang Berpengaruh</h4>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h5>Persis (1923)</h5>
+              <p><strong>Persatuan Islam</strong>, Bandung. Pendiri: KH Ahmad Hassan dan Muhammad Yunus. Gerakan purifikasi Islam dengan pendekatan ilmiah melalui majalah dan perdebatan teologi.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Al-Irsyad (1914)</h5>
+              <p>Didirikan Ahmad Surkati di Jakarta. Berpengaruh di kalangan komunitas Arab di Indonesia. Berfokus pada pendidikan dan penolakan bid'ah.</p>
+            </div>
+            <div class="mini-card">
+              <h5>Syarikat Islam (1911)</h5>
+              <p>Awalnya Syarikat Dagang Islam (1905). Organisasi ekonomi Muslim pertama yang berubah menjadi gerakan politik kebangsaan. Tokoh: HOS Tjokroaminoto.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Peran Ormas Islam dalam Kemerdekaan &amp; Kemodernan</h4>
+          <div class="banner">
+            <h5>🇮🇩 Kontribusi Ormas Islam untuk Bangsa</h5>
+            <p>Ormas-ormas Islam Indonesia berperan sangat vital dalam: <strong>(1) Kemerdekaan</strong> — melalui pendidikan nasionalisme dan perlawanan terhadap kolonialisme Belanda. <strong>(2) Dasar Negara</strong> — perumusan Pancasila melibatkan tokoh Islam yang sepakat menjadikan Indonesia negara Pancasila (bukan negara Islam formal) demi persatuan. <strong>(3) Pendidikan</strong> — ribuan sekolah dan universitas yang didirikan ormas Islam menjadi tulang punggung pendidikan nasional. <strong>(4) Moderasi Beragama</strong> — NU dan Muhammadiyah menjadi benteng Islam moderat dan toleran di tengah arus radikalisme global.</p>
+          </div>
+        </div>
+        <div class="content-block">
+          <h4>Perbandingan NU dan Muhammadiyah</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Aspek</th><th>Nahdlatul Ulama (NU)</th><th>Muhammadiyah</th></tr></thead>
+              <tbody>
+                <tr><td>Berdiri</td><td>1926, Jombang</td><td>1912, Yogyakarta</td></tr>
+                <tr><td>Pendiri</td><td>KH Hasyim Asy'ari</td><td>KH Ahmad Dahlan</td></tr>
+                <tr><td>Orientasi</td><td>Tradisional (Salafi-Sufistik)</td><td>Modernis (Purifikasi)</td></tr>
+                <tr><td>Fiqh</td><td>Bermazhab 4 (Syafi'i dominan)</td><td>Langsung ke Quran-Hadits</td></tr>
+                <tr><td>Tradisi</td><td>Menerima: tahlilan, ziarah, maulid</td><td>Kritis terhadap praktik yang dianggap bid'ah</td></tr>
+                <tr><td>Basis</td><td>Pesantren, pedesaan</td><td>Sekolah modern, perkotaan</td></tr>
+                <tr><td>Amal Usaha</td><td>Pesantren, madrasah</td><td>Sekolah modern, RS, panti asuhan</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- end card-17 -->
+
+  </div><!-- end tab-2 -->
+
+</div><!-- end main-wrapper -->
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+  <p>© 2024 <span>IslamicEdu</span> — Portal Belajar Sejarah Kebudayaan Islam &nbsp;·&nbsp; Dibuat dengan ♥ untuk pelajar Muslim Indonesia</p>
+  <p style="margin-top:6px">MTs / MA Kelas VII–IX &nbsp;·&nbsp; Materi lengkap &amp; terstruktur</p>
+</footer>
+
+<script>
+  // ── TAB SWITCH ──
+  function switchTab(index) {
+    document.querySelectorAll('.tab-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── ACCORDION TOGGLE ──
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  // ── SCROLL TOP BUTTON ──
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTopBtn');
+    btn.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  // ── DRAGGABLE TABLES ──
+  document.querySelectorAll('.table-wrap').forEach(wrap => {
+    let isDown = false, startX, scrollLeft;
+    wrap.addEventListener('mousedown', e => {
+      isDown = true;
+      wrap.style.cursor = 'grabbing';
+      startX = e.pageX - wrap.offsetLeft;
+      scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener('mouseleave', () => { isDown = false; wrap.style.cursor = 'grab'; });
+    wrap.addEventListener('mouseup',    () => { isDown = false; wrap.style.cursor = 'grab'; });
+    wrap.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - wrap.offsetLeft;
+      wrap.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    });
+    let touchStartX, touchScrollLeft;
+    wrap.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].pageX;
+      touchScrollLeft = wrap.scrollLeft;
+    }, { passive: true });
+    wrap.addEventListener('touchmove', e => {
+      const dx = touchStartX - e.touches[0].pageX;
+      wrap.scrollLeft = touchScrollLeft + dx;
+    }, { passive: true });
+  });
+
+  // ── AUTO OPEN FIRST CARD IN EACH TAB ──
+  document.querySelectorAll('.topic-card').forEach((card, i) => {
+    if (i === 0) card.classList.add('open');
+  });
+</script>
+</body>
+</html>
