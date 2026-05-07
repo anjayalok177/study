@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SainsID — Portal Belajar IPA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   CSS VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --navy:    #070d2a;
+  --navy2:   #0d1640;
+  --navy3:   #111e52;
+  --indigo:  #1a2980;
+  --indigo2: #26d0ce;
+  --gold:    #c9a84c;
+  --gold2:   #f0c96a;
+  --gold3:   #fde68a;
+  --white:   #ffffff;
+  --off:     #f8f7f2;
+  --text:    #1a1a2e;
+  --text2:   #4a4a6a;
+  --text3:   #7a7a9a;
+  --border:  #e8e4d8;
+  --green:   #16a34a;
+  --green-bg:#dcfce7;
+  --red:     #dc2626;
+  --red-bg:  #fee2e2;
+  --blue-bg: #eff6ff;
+  --shadow:  0 4px 24px rgba(7,13,42,.13);
+  --shadow2: 0 2px 8px rgba(7,13,42,.08);
+  --radius:  16px;
+  --radius2: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════
+   BACKGROUND DECORATION
+═══════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26,41,128,.55) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(38,208,206,.12) 0%, transparent 70%),
+    linear-gradient(160deg, var(--navy) 0%, var(--navy2) 50%, #0a1535 100%);
+  pointer-events: none; z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT WRAPPERS
+═══════════════════════════════════════ */
+.page { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+header {
+  padding: 0 max(20px,4vw);
+  background: rgba(7,13,42,.82);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,.18);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 0;
+}
+.logo-badge {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), #a07828);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(201,168,76,.4);
+}
+.logo-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+.logo-text p { font-size: 11px; color: var(--gold2); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+.header-pill {
+  margin-left: auto;
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3);
+  color: var(--gold2); font-size: 11px; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px; letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  text-align: center;
+  padding: 64px max(20px,4vw) 48px;
+  max-width: 700px; margin: 0 auto;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(240,201,106,.1);
+  border: 1px solid rgba(201,168,76,.25);
+  color: var(--gold2); font-size: 11px; font-weight: 600;
+  padding: 6px 16px; border-radius: 20px;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+}
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px,5vw,52px); font-weight: 900;
+  color: var(--white); line-height: 1.15; margin-bottom: 14px;
+}
+.hero h2 em { font-style: italic; color: var(--gold2); }
+.hero p { font-size: 15px; color: rgba(255,255,255,.62); line-height: 1.75; }
+.hero-stats {
+  display: flex; justify-content: center; gap: clamp(20px,4vw,48px);
+  margin-top: 32px; flex-wrap: wrap;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; color: var(--gold2);
+}
+.stat-lbl { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 2px; }
+
+/* ═══════════════════════════════════════
+   TAB NAV
+═══════════════════════════════════════ */
+.tab-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 max(20px,3vw); }
+.tab-nav {
+  display: flex; gap: 6px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: 14px; padding: 6px;
+  margin-bottom: 36px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+  flex: 1; min-width: 120px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px;
+  border: none; border-radius: 10px;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600;
+  transition: all .25s ease;
+  background: transparent; color: rgba(255,255,255,.5);
+  white-space: nowrap;
+}
+.tab-btn svg { width: 16px; height: 16px; opacity: .7; transition: opacity .25s; }
+.tab-btn:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.8); }
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--gold), #a07828);
+  color: var(--navy); box-shadow: 0 4px 16px rgba(201,168,76,.35);
+}
+.tab-btn.active svg { opacity: 1; }
+
+/* ═══════════════════════════════════════
+   TAB PANELS
+═══════════════════════════════════════ */
+.tab-panel { display: none; animation: panelIn .35s ease; }
+.tab-panel.active { display: block; }
+@keyframes panelIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* ═══════════════════════════════════════
+   WHITE CARD
+═══════════════════════════════════════ */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,.1);
+  transition: box-shadow .25s, transform .2s;
+}
+.card:hover { box-shadow: 0 8px 40px rgba(7,13,42,.18); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════
+   TOPIC HEADER (ACCORDION)
+═══════════════════════════════════════ */
+.topic-hdr {
+  display: flex; align-items: center; gap: 16px;
+  padding: 22px 28px; cursor: pointer; user-select: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s;
+}
+.card.open .topic-hdr { border-bottom-color: var(--border); }
+.topic-num {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+}
+.num-g { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #92400e; }
+.num-b { background: linear-gradient(135deg,#dbeafe,#bfdbfe); color: #1e40af; }
+.num-p { background: linear-gradient(135deg,#ede9fe,#ddd6fe); color: #5b21b6; }
+.num-r { background: linear-gradient(135deg,#fee2e2,#fecaca); color: #991b1b; }
+.num-t { background: linear-gradient(135deg,#ccfbf1,#99f6e4); color: #0f766e; }
+.topic-info { flex: 1; }
+.topic-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3;
+}
+.topic-info p { font-size: 12px; color: var(--text3); margin-top: 3px; }
+.topic-chevron {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--off); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text3); transition: all .25s; flex-shrink: 0;
+}
+.card.open .topic-chevron { background: var(--gold); color: var(--navy); transform: rotate(180deg); border-color: var(--gold); }
+
+/* ═══════════════════════════════════════
+   TOPIC BODY
+═══════════════════════════════════════ */
+.topic-body { display: none; padding: 28px; }
+.card.open .topic-body { display: block; }
+
+/* ═══════════════════════════════════════
+   CONTENT PRIMITIVES
+═══════════════════════════════════════ */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 700; color: var(--text);
+  border-left: 3px solid var(--gold); padding-left: 12px;
+  margin: 22px 0 12px;
+}
+.section-title:first-child { margin-top: 0; }
+
+p.body-text { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 10px; }
+
+.info-card {
+  background: var(--blue-bg);
+  border: 1px solid #bfdbfe; border-radius: var(--radius2);
+  padding: 16px 18px; margin: 12px 0; font-size: 14px; color: #1e40af; line-height: 1.75;
+}
+.info-card strong { color: #1e3a8a; }
+
+.warn-card {
+  background: #fffbeb;
+  border: 1px solid #fde68a; border-radius: var(--radius2);
+  padding: 16px 18px; margin: 12px 0; font-size: 14px; color: #92400e; line-height: 1.75;
+}
+.formula-card {
+  background: linear-gradient(135deg, #fefce8, #fef9c3);
+  border: 1px solid var(--gold); border-radius: var(--radius2);
+  padding: 16px 18px; margin: 12px 0;
+}
+.formula-card .flabel {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+.formula-card .ftext {
+  font-family: 'Inter', monospace; font-size: 14px; color: var(--text); line-height: 1.8; font-weight: 500;
+}
+.two-col {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; margin: 12px 0;
+}
+.mini-info {
+  background: var(--off); border: 1px solid var(--border);
+  border-radius: var(--radius2); padding: 14px 16px;
+}
+.mini-info h5 { font-size: 12px; font-weight: 700; color: var(--indigo); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.mini-info p, .mini-info li { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.mini-info ul { padding-left: 16px; }
+.mini-info li { margin-bottom: 4px; }
+
+ul.content-list { padding-left: 20px; margin: 8px 0 12px; }
+ul.content-list li { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 6px; }
+ul.content-list li strong { color: var(--text); }
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+table.data-table th {
+  background: var(--navy); color: var(--gold2);
+  font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  padding: 10px 14px; text-align: left;
+}
+table.data-table td { padding: 10px 14px; color: var(--text2); border-bottom: 1px solid var(--border); vertical-align: top; }
+table.data-table tr:last-child td { border-bottom: none; }
+table.data-table tr:hover td { background: var(--off); }
+.table-scroll { overflow-x: auto; border-radius: var(--radius2); border: 1px solid var(--border); margin: 12px 0; }
+
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 600;
+}
+.tag-gold { background: #fef3c7; color: #92400e; }
+.tag-blue { background: #dbeafe; color: #1e40af; }
+.tag-green { background: #dcfce7; color: #15803d; }
+.tag-red  { background: #fee2e2; color: #dc2626; }
+
+hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+/* ═══════════════════════════════════════
+   SECTION LABEL (for tab panel groupings)
+═══════════════════════════════════════ */
+.panel-hdr { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(201,168,76,.2); }
+.panel-hdr .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 6px; }
+.panel-hdr h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px,3vw,32px); font-weight: 900; color: var(--white); }
+
+/* ═══════════════════════════════════════
+   QUIZ STYLES
+═══════════════════════════════════════ */
+.quiz-header-bar {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: var(--radius); padding: 20px 24px;
+  margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.quiz-header-bar h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); }
+.quiz-header-bar p { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 3px; }
+.quiz-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.q-pill {
+  padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+}
+.q-pill.mc { background: rgba(59,130,246,.15); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
+.q-pill.pgk { background: rgba(168,85,247,.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,.3); }
+.q-pill.tf { background: rgba(34,197,94,.15); color: #86efac; border: 1px solid rgba(34,197,94,.3); }
+
+.q-card {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow2); margin-bottom: 20px;
+  border: 2px solid transparent; transition: border-color .25s;
+  overflow: hidden;
+}
+.q-card.answered-correct { border-color: var(--green); }
+.q-card.answered-wrong { border-color: var(--red); }
+
+.q-hdr {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 20px 22px 16px;
+}
+.q-badge {
+  min-width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; letter-spacing: .5px;
+}
+.q-badge.mc { background: #dbeafe; color: #1d4ed8; }
+.q-badge.pgk { background: #ede9fe; color: #6d28d9; }
+.q-badge.tf { background: #dcfce7; color: #15803d; }
+.q-meta { flex: 1; }
+.q-type-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+.q-question { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.55; }
+.q-topic-tag { display: inline-block; margin-top: 8px; padding: 2px 10px; background: var(--off); border: 1px solid var(--border); border-radius: 20px; font-size: 11px; color: var(--text3); }
+
+.q-options { padding: 0 22px 18px; display: flex; flex-direction: column; gap: 8px; }
+
+/* MC option */
+.mc-option {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; border-radius: 10px;
+  border: 1.5px solid var(--border); cursor: pointer;
+  transition: all .18s; user-select: none; background: var(--white);
+}
+.mc-option:hover { border-color: #93c5fd; background: var(--blue-bg); }
+.mc-option.selected { border-color: #3b82f6; background: #eff6ff; }
+.mc-radio {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s;
+}
+.mc-option.selected .mc-radio { border-color: #3b82f6; background: #3b82f6; }
+.mc-option.selected .mc-radio::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: white; }
+.mc-opt-text { font-size: 14px; color: var(--text); line-height: 1.55; }
+
+/* After check — MC */
+.mc-option.correct-answer { border-color: var(--green) !important; background: var(--green-bg) !important; }
+.mc-option.wrong-answer { border-color: var(--red) !important; background: var(--red-bg) !important; }
+.mc-option.correct-answer .mc-radio { border-color: var(--green); background: var(--green); }
+.mc-option.correct-answer .mc-radio::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: white; }
+.mc-option.wrong-answer .mc-radio { border-color: var(--red); background: var(--red); }
+
+/* PGK option */
+.pgk-option {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; border-radius: 10px;
+  border: 1.5px solid var(--border); cursor: pointer;
+  transition: all .18s; user-select: none; background: var(--white);
+}
+.pgk-option:hover { border-color: #c4b5fd; background: #f5f3ff; }
+.pgk-option.selected { border-color: #7c3aed; background: #f5f3ff; }
+.pgk-check {
+  width: 18px; height: 18px; border-radius: 5px;
+  border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s; font-size: 11px;
+}
+.pgk-option.selected .pgk-check { border-color: #7c3aed; background: #7c3aed; color: white; }
+.pgk-option.selected .pgk-check::after { content: '✓'; font-weight: 900; color: white; font-size: 11px; }
+.pgk-opt-text { font-size: 14px; color: var(--text); line-height: 1.55; }
+
+.pgk-option.correct-answer { border-color: var(--green) !important; background: var(--green-bg) !important; }
+.pgk-option.wrong-answer { border-color: var(--red) !important; background: var(--red-bg) !important; }
+.pgk-option.correct-answer .pgk-check { border-color: var(--green); background: var(--green); }
+.pgk-option.correct-answer .pgk-check::after { content: '✓'; font-weight: 900; color: white; }
+.pgk-option.wrong-answer .pgk-check { border-color: var(--red); background: var(--red); }
+.pgk-option.wrong-answer .pgk-check::after { content: '✗'; font-weight: 900; color: white; }
+
+/* TF option */
+.tf-options { display: flex; gap: 12px; }
+.tf-btn {
+  flex: 1; padding: 12px; border-radius: 10px;
+  border: 1.5px solid var(--border); cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  transition: all .18s; background: var(--white); color: var(--text);
+  text-align: center;
+}
+.tf-btn.benar:hover { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+.tf-btn.salah:hover { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+.tf-btn.benar.selected { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+.tf-btn.salah.selected { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+
+.tf-btn.correct-answer { border-color: var(--green) !important; background: var(--green-bg) !important; color: var(--green) !important; }
+.tf-btn.wrong-answer { border-color: var(--red) !important; background: var(--red-bg) !important; color: var(--red) !important; }
+
+/* Explanation */
+.q-explanation {
+  display: none;
+  margin: 0 22px 18px;
+  padding: 14px 16px;
+  background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px;
+  font-size: 13px; color: #14532d; line-height: 1.7;
+}
+.q-explanation .ex-label { font-weight: 700; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.q-explanation.show { display: block; animation: slideIn .25s ease; }
+@keyframes slideIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+.q-explanation.wrong-exp { background: #fef2f2; border-color: #fca5a5; color: #7f1d1d; }
+.q-explanation.wrong-exp .ex-label { color: var(--red); }
+
+/* Score panel */
+.score-panel {
+  display: none;
+  background: linear-gradient(135deg, var(--navy2), var(--indigo));
+  border: 1px solid rgba(201,168,76,.3); border-radius: var(--radius);
+  padding: 40px 32px; text-align: center; margin-bottom: 28px;
+}
+.score-panel.show { display: block; animation: panelIn .4s ease; }
+.score-num { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; color: var(--gold2); line-height: 1; }
+.score-denom { font-family: 'Playfair Display', serif; font-size: 36px; color: rgba(255,255,255,.45); }
+.score-msg { font-size: 15px; color: rgba(255,255,255,.7); margin-top: 12px; }
+.score-bars { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+.score-bar-item { text-align: center; }
+.score-bar-label { font-size: 11px; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+.score-bar-val { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold2); }
+
+/* Submit btn */
+.check-btn {
+  width: 100%; padding: 16px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), #a07828);
+  border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+  color: var(--navy); letter-spacing: .5px;
+  box-shadow: 0 4px 20px rgba(201,168,76,.4);
+  transition: all .25s; margin-bottom: 24px;
+}
+.check-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,.5); }
+.check-btn:active { transform: none; }
+.check-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  position: relative; z-index: 1;
+  text-align: center; padding: 28px;
+  border-top: 1px solid rgba(201,168,76,.12);
+  font-size: 13px; color: rgba(255,255,255,.3);
+  margin-top: 40px;
+}
+footer span { color: var(--gold2); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .topic-hdr { padding: 18px 18px; }
+  .topic-body { padding: 20px 18px; }
+  .q-hdr { padding: 16px 16px 12px; }
+  .q-options { padding: 0 16px 16px; }
+  .q-explanation { margin: 0 16px 16px; }
+  .score-num { font-size: 56px; }
+  .tf-options { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="header-inner">
+    <div class="logo-badge">🔬</div>
+    <div class="logo-text">
+      <h1>SainsID</h1>
+      <p>Portal Belajar IPA</p>
+    </div>
+    <div class="header-pill">SMP / MTs · Kurikulum Merdeka</div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-eyebrow">✦ Belajar Sains Lebih Mudah</div>
+  <h2>Biologi & Fisika<br><em>Lengkap & Interaktif</em></h2>
+  <p>Materi lengkap dari organel sel hingga cermin cembung, dilengkapi kuis 50 soal untuk mengukur pemahamanmu.</p>
+  <div class="hero-stats">
+    <div><div class="stat-num">15</div><div class="stat-lbl">Topik Materi</div></div>
+    <div><div class="stat-num">50</div><div class="stat-lbl">Soal Kuis</div></div>
+    <div><div class="stat-num">3</div><div class="stat-lbl">Jenis Soal</div></div>
+  </div>
+</div>
+
+<!-- ═══ TAB NAV ═══ -->
+<div class="tab-wrapper">
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('bio')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12a4 4 0 0 0 8 0"/></svg>
+    Biologi
+  </button>
+  <button class="tab-btn" onclick="switchTab('fis')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Fisika
+  </button>
+  <button class="tab-btn" onclick="switchTab('quiz')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    Kuis (50 Soal)
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     TAB: BIOLOGI
+════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-bio">
+  <div class="panel-hdr">
+    <div class="eyebrow">📗 Materi 1</div>
+    <h2>Biologi — 11 Topik Utama</h2>
+  </div>
+
+  <!-- 1. SEL DAN ORGANEL -->
+  <div class="card" id="bio-1">
+    <div class="topic-hdr" onclick="toggleCard('bio-1')">
+      <div class="topic-num num-g">01</div>
+      <div class="topic-info">
+        <h3>Sel dan Organel Sel</h3>
+        <p>Unit struktural dan fungsional terkecil makhluk hidup</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Pengertian Sel</div>
+      <p class="body-text">Sel adalah unit terkecil dari makhluk hidup yang mampu menjalankan fungsi kehidupan secara mandiri. Istilah "sel" pertama kali digunakan oleh <strong>Robert Hooke</strong> (1665) saat mengamati gabus di bawah mikroskop. Teori sel modern menyatakan bahwa semua makhluk hidup tersusun dari satu atau lebih sel, dan setiap sel baru berasal dari sel yang sudah ada (<em>omnis cellula e cellula</em> – Rudolf Virchow).</p>
+
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Sel Prokariotik</h5>
+          <ul>
+            <li>Tidak memiliki membran inti (nukleus)</li>
+            <li>DNA tersebar di sitoplasma (nukleoid)</li>
+            <li>Tidak memiliki organel bermembran</li>
+            <li>Contoh: bakteri, Archaea</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Sel Eukariotik</h5>
+          <ul>
+            <li>Memiliki membran inti yang jelas</li>
+            <li>DNA tersimpan di dalam nukleus</li>
+            <li>Memiliki banyak organel bermembran</li>
+            <li>Contoh: sel tumbuhan, sel hewan, fungi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Organel-Organel Sel dan Fungsinya</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Organel</th><th>Lokasi</th><th>Fungsi Utama</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nukleus (Inti Sel)</strong></td><td>Hewan & Tumbuhan</td><td>Pusat kendali sel; menyimpan informasi genetik (DNA); mengatur sintesis protein</td></tr>
+            <tr><td><strong>Mitokondria</strong></td><td>Hewan & Tumbuhan</td><td>Respirasi seluler aerob; menghasilkan ATP (energi). Dijuluki "pembangkit tenaga sel"</td></tr>
+            <tr><td><strong>Kloroplas</strong></td><td>Tumbuhan</td><td>Tempat fotosintesis; mengandung klorofil yang menangkap cahaya matahari</td></tr>
+            <tr><td><strong>Ribosom</strong></td><td>Hewan & Tumbuhan</td><td>Sintesis (pembuatan) protein</td></tr>
+            <tr><td><strong>Retikulum Endoplasma (RE)</strong></td><td>Hewan & Tumbuhan</td><td>RE Kasar: sintesis & transpor protein; RE Halus: sintesis lipid dan detoksifikasi</td></tr>
+            <tr><td><strong>Badan Golgi</strong></td><td>Hewan & Tumbuhan</td><td>Modifikasi, pengemasan, dan pengiriman protein; sekresi</td></tr>
+            <tr><td><strong>Lisosom</strong></td><td>Terutama Hewan</td><td>Mencerna zat asing, organel rusak, dan sisa metabolisme (mengandung enzim hidrolitik)</td></tr>
+            <tr><td><strong>Vakuola</strong></td><td>Tumbuhan (besar), Hewan (kecil)</td><td>Menyimpan air, zat makanan, zat sisa; menjaga turgor sel tumbuhan</td></tr>
+            <tr><td><strong>Membran Sel</strong></td><td>Hewan & Tumbuhan</td><td>Mengatur keluar-masuk zat (selektif permeabel); melindungi isi sel</td></tr>
+            <tr><td><strong>Dinding Sel</strong></td><td>Tumbuhan</td><td>Melindungi dan memberi bentuk; terbuat dari selulosa</td></tr>
+            <tr><td><strong>Sentriol</strong></td><td>Hewan</td><td>Membentuk benang spindel saat pembelahan sel</td></tr>
+            <tr><td><strong>Plastida</strong></td><td>Tumbuhan</td><td>Kloroplas (hijau), kromoplas (warna), leukoplas (penyimpan pati)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-card">
+        <strong>Perbedaan Sel Tumbuhan vs Sel Hewan:</strong> Sel tumbuhan memiliki dinding sel, kloroplas, dan vakuola berukuran besar. Sel hewan memiliki sentriol dan lisosom yang lebih menonjol, tetapi tidak memiliki dinding sel dan kloroplas.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PEMANASAN GLOBAL -->
+  <div class="card" id="bio-2">
+    <div class="topic-hdr" onclick="toggleCard('bio-2')">
+      <div class="topic-num num-r">02</div>
+      <div class="topic-info">
+        <h3>Pemanasan Global</h3>
+        <p>Penyebab, dampak, dan upaya penanggulangan</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Pengertian</div>
+      <p class="body-text">Pemanasan global (<em>global warming</em>) adalah peningkatan suhu rata-rata permukaan Bumi secara bertahap akibat meningkatnya konsentrasi gas-gas rumah kaca di atmosfer. Sejak era industri (1850-an), suhu Bumi telah naik sekitar 1,1–1,2°C dan terus meningkat.</p>
+
+      <div class="section-title">Efek Rumah Kaca</div>
+      <p class="body-text">Efek rumah kaca adalah proses alami di mana gas-gas tertentu di atmosfer menyerap dan memantulkan kembali radiasi inframerah dari permukaan Bumi, menjaga suhu tetap hangat. Masalah timbul ketika konsentrasi gas-gas ini berlebihan akibat aktivitas manusia.</p>
+
+      <div class="section-title">Gas-Gas Rumah Kaca Utama</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Gas Utama</h5>
+          <ul>
+            <li><strong>CO₂ (Karbon Dioksida):</strong> Pembakaran bahan bakar fosil, deforestasi</li>
+            <li><strong>CH₄ (Metana):</strong> Peternakan, pertanian padi, tempat pembuangan sampah</li>
+            <li><strong>N₂O (Dinitrogen Oksida):</strong> Pupuk pertanian, pembakaran biomassa</li>
+            <li><strong>CFC:</strong> Pendingin AC, kulkas (perusak ozon)</li>
+            <li><strong>Uap Air (H₂O):</strong> Gas rumah kaca terbesar secara alami</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Penyebab Utama</h5>
+          <ul>
+            <li>Pembakaran bahan bakar fosil (batu bara, minyak, gas)</li>
+            <li>Penggundulan hutan (deforestasi)</li>
+            <li>Kegiatan industri dan manufaktur</li>
+            <li>Pertanian dan peternakan</li>
+            <li>Pengelolaan sampah yang buruk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Dampak Pemanasan Global</div>
+      <ul class="content-list">
+        <li><strong>Mencairnya es kutub dan glasier</strong> → permukaan laut naik → banjir di daerah pesisir</li>
+        <li><strong>Perubahan iklim ekstrem:</strong> banjir, kekeringan, badai, gelombang panas yang lebih sering dan intens</li>
+        <li><strong>Kepunahan spesies:</strong> banyak hewan dan tumbuhan tidak mampu beradaptasi</li>
+        <li><strong>Gangguan ekosistem:</strong> pergeseran musim, perubahan pola migrasi hewan</li>
+        <li><strong>Pengasaman laut:</strong> CO₂ larut di laut membentuk asam karbonat, merusak terumbu karang</li>
+        <li><strong>Krisis pangan dan air:</strong> kekeringan dan gagal panen meningkat</li>
+      </ul>
+
+      <div class="warn-card">
+        <strong>Fakta Penting:</strong> Indonesia memiliki hutan tropis terbesar ketiga di dunia. Kehilangan hutan Indonesia berkontribusi signifikan terhadap emisi CO₂ global. Peatland (gambut) di Kalimantan dan Sumatera menyimpan karbon dalam jumlah sangat besar.
+      </div>
+
+      <div class="section-title">Upaya Penanggulangan</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Upaya Individu</h5>
+          <ul>
+            <li>Hemat energi listrik di rumah</li>
+            <li>Gunakan transportasi umum / sepeda</li>
+            <li>Kurangi konsumsi daging</li>
+            <li>Daur ulang dan kurangi sampah</li>
+            <li>Tanam pohon</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Upaya Global</h5>
+          <ul>
+            <li>Perjanjian Paris (2015) – batasi kenaikan suhu 1,5°C</li>
+            <li>Peralihan ke energi terbarukan (surya, angin)</li>
+            <li>Reboisasi dan perlindungan hutan</li>
+            <li>Teknologi penangkapan karbon (CCS)</li>
+            <li>Efisiensi energi industri</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. HORMON REPRODUKSI -->
+  <div class="card" id="bio-3">
+    <div class="topic-hdr" onclick="toggleCard('bio-3')">
+      <div class="topic-num num-p">03</div>
+      <div class="topic-info">
+        <h3>Hormon-Hormon Reproduksi</h3>
+        <p>Hormon yang mengatur sistem reproduksi pria dan wanita</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Hormon Reproduksi Wanita</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Hormon</th><th>Dihasilkan Oleh</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>FSH</strong> (Follicle Stimulating Hormone)</td><td>Kelenjar hipofisis anterior</td><td>Merangsang pertumbuhan folikel di ovarium; merangsang produksi estrogen</td></tr>
+            <tr><td><strong>LH</strong> (Luteinizing Hormone)</td><td>Kelenjar hipofisis anterior</td><td>Memicu ovulasi (pelepasan sel telur); membentuk korpus luteum</td></tr>
+            <tr><td><strong>Estrogen</strong></td><td>Folikel ovarium</td><td>Perkembangan ciri kelamin sekunder wanita; menebalkan dinding rahim; mengatur siklus menstruasi</td></tr>
+            <tr><td><strong>Progesteron</strong></td><td>Korpus luteum</td><td>Mempersiapkan dan mempertahankan dinding rahim untuk implantasi embrio; mempertahankan kehamilan</td></tr>
+            <tr><td><strong>hCG</strong> (Human Chorionic Gonadotropin)</td><td>Plasenta (saat hamil)</td><td>Mempertahankan korpus luteum; dideteksi oleh tes kehamilan</td></tr>
+            <tr><td><strong>Oksitosin</strong></td><td>Hipofisis posterior</td><td>Merangsang kontraksi uterus saat persalinan; merangsang produksi ASI</td></tr>
+            <tr><td><strong>Prolaktin</strong></td><td>Hipofisis anterior</td><td>Merangsang produksi dan sekresi ASI</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Hormon Reproduksi Pria</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Hormon</th><th>Dihasilkan Oleh</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>FSH</strong></td><td>Hipofisis anterior</td><td>Merangsang sel Sertoli untuk mendukung spermatogenesis</td></tr>
+            <tr><td><strong>LH</strong></td><td>Hipofisis anterior</td><td>Merangsang sel Leydig untuk memproduksi testosteron</td></tr>
+            <tr><td><strong>Testosteron</strong></td><td>Sel Leydig di testis</td><td>Merangsang spermatogenesis; perkembangan ciri kelamin sekunder pria (suara besar, rambut di wajah, otot berkembang)</td></tr>
+            <tr><td><strong>GnRH</strong> (Gonadotropin-releasing hormone)</td><td>Hipotalamus</td><td>Merangsang hipofisis melepaskan FSH dan LH</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-card"><strong>Ingat:</strong> Regulasi hormon reproduksi bekerja secara umpan balik (<em>feedback</em>). Saat kadar estrogen tinggi, produksi FSH dan LH akan ditekan oleh hipotalamus.</div>
+    </div>
+  </div>
+
+  <!-- 4. ORGAN REPRODUKSI -->
+  <div class="card" id="bio-4">
+    <div class="topic-hdr" onclick="toggleCard('bio-4')">
+      <div class="topic-num num-b">04</div>
+      <div class="topic-info">
+        <h3>Organ-Organ Reproduksi</h3>
+        <p>Struktur dan fungsi organ reproduksi pria dan wanita</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Organ Reproduksi Wanita</div>
+      <ul class="content-list">
+        <li><strong>Ovarium (Indung Telur):</strong> Menghasilkan sel telur (oosit) dan hormon estrogen serta progesteron</li>
+        <li><strong>Tuba Falopi (Saluran Telur):</strong> Saluran penghubung ovarium ke uterus; tempat terjadinya fertilisasi (pembuahan)</li>
+        <li><strong>Uterus (Rahim):</strong> Tempat berkembangnya janin selama kehamilan; terdiri dari lapisan endometrium, miometrium, perimetrium</li>
+        <li><strong>Serviks (Leher Rahim):</strong> Bagian bawah uterus; saluran menuju vagina</li>
+        <li><strong>Vagina:</strong> Saluran kelahiran; organ kopulasi wanita</li>
+        <li><strong>Vulva:</strong> Organ genital eksterna wanita (labia mayora, labia minora, klitoris)</li>
+      </ul>
+
+      <div class="section-title">Organ Reproduksi Pria</div>
+      <ul class="content-list">
+        <li><strong>Testis:</strong> Menghasilkan spermatozoa (sel sperma) dan hormon testosteron; terletak di dalam skrotum</li>
+        <li><strong>Epididimis:</strong> Tempat penyimpanan dan pematangan sperma</li>
+        <li><strong>Vas Deferens:</strong> Saluran yang membawa sperma dari epididimis ke uretra</li>
+        <li><strong>Vesikula Seminalis:</strong> Menghasilkan cairan fruktosa (nutrisi sperma) yang membentuk sebagian besar semen</li>
+        <li><strong>Kelenjar Prostat:</strong> Menghasilkan cairan alkalis yang melindungi sperma dari keasaman vagina</li>
+        <li><strong>Kelenjar Bulbouretral (Cowper):</strong> Menghasilkan cairan pelumas sebelum ejakulasi</li>
+        <li><strong>Uretra:</strong> Saluran yang membawa sperma dan urin keluar tubuh (tidak bersamaan)</li>
+        <li><strong>Penis:</strong> Organ kopulasi pria; saluran urin dan semen</li>
+      </ul>
+
+      <div class="info-card">
+        <strong>Siklus Menstruasi (±28 hari):</strong><br>
+        • Hari 1–5: Menstruasi (luruhnya endometrium) <br>
+        • Hari 6–13: Fase proliferasi (FSH merangsang pertumbuhan folikel, endometrium menebal) <br>
+        • Hari 14: Ovulasi (LH memicu pelepasan sel telur) <br>
+        • Hari 15–28: Fase luteal (progesteron mempertahankan endometrium; jika tidak ada fertilisasi, kadar hormon turun → menstruasi)
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SISTEM PENCERNAAN -->
+  <div class="card" id="bio-5">
+    <div class="topic-hdr" onclick="toggleCard('bio-5')">
+      <div class="topic-num num-t">05</div>
+      <div class="topic-info">
+        <h3>Sistem Pencernaan</h3>
+        <p>Organ pencernaan, enzim, dan proses pencernaan makanan</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Urutan Organ Pencernaan</div>
+      <div class="formula-card">
+        <div class="flabel">Jalur Pencernaan</div>
+        <div class="ftext">Mulut → Esofagus → Lambung → Usus Halus (Duodenum → Jejunum → Ileum) → Usus Besar → Rektum → Anus</div>
+      </div>
+
+      <div class="section-title">Enzim-Enzim Pencernaan</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Enzim</th><th>Dihasilkan Oleh</th><th>Substrat</th><th>Produk</th></tr></thead>
+          <tbody>
+            <tr><td>Amilase Saliva (Ptialin)</td><td>Kelenjar saliva (mulut)</td><td>Amilum/pati</td><td>Maltosa</td></tr>
+            <tr><td>Pepsin</td><td>Lambung (sel chief)</td><td>Protein</td><td>Polipeptida</td></tr>
+            <tr><td>HCl (bukan enzim)</td><td>Lambung (sel parietal)</td><td>—</td><td>Mengaktifkan pepsinogen → pepsin; membunuh bakteri</td></tr>
+            <tr><td>Amilase Pankreas</td><td>Pankreas</td><td>Amilum</td><td>Maltosa</td></tr>
+            <tr><td>Lipase Pankreas</td><td>Pankreas</td><td>Lemak (trigliserida)</td><td>Asam lemak + gliserol</td></tr>
+            <tr><td>Tripsin & Kimotripsin</td><td>Pankreas</td><td>Protein/polipeptida</td><td>Peptida pendek</td></tr>
+            <tr><td>Empedu (bukan enzim)</td><td>Hati (disimpan di kantong empedu)</td><td>Lemak</td><td>Emulsifikasi lemak menjadi tetesan kecil</td></tr>
+            <tr><td>Maltase, Laktase, Sukrase</td><td>Usus halus</td><td>Maltosa, Laktosa, Sukrosa</td><td>Glukosa + komponen gula sederhana</td></tr>
+            <tr><td>Erepsin (Dipeptidase)</td><td>Usus halus</td><td>Dipeptida</td><td>Asam amino</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Proses di Setiap Organ</div>
+      <ul class="content-list">
+        <li><strong>Mulut:</strong> Pencernaan mekanis (gigi) + kimiawi (amilase saliva). Makanan menjadi bolus.</li>
+        <li><strong>Esofagus:</strong> Hanya transport makanan melalui gerak peristaltik. Tidak ada pencernaan kimiawi.</li>
+        <li><strong>Lambung:</strong> Gerak peristaltik + HCl + pepsin. Makanan menjadi chyme (kim).</li>
+        <li><strong>Usus Halus:</strong> Penyerapan nutrisi utama. Dibantu enzim pankreas dan empedu. Villi dan mikrovilli meningkatkan luas permukaan penyerapan.</li>
+        <li><strong>Usus Besar:</strong> Penyerapan air dan elektrolit. Pembentukan feses. Tempat tinggal bakteri <em>E. coli</em> yang membantu sintesis vitamin K dan B12.</li>
+        <li><strong>Rektum & Anus:</strong> Penyimpanan dan pengeluaran feses (defekasi).</li>
+      </ul>
+      <div class="info-card"><strong>Organ Aksesori:</strong> Hati, pankreas, dan kantong empedu bukan bagian dari saluran pencernaan langsung, tetapi menghasilkan zat yang penting untuk proses pencernaan.</div>
+    </div>
+  </div>
+
+  <!-- 6. CIRI MAKHLUK HIDUP -->
+  <div class="card" id="bio-6">
+    <div class="topic-hdr" onclick="toggleCard('bio-6')">
+      <div class="topic-num num-g">06</div>
+      <div class="topic-info">
+        <h3>Ciri-Ciri Makhluk Hidup</h3>
+        <p>Karakteristik yang membedakan makhluk hidup dari benda mati</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <p class="body-text">Makhluk hidup memiliki ciri-ciri yang membedakannya dari benda mati. Ada 8 ciri utama makhluk hidup:</p>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>1. Bernapas (Respirasi)</h5>
+          <p>Proses mengambil O₂ dan mengeluarkan CO₂ untuk menghasilkan energi. Contoh: manusia bernapas melalui paru-paru; tumbuhan melalui stomata.</p>
+        </div>
+        <div class="mini-info">
+          <h5>2. Memerlukan Nutrisi</h5>
+          <p>Makhluk hidup membutuhkan makanan sebagai sumber energi dan bahan bangunan tubuh. Tumbuhan membuat makanannya sendiri (autotrof); hewan mengonsumsi makhluk lain (heterotrof).</p>
+        </div>
+        <div class="mini-info">
+          <h5>3. Bergerak</h5>
+          <p>Hewan bergerak aktif (eukariotik). Tumbuhan bergerak pasif: gerak fototropisme (menuju cahaya), geotropisme (menuju gravitasi), tigmotropisme (respons sentuhan).</p>
+        </div>
+        <div class="mini-info">
+          <h5>4. Tumbuh dan Berkembang</h5>
+          <p>Pertumbuhan = pertambahan ukuran/volume (kuantitatif). Perkembangan = menuju kedewasaan/diferensiasi fungsi (kualitatif, tidak dapat diukur langsung).</p>
+        </div>
+        <div class="mini-info">
+          <h5>5. Berkembang Biak (Reproduksi)</h5>
+          <p>Vegetatif (tanpa kawin): tunas, spora, umbi. Generatif (dengan kawin): fertilisasi sel gamet. Tujuan: melestarikan jenis.</p>
+        </div>
+        <div class="mini-info">
+          <h5>6. Peka terhadap Rangsangan (Iritabilitas)</h5>
+          <p>Kemampuan merespons perubahan lingkungan. Contoh: putri malu menutup daun saat disentuh; mata berkedip saat ada debu; pupil mengecil terkena cahaya.</p>
+        </div>
+        <div class="mini-info">
+          <h5>7. Mengeluarkan Zat Sisa (Ekskresi)</h5>
+          <p>Membuang hasil metabolisme yang tidak berguna. Manusia: urin (ginjal), keringat (kulit), CO₂ (paru-paru). Tumbuhan: getah, oksigen (sisa fotosintesis).</p>
+        </div>
+        <div class="mini-info">
+          <h5>8. Beradaptasi</h5>
+          <p>Kemampuan menyesuaikan diri dengan lingkungan. Contoh: unta memiliki punuk untuk menyimpan lemak (energi) di gurun; kaktus memiliki daun berbentuk duri.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. DNA -->
+  <div class="card" id="bio-7">
+    <div class="topic-hdr" onclick="toggleCard('bio-7')">
+      <div class="topic-num num-b">07</div>
+      <div class="topic-info">
+        <h3>DNA (Asam Deoksiribonukleat)</h3>
+        <p>Struktur, fungsi, dan peranan DNA dalam kehidupan</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Pengertian dan Struktur</div>
+      <p class="body-text">DNA (<em>Deoxyribonucleic Acid</em>) adalah molekul yang menyimpan dan mentransmisi informasi genetik. Strukturnya berupa <strong>double helix</strong> (tangga berpilin ganda), ditemukan oleh James Watson dan Francis Crick pada 1953 berdasarkan data X-ray Rosalind Franklin.</p>
+
+      <div class="info-card">
+        <strong>Komponen Nukleotida DNA:</strong><br>
+        Setiap nukleotida terdiri dari: (1) Gula deoksiribosa, (2) Gugus fosfat, (3) Basa nitrogen<br>
+        <strong>Basa Nitrogen DNA:</strong> Adenin (A), Guanin (G), Sitosin (C), Timin (T)<br>
+        <strong>Pasangan Basa (Chargaff's Rule):</strong> A selalu berpasangan dengan T (2 ikatan hidrogen) | G selalu berpasangan dengan C (3 ikatan hidrogen)
+      </div>
+
+      <div class="section-title">Perbedaan DNA dan RNA</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Aspek</th><th>DNA</th><th>RNA</th></tr></thead>
+          <tbody>
+            <tr><td>Gula</td><td>Deoksiribosa</td><td>Ribosa</td></tr>
+            <tr><td>Basa Nitrogen</td><td>A, T, G, C</td><td>A, U (Urasil), G, C</td></tr>
+            <tr><td>Untai</td><td>Double helix (2 untai)</td><td>Untai tunggal (single strand)</td></tr>
+            <tr><td>Lokasi</td><td>Nukleus, mitokondria, kloroplas</td><td>Nukleus, sitoplasma, ribosom</td></tr>
+            <tr><td>Fungsi</td><td>Menyimpan informasi genetik</td><td>Mentransmisi informasi (mRNA), adaptor (tRNA), struktur ribosom (rRNA)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Fungsi DNA</div>
+      <ul class="content-list">
+        <li><strong>Replikasi:</strong> DNA menggandakan diri sebelum pembelahan sel sehingga setiap sel anak mendapat informasi genetik yang sama</li>
+        <li><strong>Transkripsi:</strong> DNA → mRNA (messenger RNA); instruksi genetik disalin ke dalam bentuk RNA</li>
+        <li><strong>Translasi:</strong> mRNA → protein; ribosom membaca kode RNA untuk merangkai asam amino menjadi protein</li>
+        <li><strong>Pewarisan sifat:</strong> DNA diturunkan dari orang tua ke keturunannya</li>
+      </ul>
+
+      <div class="formula-card">
+        <div class="flabel">Ekspresi Gen (Central Dogma)</div>
+        <div class="ftext">DNA → (Transkripsi) → mRNA → (Translasi) → Protein</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. FOTOSINTESIS -->
+  <div class="card" id="bio-8">
+    <div class="topic-hdr" onclick="toggleCard('bio-8')">
+      <div class="topic-num num-t">08</div>
+      <div class="topic-info">
+        <h3>Fotosintesis</h3>
+        <p>Proses pembuatan makanan oleh tumbuhan menggunakan cahaya matahari</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Pengertian dan Persamaan Reaksi</div>
+      <p class="body-text">Fotosintesis adalah proses pembuatan makanan (glukosa) oleh tumbuhan, alga, dan beberapa bakteri menggunakan energi cahaya, air, dan karbon dioksida. Terjadi di dalam <strong>kloroplas</strong>, khususnya pada membran tilakoid dan stroma.</p>
+
+      <div class="formula-card">
+        <div class="flabel">Persamaan Reaksi Fotosintesis</div>
+        <div class="ftext">6CO₂ + 6H₂O + Energi Cahaya → C₆H₁₂O₆ (glukosa) + 6O₂</div>
+      </div>
+
+      <div class="section-title">Tahapan Fotosintesis</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Reaksi Terang (Fotofosforilasi)</h5>
+          <ul>
+            <li>Terjadi di membran tilakoid kloroplas</li>
+            <li>Memerlukan cahaya matahari langsung</li>
+            <li>Klorofil menyerap energi cahaya</li>
+            <li>Menghasilkan ATP dan NADPH</li>
+            <li>Terjadi fotolisis air: H₂O → H⁺ + e⁻ + O₂ (O₂ dilepas ke udara)</li>
+            <li>Melibatkan Fotosistem I dan II</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Reaksi Gelap (Siklus Calvin)</h5>
+          <ul>
+            <li>Terjadi di stroma kloroplas</li>
+            <li>Tidak memerlukan cahaya langsung</li>
+            <li>Menggunakan ATP dan NADPH dari reaksi terang</li>
+            <li>CO₂ difiksasi oleh RuBP (enzim Rubisco)</li>
+            <li>Menghasilkan G3P → glukosa</li>
+            <li>Siklus berjalan terus selama ada CO₂</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Faktor yang Memengaruhi Fotosintesis</div>
+      <ul class="content-list">
+        <li><strong>Intensitas cahaya:</strong> Semakin tinggi intensitas (hingga titik jenuh cahaya), semakin cepat fotosintesis</li>
+        <li><strong>Konsentrasi CO₂:</strong> Meningkatkan CO₂ mempercepat siklus Calvin</li>
+        <li><strong>Suhu:</strong> Enzim bekerja optimal pada suhu tertentu (±25–35°C untuk sebagian besar tumbuhan)</li>
+        <li><strong>Ketersediaan air:</strong> Air sebagai bahan baku reaksi terang; kekurangan air menyebabkan stomata menutup</li>
+        <li><strong>Konsentrasi klorofil:</strong> Lebih banyak klorofil = lebih banyak energi yang ditangkap</li>
+      </ul>
+
+      <div class="info-card"><strong>Klorofil</strong> menyerap cahaya merah dan biru paling efektif, serta memantulkan cahaya hijau — itulah mengapa daun tampak hijau.</div>
+    </div>
+  </div>
+
+  <!-- 9. SIMBIOSIS -->
+  <div class="card" id="bio-9">
+    <div class="topic-hdr" onclick="toggleCard('bio-9')">
+      <div class="topic-num num-g">09</div>
+      <div class="topic-info">
+        <h3>Simbiosis Mutualisme</h3>
+        <p>Hubungan antara dua organisme yang saling menguntungkan</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Jenis-Jenis Simbiosis</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Mutualisme (+/+)</h5>
+          <p>Keduanya saling <strong>diuntungkan</strong>. Contoh: lebah dan bunga, bakteri Rhizobium dan akar polong-polongan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Komensalisme (+/0)</h5>
+          <p>Satu pihak <strong>untung</strong>, pihak lain <strong>tidak terpengaruh</strong>. Contoh: ikan remora dan hiu, anggrek epifit dan pohon inang.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Parasitisme (+/–)</h5>
+          <p>Satu pihak <strong>untung</strong> (parasit), pihak lain <strong>dirugikan</strong> (inang). Contoh: cacing pita dalam usus manusia, tali putri pada tanaman.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Predasi (−/+)</h5>
+          <p>Hubungan antara predator dan mangsa. Bukan simbiosis sejati tapi sering dibahas. Contoh: harimau memangsa rusa.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Contoh-Contoh Simbiosis Mutualisme</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Pasangan Organisme</th><th>Keuntungan Organisme A</th><th>Keuntungan Organisme B</th></tr></thead>
+          <tbody>
+            <tr><td>Lebah & Bunga</td><td>Lebah mendapat nektar (makanan)</td><td>Bunga mendapat bantuan penyerbukan</td></tr>
+            <tr><td>Bakteri <em>Rhizobium</em> & Akar Polong</td><td>Bakteri mendapat habitat dan karbohidrat</td><td>Tanaman mendapat nitrogen terfiksasi (pupuk alami)</td></tr>
+            <tr><td>Jamur & Ganggang (Lumut Kerak / Lichen)</td><td>Jamur mendapat hasil fotosintesis dari alga</td><td>Alga mendapat perlindungan dan air dari jamur</td></tr>
+            <tr><td>Burung Jalak & Kerbau</td><td>Jalak mendapat kutu sebagai makanan</td><td>Kerbau terbebas dari parasit kutu</td></tr>
+            <tr><td>Bakteri Usus (<em>E. coli</em>) & Manusia</td><td>Bakteri mendapat nutrisi dari sisa makanan</td><td>Manusia mendapat vitamin K dan B12</td></tr>
+            <tr><td>Ikan Badut (Nemo) & Anemon Laut</td><td>Ikan badut terlindung dari predator oleh sengatan anemon</td><td>Anemon mendapat makanan dari sisa makanan ikan dan dibersihkan dari parasit</td></tr>
+            <tr><td>Mikoriza (Fungi) & Akar Tumbuhan</td><td>Fungi mendapat karbohidrat dari tumbuhan</td><td>Tumbuhan mendapat nutrisi mineral (fosfat) dari tanah lebih efisien</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. BIOTEKNOLOGI -->
+  <div class="card" id="bio-10">
+    <div class="topic-hdr" onclick="toggleCard('bio-10')">
+      <div class="topic-num num-p">10</div>
+      <div class="topic-info">
+        <h3>Bioteknologi Konvensional dan Modern</h3>
+        <p>Penerapan ilmu biologi untuk menghasilkan produk bermanfaat</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Pengertian</div>
+      <p class="body-text">Bioteknologi adalah pemanfaatan organisme hidup atau komponennya (enzim, gen) untuk menghasilkan produk atau proses yang berguna bagi manusia.</p>
+
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Bioteknologi Konvensional</h5>
+          <ul>
+            <li>Menggunakan organisme utuh secara langsung</li>
+            <li>Prinsip: fermentasi dan seleksi tradisional</li>
+            <li>Tidak memanipulasi gen secara langsung</li>
+            <li>Sudah digunakan ribuan tahun</li>
+            <li>Biaya relatif murah, teknologi sederhana</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Bioteknologi Modern</h5>
+          <ul>
+            <li>Memanipulasi materi genetik (DNA)</li>
+            <li>Menggunakan teknik rekayasa genetika</li>
+            <li>Menghasilkan organisme transgenik/GMO</li>
+            <li>Berkembang pesat sejak 1970-an</li>
+            <li>Biaya tinggi, teknologi canggih</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Produk Bioteknologi Konvensional</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Produk</th><th>Organisme yang Digunakan</th><th>Proses</th></tr></thead>
+          <tbody>
+            <tr><td>Tempe</td><td><em>Rhizopus oligosporus</em></td><td>Fermentasi kedelai</td></tr>
+            <tr><td>Tape</td><td><em>Saccharomyces cerevisiae</em></td><td>Fermentasi singkong/ketan</td></tr>
+            <tr><td>Roti</td><td><em>Saccharomyces cerevisiae</em></td><td>Fermentasi (pengembangan adonan)</td></tr>
+            <tr><td>Yoghurt</td><td><em>Lactobacillus bulgaricus & Streptococcus thermophilus</em></td><td>Fermentasi susu</td></tr>
+            <tr><td>Keju</td><td><em>Lactobacillus</em> spp.</td><td>Fermentasi dan koagulasi susu</td></tr>
+            <tr><td>Kecap</td><td><em>Aspergillus oryzae</em></td><td>Fermentasi kedelai</td></tr>
+            <tr><td>Nata de coco</td><td><em>Acetobacter xylinum</em></td><td>Fermentasi air kelapa</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Produk Bioteknologi Modern</div>
+      <ul class="content-list">
+        <li><strong>Tanaman Transgenik (GMO):</strong> Tanaman Bt (jagung/kapas yang tahan hama), Golden Rice (padi kaya beta-karoten), kedelai tahan herbisida</li>
+        <li><strong>Insulin Manusia:</strong> Gen insulin manusia disisipkan ke bakteri <em>E. coli</em>; bakteri memproduksi insulin untuk penderita diabetes</li>
+        <li><strong>Kloning:</strong> Reproduksi organisme secara genetik identik. Domba Dolly (1996) adalah mamalia pertama yang diklon dari sel dewasa</li>
+        <li><strong>Terapi Gen:</strong> Menyisipkan gen normal untuk mengganti gen yang rusak pada penyakit genetik</li>
+        <li><strong>Vaksin Rekombinan:</strong> Antigen dihasilkan oleh bakteri atau ragi yang telah disisipi gen virus (contoh: vaksin Hepatitis B)</li>
+        <li><strong>Bayi Tabung (IVF):</strong> Fertilisasi di luar tubuh, embrio ditanam di rahim</li>
+        <li><strong>Antibiotik:</strong> Penisilin dari <em>Penicillium notatum</em> (ini sebenarnya konvensional, tapi produksinya kini dioptimasi dengan teknik modern)</li>
+        <li><strong>Biofuel:</strong> Produksi bahan bakar dari biomassa menggunakan mikroorganisme rekayasa genetika</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 11. PEWARISAN SIFAT -->
+  <div class="card" id="bio-11">
+    <div class="topic-hdr" onclick="toggleCard('bio-11')">
+      <div class="topic-num num-r">11</div>
+      <div class="topic-info">
+        <h3>Pewarisan Sifat — Monohibrid & Dihibrid</h3>
+        <p>Hukum Mendel dan pola pewarisan sifat genetik</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Istilah Penting</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Istilah Dasar</h5>
+          <ul>
+            <li><strong>Gen:</strong> Unit pewarisan sifat pada kromosom</li>
+            <li><strong>Alel:</strong> Bentuk alternatif dari suatu gen (misal: T dan t)</li>
+            <li><strong>Genotipe:</strong> Susunan gen (TT, Tt, tt)</li>
+            <li><strong>Fenotipe:</strong> Sifat yang tampak (tinggi, pendek)</li>
+            <li><strong>Dominan:</strong> Alel yang menutupi ekspresi alel lain (T)</li>
+            <li><strong>Resesif:</strong> Alel yang tertutupi (t)</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Jenis Genotipe</h5>
+          <ul>
+            <li><strong>Homozigot Dominan:</strong> TT (kedua alel dominan)</li>
+            <li><strong>Homozigot Resesif:</strong> tt (kedua alel resesif)</li>
+            <li><strong>Heterozigot:</strong> Tt (satu dominan, satu resesif)</li>
+          </ul>
+          <p style="font-size:13px;margin-top:8px;color:var(--text2)">Individu Tt dan TT memiliki fenotipe sama (tinggi) jika T dominan penuh terhadap t.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Hukum Mendel I (Segregasi)</div>
+      <p class="body-text">Pasangan alel pada suatu gen akan memisah (berpisah) ketika pembentukan gamet, sehingga setiap gamet hanya membawa satu alel dari setiap gen.</p>
+
+      <div class="section-title">Persilangan Monohibrid</div>
+      <p class="body-text">Persilangan yang memperhatikan <strong>satu sifat</strong>. Contoh klasik: persilangan bunga merah (MM) × bunga putih (mm).</p>
+      <div class="formula-card">
+        <div class="flabel">Monohibrid — F1 × F1</div>
+        <div class="ftext">P:  MM × mm    →    F1: Mm (merah, 100%)
+F1 × F1: Mm × Mm
+F2: MM : Mm : mm = 1 : 2 : 1
+Fenotipe F2: Merah : Putih = 3 : 1</div>
+      </div>
+
+      <div class="section-title">Hukum Mendel II (Pemilahan Bebas)</div>
+      <p class="body-text">Alel dari gen yang berbeda akan memisah secara bebas dan acak satu sama lain selama pembentukan gamet (berlaku jika gen terletak pada kromosom berbeda atau berjauhan).</p>
+
+      <div class="section-title">Persilangan Dihibrid</div>
+      <p class="body-text">Persilangan yang memperhatikan <strong>dua sifat sekaligus</strong>. Contoh: biji bulat-kuning (BBKK) × biji keriput-hijau (bbkk).</p>
+      <div class="formula-card">
+        <div class="flabel">Dihibrid — Rasio Fenotipe F2</div>
+        <div class="ftext">P:   BBKK × bbkk
+F1:  BbKk (Bulat Kuning — 100%)
+F1 × F1: BbKk × BbKk
+F2: 9 B_K_ : 3 B_kk : 3 bbK_ : 1 bbkk
+    9 Bulat Kuning : 3 Bulat Hijau : 3 Keriput Kuning : 1 Keriput Hijau
+Rasio fenotipe F2 = 9 : 3 : 3 : 1</div>
+      </div>
+      <div class="info-card">
+        <strong>Cara Cepat Jumlah Gamet Dihibrid:</strong> Genotipe AaBb menghasilkan 4 jenis gamet: AB, Ab, aB, ab (masing-masing 25%). Gunakan kotak Punnett 4×4 untuk persilangan dihibrid.
+      </div>
+    </div>
+  </div>
+</div><!-- end panel-bio -->
+
+<!-- ════════════════════════════════════════════════════
+     TAB: FISIKA
+════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-fis">
+  <div class="panel-hdr">
+    <div class="eyebrow">⚡ Materi 2</div>
+    <h2>Fisika — 4 Topik Utama</h2>
+  </div>
+
+  <!-- 1. LISTRIK STATIS -->
+  <div class="card" id="fis-1">
+    <div class="topic-hdr" onclick="toggleCard('fis-1')">
+      <div class="topic-num num-g">01</div>
+      <div class="topic-info">
+        <h3>Kelistrikan / Listrik Statis</h3>
+        <p>Muatan listrik, gaya Coulomb, dan medan listrik</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Muatan Listrik</div>
+      <p class="body-text">Listrik statis adalah akumulasi muatan listrik pada permukaan benda yang tidak mengalir. Ada dua jenis muatan listrik: positif (+) dan negatif (–).</p>
+      <div class="info-card">
+        <strong>Hukum Muatan:</strong><br>
+        • Muatan <strong>sejenis tolak-menolak</strong> (+/+ atau –/–)<br>
+        • Muatan <strong>berbeda jenis tarik-menarik</strong> (+/–)<br>
+        • Satuan muatan listrik: Coulomb (C)
+      </div>
+
+      <div class="section-title">Cara Benda Bermuatan Listrik</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Penggosokkan (Gesekan)</h5>
+          <p>Elektron berpindah dari satu benda ke benda lain. Contoh: penggaris plastik digosokkan ke rambut → penggaris bermuatan negatif (menerima elektron), rambut bermuatan positif (melepas elektron).</p>
+        </div>
+        <div class="mini-info">
+          <h5>Konduksi (Sentuhan)</h5>
+          <p>Muatan mengalir dari benda bermuatan ke benda netral melalui sentuhan langsung. Benda yang bersentuhan akan bermuatan sejenis dengan pemberi muatan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Induksi</h5>
+          <p>Redistribusi muatan tanpa sentuhan. Benda netral yang didekati benda bermuatan akan terinduksi — bagian terdekat bermuatan berlawanan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Elektroskop</h5>
+          <p>Alat untuk mendeteksi muatan listrik. Jika daun-daun elektroskop membuka, benda tersebut bermuatan. Jumlah bukaan menunjukkan besar muatan.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Hukum Coulomb</div>
+      <div class="formula-card">
+        <div class="flabel">Gaya Coulomb</div>
+        <div class="ftext">F = k × (q₁ × q₂) / r²
+
+F  = Gaya tarik/tolak (Newton, N)
+k  = Konstanta Coulomb = 9 × 10⁹ N·m²/C²
+q₁ = Muatan pertama (Coulomb, C)
+q₂ = Muatan kedua (Coulomb, C)
+r  = Jarak antara dua muatan (meter, m)
+
+Gaya berbanding lurus dengan q, berbanding terbalik dengan r²</div>
+      </div>
+
+      <div class="section-title">Listrik Statis dalam Kehidupan</div>
+      <ul class="content-list">
+        <li><strong>Petir:</strong> Akumulasi muatan besar di awan; saat beda potensial cukup besar, terjadi loncatan muatan ke Bumi atau antar awan</li>
+        <li><strong>Penangkal petir:</strong> Konduktor logam yang dihubungkan ke Bumi untuk mengalirkan muatan awan secara aman</li>
+        <li><strong>Mesin fotokopi:</strong> Menggunakan prinsip muatan statis untuk menarik toner ke kertas</li>
+        <li><strong>Cat semprot:</strong> Butiran cat diberi muatan berlawanan dengan benda yang dicat agar menempel merata</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. PESAWAT SEDERHANA -->
+  <div class="card" id="fis-2">
+    <div class="topic-hdr" onclick="toggleCard('fis-2')">
+      <div class="topic-num num-b">02</div>
+      <div class="topic-info">
+        <h3>Pesawat Sederhana</h3>
+        <p>Tuas, katrol, bidang miring, dan roda berporos</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Prinsip Umum</div>
+      <p class="body-text">Pesawat sederhana adalah alat yang memudahkan pekerjaan dengan mengubah besar atau arah gaya. Keuntungan mekanis (KM) adalah perbandingan beban terhadap kuasa.</p>
+      <div class="formula-card">
+        <div class="flabel">Keuntungan Mekanis</div>
+        <div class="ftext">KM = W / F = lb / lk
+W = beban (N), F = gaya/kuasa (N)
+lb = lengan beban, lk = lengan kuasa</div>
+      </div>
+
+      <div class="section-title">1. Tuas (Pengungkit)</div>
+      <div class="formula-card">
+        <div class="flabel">Prinsip Tuas</div>
+        <div class="ftext">W × lb = F × lk   (hukum keseimbangan momen)
+KM = W/F = lk/lb
+
+Titik Tumpu (T), Beban (B), Kuasa (K)</div>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Jenis</th><th>Posisi T, B, K</th><th>KM</th><th>Contoh</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Tuas Jenis I</strong></td><td>B — T — K</td><td>KM > atau < 1</td><td>Gunting, jungkat-jungkit, tang, batu nisan</td></tr>
+            <tr><td><strong>Tuas Jenis II</strong></td><td>T — B — K</td><td>KM > 1 (menguntungkan)</td><td>Gerobak dorong, pemotong kertas, pembuka botol</td></tr>
+            <tr><td><strong>Tuas Jenis III</strong></td><td>T — K — B</td><td>KM < 1 (memperbesar jarak)</td><td>Sekop, pinset, lengan saat mengangkat dagu</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">2. Katrol</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Katrol Tetap</h5>
+          <p>Hanya mengubah arah gaya. KM = 1 (tidak mengurangi gaya). Contoh: sumur timba, tiang bendera.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Katrol Bergerak</h5>
+          <p>KM = 2 (gaya yang diperlukan setengah beban). Contoh: mesin pengangkat bahan bangunan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Katrol Majemuk (Takel)</h5>
+          <p>Kombinasi katrol tetap dan bergerak. KM = jumlah tali penopang. Semakin banyak katrol, semakin ringan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Blok Katrol</h5>
+          <p>KM = n (jumlah katrol bergerak × 2). Digunakan di kapal dan crane besar.</p>
+        </div>
+      </div>
+
+      <div class="section-title">3. Bidang Miring</div>
+      <div class="formula-card">
+        <div class="flabel">Bidang Miring</div>
+        <div class="ftext">KM = L / h
+L = panjang bidang miring (m)
+h = tinggi bidang miring (m)
+
+F = W × h / L = W / KM
+Semakin panjang bidang miring dan semakin landai → semakin ringan</div>
+      </div>
+      <p class="body-text">Contoh bidang miring: tangga, jalur miring gedung, ulir sekrup, pisau, kapak, dan baji (pasak).</p>
+
+      <div class="section-title">4. Roda Berporos (Roda dan Poros)</div>
+      <div class="formula-card">
+        <div class="flabel">Roda dan Poros</div>
+        <div class="ftext">KM = R / r
+R = jari-jari roda (besar), r = jari-jari poros (kecil)
+Contoh: setir mobil (R besar, r kecil → KM besar)</div>
+      </div>
+      <p class="body-text">Contoh: setir mobil, obeng, kran air, roda sepeda bersama gir.</p>
+    </div>
+  </div>
+
+  <!-- 3. MAGNET / ELEKTROMAGNET -->
+  <div class="card" id="fis-3">
+    <div class="topic-hdr" onclick="toggleCard('fis-3')">
+      <div class="topic-num num-p">03</div>
+      <div class="topic-info">
+        <h3>Magnet dan Elektromagnet</h3>
+        <p>Sifat magnet, medan magnet, dan penerapan elektromagnet</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Sifat-Sifat Magnet</div>
+      <ul class="content-list">
+        <li>Magnet memiliki dua kutub: <strong>Kutub Utara (KU)</strong> dan <strong>Kutub Selatan (KS)</strong></li>
+        <li>Kutub sejenis <strong>tolak-menolak</strong>; kutub berbeda <strong>tarik-menarik</strong></li>
+        <li>Gaya magnet terkuat di kedua kutubnya</li>
+        <li>Kutub utara magnet menunjuk ke arah utara geografis Bumi (sebenarnya kutub selatan magnet Bumi ada di utara geografis)</li>
+        <li>Magnet dapat memengaruhi logam feromagnetik: besi, baja, nikel, kobalt</li>
+      </ul>
+
+      <div class="section-title">Cara Membuat Magnet</div>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Gosokan</h5>
+          <p>Batang besi/baja digosok dengan magnet secara <strong>searah</strong> (tidak bolak-balik). Ujung terakhir yang disentuh kutub magnet akan menjadi kutub berlawanan.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Induksi</h5>
+          <p>Besi didekatkan (bukan disentuh) dengan magnet kuat. Magnet yang terbentuk akan hilang jika magnet penginduksi dijauhkan (magnet sementara).</p>
+        </div>
+        <div class="mini-info">
+          <h5>Elektromagnetik</h5>
+          <p>Aliran listrik pada kawat yang dililitkan di inti besi menciptakan medan magnet (solenoid). Sifatnya bisa dimatikan — sangat berguna.</p>
+        </div>
+        <div class="mini-info">
+          <h5>Menghilangkan Sifat Magnet</h5>
+          <p>Dipanaskan, dipukul-pukul, atau dialiri arus AC. Suhu di mana magnet kehilangan sifatnya disebut <strong>Titik Curie</strong>.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Medan Magnet dan Garis Gaya</div>
+      <p class="body-text">Medan magnet adalah daerah di sekitar magnet yang masih dipengaruhi gaya magnet. Digambarkan dengan <strong>garis gaya magnet</strong> yang keluar dari kutub utara dan masuk ke kutub selatan. Semakin rapat garis gaya, semakin kuat medan magnetnya.</p>
+
+      <div class="section-title">Elektromagnet</div>
+      <div class="formula-card">
+        <div class="flabel">Kuat Medan Magnet Solenoid</div>
+        <div class="ftext">B = μ₀ × n × I
+B  = kuat medan magnet (Tesla, T)
+μ₀ = permeabilitas vakum = 4π × 10⁻⁷ T·m/A
+n  = jumlah lilitan per meter
+I  = kuat arus listrik (Ampere, A)
+
+Kekuatan elektromagnet meningkat dengan:
+→ Menambah jumlah lilitan kawat
+→ Memperbesar arus listrik
+→ Menggunakan inti besi lunak</div>
+      </div>
+
+      <div class="section-title">Penerapan Elektromagnet</div>
+      <ul class="content-list">
+        <li><strong>Bel Listrik:</strong> Arus listrik mengaktifkan elektromagnet yang menarik pemukul bel</li>
+        <li><strong>Motor Listrik:</strong> Mengubah energi listrik menjadi energi gerak (mekanik)</li>
+        <li><strong>Generator:</strong> Mengubah energi gerak menjadi energi listrik (Faraday — induksi elektromagnetik)</li>
+        <li><strong>Transformator (Trafo):</strong> Menaikkan/menurunkan tegangan listrik AC berdasarkan rasio lilitan</li>
+        <li><strong>MRI (Magnetic Resonance Imaging):</strong> Pencitraan medis menggunakan medan magnet sangat kuat</li>
+        <li><strong>Kereta Maglev:</strong> Menggunakan tolak-menolak elektromagnet untuk melayang di atas rel</li>
+        <li><strong>Pengeras Suara (Speaker):</strong> Arus AC melalui kumparan dalam medan magnet menghasilkan getaran membran</li>
+      </ul>
+
+      <div class="section-title">Aturan Tangan Kanan</div>
+      <div class="info-card">
+        Untuk menentukan arah medan magnet solenoid: <strong>Genggam solenoid dengan tangan kanan</strong>, jari-jari menunjukkan arah arus, ibu jari menunjukkan arah kutub utara magnet.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. CERMIN -->
+  <div class="card" id="fis-4">
+    <div class="topic-hdr" onclick="toggleCard('fis-4')">
+      <div class="topic-num num-t">04</div>
+      <div class="topic-info">
+        <h3>Bayangan pada Cermin Datar, Cekung, dan Cembung</h3>
+        <p>Sifat bayangan dan hukum pemantulan cahaya</p>
+      </div>
+      <div class="topic-chevron">&#8964;</div>
+    </div>
+    <div class="topic-body">
+      <div class="section-title">Hukum Pemantulan Cahaya (Snell)</div>
+      <div class="formula-card">
+        <div class="flabel">Hukum Pemantulan</div>
+        <div class="ftext">θᵢ = θᵣ  (sudut datang = sudut pantul)
+Keduanya diukur terhadap garis normal (tegak lurus permukaan)</div>
+      </div>
+
+      <div class="section-title">Cermin Datar</div>
+      <p class="body-text">Permukaan pantul yang rata. Semua pemantulan terjadi secara teratur (spekuler).</p>
+      <div class="two-col">
+        <div class="mini-info">
+          <h5>Sifat Bayangan</h5>
+          <ul>
+            <li>Maya (ada di belakang cermin)</li>
+            <li>Tegak (tidak terbalik atas-bawah)</li>
+            <li>Sama besar dengan benda</li>
+            <li>Jarak bayangan = jarak benda</li>
+            <li>Berkebalikan kiri-kanan (lateral)</li>
+          </ul>
+        </div>
+        <div class="mini-info">
+          <h5>Rumus</h5>
+          <p>s = s' (jarak benda = jarak bayangan)</p>
+          <p>M = 1 (perbesaran = 1)</p>
+          <p style="margin-top:8px">Jumlah bayangan jika dua cermin bersudut θ:<br><strong>n = (360°/θ) – 1</strong></p>
+        </div>
+      </div>
+
+      <div class="section-title">Cermin Cekung (Konkav)</div>
+      <p class="body-text">Permukaan pantul melengkung ke dalam (seperti mangkuk). Bersifat <strong>konvergen</strong> (mengumpulkan cahaya). Titik fokus (F) berada di depan cermin.</p>
+
+      <div class="formula-card">
+        <div class="flabel">Rumus Cermin Cekung</div>
+        <div class="ftext">1/s + 1/s' = 1/f  (persamaan cermin)
+M = -s'/s = h'/h
+
+s  = jarak benda (positif jika di depan cermin)
+s' = jarak bayangan (positif = nyata/di depan; negatif = maya/di belakang)
+f  = jarak fokus (positif untuk cermin cekung)
+R  = 2f  (jari-jari kelengkungan = 2 × fokus)
+M  = perbesaran (negatif → terbalik)</div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Posisi Benda</th><th>Sifat Bayangan</th><th>Kegunaan</th></tr></thead>
+          <tbody>
+            <tr><td>s > R (di luar pusat)</td><td>Nyata, terbalik, diperkecil</td><td>Pengumpulan sinar</td></tr>
+            <tr><td>s = R (di pusat)</td><td>Nyata, terbalik, sama besar</td><td>—</td></tr>
+            <tr><td>R > s > f (antara R dan F)</td><td>Nyata, terbalik, diperbesar</td><td>—</td></tr>
+            <tr><td>s = f (di titik fokus)</td><td>Bayangan di tak terhingga</td><td>Reflektor lampu sorot, lampu senter</td></tr>
+            <tr><td>s < f (di depan fokus)</td><td>Maya, tegak, diperbesar</td><td>Cermin rias, cermin dokter gigi</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Cermin Cembung (Konveks)</div>
+      <p class="body-text">Permukaan pantul melengkung ke luar. Bersifat <strong>divergen</strong> (menyebarkan cahaya). Titik fokus (F) berada di belakang cermin (semu), sehingga nilainya negatif (f < 0).</p>
+
+      <div class="info-card">
+        <strong>Sifat Bayangan Cermin Cembung (selalu):</strong><br>
+        ✓ Maya (di belakang cermin)<br>
+        ✓ Tegak (tidak terbalik)<br>
+        ✓ Diperkecil<br>
+        ✓ Lokasi bayangan selalu antara F dan cermin<br><br>
+        <strong>Kegunaan:</strong> Kaca spion kendaraan, cermin pengawas di toko, tikungan jalan (karena memberikan pandangan luas)
+      </div>
+
+      <div class="section-title">Perbandingan Tiga Cermin</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th>Aspek</th><th>Cermin Datar</th><th>Cermin Cekung</th><th>Cermin Cembung</th></tr></thead>
+          <tbody>
+            <tr><td>Bentuk</td><td>Datar/Rata</td><td>Melengkung ke dalam</td><td>Melengkung ke luar</td></tr>
+            <tr><td>Sifat</td><td>—</td><td>Konvergen (mengumpulkan)</td><td>Divergen (menyebarkan)</td></tr>
+            <tr><td>Nilai f</td><td>∞</td><td>Positif (+)</td><td>Negatif (–)</td></tr>
+            <tr><td>Bayangan</td><td>Selalu maya, tegak, sama besar</td><td>Bergantung posisi benda</td><td>Selalu maya, tegak, diperkecil</td></tr>
+            <tr><td>Kegunaan</td><td>Cermin kamar mandi, hias</td><td>Cermin rias, reflektor, antena parabola</td><td>Kaca spion, cermin tikungan</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div><!-- end panel-fis -->
+
+<!-- ════════════════════════════════════════════════════
+     TAB: QUIZ
+════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-quiz">
+  <div class="panel-hdr">
+    <div class="eyebrow">📝 Uji Pemahamanmu</div>
+    <h2>Kuis — 50 Soal Lengkap</h2>
+  </div>
+
+  <div class="quiz-header-bar">
+    <div>
+      <h3>Kuis Biologi & Fisika</h3>
+      <p>Jawab semua soal, lalu klik "Periksa Semua Jawaban"</p>
+    </div>
+    <div class="quiz-pills">
+      <span class="q-pill mc">30 MC</span>
+      <span class="q-pill pgk">10 PGK</span>
+      <span class="q-pill tf">10 B/S</span>
+    </div>
+  </div>
+
+  <div id="score-panel" class="score-panel">
+    <div class="score-num" id="score-val">0</div>
+    <div class="score-denom">/ 50</div>
+    <div class="score-msg" id="score-msg">–</div>
+    <div class="score-bars">
+      <div class="score-bar-item"><div class="score-bar-label">Pilihan Ganda</div><div class="score-bar-val" id="score-mc">–</div></div>
+      <div class="score-bar-item"><div class="score-bar-label">PGK</div><div class="score-bar-val" id="score-pgk">–</div></div>
+      <div class="score-bar-item"><div class="score-bar-label">Benar/Salah</div><div class="score-bar-val" id="score-tf">–</div></div>
+    </div>
+  </div>
+
+  <div id="quiz-container"></div>
+
+  <button class="check-btn" id="check-btn" onclick="checkAll()">
+    ✅ Periksa Semua Jawaban
+  </button>
+</div><!-- end panel-quiz -->
+
+</div><!-- end tab-wrapper -->
+
+<footer>
+  <p>© 2024 <span>SainsID</span> — Portal Belajar IPA · Biologi & Fisika · Dibuat untuk Pelajar Indonesia 🇮🇩</p>
+</footer>
+</div><!-- end page -->
+
+<script>
+/* ═══════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════ */
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════
+   ACCORDION
+═══════════════════════════════════════ */
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════
+   QUIZ DATA
+═══════════════════════════════════════ */
+const QUESTIONS = [
+
+/* ─── MC BIOLOGI (1-20) ─── */
+{ id:1, type:'mc', topic:'Sel dan Organel',
+  question:'Organel sel yang dijuluki sebagai "pembangkit tenaga sel" karena menghasilkan ATP melalui respirasi seluler adalah...',
+  options:['Ribosom','Mitokondria','Kloroplas','Badan Golgi'],
+  correct:1,
+  explanation:'Mitokondria adalah tempat berlangsungnya respirasi seluler aerob yang menghasilkan ATP (adenosin trifosfat) sebagai sumber energi utama sel. Oleh karena itu, mitokondria disebut "powerhouse" atau pembangkit tenaga sel.' },
+
+{ id:2, type:'mc', topic:'Sel dan Organel',
+  question:'Berikut ini yang BENAR tentang perbedaan sel prokariotik dan sel eukariotik adalah...',
+  options:['Sel prokariotik memiliki membran inti yang jelas','Sel eukariotik tidak memiliki organel bermembran','Sel prokariotik tidak memiliki membran inti (nukleus)','Sel eukariotik tidak memiliki DNA'],
+  correct:2,
+  explanation:'Ciri utama sel prokariotik adalah tidak memiliki membran inti (nukleus), sehingga DNA tersebar di sitoplasma pada region yang disebut nukleoid. Sel eukariotik justru memiliki membran inti yang memisahkan DNA dari sitoplasma.' },
+
+{ id:3, type:'mc', topic:'Sel dan Organel',
+  question:'Organel yang berfungsi melakukan modifikasi, pengemasan, dan pengiriman protein ke luar sel adalah...',
+  options:['Retikulum Endoplasma Halus','Ribosom','Badan Golgi','Lisosom'],
+  correct:2,
+  explanation:'Badan Golgi berfungsi sebagai "kantor pos" sel — menerima protein dari Retikulum Endoplasma, memodifikasinya, mengemasnya dalam vesikel, dan mengirimkannya ke tujuan (membran sel, lisosom, atau keluar sel melalui sekresi).' },
+
+{ id:4, type:'mc', topic:'Pemanasan Global',
+  question:'Gas rumah kaca yang paling banyak dihasilkan dari pembakaran bahan bakar fosil dan menjadi penyebab utama pemanasan global adalah...',
+  options:['Metana (CH₄)','Karbon dioksida (CO₂)','CFC (Chlorofluorocarbon)','Dinitrogen oksida (N₂O)'],
+  correct:1,
+  explanation:'Karbon dioksida (CO₂) adalah gas rumah kaca utama yang dihasilkan dari pembakaran bahan bakar fosil (batu bara, minyak bumi, gas alam) dan deforestasi. Meski metana lebih kuat per molekulnya, konsentrasi CO₂ jauh lebih tinggi di atmosfer sehingga kontribusinya paling besar.' },
+
+{ id:5, type:'mc', topic:'Pemanasan Global',
+  question:'Salah satu dampak langsung pemanasan global terhadap ekosistem laut adalah...',
+  options:['Meningkatnya kadar oksigen di laut','Pengasaman laut yang merusak terumbu karang','Berkurangnya curah hujan di lautan','Meningkatnya populasi ikan secara global'],
+  correct:1,
+  explanation:'CO₂ yang diserap laut bereaksi dengan air membentuk asam karbonat (H₂CO₃), menurunkan pH laut (pengasaman/ocean acidification). Kondisi ini merusak cangkang dan kerangka karang, serta organisme berkapur lainnya.' },
+
+{ id:6, type:'mc', topic:'Hormon Reproduksi',
+  question:'Hormon yang bertanggung jawab untuk mempertahankan lapisan dinding rahim (endometrium) selama kehamilan adalah...',
+  options:['Estrogen','FSH','Progesteron','LH'],
+  correct:2,
+  explanation:'Progesteron, yang diproduksi oleh korpus luteum (dan kemudian plasenta), berfungsi mempersiapkan dan mempertahankan endometrium agar embrio dapat berimplantasi dan kehamilan berlanjut. Kadar progesteron yang turun menyebabkan menstruasi.' },
+
+{ id:7, type:'mc', topic:'Hormon Reproduksi',
+  question:'Hormon yang memicu pelepasan sel telur dari ovarium (ovulasi) adalah...',
+  options:['Progesteron','FSH (Follicle Stimulating Hormone)','LH (Luteinizing Hormone)','Prolaktin'],
+  correct:2,
+  explanation:'Lonjakan LH (Luteinizing Hormone) dari kelenjar hipofisis anterior memicu ovulasi — pelepasan sel telur yang matang dari folikel ovarium pada sekitar hari ke-14 siklus menstruasi.' },
+
+{ id:8, type:'mc', topic:'Organ Reproduksi',
+  question:'Tempat terjadinya proses fertilisasi (pembuahan sel telur oleh sperma) pada sistem reproduksi wanita adalah...',
+  options:['Uterus (rahim)','Ovarium','Tuba Falopi (saluran telur)','Vagina'],
+  correct:2,
+  explanation:'Fertilisasi umumnya terjadi di tuba Falopi (saluran telur), khususnya di bagian ampula. Setelah dibuahi, zigot bergerak menuju uterus untuk berimplantasi dan berkembang menjadi embrio.' },
+
+{ id:9, type:'mc', topic:'Sistem Pencernaan',
+  question:'Enzim pepsin yang terdapat di lambung berfungsi untuk mencerna...',
+  options:['Lemak','Karbohidrat/amilum','Protein','Vitamin'],
+  correct:2,
+  explanation:'Pepsin adalah enzim protease (pemecah protein) yang aktif dalam suasana asam lambung (pH rendah). Pepsin memecah protein menjadi polipeptida yang lebih pendek. Pepsin diaktifkan dari pepsinogen oleh HCl.' },
+
+{ id:10, type:'mc', topic:'Sistem Pencernaan',
+  question:'Organ yang menghasilkan empedu untuk membantu pencernaan lemak adalah...',
+  options:['Pankreas','Lambung','Usus halus','Hati'],
+  correct:3,
+  explanation:'Hati (hepar) menghasilkan empedu yang disimpan di kantong empedu. Empedu bukan enzim, tetapi berfungsi mengemulsifikasi lemak — memecah gumpalan lemak besar menjadi tetesan kecil sehingga lebih mudah dicerna oleh lipase.' },
+
+{ id:11, type:'mc', topic:'Ciri Makhluk Hidup',
+  question:'Kemampuan makhluk hidup untuk merespons perubahan lingkungan disebut...',
+  options:['Adaptasi','Iritabilitas','Ekskresi','Reproduksi'],
+  correct:1,
+  explanation:'Iritabilitas adalah kemampuan makhluk hidup merespons rangsangan (stimulus) dari lingkungan. Contoh: putri malu menutup daun ketika disentuh, pupil mata mengecil saat terkena cahaya terang.' },
+
+{ id:12, type:'mc', topic:'Ciri Makhluk Hidup',
+  question:'Proses pengeluaran zat sisa metabolisme dari tubuh makhluk hidup disebut...',
+  options:['Respirasi','Sekresi','Ekskresi','Defekasi'],
+  correct:2,
+  explanation:'Ekskresi adalah pembuangan zat sisa hasil metabolisme yang sudah tidak diperlukan. Misalnya: ginjal mengeluarkan urin (sisa metabolisme nitrogen), kulit mengeluarkan keringat, paru-paru mengeluarkan CO₂. Berbeda dengan defekasi (pembuangan feses) yang merupakan sisa pencernaan.' },
+
+{ id:13, type:'mc', topic:'DNA',
+  question:'Pasangan basa nitrogen yang benar pada struktur DNA adalah...',
+  options:['Adenin berpasangan dengan Sitosin','Guanin berpasangan dengan Timin','Adenin berpasangan dengan Timin, Guanin berpasangan dengan Sitosin','Adenin berpasangan dengan Urasil'],
+  correct:2,
+  explanation:'Berdasarkan Aturan Chargaff: Adenin (A) selalu berpasangan dengan Timin (T) dihubungkan 2 ikatan hidrogen, dan Guanin (G) selalu berpasangan dengan Sitosin (C) dihubungkan 3 ikatan hidrogen. Urasil ada di RNA, bukan DNA.' },
+
+{ id:14, type:'mc', topic:'DNA',
+  question:'Proses penyalinan informasi genetik dari DNA menjadi mRNA disebut...',
+  options:['Translasi','Replikasi','Transkripsi','Transisi'],
+  correct:2,
+  explanation:'Transkripsi adalah proses pembuatan mRNA (messenger RNA) dari cetakan DNA, berlangsung di nukleus. Hasilnya adalah mRNA yang membawa kode genetik ke ribosom. Translasi adalah proses penerjemahan kode mRNA menjadi protein di ribosom.' },
+
+{ id:15, type:'mc', topic:'Fotosintesis',
+  question:'Reaksi gelap fotosintesis (Siklus Calvin) berlangsung di bagian kloroplas yang disebut...',
+  options:['Membran tilakoid','Stroma','Grana','Membran dalam kloroplas'],
+  correct:1,
+  explanation:'Siklus Calvin (reaksi gelap) berlangsung di stroma kloroplas, yaitu cairan yang mengelilingi tilakoid. Di stroma, CO₂ difiksasi oleh enzim RuBisCO menggunakan ATP dan NADPH yang dihasilkan reaksi terang.' },
+
+{ id:16, type:'mc', topic:'Fotosintesis',
+  question:'Gas yang dihasilkan sebagai produk sampingan dari reaksi terang fotosintesis adalah...',
+  options:['Karbon dioksida (CO₂)','Nitrogen (N₂)','Oksigen (O₂)','Hidrogen (H₂)'],
+  correct:2,
+  explanation:'Pada reaksi terang, terjadi fotolisis air (H₂O dipecah oleh energi cahaya) menghasilkan ion H⁺, elektron, dan O₂. Oksigen (O₂) inilah yang dilepaskan ke atmosfer sebagai produk sampingan yang sangat bermanfaat bagi kehidupan.' },
+
+{ id:17, type:'mc', topic:'Simbiosis Mutualisme',
+  question:'Hubungan antara bakteri Rhizobium yang hidup di akar tanaman polong-polongan merupakan contoh simbiosis...',
+  options:['Parasitisme','Komensalisme','Mutualisme','Predasi'],
+  correct:2,
+  explanation:'Ini adalah mutualisme: bakteri Rhizobium mendapat tempat tinggal dan karbohidrat dari tanaman, sementara tanaman mendapat nitrogen yang telah difiksasi (diikat) dari udara oleh bakteri — nitrogen ini penting untuk pertumbuhan tanaman.' },
+
+{ id:18, type:'mc', topic:'Bioteknologi',
+  question:'Proses pembuatan tempe menggunakan jamur Rhizopus oligosporus merupakan contoh bioteknologi...',
+  options:['Modern','Transgenik','Konvensional','Rekombinasi DNA'],
+  correct:2,
+  explanation:'Bioteknologi konvensional menggunakan organisme secara langsung melalui fermentasi tanpa memanipulasi gen. Pembuatan tempe dengan Rhizopus oligosporus, tape dengan Saccharomyces, dan yoghurt dengan Lactobacillus adalah contoh-contoh klasik bioteknologi konvensional.' },
+
+{ id:19, type:'mc', topic:'Pewarisan Sifat',
+  question:'Dalam persilangan monohibrid antara bunga merah (MM) × bunga putih (mm), rasio fenotipe yang dihasilkan pada generasi F2 adalah...',
+  options:['1 : 1','1 : 2 : 1','3 : 1','9 : 3 : 3 : 1'],
+  correct:2,
+  explanation:'F1 = Mm (semua merah). F1 × F1 (Mm × Mm) menghasilkan F2: MM : Mm : mm = 1:2:1. Karena M dominan penuh terhadap m, MM dan Mm sama-sama merah, sehingga rasio fenotipe merah : putih = 3 : 1.' },
+
+{ id:20, type:'mc', topic:'Pewarisan Sifat',
+  question:'Dalam persilangan dihibrid F1 × F1 (BbKk × BbKk), berapa banyak kombinasi fenotipe berbeda yang dihasilkan pada F2?',
+  options:['2','3','4','16'],
+  correct:2,
+  explanation:'Persilangan dihibrid menghasilkan 4 fenotipe berbeda pada F2 dengan rasio 9:3:3:1, yaitu: (1) Bulat Kuning, (2) Bulat Hijau, (3) Keriput Kuning, (4) Keriput Hijau. Total kombinasi genotipe ada 16, tetapi hanya 4 fenotipe berbeda.' },
+
+/* ─── MC FISIKA (21-30) ─── */
+{ id:21, type:'mc', topic:'Listrik Statis',
+  question:'Menurut hukum Coulomb, jika jarak antara dua muatan diperbesar dua kali lipat, maka gaya Coulomb antara keduanya akan...',
+  options:['Menjadi 2 kali lebih besar','Menjadi 4 kali lebih besar','Menjadi 1/2 kali','Menjadi 1/4 kali'],
+  correct:3,
+  explanation:'Hukum Coulomb: F = k·q₁·q₂/r². Gaya berbanding terbalik dengan kuadrat jarak. Jika r → 2r, maka F → k·q₁·q₂/(2r)² = k·q₁·q₂/4r² = F/4. Jadi gaya menjadi 1/4 kali semula.' },
+
+{ id:22, type:'mc', topic:'Listrik Statis',
+  question:'Penggaris plastik yang digosokkan ke rambut kering akan bermuatan negatif karena...',
+  options:['Penggaris kehilangan proton ke rambut','Penggaris menerima elektron dari rambut','Rambut menerima neutron dari penggaris','Penggaris dan rambut sama-sama bermuatan positif'],
+  correct:1,
+  explanation:'Saat penggaris plastik digosok ke rambut, elektron berpindah dari rambut ke penggaris (karena plastik lebih elektronegatif). Penggaris mendapat tambahan elektron → bermuatan negatif. Rambut kehilangan elektron → bermuatan positif.' },
+
+{ id:23, type:'mc', topic:'Pesawat Sederhana',
+  question:'Sebuah tuas dengan lengan beban 40 cm dan lengan kuasa 120 cm digunakan untuk mengangkat beban 300 N. Berapa kuasa (gaya) yang diperlukan?',
+  options:['100 N','900 N','150 N','75 N'],
+  correct:0,
+  explanation:'Prinsip tuas: W × lb = F × lk → 300 × 40 = F × 120 → 12.000 = 120F → F = 100 N. Keuntungan mekanis = 120/40 = 3, jadi gaya yang diperlukan = 300/3 = 100 N.' },
+
+{ id:24, type:'mc', topic:'Pesawat Sederhana',
+  question:'Katrol tetap pada sumur timba berfungsi untuk...',
+  options:['Melipatgandakan gaya angkat','Memperbesar jarak angkat','Mengubah arah gaya (tarikan ke atas menjadi kebawah)','Mengurangi gaya angkat menjadi setengahnya'],
+  correct:2,
+  explanation:'Katrol tetap tidak mengurangi gaya yang diperlukan (KM = 1), tetapi mengubah arah gaya. Pada sumur timba, kita menarik tali ke bawah (lebih alami dan nyaman) untuk mengangkat ember ke atas, bukan menarik ke atas langsung.' },
+
+{ id:25, type:'mc', topic:'Magnet',
+  question:'Berikut ini yang termasuk bahan feromagnetik (mudah ditarik magnet) adalah...',
+  options:['Kayu dan plastik','Tembaga dan aluminium','Besi, baja, dan nikel','Emas dan perak'],
+  correct:2,
+  explanation:'Feromagnetik adalah bahan yang sangat mudah ditarik magnet: besi, baja, nikel, kobalt, dan beberapa paduan lainnya. Tembaga, aluminium, emas, perak adalah paramagnetik (sangat lemah). Kayu dan plastik adalah diamagnetik (tidak tertarik).' },
+
+{ id:26, type:'mc', topic:'Magnet/Elektromagnet',
+  question:'Untuk memperkuat elektromagnet pada solenoid, langkah yang TIDAK tepat adalah...',
+  options:['Menambah jumlah lilitan kawat','Memperbesar kuat arus listrik','Mengganti inti besi dengan inti kayu','Menggunakan kawat yang lebih tebal'],
+  correct:2,
+  explanation:'Kuat medan elektromagnet: B = μ₀nI. Ditingkatkan dengan: menambah lilitan (n), memperbesar arus (I), dan menggunakan inti besi (permeabilitas tinggi). Mengganti inti besi dengan kayu akan MELEMAHKAN elektromagnet karena kayu adalah bahan non-magnetik.' },
+
+{ id:27, type:'mc', topic:'Cermin',
+  question:'Sifat bayangan yang SELALU terbentuk pada cermin datar adalah...',
+  options:['Nyata, tegak, diperbesar','Maya, tegak, sama besar','Nyata, terbalik, diperkecil','Maya, terbalik, diperbesar'],
+  correct:1,
+  explanation:'Cermin datar selalu menghasilkan bayangan: (1) Maya — berada di belakang cermin, (2) Tegak — tidak terbalik atas-bawah, (3) Sama besar dengan benda (M=1), (4) Jarak bayangan = jarak benda. Hanya kiri-kanan yang bertukar (inversi lateral).' },
+
+{ id:28, type:'mc', topic:'Cermin',
+  question:'Cermin cekung digunakan sebagai reflektor pada lampu senter karena...',
+  options:['Menghasilkan bayangan yang diperbesar','Jika benda diletakkan di titik fokus, sinar pantul menjadi sejajar (paralel)','Menghasilkan bayangan maya dari semua posisi','Menyebarkan cahaya ke segala arah'],
+  correct:1,
+  explanation:'Saat sumber cahaya (bola lampu) diletakkan tepat di titik fokus cermin cekung, semua sinar yang dipantulkan akan sejajar (paralel), membentuk berkas cahaya yang kuat dan terarah. Inilah prinsip kerja lampu senter, lampu sorot, dan reflektor headlamp.' },
+
+{ id:29, type:'mc', topic:'Cermin',
+  question:'Cermin cembung digunakan sebagai kaca spion kendaraan karena...',
+  options:['Menghasilkan bayangan nyata yang jelas','Menghasilkan bayangan diperbesar sehingga detail terlihat','Menghasilkan lapangan pandang yang luas meskipun benda tampak lebih kecil','Menghasilkan bayangan tegak dan sama besar'],
+  correct:2,
+  explanation:'Cermin cembung bersifat divergen — menyebarkan cahaya. Ini menghasilkan lapangan pandang (field of view) yang jauh lebih luas dibanding cermin datar. Kelemahannya, benda tampak lebih kecil dan lebih jauh. "Objects in mirror are closer than they appear."' },
+
+{ id:30, type:'mc', topic:'Pesawat Sederhana',
+  question:'Sebuah bidang miring memiliki panjang 5 m dan tinggi 2 m. Untuk mengangkat beban 1000 N ke atas bidang miring, gaya minimum yang dibutuhkan adalah...',
+  options:['2000 N','400 N','500 N','250 N'],
+  correct:1,
+  explanation:'KM bidang miring = L/h = 5/2 = 2,5. Gaya = W/KM = 1000/2,5 = 400 N. Dengan bidang miring yang panjang dan landai, gaya yang dibutuhkan berkurang, meskipun jarak tempuh lebih jauh.' },
+
+/* ─── PGK BIOLOGI (31-37) ─── */
+{ id:31, type:'pgk', topic:'Sel dan Organel',
+  question:'Perhatikan pernyataan berikut. Manakah yang merupakan organel yang HANYA ditemukan pada sel tumbuhan (tidak pada sel hewan)?',
+  options:['Mitokondria','Dinding sel','Kloroplas','Vakuola besar (tonoplas)','Ribosom'],
+  correctIndexes:[1,2,3],
+  explanation:'Organel eksklusif sel tumbuhan: (1) Dinding sel — terbuat dari selulosa, memberikan bentuk dan perlindungan; (2) Kloroplas — tempat fotosintesis; (3) Vakuola besar — menjaga turgor sel. Mitokondria dan ribosom ada di keduanya.' },
+
+{ id:32, type:'pgk', topic:'Pemanasan Global',
+  question:'Pilih pernyataan yang BENAR mengenai dampak pemanasan global!',
+  options:['Mencairnya es di Kutub Utara dan Selatan','Penurunan permukaan laut secara global','Peningkatan frekuensi cuaca ekstrem seperti badai dan kekeringan','Pengasaman lautan yang merusak terumbu karang','Bertambahnya jumlah spesies di seluruh dunia'],
+  correctIndexes:[0,2,3],
+  explanation:'Dampak pemanasan global yang benar: (A) Es kutub mencair → permukaan laut NAIK (bukan turun); (C) Cuaca ekstrem semakin sering; (D) CO₂ terlarut mengasamkan laut. Permukaan laut naik (bukan turun) dan banyak spesies terancam punah (bukan bertambah).' },
+
+{ id:33, type:'pgk', topic:'Hormon Reproduksi',
+  question:'Manakah pernyataan yang benar tentang hormon reproduksi wanita?',
+  options:['Estrogen diproduksi oleh folikel ovarium','FSH merangsang pematangan folikel','Progesteron diproduksi oleh kelenjar hipofisis','LH memicu ovulasi','Prolaktin merangsang produksi ASI'],
+  correctIndexes:[0,1,3,4],
+  explanation:'Yang benar: (A) Estrogen dari folikel ovarium ✓; (B) FSH merangsang pematangan folikel ✓; (D) LH memicu ovulasi ✓; (E) Prolaktin dari hipofisis anterior merangsang produksi ASI ✓. Yang salah: Progesteron diproduksi oleh korpus luteum, bukan hipofisis.' },
+
+{ id:34, type:'pgk', topic:'Ciri Makhluk Hidup',
+  question:'Manakah yang termasuk ciri-ciri makhluk hidup?',
+  options:['Bergerak aktif maupun pasif','Tumbuh dan berkembang','Terbuat dari bahan anorganik seluruhnya','Memerlukan nutrisi','Merespons rangsangan (iritabilitas)'],
+  correctIndexes:[0,1,3,4],
+  explanation:'Ciri makhluk hidup: bergerak (A), tumbuh dan berkembang (B), memerlukan nutrisi (D), iritabilitas (E). Makhluk hidup tersusun dari bahan organik dan anorganik, bukan anorganik seluruhnya (C salah).' },
+
+{ id:35, type:'pgk', topic:'DNA',
+  question:'Pilih pernyataan yang BENAR tentang DNA!',
+  options:['DNA berbentuk double helix (tangga berpilin ganda)','DNA mengandung basa urasil','Adenin berpasangan dengan timin pada DNA','DNA hanya terdapat di nukleus','DNA mengandung gula deoksiribosa'],
+  correctIndexes:[0,2,4],
+  explanation:'Benar: (A) DNA berbentuk double helix ✓; (C) Adenin-Timin ✓; (E) Gula deoksiribosa ✓. Salah: (B) Urasil ada di RNA, bukan DNA; (D) DNA juga terdapat di mitokondria dan kloroplas selain nukleus.' },
+
+{ id:36, type:'pgk', topic:'Fotosintesis',
+  question:'Manakah faktor-faktor yang dapat meningkatkan laju fotosintesis?',
+  options:['Meningkatkan intensitas cahaya matahari','Menambah konsentrasi CO₂','Menaikkan suhu di atas 50°C','Menyiram tanaman secara cukup','Memberikan pupuk nitrogen berlebihan'],
+  correctIndexes:[0,1,3],
+  explanation:'Laju fotosintesis meningkat dengan: (A) Intensitas cahaya lebih tinggi ✓; (B) Konsentrasi CO₂ lebih tinggi ✓; (D) Ketersediaan air cukup ✓. Suhu di atas 50°C justru mendenaturasi enzim (C salah). Nitrogen bukan faktor langsung fotosintesis.' },
+
+{ id:37, type:'pgk', topic:'Bioteknologi',
+  question:'Manakah yang merupakan contoh produk bioteknologi MODERN?',
+  options:['Tempe dari fermentasi kedelai','Insulin manusia yang diproduksi oleh bakteri E. coli transgenik','Domba Dolly yang dihasilkan melalui kloning','Tape dari fermentasi singkong','Tanaman Bt (Bacillus thuringiensis) yang tahan hama'],
+  correctIndexes:[1,2,4],
+  explanation:'Bioteknologi modern melibatkan manipulasi gen: (B) Insulin rekombinan dari E. coli transgenik ✓; (C) Kloning menggunakan transfer inti sel ✓; (E) Tanaman Bt mengandung gen bakteri yang disisipkan ✓. Tempe dan tape adalah bioteknologi konvensional (fermentasi tradisional).' },
+
+/* ─── PGK FISIKA (38-40) ─── */
+{ id:38, type:'pgk', topic:'Magnet',
+  question:'Pernyataan yang BENAR tentang sifat-sifat magnet adalah...',
+  options:['Kutub utara dan selatan magnet saling tarik-menarik','Dua kutub utara yang berdekatan akan tolak-menolak','Gaya magnet terkuat berada di bagian tengah magnet','Garis gaya magnet keluar dari kutub utara dan masuk ke kutub selatan','Magnet dapat dibuat dengan cara mengalirkan listrik pada kawat besi (elektromagnet)'],
+  correctIndexes:[0,1,3,4],
+  explanation:'Benar: (A) KU-KS tarik-menarik ✓; (B) KU-KU tolak-menolak ✓; (D) Garis gaya dari KU ke KS ✓; (E) Elektromagnet benar ✓. Salah: (C) Gaya magnet terkuat di KEDUA KUTUB, bukan tengah.' },
+
+{ id:39, type:'pgk', topic:'Pesawat Sederhana',
+  question:'Manakah yang merupakan contoh pesawat sederhana jenis TUAS (pengungkit)?',
+  options:['Gunting','Tangga','Jungkat-jungkit','Katrol sumur','Pembuka botol'],
+  correctIndexes:[0,2,4],
+  explanation:'Tuas: (A) Gunting (tuas jenis I) ✓; (C) Jungkat-jungkit (tuas jenis I) ✓; (E) Pembuka botol (tuas jenis II) ✓. Tangga adalah bidang miring. Katrol sumur adalah katrol tetap.' },
+
+{ id:40, type:'pgk', topic:'Cermin',
+  question:'Manakah pernyataan yang BENAR tentang cermin cekung?',
+  options:['Cermin cekung bersifat konvergen (mengumpulkan sinar)','Bayangan selalu maya dan diperkecil untuk semua posisi benda','Jika benda berada di titik fokus, bayangan berada di tak terhingga','Cermin cekung dapat menghasilkan bayangan nyata','Nilai jarak fokus cermin cekung adalah positif'],
+  correctIndexes:[0,2,3,4],
+  explanation:'Benar: (A) Konvergen ✓; (C) Benda di F → bayangan di ∞ ✓; (D) Cermin cekung menghasilkan bayangan nyata (jika benda di luar F) ✓; (E) f positif untuk cermin cekung ✓. Salah: (B) Bayangan tidak selalu maya — tergantung posisi benda.' },
+
+/* ─── T/F BIOLOGI (41-47) ─── */
+{ id:41, type:'tf', topic:'Sel dan Organel',
+  statement:'Sel tumbuhan tidak memiliki mitokondria karena memiliki kloroplas untuk menghasilkan energi.',
+  correct:false,
+  explanation:'SALAH. Sel tumbuhan memiliki KEDUANYA — mitokondria dan kloroplas. Kloroplas hanya aktif menghasilkan glukosa saat ada cahaya (fotosintesis), sedangkan mitokondria diperlukan untuk respirasi seluler menghasilkan ATP dari glukosa tersebut, baik siang maupun malam.' },
+
+{ id:42, type:'tf', topic:'Pemanasan Global',
+  statement:'Efek rumah kaca adalah fenomena yang sepenuhnya berbahaya dan tidak pernah terjadi secara alami.',
+  correct:false,
+  explanation:'SALAH. Efek rumah kaca sebenarnya adalah proses ALAMI yang menjaga suhu Bumi tetap hangat (~14°C rata-rata). Tanpa efek rumah kaca alami, suhu Bumi akan sekitar –18°C dan tidak mendukung kehidupan. Masalahnya adalah efek rumah kaca yang BERLEBIHAN akibat aktivitas manusia.' },
+
+{ id:43, type:'tf', topic:'DNA',
+  statement:'Setiap sel tubuh manusia yang berinti mengandung informasi DNA yang sama.',
+  correct:true,
+  explanation:'BENAR. Semua sel berinti pada tubuh manusia mengandung salinan DNA yang identik, karena berasal dari satu sel (zigot) melalui proses replikasi DNA yang sangat akurat. Perbedaan jenis sel (otot, saraf, kulit) disebabkan oleh gen yang "diekspresikan" (dinyalakan/dimatikan), bukan karena DNA yang berbeda.' },
+
+{ id:44, type:'tf', topic:'Fotosintesis',
+  statement:'Reaksi gelap fotosintesis tidak membutuhkan cahaya sama sekali dan dapat berlangsung kapan saja.',
+  correct:false,
+  explanation:'SEBAGIAN BENAR namun MENYESATKAN. Reaksi gelap memang tidak menggunakan cahaya secara langsung, tetapi bergantung pada ATP dan NADPH yang dihasilkan reaksi terang. Jika tidak ada cahaya, reaksi terang berhenti → ATP dan NADPH habis → reaksi gelap pun berhenti.' },
+
+{ id:45, type:'tf', topic:'Simbiosis Mutualisme',
+  question:'Hubungan antara ikan badut (Nemo) yang hidup di antara tentakel anemon laut dengan anemon laut adalah contoh simbiosis komensalisme.',
+  statement:'Hubungan antara ikan badut (Nemo) yang hidup di antara tentakel anemon laut dengan anemon laut adalah contoh simbiosis komensalisme.',
+  correct:false,
+  explanation:'SALAH. Hubungan ikan badut dan anemon adalah MUTUALISME (+/+): ikan badut dilindungi dari predator oleh sengatan beracun anemon, dan membantu mengusir ikan-ikan pemakan anemon, serta memberikan nutrisi dari sisa makanannya. Keduanya saling diuntungkan.' },
+
+{ id:46, type:'tf', topic:'Bioteknologi',
+  statement:'Kloning adalah teknik bioteknologi modern yang menghasilkan organisme baru dengan informasi genetik yang identik dengan organisme induk.',
+  correct:true,
+  explanation:'BENAR. Kloning menghasilkan organisme yang secara genetik identik dengan donor inti sel. Contoh paling terkenal adalah Domba Dolly (1996) yang diklon dari sel kelenjar susu domba dewasa oleh Ian Wilmut. Kloning adalah teknik bioteknologi modern yang melibatkan transfer inti sel somatik.' },
+
+{ id:47, type:'tf', topic:'Pewarisan Sifat',
+  statement:'Pada persilangan dihibrid F1 × F1, rasio fenotipe yang dihasilkan pada F2 adalah 9 : 3 : 3 : 1.',
+  correct:true,
+  explanation:'BENAR. Ini adalah hasil klasik dari Hukum Mendel II (Pemilahan Bebas). Persilangan BbKk × BbKk menghasilkan F2 dengan rasio fenotipe 9 (dominan-dominan) : 3 (dominan-resesif) : 3 (resesif-dominan) : 1 (resesif-resesif). Total 16 kombinasi.' },
+
+/* ─── T/F FISIKA (48-50) ─── */
+{ id:48, type:'tf', topic:'Listrik Statis',
+  statement:'Dua benda yang bermuatan listrik sama (keduanya negatif) akan saling tarik-menarik.',
+  correct:false,
+  explanation:'SALAH. Sesuai hukum muatan listrik: muatan SEJENIS tolak-menolak, muatan BERBEDA JENIS tarik-menarik. Dua benda bermuatan negatif akan saling tolak-menolak. Hanya muatan positif dan negatif yang akan tarik-menarik.' },
+
+{ id:49, type:'tf', topic:'Pesawat Sederhana',
+  statement:'Pesawat sederhana selalu mengurangi jumlah usaha (energi) yang diperlukan untuk melakukan suatu pekerjaan.',
+  correct:false,
+  explanation:'SALAH. Pesawat sederhana tidak mengurangi total usaha (energi), melainkan mengubah CARA melakukan usaha. Prinsip kekekalan energi tetap berlaku: W = F × s. Pesawat sederhana mengurangi GAYA yang diperlukan, tetapi kompensasinya adalah jarak tempuh yang lebih jauh (atau sebaliknya).' },
+
+{ id:50, type:'tf', topic:'Cermin',
+  statement:'Cermin cembung selalu menghasilkan bayangan yang maya, tegak, dan diperkecil, tidak peduli di mana posisi benda berada.',
+  correct:true,
+  explanation:'BENAR. Cermin cembung (konveks) bersifat divergen — selalu menghasilkan bayangan maya (semu, di belakang cermin), tegak (tidak terbalik), dan diperkecil untuk semua posisi benda di depan cermin. Inilah mengapa cermin cembung memberikan pandangan lebih luas dan digunakan sebagai kaca spion.' }
+];
+
+/* ═══════════════════════════════════════
+   RENDER QUIZ
+═══════════════════════════════════════ */
+const userAnswers = {};
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    container.appendChild(buildCard(q));
+  });
+}
+
+function buildCard(q) {
+  const card = document.createElement('div');
+  card.className = 'q-card';
+  card.id = 'qcard-' + q.id;
+
+  const typeLabel = { mc:'Pilihan Ganda', pgk:'PGK – Kompleks', tf:'Benar / Salah' }[q.type];
+  const badgeCls = q.type;
+
+  let optionsHTML = '';
+  if (q.type === 'mc') {
+    optionsHTML = q.options.map((opt, i) =>
+      `<div class="mc-option" id="mc-${q.id}-${i}" onclick="selectMC(${q.id},${i})">
+        <div class="mc-radio"></div>
+        <div class="mc-opt-text">${String.fromCharCode(65+i)}. ${opt}</div>
+      </div>`
+    ).join('');
+  } else if (q.type === 'pgk') {
+    optionsHTML = q.options.map((opt, i) =>
+      `<div class="pgk-option" id="pgk-${q.id}-${i}" onclick="selectPGK(${q.id},${i})">
+        <div class="pgk-check"></div>
+        <div class="pgk-opt-text">${String.fromCharCode(65+i)}. ${opt}</div>
+      </div>`
+    ).join('');
+  } else {
+    optionsHTML = `<div class="tf-options">
+      <button class="tf-btn benar" id="tf-${q.id}-true" onclick="selectTF(${q.id},true)">✔ Benar</button>
+      <button class="tf-btn salah" id="tf-${q.id}-false" onclick="selectTF(${q.id},false)">✘ Salah</button>
+    </div>`;
+  }
+
+  const questionText = q.type === 'tf' ? q.statement : q.question;
+
+  card.innerHTML = `
+    <div class="q-hdr">
+      <div class="q-badge ${badgeCls}">#${q.id}</div>
+      <div class="q-meta">
+        <div class="q-type-label">${typeLabel}</div>
+        <div class="q-question">${questionText}</div>
+        <span class="q-topic-tag">${q.topic}</span>
+      </div>
+    </div>
+    <div class="q-options">${optionsHTML}</div>
+    <div class="q-explanation" id="exp-${q.id}">
+      <div class="ex-label">Penjelasan</div>
+      <span id="exp-text-${q.id}"></span>
+    </div>`;
+  return card;
+}
+
+function selectMC(qid, idx) {
+  if (document.getElementById('check-btn').disabled) return;
+  const q = QUESTIONS.find(x => x.id === qid);
+  q.options.forEach((_, i) => document.getElementById(`mc-${qid}-${i}`).classList.remove('selected'));
+  document.getElementById(`mc-${qid}-${idx}`).classList.add('selected');
+  userAnswers[qid] = idx;
+}
+
+function selectPGK(qid, idx) {
+  if (document.getElementById('check-btn').disabled) return;
+  const el = document.getElementById(`pgk-${qid}-${idx}`);
+  el.classList.toggle('selected');
+  if (!userAnswers[qid]) userAnswers[qid] = new Set();
+  if (userAnswers[qid].has(idx)) userAnswers[qid].delete(idx);
+  else userAnswers[qid].add(idx);
+}
+
+function selectTF(qid, val) {
+  if (document.getElementById('check-btn').disabled) return;
+  document.getElementById(`tf-${qid}-true`).classList.remove('selected');
+  document.getElementById(`tf-${qid}-false`).classList.remove('selected');
+  document.getElementById(`tf-${qid}-${val}`).classList.add('selected');
+  userAnswers[qid] = val;
+}
+
+/* ═══════════════════════════════════════
+   CHECK ALL
+═══════════════════════════════════════ */
+function checkAll() {
+  let mcScore = 0, pgkScore = 0, tfScore = 0;
+
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const expEl = document.getElementById('exp-' + q.id);
+    const expText = document.getElementById('exp-text-' + q.id);
+    let correct = false;
+
+    if (q.type === 'mc') {
+      const userAns = userAnswers[q.id];
+      q.options.forEach((_, i) => {
+        const el = document.getElementById(`mc-${q.id}-${i}`);
+        el.onclick = null;
+        el.style.cursor = 'default';
+        if (i === q.correct) { el.classList.add('correct-answer'); el.classList.remove('selected'); }
+        else if (userAns === i) { el.classList.add('wrong-answer'); el.classList.remove('selected'); }
+      });
+      correct = userAns === q.correct;
+      if (correct) mcScore++;
+
+    } else if (q.type === 'pgk') {
+      const userSet = userAnswers[q.id] ? Array.from(userAnswers[q.id]).sort().join(',') : '';
+      const correctSet = [...q.correctIndexes].sort().join(',');
+      correct = userSet === correctSet;
+      if (correct) pgkScore++;
+
+      q.options.forEach((_, i) => {
+        const el = document.getElementById(`pgk-${q.id}-${i}`);
+        el.onclick = null; el.style.cursor = 'default';
+        const isCorrectIdx = q.correctIndexes.includes(i);
+        const wasSelected = userAnswers[q.id] && userAnswers[q.id].has(i);
+        el.classList.remove('selected');
+        if (isCorrectIdx) el.classList.add('correct-answer');
+        else if (wasSelected) el.classList.add('wrong-answer');
+      });
+
+    } else {
+      const userAns = userAnswers[q.id];
+      correct = userAns === q.correct;
+      if (correct) tfScore++;
+      ['true','false'].forEach(v => {
+        const el = document.getElementById(`tf-${q.id}-${v}`);
+        el.onclick = null; el.style.cursor = 'default';
+        const isTrue = v === 'true';
+        if (isTrue === q.correct) el.classList.add('correct-answer');
+        else if (userAns === isTrue) el.classList.add('wrong-answer');
+        el.classList.remove('selected');
+      });
+    }
+
+    expText.textContent = q.explanation;
+    expEl.classList.add('show');
+    expEl.classList.toggle('wrong-exp', !correct);
+    card.classList.add(correct ? 'answered-correct' : 'answered-wrong');
+  });
+
+  const total = mcScore + pgkScore + tfScore;
+  document.getElementById('score-val').textContent = total;
+  document.getElementById('score-mc').textContent = `${mcScore} / 30`;
+  document.getElementById('score-pgk').textContent = `${pgkScore} / 10`;
+  document.getElementById('score-tf').textContent = `${tfScore} / 10`;
+
+  const pct = (total / 50) * 100;
+  let msg = '';
+  if (pct >= 90) msg = '🏆 Luar biasa! Kamu menguasai materi dengan sangat baik!';
+  else if (pct >= 75) msg = '🌟 Bagus sekali! Terus tingkatkan pemahamanmu!';
+  else if (pct >= 60) msg = '👍 Cukup baik. Pelajari kembali topik yang masih lemah.';
+  else if (pct >= 40) msg = '📚 Perlu belajar lebih giat. Baca kembali materinya ya!';
+  else msg = '💪 Jangan menyerah! Baca materi dari awal dan coba lagi.';
+
+  document.getElementById('score-msg').textContent = `${msg} (${pct.toFixed(0)}%)`;
+  document.getElementById('score-panel').classList.add('show');
+  document.getElementById('check-btn').disabled = true;
+  document.getElementById('score-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', renderQuiz);
+</script>
+</body>
+</html>
