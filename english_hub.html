@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnglishHub — Belajar Bahasa Inggris SMA</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080c18;--bg2:#0d1424;--card:#111928;--card2:#162035;
+  --bd:#1e2d45;--bd2:#253450;
+  --t1:#e2e8f7;--t2:#8898b8;--t3:#4a5a78;
+  --gold:#f0a800;--goldf:#fbbf24;
+  --blue:#3d7eff;--bluef:#60a5fa;
+  --green:#10b981;--red:#ef4444;
+  --purple:#8b5cf6;--teal:#14b8a6;
+  --r:12px;--rs:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
+
+/* ── HEADER ── */
+.site-header{background:rgba(8,12,24,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;padding:0 24px}
+.header-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:32px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),#ff9500);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Lora',serif;font-weight:700;font-size:19px;color:var(--t1)}
+.logo-text span{color:var(--gold)}
+.mode-nav{display:flex;gap:4px;padding:5px;background:var(--bg2);border-radius:var(--rs);border:1px solid var(--bd)}
+.mode-btn{padding:7px 22px;border:none;border-radius:6px;background:transparent;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s}
+.mode-btn.active{background:var(--gold);color:#080c18;font-weight:700}
+.mode-btn:hover:not(.active){color:var(--t1);background:var(--bd)}
+
+/* ── WRAPPER ── */
+.content-wrapper{max-width:1240px;margin:0 auto;padding:32px 24px}
+.section-panel{display:none}.section-panel.active{display:block}
+
+/* ── MATERI TABS ── */
+.materi-tabs{display:flex;border-bottom:2px solid var(--bd);margin-bottom:32px;gap:0;overflow-x:auto}
+.materi-tab{padding:11px 26px;border:none;background:transparent;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.materi-tab.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:700}
+.materi-tab:hover:not(.active){color:var(--t1)}
+.tab-panel{display:none;animation:fadeIn .3s ease}.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TOPIC SECTION ── */
+.topic-section{margin-bottom:52px}
+.topic-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--bd)}
+.topic-num{width:38px;height:38px;background:var(--gold);color:#080c18;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;margin-top:2px}
+.topic-title{font-family:'Lora',serif;font-size:23px;font-weight:700;color:var(--t1)}
+.topic-sub{font-size:13px;color:var(--t2);margin-top:3px}
+
+/* ── DEFINITION ── */
+.def-box{background:linear-gradient(135deg,rgba(240,168,0,.08),rgba(240,168,0,.02));border:1px solid rgba(240,168,0,.25);border-left:4px solid var(--gold);border-radius:var(--rs);padding:16px 20px;margin-bottom:20px}
+.def-label{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.def-box p{color:var(--t1);font-size:14.5px;line-height:1.7}
+
+/* ── INFO GRID ── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-bottom:20px}
+.info-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:18px;transition:border-color .2s}
+.info-card:hover{border-color:var(--bd2)}
+.info-card-hd{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ic-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ib{background:rgba(61,126,255,.13);color:var(--bluef)}
+.ig{background:rgba(16,185,129,.13);color:var(--green)}
+.ip{background:rgba(139,92,246,.13);color:var(--purple)}
+.it{background:rgba(20,184,166,.13);color:var(--teal)}
+.ir{background:rgba(239,68,68,.13);color:var(--red)}
+.io{background:rgba(240,168,0,.13);color:var(--gold)}
+.info-card-title{font-size:13px;font-weight:600;color:var(--t1)}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.info-card li{font-size:13.5px;color:var(--t2);padding-left:16px;position:relative;line-height:1.5}
+.info-card li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:700}
+
+/* ── EXAMPLE BOX ── */
+.example-box{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.example-header{background:var(--bg2);padding:9px 16px;border-bottom:1px solid var(--bd);font-size:11px;font-weight:700;letter-spacing:.7px;color:var(--t2);text-transform:uppercase}
+.example-body{padding:16px 20px;font-size:14px;color:var(--t2);line-height:1.8}
+.example-body strong{color:var(--gold)}
+.example-body em{color:var(--bluef);font-style:italic}
+.example-body .label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-right:6px}
+.label-act{background:rgba(61,126,255,.13);color:var(--bluef)}
+.label-pas{background:rgba(16,185,129,.13);color:var(--green)}
+
+/* ── TABLE ── */
+.styled-table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13.5px}
+.styled-table th{background:var(--bg2);color:var(--gold);font-weight:700;text-align:left;padding:11px 14px;border:1px solid var(--bd);font-size:11.5px;letter-spacing:.5px;text-transform:uppercase}
+.styled-table td{padding:9px 14px;border:1px solid var(--bd);color:var(--t2);vertical-align:top}
+.styled-table tr:hover td{background:rgba(255,255,255,.015)}
+.hi{color:var(--bluef);font-weight:500}
+.fm{font-family:'Fira Code',monospace;font-size:12px;color:var(--green);background:rgba(16,185,129,.08);padding:2px 6px;border-radius:4px}
+.correct-mark{color:var(--green)}
+.wrong-mark{color:var(--red)}
+
+/* ── FORMULA ── */
+.formula-box{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.18);border-radius:var(--rs);padding:14px 18px;margin-bottom:16px}
+.formula-label{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--green);text-transform:uppercase;margin-bottom:8px}
+.formula-box code{font-family:'Fira Code',monospace;font-size:13px;color:var(--green)}
+
+/* ── STEPS ── */
+.structure-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.step-item{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--bd);border-radius:var(--rs);padding:13px 16px;transition:border-color .2s}
+.step-item:hover{border-color:var(--bd2)}
+.step-n{background:var(--blue);color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.step-title{font-weight:600;font-size:13.5px;color:var(--t1);margin-bottom:3px}
+.step-desc{font-size:13px;color:var(--t2)}
+.step-desc em{color:var(--gold);font-style:normal}
+
+/* ── CALLOUT ── */
+.callout{display:flex;gap:12px;padding:13px 16px;border-radius:var(--rs);margin-bottom:16px;font-size:13.5px;line-height:1.6}
+.callout-warn{background:rgba(240,168,0,.06);border:1px solid rgba(240,168,0,.18);color:var(--t2)}
+.callout-blue{background:rgba(61,126,255,.06);border:1px solid rgba(61,126,255,.18);color:var(--t2)}
+.callout strong{color:var(--gold)}
+.callout-blue strong{color:var(--bluef)}
+
+/* ── CHIP GROUP ── */
+.chip-group{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.chip{padding:4px 12px;border-radius:20px;font-size:12.5px;font-weight:500}
+.chip-b{background:rgba(61,126,255,.1);color:var(--bluef);border:1px solid rgba(61,126,255,.18)}
+.chip-g{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.18)}
+.chip-o{background:rgba(240,168,0,.1);color:var(--gold);border:1px solid rgba(240,168,0,.18)}
+.chip-p{background:rgba(139,92,246,.1);color:var(--purple);border:1px solid rgba(139,92,246,.18)}
+.chip-r{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.18)}
+
+.section-divider{border:none;border-top:1px solid var(--bd);margin:40px 0}
+
+/* ══════════ QUIZ ══════════ */
+.quiz-header{text-align:center;margin-bottom:36px}
+.quiz-title{font-family:'Lora',serif;font-size:30px;font-weight:700;margin-bottom:8px}
+.quiz-subtitle{color:var(--t2);font-size:14.5px}
+.quiz-stats{display:flex;justify-content:center;gap:28px;margin-top:20px;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:26px;font-weight:700;color:var(--gold);font-family:'Lora',serif}
+.stat-label{font-size:12px;color:var(--t2);margin-top:1px}
+
+.quiz-sec-hdr{display:flex;align-items:center;gap:14px;margin:44px 0 22px;padding:18px 22px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r)}
+.qsec-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.qsec-type{font-size:17px;font-weight:700;font-family:'Lora',serif;color:var(--t1)}
+.qsec-desc{font-size:12.5px;color:var(--t2);margin-top:2px}
+
+/* Question Cards */
+.question-card{background:var(--card);border:1.5px solid var(--bd);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:border-color .2s}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.q-num{background:var(--bg2);border:1px solid var(--bd);color:var(--t2);font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px}
+.q-topic{font-size:11.5px;color:var(--bluef);background:rgba(61,126,255,.09);border:1px solid rgba(61,126,255,.15);padding:3px 10px;border-radius:20px}
+.q-text{font-size:14.5px;color:var(--t1);margin-bottom:14px;line-height:1.65;font-weight:500}
+.q-statement{font-size:14px;color:var(--t1);margin-bottom:14px;line-height:1.65;font-style:italic;padding:12px 16px;background:var(--bg2);border-radius:var(--rs);border-left:3px solid var(--bd2)}
+
+/* MC Options */
+.options-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.opt-btn{display:flex;align-items:flex-start;gap:11px;padding:11px 15px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--rs);cursor:pointer;transition:all .15s;text-align:left;width:100%;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:13.5px;line-height:1.5}
+.opt-btn:hover:not([disabled]){border-color:var(--bd2);color:var(--t1);background:var(--card2)}
+.opt-btn.sel{border-color:var(--blue);background:rgba(61,126,255,.08);color:var(--t1)}
+.opt-btn.correct-ans{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--green)}
+.opt-btn.wrong-ans{border-color:var(--red);background:rgba(239,68,68,.08);color:var(--red)}
+.opt-btn.reveal-ans{border-color:var(--green);background:rgba(16,185,129,.06);color:var(--green)}
+.opt-label{width:22px;height:22px;border:1.5px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* PGK Options */
+.pgk-opt{display:flex;align-items:flex-start;gap:11px;padding:11px 15px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--rs);cursor:pointer;transition:all .15s;color:var(--t2);font-size:13.5px;line-height:1.5;margin-bottom:7px}
+.pgk-opt:hover:not(.locked){border-color:var(--bd2);color:var(--t1)}
+.pgk-opt.pgk-sel{border-color:var(--blue);background:rgba(61,126,255,.08);color:var(--t1)}
+.pgk-opt.pgk-correct{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--green)}
+.pgk-opt.pgk-wrong{border-color:var(--red);background:rgba(239,68,68,.08);color:var(--red)}
+.pgk-opt.pgk-missed{border-color:rgba(240,168,0,.5);background:rgba(240,168,0,.06);color:var(--gold)}
+.pgk-cb{width:18px;height:18px;border:1.5px solid currentColor;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:11px}
+
+/* T/F */
+.tf-row{display:flex;gap:10px;margin-bottom:14px}
+.tf-btn{flex:1;padding:12px;border:1.5px solid var(--bd);border-radius:var(--rs);background:var(--bg2);color:var(--t2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.tf-btn:hover:not([disabled]){border-color:var(--bd2);color:var(--t1)}
+.tf-true.tf-sel{border-color:var(--green);background:rgba(16,185,129,.1);color:var(--green)}
+.tf-false.tf-sel{border-color:var(--red);background:rgba(239,68,68,.1);color:var(--red)}
+.tf-btn.tf-correct{border-color:var(--green)!important;background:rgba(16,185,129,.12)!important;color:var(--green)!important}
+.tf-btn.tf-wrong{border-color:var(--red)!important;background:rgba(239,68,68,.12)!important;color:var(--red)!important}
+
+/* Check button */
+.check-btn{padding:8px 18px;background:var(--gold);color:#080c18;border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.check-btn:hover{background:var(--goldf);transform:translateY(-1px)}
+.check-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+
+/* Explanation */
+.exp-box{display:none;margin-top:12px;padding:13px 16px;border-radius:var(--rs);font-size:13.5px;line-height:1.65;animation:fadeIn .3s ease}
+.exp-box.show{display:block}
+.exp-correct{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);color:#6ee7b7}
+.exp-wrong{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);color:#fca5a5}
+.exp-label{font-weight:700;margin-bottom:4px}
+
+/* Score */
+.score-section{display:none;text-align:center;padding:48px 24px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r);margin-top:40px}
+.score-section.show{display:block;animation:fadeIn .5s ease}
+.score-ring{width:150px;height:150px;border-radius:50%;border:4px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;background:rgba(240,168,0,.05);box-shadow:0 0 40px rgba(240,168,0,.15)}
+.score-num{font-family:'Lora',serif;font-size:40px;font-weight:700;color:var(--gold);line-height:1}
+.score-of{font-size:13px;color:var(--t2)}
+.score-title{font-family:'Lora',serif;font-size:24px;font-weight:600;margin-bottom:6px}
+.score-grade{font-size:14px;color:var(--t2);margin-bottom:24px}
+.score-breakdown{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.bd-item .bd-num{font-size:22px;font-weight:700;font-family:'Lora',serif}
+.bd-item .bd-label{font-size:12px;color:var(--t2)}
+.reset-btn{margin-top:28px;padding:12px 32px;background:var(--gold);color:#080c18;border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:700;cursor:pointer;transition:all .2s}
+.reset-btn:hover{background:var(--goldf);transform:translateY(-2px)}
+
+.submit-wrap{text-align:center;margin-top:40px}
+.submit-all-btn{padding:15px 48px;background:linear-gradient(135deg,var(--gold),#ff9500);color:#080c18;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:15.5px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(240,168,0,.2)}
+.submit-all-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(240,168,0,.3)}
+
+@media(max-width:768px){
+  .header-inner{gap:12px}
+  .mode-btn{padding:6px 14px;font-size:12.5px}
+  .logo-text{font-size:16px}
+  .info-grid{grid-template-columns:1fr}
+  .quiz-stats{gap:16px}
+  .tf-row{gap:8px}
+  .content-wrapper{padding:24px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">📚</div>
+      <span class="logo-text">English<span>Hub</span></span>
+    </a>
+    <nav class="mode-nav">
+      <button class="mode-btn active" onclick="switchMode('materi')">📖 Materi</button>
+      <button class="mode-btn" onclick="switchMode('quiz')">✏️ Latihan Soal</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ════ MATERI SECTION ════ -->
+<div id="materi-panel" class="section-panel active">
+  <div class="content-wrapper">
+    <div class="materi-tabs">
+      <button class="materi-tab active" onclick="switchTab(0)">Tab 1 — Jenis Teks &amp; Comparative</button>
+      <button class="materi-tab" onclick="switchTab(1)">Tab 2 — Passive, Preference &amp; Speech</button>
+      <button class="materi-tab" onclick="switchTab(2)">Tab 3 — Past Perfect, Adverb &amp; Agreement</button>
+    </div>
+
+    <!-- ══ TAB 1 ══ -->
+    <div class="tab-panel active" id="tab0">
+
+      <!-- DESCRIPTIVE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">1</div>
+          <div>
+            <div class="topic-title">Descriptive Text</div>
+            <div class="topic-sub">Mendeskripsikan orang, tempat, atau benda secara spesifik</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Descriptive text</strong> adalah teks yang bertujuan menggambarkan sebuah objek, orang, hewan, atau tempat <em>tertentu dan spesifik</em> secara detail, sehingga pembaca dapat membayangkannya dengan jelas.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">🎯</div><div class="info-card-title">Social Function</div></div>
+            <ul><li>Mendeskripsikan subjek tertentu secara detail</li><li>Memberikan gambaran visual kepada pembaca</li><li>Membuat pembaca seolah melihat langsung objek tersebut</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">🏗️</div><div class="info-card-title">Generic Structure</div></div>
+            <ul><li><strong>Identification</strong> — Memperkenalkan subjek yang akan dideskripsikan</li><li><strong>Description</strong> — Menjelaskan ciri-ciri, sifat, dan karakteristik subjek secara rinci</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ip">🔤</div><div class="info-card-title">Language Features</div></div>
+            <ul><li>Specific nouns (kata benda spesifik: my cat, the Eiffel Tower)</li><li>Simple present tense (untuk fakta yang masih berlaku)</li><li>Detailed adjectives (beautiful, enormous, sparkling)</li><li>Relating verbs: <em>is, has, looks, seems, appears</em></li><li>Figurative language (simile, metaphor)</li></ul>
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <span class="callout-icon">⚠️</span>
+          <div><strong>Perbedaan kunci:</strong> Descriptive text mendeskripsikan subjek SPESIFIK (contoh: "My dog, Max"), sedangkan Report text mendeskripsikan kategori/kelas UMUM (contoh: "Dogs in general").</div>
+        </div>
+        <div class="example-box">
+          <div class="example-header">📝 Contoh — Descriptive Text</div>
+          <div class="example-body">
+            <strong>[Identification]</strong><br>
+            My house is a cozy two-story building located on a quiet street in Bandung. It is my favourite place in the world.<br><br>
+            <strong>[Description]</strong><br>
+            The exterior is painted light yellow, giving it a warm and welcoming appearance. The front yard is filled with various colourful flowers, especially roses and bougainvillea. Inside, the living room has high ceilings and large windows that let in plenty of natural light. The walls are decorated with family photographs and traditional Javanese batik paintings.
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- RECOUNT -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">2</div>
+          <div>
+            <div class="topic-title">Recount Text</div>
+            <div class="topic-sub">Menceritakan kembali peristiwa masa lalu secara kronologis</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Recount text</strong> adalah teks yang menceritakan kembali pengalaman atau peristiwa yang telah terjadi di masa lalu secara kronologis (berurutan) untuk tujuan menghibur atau memberi informasi kepada pembaca.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">🎯</div><div class="info-card-title">Social Function</div></div>
+            <ul><li>Menceritakan kembali peristiwa masa lalu</li><li>Menghibur atau memberikan informasi</li><li>Berbagi pengalaman pribadi</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">🏗️</div><div class="info-card-title">Generic Structure</div></div>
+            <ul><li><strong>Orientation</strong> — Who, when, where (pengenalan)</li><li><strong>Events</strong> — Serangkaian peristiwa secara berurutan</li><li><strong>Re-orientation</strong> — Komentar atau kesimpulan (opsional)</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ip">🔤</div><div class="info-card-title">Language Features</div></div>
+            <ul><li>Simple past tense dominan</li><li>Time connectives: <em>first, then, after that, next, finally</em></li><li>Action verbs: went, saw, ate, played</li><li>Specific participants (nama orang, tempat)</li><li>Chronological order (urutan waktu)</li></ul>
+          </div>
+        </div>
+        <div class="example-box">
+          <div class="example-header">📝 Contoh — Recount Text</div>
+          <div class="example-body">
+            <strong>[Orientation]</strong><br>
+            Last Saturday, my family and I visited Taman Safari in Bogor. The weather was sunny and perfect for an outdoor trip.<br><br>
+            <strong>[Events]</strong><br>
+            <em>First,</em> we bought our tickets at the entrance gate and entered the main zone by car. We saw lions, zebras, and giraffes grazing calmly along the road. <em>Then,</em> we stopped at the feeding area where we could hand-feed the deer. My little sister was so excited. <em>After that,</em> we watched an animal show featuring trained orangutans and dolphins.<br><br>
+            <strong>[Re-orientation]</strong><br>
+            It was truly a memorable experience for our family. I am looking forward to visiting again someday.
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- REPORT -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">3</div>
+          <div>
+            <div class="topic-title">Report Text</div>
+            <div class="topic-sub">Menyajikan informasi faktual tentang suatu kategori/kelas</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Report text</strong> adalah teks faktual yang mendeskripsikan sesuatu secara umum (kelas/kategori), bukan individu tertentu. Teks ini menyajikan informasi objektif dan ilmiah tentang fenomena alam, hewan, benda, atau konsep.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">🎯</div><div class="info-card-title">Social Function</div></div>
+            <ul><li>Menyajikan informasi faktual dan ilmiah</li><li>Mendeskripsikan kategori/kelas benda atau makhluk</li><li>Memberikan pengetahuan umum kepada pembaca</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">🏗️</div><div class="info-card-title">Generic Structure</div></div>
+            <ul><li><strong>General Classification</strong> — Memperkenalkan topik secara umum</li><li><strong>Description</strong> — Menjelaskan fakta: ciri fisik, habitat, perilaku, fungsi, dll.</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ip">🔤</div><div class="info-card-title">Language Features</div></div>
+            <ul><li>Generic nouns (dolphins, volcanoes — bukan "my dolphin")</li><li>Simple present tense untuk fakta umum</li><li>Technical vocabulary (istilah ilmiah)</li><li>Passive voice dan relating verbs</li><li>Bahasa objektif, impersonal</li></ul>
+          </div>
+        </div>
+        <div class="example-box">
+          <div class="example-header">📝 Contoh — Report Text</div>
+          <div class="example-body">
+            <strong>[General Classification]</strong><br>
+            Dolphins are highly intelligent marine mammals belonging to the family Delphinidae. They are found in oceans and seas around the world.<br><br>
+            <strong>[Description]</strong><br>
+            Dolphins typically have streamlined bodies, which allow them to swim at speeds of up to 60 km/h. They use a system called echolocation to navigate and find prey. Dolphins are social animals that live in groups called pods, which can consist of up to hundreds of individuals. They communicate through clicks, whistles, and other vocalizations. Dolphins are carnivores and primarily feed on fish and squid.
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- NARRATIVE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">4</div>
+          <div>
+            <div class="topic-title">Narrative Text</div>
+            <div class="topic-sub">Menceritakan kisah dengan konflik dan penyelesaian</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Narrative text</strong> adalah teks yang menceritakan sebuah kisah — biasanya fiktif, legendaris, atau imajinatif — dengan tujuan menghibur pembaca sekaligus menyampaikan nilai moral atau pesan kehidupan.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">🏗️</div><div class="info-card-title">Generic Structure</div></div>
+            <ul><li><strong>Orientation</strong> — Perkenalan tokoh, latar, dan waktu</li><li><strong>Complication</strong> — Konflik/masalah yang muncul</li><li><strong>Resolution</strong> — Penyelesaian konflik</li><li><strong>Re-orientation / Coda</strong> — Pesan moral atau penutup (opsional)</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ip">🔤</div><div class="info-card-title">Language Features</div></div>
+            <ul><li>Simple past tense dominan</li><li>Action verbs dan descriptive language</li><li>Time connectives: once upon a time, suddenly, meanwhile</li><li>Dialogue antar karakter</li><li>Specific characters (protagonist &amp; antagonist)</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon it">📚</div><div class="info-card-title">Jenis Narrative Text</div></div>
+            <ul><li>Fairy tale (dongeng: Cinderella)</li><li>Legend (legenda: Sangkuriang, Roro Jonggrang)</li><li>Fable (fabel: The Tortoise and the Hare)</li><li>Myth (mitos)</li><li>Short story / novel</li></ul>
+          </div>
+        </div>
+        <div class="example-box">
+          <div class="example-header">📝 Contoh — Narrative Text (Singkat)</div>
+          <div class="example-body">
+            <strong>[Orientation]</strong> Once upon a time, in a small village near a deep forest, there lived a kind-hearted girl named Risa.<br><br>
+            <strong>[Complication]</strong> One day, Risa's mother fell seriously ill. The only cure was a rare flower that grew deep inside the forest. The forest was said to be guarded by a dangerous dragon. Despite her fear, Risa decided to enter the forest alone.<br><br>
+            <strong>[Resolution]</strong> As she ventured deeper, she found the dragon sleeping. Carefully, she picked the flower and ran back without waking it. Her mother recovered, and the village celebrated Risa's bravery.<br><br>
+            <strong>[Coda]</strong> Courage and love can overcome even the greatest of fears.
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- COMPARATIVE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">5</div>
+          <div>
+            <div class="topic-title">Comparative &amp; Superlative Degree</div>
+            <div class="topic-sub">Tingkatan perbandingan dalam bahasa Inggris</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Degree of Comparison</strong> adalah tingkatan yang digunakan untuk membandingkan sifat atau kualitas antara dua atau lebih benda/orang. Terdapat tiga tingkatan: Positive, Comparative, dan Superlative.</p>
+        </div>
+
+        <table class="styled-table">
+          <thead><tr><th>Degree</th><th>Fungsi</th><th>Struktur</th><th>Contoh</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Positive</strong></td><td>Perbandingan setara (sama)</td><td><span class="fm">as + adj + as</span></td><td>She is <span class="hi">as tall as</span> her sister.</td></tr>
+            <tr><td><strong>Comparative</strong></td><td>Membandingkan 2 hal (lebih dari)</td><td><span class="fm">adj-er + than / more + adj + than</span></td><td>This box is <span class="hi">heavier than</span> that one.</td></tr>
+            <tr><td><strong>Superlative</strong></td><td>Membandingkan 3+ hal (paling)</td><td><span class="fm">the + adj-est / the most + adj</span></td><td>She is <span class="hi">the smartest</span> student here.</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-bottom:16px;font-weight:600;color:var(--gold)">📐 Aturan Pembentukan Comparative &amp; Superlative</div>
+        <table class="styled-table">
+          <thead><tr><th>Jenis Kata Sifat</th><th>Comparative</th><th>Superlative</th><th>Contoh</th></tr></thead>
+          <tbody>
+            <tr><td>1 suku kata</td><td>+ <span class="fm">-er</span></td><td>the + <span class="fm">-est</span></td><td>tall → taller → the tallest</td></tr>
+            <tr><td>1 suku kata berakhir KVK</td><td>dobel konsonan + <span class="fm">-er</span></td><td>dobel + <span class="fm">-est</span></td><td>big → bigger → the biggest</td></tr>
+            <tr><td>2 suku kata akhiran -y</td><td>ganti y→i + <span class="fm">-er</span></td><td>ganti y→i + <span class="fm">-est</span></td><td>happy → happier → the happiest</td></tr>
+            <tr><td>3+ suku kata</td><td><span class="fm">more +</span> adj</td><td><span class="fm">the most +</span> adj</td><td>beautiful → more beautiful → the most beautiful</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-bottom:16px;font-weight:600;color:var(--gold)">⚡ Bentuk Tidak Beraturan (Irregular)</div>
+        <table class="styled-table">
+          <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th></tr></thead>
+          <tbody>
+            <tr><td>good / well</td><td class="hi">better</td><td class="hi">the best</td></tr>
+            <tr><td>bad / ill</td><td class="hi">worse</td><td class="hi">the worst</td></tr>
+            <tr><td>far</td><td class="hi">farther / further</td><td class="hi">the farthest / furthest</td></tr>
+            <tr><td>little</td><td class="hi">less</td><td class="hi">the least</td></tr>
+            <tr><td>many / much</td><td class="hi">more</td><td class="hi">the most</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warn">
+          <span>⚠️</span>
+          <div><strong>Hindari Double Comparison!</strong> SALAH: "She is <em>more taller</em>" atau "the <em>most tallest</em>". BENAR: "She is <em>taller</em>" atau "the <em>tallest</em>".</div>
+        </div>
+      </div>
+    </div><!-- end tab0 -->
+
+    <!-- ══ TAB 2 ══ -->
+    <div class="tab-panel" id="tab1">
+
+      <!-- PASSIVE VOICE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">1</div>
+          <div>
+            <div class="topic-title">Passive Voice</div>
+            <div class="topic-sub">Kalimat pasif dalam berbagai bentuk waktu</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Passive voice</strong> adalah struktur kalimat di mana <em>objek</em> dari kalimat aktif menjadi <em>subjek</em> dalam kalimat pasif. Fokus beralih dari pelaku aksi ke penerima aksi.</p>
+        </div>
+        <div class="formula-box">
+          <div class="formula-label">Rumus Umum</div>
+          <code>Active: Subject + Verb + Object</code><br>
+          <code>Passive: Subject (was object) + To Be + V3 (past participle) + [by + agent]</code>
+        </div>
+
+        <table class="styled-table">
+          <thead><tr><th>Tense</th><th>Active Formula</th><th>Passive Formula</th><th>Contoh Pasif</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Present Simple</strong></td><td>S + V1(s/es) + O</td><td><span class="fm">is/are + V3</span></td><td>The letter <span class="hi">is written</span> by Ana.</td></tr>
+            <tr><td><strong>Past Simple</strong></td><td>S + V2 + O</td><td><span class="fm">was/were + V3</span></td><td>The cake <span class="hi">was eaten</span> by Tom.</td></tr>
+            <tr><td><strong>Present Continuous</strong></td><td>S + is/are + V-ing + O</td><td><span class="fm">is/are + being + V3</span></td><td>The road <span class="hi">is being repaired</span>.</td></tr>
+            <tr><td><strong>Past Continuous</strong></td><td>S + was/were + V-ing + O</td><td><span class="fm">was/were + being + V3</span></td><td>The house <span class="hi">was being built</span>.</td></tr>
+            <tr><td><strong>Present Perfect</strong></td><td>S + have/has + V3 + O</td><td><span class="fm">have/has + been + V3</span></td><td>The work <span class="hi">has been done</span>.</td></tr>
+            <tr><td><strong>Past Perfect</strong></td><td>S + had + V3 + O</td><td><span class="fm">had + been + V3</span></td><td>The car <span class="hi">had been fixed</span>.</td></tr>
+            <tr><td><strong>Future Simple</strong></td><td>S + will + V1 + O</td><td><span class="fm">will + be + V3</span></td><td>The report <span class="hi">will be submitted</span>.</td></tr>
+            <tr><td><strong>Modal Passive</strong></td><td>S + modal + V1 + O</td><td><span class="fm">modal + be + V3</span></td><td>The rules <span class="hi">must be followed</span>.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-blue">
+          <span>💡</span>
+          <div><strong>Kapan menggunakan Passive?</strong> (1) Pelaku tidak diketahui: "My phone was stolen." (2) Pelaku tidak penting: "English is spoken worldwide." (3) Fokus pada penerima aksi: "The prize was awarded to her."</div>
+        </div>
+
+        <div class="example-box">
+          <div class="example-header">📝 Contoh Konversi Active → Passive</div>
+          <div class="example-body">
+            <span class="label label-act">Active</span>The students clean the classroom every day.<br>
+            <span class="label label-pas">Passive</span><em>The classroom is cleaned by the students every day.</em><br><br>
+            <span class="label label-act">Active</span>They were building a new bridge last year.<br>
+            <span class="label label-pas">Passive</span><em>A new bridge was being built last year.</em>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- PAST PASSIVE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">2</div>
+          <div>
+            <div class="topic-title">Past Passive</div>
+            <div class="topic-sub">Kalimat pasif untuk peristiwa di masa lampau</div>
+          </div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-label">Rumus Past Passive</div>
+          <code>Subject + was/were + V3 (past participle) + [by + agent]</code><br>
+          <code>Singular → was | Plural → were</code>
+        </div>
+        <table class="styled-table">
+          <thead><tr><th>Active (Past Simple)</th><th>Passive (Past Simple)</th></tr></thead>
+          <tbody>
+            <tr><td>Someone <strong>stole</strong> my bicycle.</td><td>My bicycle <span class="hi">was stolen</span>.</td></tr>
+            <tr><td>The chef <strong>cooked</strong> the meal.</td><td>The meal <span class="hi">was cooked</span> by the chef.</td></tr>
+            <tr><td>Workers <strong>built</strong> this bridge in 1990.</td><td>This bridge <span class="hi">was built</span> in 1990.</td></tr>
+            <tr><td>The students <strong>finished</strong> the exam.</td><td>The exam <span class="hi">was finished</span> by the students.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- MODAL PASSIVE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">3</div>
+          <div>
+            <div class="topic-title">Modal Passive</div>
+            <div class="topic-sub">Kalimat pasif dengan kata kerja modal</div>
+          </div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-label">Rumus Modal Passive</div>
+          <code>Subject + Modal (can/could/will/would/shall/should/may/might/must) + be + V3</code>
+        </div>
+        <div class="callout callout-warn">
+          <span>⚠️</span>
+          <div><strong>INGAT:</strong> Setelah modal SELALU gunakan <strong>be</strong> (bukan "been" atau "is/are"). Contoh SALAH: "must <em>been</em> submitted" | Contoh BENAR: "must <em>be</em> submitted".</div>
+        </div>
+        <table class="styled-table">
+          <thead><tr><th>Modal</th><th>Contoh Modal Passive</th><th>Arti</th></tr></thead>
+          <tbody>
+            <tr><td>must</td><td>The form <span class="hi">must be completed</span> by all students.</td><td>Harus diselesaikan</td></tr>
+            <tr><td>should</td><td>The rules <span class="hi">should be followed</span> carefully.</td><td>Seharusnya diikuti</td></tr>
+            <tr><td>can</td><td>The problem <span class="hi">can be solved</span> easily.</td><td>Bisa diselesaikan</td></tr>
+            <tr><td>will</td><td>The results <span class="hi">will be announced</span> tomorrow.</td><td>Akan diumumkan</td></tr>
+            <tr><td>might</td><td>Mistakes <span class="hi">might be made</span> during the process.</td><td>Mungkin terjadi</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- PREFERENCE -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">4</div>
+          <div>
+            <div class="topic-title">Preference</div>
+            <div class="topic-sub">Mengungkapkan kesukaan atau pilihan</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Preference</strong> adalah ungkapan untuk menyatakan pilihan atau kesukaan terhadap satu hal dibanding hal lain. Dalam bahasa Inggris terdapat beberapa pola berbeda.</p>
+        </div>
+        <div class="structure-steps">
+          <div class="step-item">
+            <div class="step-n">1</div>
+            <div>
+              <div class="step-title">prefer + noun/gerund + TO + noun/gerund</div>
+              <div class="step-desc">Untuk preferensi umum/kebiasaan. Contoh: <em>"I prefer swimming to jogging."</em> — Gunakan <strong>TO</strong>, BUKAN "than".</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-n">2</div>
+            <div>
+              <div class="step-title">prefer + to-infinitive + rather than + gerund/infinitive</div>
+              <div class="step-desc">Contoh: <em>"I prefer to stay home rather than go to the party."</em></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-n">3</div>
+            <div>
+              <div class="step-title">would rather + base verb + than + base verb</div>
+              <div class="step-desc">Untuk preferensi spesifik/situasional saat ini. Contoh: <em>"I'd rather watch a movie than study tonight."</em> — Diikuti <strong>bare infinitive</strong> (tanpa to).</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-n">4</div>
+            <div>
+              <div class="step-title">would sooner + base verb + than + base verb</div>
+              <div class="step-desc">Lebih formal, sama artinya dengan "would rather". Contoh: <em>"They would sooner fly than drive."</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <span>⚠️</span>
+          <div><strong>Kesalahan Umum:</strong> "I prefer reading <em>than</em> watching TV" — SALAH! Gunakan <strong>TO</strong>: "I prefer reading <em>to</em> watching TV." | "I'd rather to stay" — SALAH! Gunakan bare infinitive: "I'd rather stay."</div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- DIRECT SPEECH -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">5</div>
+          <div>
+            <div class="topic-title">Direct &amp; Indirect Speech</div>
+            <div class="topic-sub">Kalimat langsung dan tidak langsung</div>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">💬</div><div class="info-card-title">Direct Speech</div></div>
+            <ul><li>Mengutip ucapan secara PERSIS menggunakan tanda kutip</li><li>Struktur: Reporting clause + "quoted words"</li><li>Tidak ada perubahan tense, pronoun, atau time adverb</li><li>Contoh: She said, <strong>"I am very tired."</strong></li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">📣</div><div class="info-card-title">Indirect Speech</div></div>
+            <ul><li>Melaporkan ucapan TANPA mengutip langsung</li><li>Tanda kutip dihilangkan</li><li>Terjadi perubahan: tense, pronoun, time/place adverb</li><li>Contoh: She said that she <strong>was</strong> very tired.</li></ul>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;font-weight:600;color:var(--t1)">🔄 Tabel Perubahan Tense (Backshift)</div>
+        <table class="styled-table">
+          <thead><tr><th>Direct Speech</th><th>Indirect Speech</th></tr></thead>
+          <tbody>
+            <tr><td>Simple Present (<em>is/are, V1</em>)</td><td class="hi">Simple Past (was/were, V2)</td></tr>
+            <tr><td>Simple Past (<em>V2</em>)</td><td class="hi">Past Perfect (had + V3)</td></tr>
+            <tr><td>Present Perfect (<em>have/has + V3</em>)</td><td class="hi">Past Perfect (had + V3)</td></tr>
+            <tr><td>Present Continuous (<em>is/are + V-ing</em>)</td><td class="hi">Past Continuous (was/were + V-ing)</td></tr>
+            <tr><td>will</td><td class="hi">would</td></tr>
+            <tr><td>can</td><td class="hi">could</td></tr>
+            <tr><td>may</td><td class="hi">might</td></tr>
+            <tr><td>must / have to</td><td class="hi">had to</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-bottom:14px;font-weight:600;color:var(--t1)">🗓️ Perubahan Time &amp; Place Adverb</div>
+        <table class="styled-table">
+          <thead><tr><th>Direct Speech</th><th>Indirect Speech</th></tr></thead>
+          <tbody>
+            <tr><td>now</td><td class="hi">then / at that time</td></tr>
+            <tr><td>today</td><td class="hi">that day</td></tr>
+            <tr><td>yesterday</td><td class="hi">the day before / the previous day</td></tr>
+            <tr><td>tomorrow</td><td class="hi">the next day / the following day</td></tr>
+            <tr><td>here</td><td class="hi">there</td></tr>
+            <tr><td>this</td><td class="hi">that</td></tr>
+            <tr><td>these</td><td class="hi">those</td></tr>
+            <tr><td>last week</td><td class="hi">the week before / the previous week</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-bottom:14px;font-weight:600;color:var(--t1)">❓ Perubahan untuk Kalimat Tanya</div>
+        <table class="styled-table">
+          <thead><tr><th>Jenis Pertanyaan</th><th>Pengantar Indirect</th><th>Contoh</th></tr></thead>
+          <tbody>
+            <tr><td>Yes/No Question</td><td class="hi">if / whether</td><td>"Do you know?" → He asked <span class="hi">if</span> I knew.</td></tr>
+            <tr><td>Wh- Question</td><td class="hi">wh-word itu sendiri</td><td>"Where do you live?" → She asked <span class="hi">where</span> I lived.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="example-box">
+          <div class="example-header">📝 Contoh Konversi</div>
+          <div class="example-body">
+            <span class="label label-act">Direct</span>He said, "I will call you tomorrow."<br>
+            <span class="label label-pas">Indirect</span><em>He said that he <strong>would</strong> call me <strong>the next day</strong>.</em><br><br>
+            <span class="label label-act">Direct</span>The teacher asked, "Have you done your homework?"<br>
+            <span class="label label-pas">Indirect</span><em>The teacher asked <strong>if</strong> I <strong>had done</strong> my homework.</em>
+          </div>
+        </div>
+      </div>
+    </div><!-- end tab1 -->
+
+    <!-- ══ TAB 3 ══ -->
+    <div class="tab-panel" id="tab2">
+
+      <!-- PAST PERFECT -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">1</div>
+          <div>
+            <div class="topic-title">Past Perfect Tense</div>
+            <div class="topic-sub">Tindakan yang selesai sebelum peristiwa lain di masa lalu</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Past Perfect</strong> digunakan untuk menyatakan suatu tindakan yang telah <em>selesai terjadi lebih dahulu</em> sebelum tindakan lain di masa lampau. Menunjukkan urutan kronologis dua peristiwa masa lalu.</p>
+        </div>
+        <div class="formula-box">
+          <div class="formula-label">Rumus Past Perfect</div>
+          <code>Subject + had + V3 (past participle) + [complement]</code><br>
+          <code>Berlaku untuk SEMUA subjek (I/you/he/she/it/we/they)</code>
+        </div>
+
+        <div style="margin-bottom:14px;font-weight:600;color:var(--t1)">📅 Urutan Kejadian</div>
+        <div class="callout callout-blue">
+          <span>💡</span>
+          <div>Past Perfect (<strong>had + V3</strong>) = tindakan yang terjadi <strong>LEBIH DAHULU</strong> | Simple Past (V2) = tindakan yang terjadi <strong>BELAKANGAN</strong></div>
+        </div>
+
+        <table class="styled-table">
+          <thead><tr><th>Signal Words</th><th>Contoh Kalimat</th></tr></thead>
+          <tbody>
+            <tr><td><strong>by the time</strong></td><td>By the time I arrived, she <span class="hi">had already left</span>.</td></tr>
+            <tr><td><strong>before</strong></td><td>She <span class="hi">had studied</span> English before she moved abroad.</td></tr>
+            <tr><td><strong>after</strong></td><td>After he <span class="hi">had finished</span> dinner, he went to bed.</td></tr>
+            <tr><td><strong>when</strong></td><td>When we arrived, the movie <span class="hi">had already started</span>.</td></tr>
+            <tr><td><strong>already / just / never</strong></td><td>I <span class="hi">had never seen</span> the ocean before that day.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="example-box">
+          <div class="example-header">📝 Contoh Past Perfect</div>
+          <div class="example-body">
+            <strong>Benar:</strong> "I was not hungry at dinner because I <em>had eaten</em> a large lunch." (makan siang terjadi lebih dulu)<br><br>
+            <strong>Benar:</strong> "By 2020, they <em>had lived</em> in that city for ten years."<br><br>
+            <strong>Salah:</strong> "When I arrived, the movie <em>already started</em>." ← Harus: <em>had already started</em>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- ADVERB OF MANNER -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">2</div>
+          <div>
+            <div class="topic-title">Adverb of Manner</div>
+            <div class="topic-sub">Kata keterangan cara — menjawab pertanyaan "How?"</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p><strong>Adverb of manner</strong> adalah kata keterangan yang menjelaskan <em>bagaimana</em> (how) suatu tindakan dilakukan. Adverb ini memodifikasi kata kerja (verb), adjective, atau adverb lain.</p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">🔤</div><div class="info-card-title">Pembentukan Regular (-ly)</div></div>
+            <ul><li>careful → <strong>carefully</strong></li><li>quick → <strong>quickly</strong></li><li>beautiful → <strong>beautifully</strong></li><li>slow → <strong>slowly</strong></li><li>happy → happi<strong>ly</strong> (y→i+ly)</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ir">⚡</div><div class="info-card-title">Bentuk Tidak Beraturan (Irregular)</div></div>
+            <ul><li>good → <strong>well</strong> (bukan "goodly")</li><li>fast → <strong>fast</strong> (bukan "fastly")</li><li>hard → <strong>hard</strong> (bukan "hardly"*)</li><li>late → <strong>late</strong> (bukan "lately"*)</li><li>high → <strong>high</strong> (bukan "highly"*)</li></ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">📍</div><div class="info-card-title">Posisi dalam Kalimat</div></div>
+            <ul><li>Setelah verb intransitive: "She sings <strong>beautifully</strong>."</li><li>Setelah object: "He read the book <strong>quickly</strong>."</li><li>Sebelum adjective/adverb lain: "She is <strong>incredibly</strong> talented."</li><li>Di awal kalimat (penekanan): "<strong>Suddenly</strong>, he left."</li></ul>
+          </div>
+        </div>
+
+        <div class="callout callout-warn">
+          <span>⚠️</span>
+          <div><strong>Perhatian:</strong> "Hardly" bukan bentuk adverb dari "hard" — artinya berbeda! <em>"hardly"</em> = hampir tidak (scarcely). <em>"hard"</em> = dengan giat/keras. Contoh: "He works <strong>hard</strong>" (giat) vs. "He <strong>hardly</strong> works" (hampir tidak bekerja).</div>
+        </div>
+
+        <table class="styled-table">
+          <thead><tr><th>Adjective</th><th>Adverb of Manner</th><th>Contoh Kalimat</th></tr></thead>
+          <tbody>
+            <tr><td>careful</td><td class="hi">carefully</td><td>Drive carefully on wet roads.</td></tr>
+            <tr><td>brilliant</td><td class="hi">brilliantly</td><td>The team performed brilliantly.</td></tr>
+            <tr><td>soft</td><td class="hi">softly</td><td>She spoke softly to the baby.</td></tr>
+            <tr><td>good</td><td class="hi">well</td><td>He plays the guitar well.</td></tr>
+            <tr><td>fast</td><td class="hi">fast</td><td>She runs fast every morning.</td></tr>
+            <tr><td>confident</td><td class="hi">confidently</td><td>He answered the questions confidently.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- AGREEMENT & DISAGREEMENT -->
+      <div class="topic-section">
+        <div class="topic-header">
+          <div class="topic-num">3</div>
+          <div>
+            <div class="topic-title">Agreement &amp; Disagreement</div>
+            <div class="topic-sub">Mengungkapkan persetujuan dan ketidaksetujuan</div>
+          </div>
+        </div>
+        <div class="def-box">
+          <div class="def-label">Definisi</div>
+          <p>Ungkapan <strong>agreement</strong> (persetujuan) dan <strong>disagreement</strong> (ketidaksetujuan) digunakan untuk merespons pendapat atau pernyataan orang lain dalam percakapan.</p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ig">✅</div><div class="info-card-title">Strong Agreement (Setuju Kuat)</div></div>
+            <ul>
+              <li>"I completely agree with you."</li>
+              <li>"Absolutely! You're right."</li>
+              <li>"I couldn't agree more!"</li>
+              <li>"You can say that again!"</li>
+              <li>"Exactly! That's precisely my point."</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ib">🤝</div><div class="info-card-title">Mild Agreement (Setuju Biasa)</div></div>
+            <ul>
+              <li>"I think you're right."</li>
+              <li>"That's a fair point."</li>
+              <li>"I suppose you're right."</li>
+              <li>"That makes sense."</li>
+              <li>"I agree to some extent."</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon io">🤔</div><div class="info-card-title">Polite Disagreement (Tidak Setuju Halus)</div></div>
+            <ul>
+              <li>"I see your point, but I think differently."</li>
+              <li>"I'm not sure I agree entirely."</li>
+              <li>"I'm afraid I have a different view."</li>
+              <li>"That's interesting, however..."</li>
+              <li>"I understand, but I'm not convinced."</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="info-card-hd"><div class="ic-icon ir">❌</div><div class="info-card-title">Strong Disagreement (Tidak Setuju Kuat)</div></div>
+            <ul>
+              <li>"I totally disagree with that."</li>
+              <li>"With all due respect, I think you're mistaken."</li>
+              <li>"I strongly disagree."</li>
+              <li>"That's not correct at all."</li>
+              <li>"I'm afraid that's completely wrong."</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-warn">
+          <span>💡</span>
+          <div><strong>"I couldn't agree more"</strong> — meskipun ada kata "couldn't" (negatif), ungkapan ini adalah ekspresi <strong>SETUJU SANGAT KUAT</strong>. Artinya: "Saya tidak bisa setuju lebih dari ini" = saya sangat setuju. Jangan tertukar!</div>
+        </div>
+      </div>
+    </div><!-- end tab2 -->
+
+  </div><!-- end content-wrapper -->
+</div><!-- end materi-panel -->
+
+<!-- ════ QUIZ SECTION ════ -->
+<div id="quiz-panel" class="section-panel">
+  <div class="content-wrapper">
+    <div class="quiz-header">
+      <div class="quiz-title">✏️ Latihan Soal</div>
+      <div class="quiz-subtitle">Uji pemahamanmu dengan 50 soal komprehensif</div>
+      <div class="quiz-stats">
+        <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">Pilihan Ganda</div></div>
+        <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Pilihan Ganda Kompleks</div></div>
+        <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Benar / Salah</div></div>
+      </div>
+    </div>
+
+    <!-- SECTION A: MC -->
+    <div class="quiz-sec-hdr">
+      <div class="qsec-icon" style="background:rgba(61,126,255,.13)">📝</div>
+      <div><div class="qsec-type">Bagian A — Pilihan Ganda</div><div class="qsec-desc">Pilih SATU jawaban yang paling tepat dari setiap soal.</div></div>
+    </div>
+    <div id="mc-container"></div>
+
+    <!-- SECTION B: PGK -->
+    <div class="quiz-sec-hdr">
+      <div class="qsec-icon" style="background:rgba(139,92,246,.13)">☑️</div>
+      <div><div class="qsec-type">Bagian B — Pilihan Ganda Kompleks</div><div class="qsec-desc">Pilih SEMUA jawaban yang benar (bisa lebih dari satu).</div></div>
+    </div>
+    <div id="pgk-container"></div>
+
+    <!-- SECTION C: T/F -->
+    <div class="quiz-sec-hdr">
+      <div class="qsec-icon" style="background:rgba(16,185,129,.13)">⚖️</div>
+      <div><div class="qsec-type">Bagian C — Benar atau Salah</div><div class="qsec-desc">Tentukan apakah pernyataan berikut BENAR atau SALAH.</div></div>
+    </div>
+    <div id="tf-container"></div>
+
+    <div class="submit-wrap">
+      <button class="submit-all-btn" onclick="submitQuiz()">🏆 Lihat Hasil Nilai</button>
+    </div>
+
+    <!-- SCORE -->
+    <div class="score-section" id="score-section">
+      <div class="score-ring">
+        <div class="score-num" id="score-num">0</div>
+        <div class="score-of" id="score-of">dari 50</div>
+      </div>
+      <div class="score-title" id="score-title">Hasil Latihan</div>
+      <div class="score-grade" id="score-grade"></div>
+      <div class="score-breakdown">
+        <div class="bd-item"><div class="bd-num" id="bd-mc" style="color:var(--bluef)">0/30</div><div class="bd-label">Pilihan Ganda</div></div>
+        <div class="bd-item"><div class="bd-num" id="bd-pgk" style="color:var(--purple)">0/10</div><div class="bd-label">PGK</div></div>
+        <div class="bd-item"><div class="bd-num" id="bd-tf" style="color:var(--green)">0/10</div><div class="bd-label">Benar/Salah</div></div>
+      </div>
+      <button class="reset-btn" onclick="resetQuiz()">🔄 Ulangi Latihan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+//  QUIZ DATA
+// ═══════════════════════════════════════════
+
+const mcData = [
+  {id:1,topic:'Descriptive Text',q:'What is the main purpose of a descriptive text?',opts:['To retell past events in chronological order','To describe a specific person, place, or thing in detail','To explain how something works step by step','To persuade the reader to agree with an opinion'],ans:1,exp:'Descriptive text bertujuan untuk menggambarkan subjek SPESIFIK secara detail agar pembaca dapat membayangkannya. Pilihan A = recount, C = procedure, D = argumentative/persuasion.'},
+  {id:2,topic:'Descriptive Text',q:'Which language feature is MOST characteristic of descriptive text?',opts:['Time connectives like "first, then, finally"','Generic nouns like "tigers, mountains, rivers"','Detailed adjectives describing a specific subject','Simple past tense as the dominant tense'],ans:2,exp:'Descriptive text menggunakan detailed adjectives untuk menggambarkan subjek SPESIFIK. Generic nouns = report text. Time connectives = recount. Simple past = recount/narrative.'},
+  {id:3,topic:'Recount Text',q:'Which tense is predominantly used in a recount text?',opts:['Simple Present','Simple Future','Simple Past','Present Perfect'],ans:2,exp:'Recount text menceritakan peristiwa yang SUDAH TERJADI, sehingga Simple Past tense digunakan sebagai tense utama.'},
+  {id:4,topic:'Recount Text',q:'What is the correct generic structure of a recount text?',opts:['Identification → Description','General Classification → Description','Orientation → Events → Re-orientation','Orientation → Complication → Resolution'],ans:2,exp:'Recount text: Orientation (who/when/where) → Events (serangkaian kejadian) → Re-orientation (penutup opsional). Pilihan A = descriptive, B = report, D = narrative.'},
+  {id:5,topic:'Report Text',q:'What is the correct generic structure of a report text?',opts:['Orientation → Events → Re-orientation','Identification → Description','General Classification → Description','Abstract → Arguments → Conclusion'],ans:2,exp:'Report text: General Classification (pengenalan topik/kategori) → Description (fakta, ciri-ciri, perilaku, dll.). Pilihan A = recount, B = descriptive, D = analytical exposition.'},
+  {id:6,topic:'Report Text',q:'Which sentence would MOST LIKELY appear in a report text about wolves?',opts:['My pet wolf, Luna, loves to howl at night.','Wolves are highly social carnivores that live in family groups called packs.','Yesterday, we spotted a wolf near the campsite.','The wolf stared at me with its yellow eyes.'],ans:1,exp:'Report text menggunakan generic nouns dan bahasa objektif untuk mendeskripsikan KATEGORI/KELAS. "Wolves are..." = general. "My wolf, Luna" = specific (descriptive text).'},
+  {id:7,topic:'Narrative Text',q:'Which element is part of the NARRATIVE text generic structure?',opts:['General Classification','Re-orientation','Description','Complication'],ans:3,exp:'Narrative structure: Orientation → Complication → Resolution → (Re-orientation optional). Complication adalah konflik utama dalam narrative. General Classification = report, Description = report/descriptive.'},
+  {id:8,topic:'Narrative Text',q:'Which of the following is the best example of a narrative text?',opts:['A magazine article about the lifecycle of butterflies','A news report about a flood in Central Java','The legend of Sangkuriang and his mother','A travel brochure describing tourist spots in Bali'],ans:2,exp:'Narrative text = kisah/cerita (fiksi, legenda, dongeng) dengan karakter, konflik, dan resolusi. Pilihan A = report, B = news/recount, D = descriptive/brochure.'},
+  {id:9,topic:'Comparative Degree',q:'Choose the correct comparative form: "This examination is _____ than the previous one."',opts:['more difficult','more difficultly','difficulter','most difficult'],ans:0,exp:'"Difficult" memiliki 3 suku kata, sehingga comparative-nya menggunakan "more difficult". "Difficulter" salah (hanya untuk kata 1-2 suku kata). "Most difficult" = superlative, bukan comparative.'},
+  {id:10,topic:'Comparative Degree',q:'Which sentence uses the SUPERLATIVE degree correctly?',opts:['Jakarta is the more populous city in Indonesia.','She is the most tallest student in her class.','This is the most delicious cake I have ever tasted.','He runs more fastest than anyone else.'],ans:2,exp:'"The most delicious" benar — kata sifat 3+ suku kata menggunakan "the most". Pilihan A = comparative (bukan superlative). B = double superlative (salah). D = double comparison (salah).'},
+  {id:11,topic:'Comparative Degree',q:'The correct COMPARATIVE form of "good" is:',opts:['gooder','more good','better','best'],ans:2,exp:'"Good" adalah irregular adjective: positive = good, comparative = better, superlative = the best. Aturan regular (-er/more) tidak berlaku untuk kata sifat tidak beraturan.'},
+  {id:12,topic:'Comparative Degree',q:'Complete: "She is _____ her sister." (tall — equal comparison)',opts:['as tall as','taller than','the tallest of','more tall as'],ans:0,exp:'Perbandingan SETARA (sama) menggunakan pola: as + adjective + as. Contoh: "as tall as" = sama tingginya.'},
+  {id:13,topic:'Passive Voice',q:'Change to passive voice: "The teacher explains the lesson every day."',opts:['The lesson is explained by the teacher every day.','The lesson was explained by the teacher every day.','The lesson has been explained by the teacher every day.','The lesson explained by the teacher every day.'],ans:0,exp:'Active present simple → Passive: is/are + V3. "Explains" (V1/present) → "is explained". "Was explained" = past passive. Pilihan D tidak memiliki "to be", sehingga salah.'},
+  {id:14,topic:'Past Passive',q:'"Someone stole my laptop last night." → Change to passive voice:',opts:['My laptop is stolen last night.','My laptop was stolen last night.','My laptop has been stolen last night.','My laptop stolen last night.'],ans:1,exp:'"Stole" = Simple Past (V2). Past Passive: was/were + V3. "My laptop was stolen." — singular subject → "was". "Is stolen" = present passive. "Has been stolen" = present perfect passive.'},
+  {id:15,topic:'Modal Passive',q:'"You must submit the assignment by Friday." → Passive voice:',opts:['The assignment must submitted by Friday.','The assignment must be submitted by Friday.','The assignment must been submitted by Friday.','The assignment is must submitted by Friday.'],ans:1,exp:'Modal passive = modal + be + V3. "Must be submitted" adalah bentuk yang benar. Setelah modal SELALU gunakan "be", bukan "been" atau langsung V3.'},
+  {id:16,topic:'Passive Voice',q:'"They were building a new stadium last year." → Passive voice:',opts:['A new stadium was being built last year.','A new stadium is being built last year.','A new stadium was built last year.','A new stadium had been built last year.'],ans:0,exp:'Past Continuous Active (were + V-ing) → Passive: was/were + being + V3. "Was being built" adalah past continuous passive yang tepat.'},
+  {id:17,topic:'Preference',q:'Which sentence correctly expresses preference?',opts:['I prefer swimming than jogging.','I prefer swimming to jogging.','I prefer to swim than jogging.','I prefer swim to jog.'],ans:1,exp:'Pola yang benar: prefer + noun/gerund + TO + noun/gerund. Gunakan "TO" bukan "than" setelah prefer. "I prefer swimming TO jogging."'},
+  {id:18,topic:'Preference',q:'"Would rather" is always followed by:',opts:['gerund (-ing form)','to + infinitive','base form (bare infinitive)','past participle (V3)'],ans:2,exp:'"Would rather" diikuti BARE INFINITIVE (infinitive tanpa to). Contoh: "I\'d rather stay home" (bukan "to stay" atau "staying"). Formula: would rather + V1 + than + V1.'},
+  {id:19,topic:'Preference',q:'Complete: "I\'d rather _____ at home than go to the party tonight."',opts:['staying','to stay','stay','stayed'],ans:2,exp:'"Would rather" (\'d rather) diikuti bare infinitive (V1 tanpa "to"). "Stay" adalah bentuk yang benar, bukan "staying" (gerund) atau "to stay" (to-infinitive).'},
+  {id:20,topic:'Direct Speech',q:'Change to indirect speech: She said, "I am very tired."',opts:['She said that she is very tired.','She said that she was very tired.','She said that I was very tired.','She said that she be very tired.'],ans:1,exp:'Perubahan: (1) "I" → "she" (pronoun shift), (2) "am" → "was" (tense backshift: present → past), (3) tanda kutip dihilangkan. Kata "that" bersifat opsional.'},
+  {id:21,topic:'Indirect Speech',q:'He said, "I will call you tomorrow." → Indirect speech:',opts:['He said that he will call me the next day.','He said that he would call me the next day.','He said that he would call me tomorrow.','He said that he would call you the next day.'],ans:1,exp:'Tiga perubahan: (1) "will" → "would" (backshift), (2) "tomorrow" → "the next day" (time adverb shift), (3) "you" → "me" (pronoun shift). Semua harus diubah.'},
+  {id:22,topic:'Indirect Speech',q:'The teacher asked, "Do you understand?" → Indirect speech:',opts:['The teacher asked that I understood.','The teacher asked if I understood.','The teacher asked do I understand.','The teacher asked whether I understand.'],ans:1,exp:'Yes/No questions dalam indirect speech menggunakan "if" atau "whether". Tense backshift: "understand" → "understood". Urutan kata kembali ke normal (bukan pertanyaan).'},
+  {id:23,topic:'Indirect Speech',q:'In indirect speech, "today" changes to:',opts:['yesterday','the previous day','that day','the next day'],ans:2,exp:'"Today" dalam indirect speech berubah menjadi "that day". "Yesterday" berubah menjadi "the day before/the previous day". "Tomorrow" berubah menjadi "the next day/the following day".'},
+  {id:24,topic:'Past Perfect',q:'"By the time the teacher arrived, the students _____ their homework."',opts:['finished','have finished','had finished','would finish'],ans:2,exp:'Past perfect (had + V3) digunakan untuk tindakan yang selesai SEBELUM tindakan lain di masa lalu. "Had finished" (selesai lebih dulu) sebelum "the teacher arrived". "By the time" adalah signal word untuk past perfect.'},
+  {id:25,topic:'Past Perfect',q:'Which sentence uses Past Perfect CORRECTLY?',opts:['She had eaten breakfast before she went to school.','She has eaten breakfast before she went to school.','She had ate breakfast before she went to school.','She was eating breakfast before she went to school.'],ans:0,exp:'"Had eaten" = had + V3 (past participle) ✓. "Has eaten" = present perfect (salah konteks). "Had ate" salah — setelah "had" harus V3 (eaten, bukan ate). "Was eating" = past continuous.'},
+  {id:26,topic:'Past Perfect',q:'"I was not hungry at dinner because I _____ a large lunch earlier."',opts:['eat','ate','have eaten','had eaten'],ans:3,exp:'Tindakan makan siang terjadi SEBELUM tidak lapar saat makan malam (keduanya di masa lalu). Tindakan yang terjadi lebih dahulu menggunakan Past Perfect: "had eaten". "Ate" tidak menunjukkan urutan yang jelas.'},
+  {id:27,topic:'Adverb of Manner',q:'Identify the adverb of manner: "She spoke softly to the crying baby."',opts:['spoke','softly','crying','baby'],ans:1,exp:'"Softly" adalah adverb of manner yang menjelaskan BAGAIMANA dia berbicara (how she spoke). Adverbs of manner biasanya berakhiran -ly. "Spoke" = verb, "crying" = adjective, "baby" = noun.'},
+  {id:28,topic:'Adverb of Manner',q:'What is the correct ADVERB OF MANNER form of "good"?',opts:['goodly','more good','well','greatly'],ans:2,exp:'"Good" memiliki bentuk adverb TIDAK BERATURAN: "well". Bukan "goodly" (tidak ada dalam bahasa Inggris). Contoh: "She sings well." "Well" juga digunakan untuk kesehatan: "I am feeling well."'},
+  {id:29,topic:'Agreement & Disagreement',q:'"I see your point, but I think we need to look at this differently." — This expresses:',opts:['Strong agreement','Polite disagreement','Strong disagreement','Complete agreement'],ans:1,exp:'"I see your point, but..." adalah pola klasik KETIDAKSETUJUAN SOPAN — mengakui sudut pandang orang lain terlebih dahulu sebelum mengungkapkan pandangan yang berbeda.'},
+  {id:30,topic:'Agreement & Disagreement',q:'Which expression shows STRONG AGREEMENT?',opts:['"I suppose you might be right."','"That\'s one way to look at it."','"I couldn\'t agree more!"','"Well, I\'m not entirely sure about that."'],ans:2,exp:'"I couldn\'t agree more!" adalah ungkapan SETUJU SANGAT KUAT. Meskipun mengandung "couldn\'t" (negatif), frasa ini berarti "Tidak ada cara untuk setuju lebih dari ini" = sangat setuju sekali.'},
+];
+
+const pgkData = [
+  {id:31,topic:'Text Types',q:'Which statements are TRUE about DESCRIPTIVE text? (Pilih SEMUA yang benar)',opts:['Describes a specific, particular subject (not a general class)','Has the generic structure: Identification → Description','Uses simple past tense as the dominant tense','Can describe a specific place, person, animal, or object','Uses detailed adjectives and relating verbs'],correct:[0,1,3,4],exp:'A: ✓ Descriptive = subjek SPESIFIK. B: ✓ Struktur yang benar. C: ✗ Present tense dominan (bukan past). D: ✓ Bisa mendeskripsikan orang, tempat, hewan, benda. E: ✓ Ciri khas descriptive text.'},
+  {id:32,topic:'Comparative & Superlative',q:'Which sentences use COMPARATIVE or SUPERLATIVE degree CORRECTLY? (Pilih SEMUA yang benar)',opts:['This bag is heavier than that one.','She is the most tallest student in the group.','He runs faster than his teammate.','That building is more high than this one.','This novel is more interesting than the previous one.'],correct:[0,2,4],exp:'A: ✓ "heavier" benar (1 suku kata + -er). B: ✗ Double superlative — harusnya "the tallest". C: ✓ "faster" benar (1 suku kata). D: ✗ "more high" salah — harusnya "higher". E: ✓ "more interesting" benar (3 suku kata).'},
+  {id:33,topic:'Passive Voice',q:'Which sentences are in CORRECT PASSIVE VOICE form? (Pilih SEMUA yang benar)',opts:['The letter was written by Maria last night.','The cake is being baked by my mother right now.','The homework done by all students yesterday.','The car has been repaired by the mechanic.','The building should been demolished immediately.'],correct:[0,1,3],exp:'A: ✓ was + V3 (past simple passive) ✓. B: ✓ is being + V3 (present continuous passive) ✓. C: ✗ Hilang "was" sebelum "done". D: ✓ has been + V3 (present perfect passive) ✓. E: ✗ Seharusnya "should BE demolished" (bukan "been").'},
+  {id:34,topic:'Preference',q:'Which sentences express PREFERENCE correctly? (Pilih SEMUA yang benar)',opts:['I prefer coffee to tea.','She would rather stay home than go out.','He prefers watching movies than reading books.','They would sooner take the train than drive.','I prefer to walk to school rather than take the bus.'],correct:[0,1,3,4],exp:'A: ✓ prefer + noun + TO + noun ✓. B: ✓ would rather + V1 + than + V1 ✓. C: ✗ Seharusnya "prefers watching movies TO reading books" (bukan "than"). D: ✓ would sooner + V1 + than ✓. E: ✓ prefer + to-inf + rather than + bare inf/gerund ✓.'},
+  {id:35,topic:'Direct & Indirect Speech',q:'Which changes are REQUIRED when converting direct to indirect speech? (Pilih SEMUA yang benar)',opts:['Tense backshift (e.g., am → was, will → would)','Change of personal pronouns (e.g., I → he/she)','Change of time and place references (e.g., today → that day)','The word "that" must ALWAYS be added after the reporting verb','Quotation marks are removed'],correct:[0,1,2,4],exp:'A: ✓ Tense backshift wajib. B: ✓ Pronoun shift wajib. C: ✓ Time/place adverb shift wajib. D: ✗ "That" bersifat OPSIONAL ("She said she was tired" = benar tanpa "that"). E: ✓ Tanda kutip selalu dihilangkan.'},
+  {id:36,topic:'Past Perfect',q:'Which sentences correctly use PAST PERFECT tense? (Pilih SEMUA yang benar)',opts:['She had never visited Paris before that trip.','By the time we arrived, the show already started.','He had completed the project before the deadline.','By 2019, they had lived in that city for five years.','I have studied English before I came to this school.'],correct:[0,2,3],exp:'A: ✓ "had never visited" sebelum "that trip" ✓. B: ✗ Seharusnya "had already started". C: ✓ "had completed" sebelum deadline ✓. D: ✓ "By [past time]" + past perfect ✓. E: ✗ Seharusnya "had studied" (bukan present perfect "have studied").'},
+  {id:37,topic:'Adverb of Manner',q:'Which of the following are ADVERBS OF MANNER? (Pilih SEMUA yang benar)',opts:['quickly','yesterday','loudly','there','gracefully'],correct:[0,2,4],exp:'"Quickly" (bagaimana? — cepat), "loudly" (bagaimana? — keras), "gracefully" (bagaimana? — dengan anggun) = adverb of manner. "Yesterday" = adverb of time. "There" = adverb of place. Adverb of manner menjawab pertanyaan "How?"'},
+  {id:38,topic:'Agreement & Disagreement',q:'Which expressions convey DISAGREEMENT (partial or full)? (Pilih SEMUA yang benar)',opts:['"I\'m afraid I disagree with that view."','"That\'s absolutely right!"','"I\'m not sure I agree entirely with that."','"With all due respect, I think you\'re mistaken."','"Couldn\'t agree more!"'],correct:[0,2,3],exp:'A: ✓ "I\'m afraid I disagree" = ketidaksetujuan sopan. B: ✗ Persetujuan kuat. C: ✓ "not sure I agree entirely" = ketidaksetujuan parsial. D: ✓ "with due respect... mistaken" = ketidaksetujuan sopan namun tegas. E: ✗ "Couldn\'t agree more" = setuju sangat kuat.'},
+  {id:39,topic:'Narrative Text',q:'Which elements are typically found in a NARRATIVE text? (Pilih SEMUA yang benar)',opts:['Characters (protagonist and antagonist)','A complication or central conflict','General facts about a category of living things','A resolution that solves the conflict','Use of descriptive language, action verbs, and dialogue'],correct:[0,1,3,4],exp:'A: ✓ Narrative memiliki karakter. B: ✓ Complication = elemen inti narrative. C: ✗ General facts = ciri report text. D: ✓ Resolution menyelesaikan konflik. E: ✓ Bahasa deskriptif, action verbs, dan dialog = ciri narrative.'},
+  {id:40,topic:'Modal Passive',q:'Which MODAL PASSIVE sentences are grammatically CORRECT? (Pilih SEMUA yang benar)',opts:['This form must be filled in by all applicants.','The project can completed by the team by Friday.','Mistakes might be made during the process.','The school rules should be followed by all students.','The agreement should been signed by both parties.'],correct:[0,2,3],exp:'A: ✓ must + be + V3 ✓. B: ✗ Hilang "be" — seharusnya "can BE completed". C: ✓ might + be + V3 ✓. D: ✓ should + be + V3 ✓. E: ✗ Seharusnya "should BE signed" (bukan "been").'},
+];
+
+const tfData = [
+  {id:41,topic:'Descriptive Text',stmt:'"A descriptive text describes a general class or category of objects, not a specific one."',ans:false,exp:'SALAH. Descriptive text mendeskripsikan subjek SPESIFIK (contoh: "My house", "The Eiffel Tower"). REPORT text yang mendeskripsikan kelas/kategori umum (contoh: "Houses in general", "Famous towers").'},
+  {id:42,topic:'Comparative Degree',stmt:'"The comparative form of the adjective \'good\' is \'gooder\'."',ans:false,exp:'SALAH. "Good" adalah adjective TIDAK BERATURAN (irregular). Comparative = "better", Superlative = "the best". Aturan regular (-er / more) tidak berlaku untuk adjective irregular seperti good, bad, far.'},
+  {id:43,topic:'Passive Voice',stmt:'"In passive voice, the agent (by + noun) can be omitted if the doer is unknown or unimportant."',ans:true,exp:'BENAR. Frasa "by + agent" bersifat OPSIONAL dalam kalimat pasif. Dihilangkan ketika: (1) pelaku tidak diketahui ("My wallet was stolen"), (2) pelaku sudah jelas, atau (3) pelaku tidak penting untuk informasi.'},
+  {id:44,topic:'Indirect Speech',stmt:'"When converting direct to indirect speech, the word \'tomorrow\' changes to \'yesterday\'."',ans:false,exp:'SALAH. "Tomorrow" dalam direct speech berubah menjadi "the next day" atau "the following day" dalam indirect speech. "Yesterday" berubah menjadi "the day before" atau "the previous day".'},
+  {id:45,topic:'Past Perfect',stmt:'"The past perfect tense is formed using \'had\' + the past participle (V3) of the main verb, for all subjects."',ans:true,exp:'BENAR. Past Perfect = had + V3 untuk SEMUA subjek (I/you/he/she/it/we/they). Ini berbeda dengan present perfect yang menggunakan have/has (have untuk I/you/we/they, has untuk he/she/it).'},
+  {id:46,topic:'Adverb of Manner',stmt:'"The adverb of manner for \'fast\' is formed by adding -ly, making it \'fastly\'."',ans:false,exp:'SALAH. "Fast" adalah salah satu adverb TIDAK BERATURAN — bentuk adverb-nya sama dengan adjectivenya: "fast". "Fastly" TIDAK ADA dalam bahasa Inggris. Contoh benar: "She runs fast every morning."'},
+  {id:47,topic:'Preference',stmt:'"The sentence \'I prefer to swim rather than to run\' is grammatically correct."',ans:true,exp:'BENAR. Pola "prefer + to-infinitive + rather than + to-infinitive" adalah pola yang BENAR. Alternatif lain yang juga benar: "I prefer swimming to running" (gerund + to + gerund).'},
+  {id:48,topic:'Report Text',stmt:'"A report text about dolphins would typically begin with \'My dolphin, Flipper, is very playful\'."',ans:false,exp:'SALAH. Report text menggunakan bahasa UMUM dan IMPERSONAL: "Dolphins are intelligent marine mammals..." Kalimat dengan nama spesifik ("my dolphin, Flipper") adalah ciri DESCRIPTIVE text, bukan report text.'},
+  {id:49,topic:'Modal Passive',stmt:'"The sentence \'The document could have been forged\' uses past modal passive correctly."',ans:true,exp:'BENAR. "Could have been + V3" = Past Modal Passive. Formula: Modal + have + been + V3. Ini mengungkapkan kemungkinan yang terjadi di masa lalu dalam bentuk pasif. Strukturnya benar secara gramatikal.'},
+  {id:50,topic:'Agreement & Disagreement',stmt:'"\'I couldn\'t agree more\' is an expression of strong disagreement."',ans:false,exp:'SALAH. "I couldn\'t agree more" adalah ekspresi SETUJU SANGAT KUAT. Meskipun mengandung "couldn\'t" (negatif), frasa ini berarti "Tidak mungkin saya bisa setuju lebih dari ini" = saya setuju sepenuhnya. Ini adalah salah satu ekspresi agreement terkuat.'},
+];
+
+// ═══════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════
+const state = {
+  mc: {},    // id → selected option index
+  pgk: {},   // id → Set of selected indexes
+  tf: {},    // id → true/false/null
+  checked: {} // id → bool
+};
+
+// ═══════════════════════════════════════════
+//  RENDER FUNCTIONS
+// ═══════════════════════════════════════════
+function renderAll() {
+  renderMC();
+  renderPGK();
+  renderTF();
+}
+
+function renderMC() {
+  const c = document.getElementById('mc-container');
+  c.innerHTML = mcData.map((q,i) => `
+    <div class="question-card" id="mc-card-${q.id}">
+      <div class="q-meta">
+        <span class="q-num">No. ${i+1}</span>
+        <span class="q-topic">${q.topic}</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="options-list" id="mc-opts-${q.id}">
+        ${q.opts.map((o,j) => `
+          <button class="opt-btn" id="mc-opt-${q.id}-${j}" onclick="selectMC(${q.id}, ${j})">
+            <span class="opt-label">${String.fromCharCode(65+j)}</span>
+            <span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <button class="check-btn" id="mc-chk-${q.id}" onclick="checkMC(${q.id})" disabled>Periksa</button>
+      <div class="exp-box" id="mc-exp-${q.id}"></div>
+    </div>`).join('');
+}
+
+function renderPGK() {
+  const c = document.getElementById('pgk-container');
+  c.innerHTML = pgkData.map((q,i) => `
+    <div class="question-card" id="pgk-card-${q.id}">
+      <div class="q-meta">
+        <span class="q-num">No. ${i+31}</span>
+        <span class="q-topic">${q.topic}</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div id="pgk-opts-${q.id}">
+        ${q.opts.map((o,j) => `
+          <div class="pgk-opt" id="pgk-opt-${q.id}-${j}" onclick="togglePGK(${q.id}, ${j})">
+            <div class="pgk-cb" id="pgk-cb-${q.id}-${j}"></div>
+            <span>${String.fromCharCode(65+j)}. ${o}</span>
+          </div>`).join('')}
+      </div>
+      <button class="check-btn" id="pgk-chk-${q.id}" onclick="checkPGK(${q.id})" disabled style="margin-top:8px">Periksa</button>
+      <div class="exp-box" id="pgk-exp-${q.id}"></div>
+    </div>`).join('');
+  pgkData.forEach(q => { state.pgk[q.id] = new Set(); });
+}
+
+function renderTF() {
+  const c = document.getElementById('tf-container');
+  c.innerHTML = tfData.map((q,i) => `
+    <div class="question-card" id="tf-card-${q.id}">
+      <div class="q-meta">
+        <span class="q-num">No. ${i+41}</span>
+        <span class="q-topic">${q.topic}</span>
+      </div>
+      <div class="q-text">Tentukan apakah pernyataan berikut BENAR atau SALAH:</div>
+      <div class="q-statement">"${q.stmt}"</div>
+      <div class="tf-row">
+        <button class="tf-btn tf-true" id="tf-t-${q.id}" onclick="selectTF(${q.id}, true)">✅ Benar</button>
+        <button class="tf-btn tf-false" id="tf-f-${q.id}" onclick="selectTF(${q.id}, false)">❌ Salah</button>
+      </div>
+      <button class="check-btn" id="tf-chk-${q.id}" onclick="checkTF(${q.id})" disabled>Periksa</button>
+      <div class="exp-box" id="tf-exp-${q.id}"></div>
+    </div>`).join('');
+  tfData.forEach(q => { state.tf[q.id] = null; });
+}
+
+// ═══════════════════════════════════════════
+//  INTERACTION
+// ═══════════════════════════════════════════
+function selectMC(id, optIdx) {
+  if (state.checked[id]) return;
+  state.mc[id] = optIdx;
+  const q = mcData.find(x => x.id === id);
+  q.opts.forEach((_,j) => {
+    const btn = document.getElementById(`mc-opt-${id}-${j}`);
+    btn.className = 'opt-btn' + (j === optIdx ? ' sel' : '');
+  });
+  document.getElementById(`mc-chk-${id}`).disabled = false;
+}
+
+function togglePGK(id, optIdx) {
+  if (state.checked[id]) return;
+  const sel = state.pgk[id];
+  if (sel.has(optIdx)) sel.delete(optIdx);
+  else sel.add(optIdx);
+  const opt = document.getElementById(`pgk-opt-${id}-${optIdx}`);
+  const cb = document.getElementById(`pgk-cb-${id}-${optIdx}`);
+  if (sel.has(optIdx)) {
+    opt.classList.add('pgk-sel');
+    cb.textContent = '✓';
+  } else {
+    opt.classList.remove('pgk-sel');
+    cb.textContent = '';
+  }
+  document.getElementById(`pgk-chk-${id}`).disabled = sel.size === 0;
+}
+
+function selectTF(id, val) {
+  if (state.checked[id]) return;
+  state.tf[id] = val;
+  const tBtn = document.getElementById(`tf-t-${id}`);
+  const fBtn = document.getElementById(`tf-f-${id}`);
+  tBtn.className = 'tf-btn tf-true' + (val === true ? ' tf-sel' : '');
+  fBtn.className = 'tf-btn tf-false' + (val === false ? ' tf-sel' : '');
+  document.getElementById(`tf-chk-${id}`).disabled = false;
+}
+
+// ═══════════════════════════════════════════
+//  CHECK
+// ═══════════════════════════════════════════
+function checkMC(id) {
+  if (state.checked[id]) return;
+  state.checked[id] = true;
+  const q = mcData.find(x => x.id === id);
+  const sel = state.mc[id];
+  const expEl = document.getElementById(`mc-exp-${id}`);
+  q.opts.forEach((_,j) => {
+    const btn = document.getElementById(`mc-opt-${id}-${j}`);
+    btn.disabled = true;
+    btn.className = 'opt-btn' + (j === q.ans ? ' correct-ans' : (j === sel ? ' wrong-ans' : ''));
+  });
+  const correct = sel === q.ans;
+  expEl.className = 'exp-box show ' + (correct ? 'exp-correct' : 'exp-wrong');
+  expEl.innerHTML = `<div class="exp-label">${correct ? '✅ Benar!' : '❌ Salah!'}</div>${q.exp}`;
+  document.getElementById(`mc-chk-${id}`).disabled = true;
+}
+
+function checkPGK(id) {
+  if (state.checked[id]) return;
+  state.checked[id] = true;
+  const q = pgkData.find(x => x.id === id);
+  const sel = state.pgk[id];
+  const correct = q.correct;
+  let isFullyCorrect = sel.size === correct.length && [...sel].every(i => correct.includes(i));
+  q.opts.forEach((_,j) => {
+    const opt = document.getElementById(`pgk-opt-${id}-${j}`);
+    const cb = document.getElementById(`pgk-cb-${id}-${j}`);
+    opt.classList.add('locked');
+    if (correct.includes(j) && sel.has(j)) {
+      opt.className = 'pgk-opt locked pgk-correct'; cb.textContent = '✓';
+    } else if (!correct.includes(j) && sel.has(j)) {
+      opt.className = 'pgk-opt locked pgk-wrong'; cb.textContent = '✗';
+    } else if (correct.includes(j) && !sel.has(j)) {
+      opt.className = 'pgk-opt locked pgk-missed'; cb.textContent = '!';
+    } else {
+      opt.className = 'pgk-opt locked';
+    }
+  });
+  const expEl = document.getElementById(`pgk-exp-${id}`);
+  expEl.className = 'exp-box show ' + (isFullyCorrect ? 'exp-correct' : 'exp-wrong');
+  expEl.innerHTML = `<div class="exp-label">${isFullyCorrect ? '✅ Semua benar!' : '❌ Kurang tepat!'}</div><div style="margin-bottom:6px">Jawaban benar: <strong>${correct.map(i => String.fromCharCode(65+i)).join(', ')}</strong></div>${q.exp}`;
+  document.getElementById(`pgk-chk-${id}`).disabled = true;
+}
+
+function checkTF(id) {
+  if (state.checked[id]) return;
+  state.checked[id] = true;
+  const q = tfData.find(x => x.id === id);
+  const sel = state.tf[id];
+  const correct = sel === q.ans;
+  const tBtn = document.getElementById(`tf-t-${id}`);
+  const fBtn = document.getElementById(`tf-f-${id}`);
+  tBtn.disabled = true;
+  fBtn.disabled = true;
+  if (q.ans === true) {
+    tBtn.classList.add('tf-correct');
+    if (!correct) fBtn.classList.add('tf-wrong');
+  } else {
+    fBtn.classList.add('tf-correct');
+    if (!correct) tBtn.classList.add('tf-wrong');
+  }
+  const expEl = document.getElementById(`tf-exp-${id}`);
+  expEl.className = 'exp-box show ' + (correct ? 'exp-correct' : 'exp-wrong');
+  expEl.innerHTML = `<div class="exp-label">${correct ? '✅ Benar!' : '❌ Salah!'} Pernyataan ini <strong>${q.ans ? 'BENAR' : 'SALAH'}</strong>.</div>${q.exp}`;
+  document.getElementById(`tf-chk-${id}`).disabled = true;
+}
+
+// ═══════════════════════════════════════════
+//  SUBMIT & SCORE
+// ═══════════════════════════════════════════
+function submitQuiz() {
+  // Auto-check all unchecked
+  mcData.forEach(q => { if (!state.checked[q.id]) { if (state.mc[q.id] !== undefined) checkMC(q.id); } });
+  pgkData.forEach(q => { if (!state.checked[q.id]) { if (state.pgk[q.id].size > 0) checkPGK(q.id); } });
+  tfData.forEach(q => { if (!state.checked[q.id]) { if (state.tf[q.id] !== null) checkTF(q.id); } });
+
+  let mcScore = 0, pgkScore = 0, tfScore = 0;
+  mcData.forEach(q => { if (state.mc[q.id] === q.ans) mcScore++; });
+  pgkData.forEach(q => {
+    const sel = state.pgk[q.id];
+    const isOk = sel.size === q.correct.length && [...sel].every(i => q.correct.includes(i));
+    if (isOk) pgkScore++;
+  });
+  tfData.forEach(q => { if (state.tf[q.id] === q.ans) tfScore++; });
+
+  const total = mcScore + pgkScore + tfScore;
+  const pct = Math.round((total / 50) * 100);
+
+  document.getElementById('score-num').textContent = total;
+  document.getElementById('score-of').textContent = 'dari 50';
+  document.getElementById('bd-mc').textContent = `${mcScore}/30`;
+  document.getElementById('bd-pgk').textContent = `${pgkScore}/10`;
+  document.getElementById('bd-tf').textContent = `${tfScore}/10`;
+
+  let grade = '', gradeColor = '';
+  if (pct >= 90) { grade = '🏆 Luar Biasa! Nilai A'; gradeColor = 'var(--gold)'; }
+  else if (pct >= 80) { grade = '⭐ Sangat Baik! Nilai B'; gradeColor = 'var(--green)'; }
+  else if (pct >= 70) { grade = '👍 Baik! Nilai C'; gradeColor = 'var(--bluef)'; }
+  else if (pct >= 60) { grade = '📚 Cukup, perlu belajar lagi. Nilai D'; gradeColor = 'var(--purple)'; }
+  else { grade = '📖 Perlu banyak latihan. Nilai E'; gradeColor = 'var(--red)'; }
+
+  document.getElementById('score-title').textContent = `Skor: ${pct}%`;
+  const gradeEl = document.getElementById('score-grade');
+  gradeEl.textContent = grade;
+  gradeEl.style.color = gradeColor;
+
+  const sec = document.getElementById('score-section');
+  sec.classList.add('show');
+  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetQuiz() {
+  // Reset state
+  Object.keys(state.mc).forEach(k => delete state.mc[k]);
+  Object.keys(state.tf).forEach(k => delete state.tf[k]);
+  Object.keys(state.checked).forEach(k => delete state.checked[k]);
+  document.getElementById('score-section').classList.remove('show');
+  renderAll();
+  document.getElementById('quiz-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════
+//  NAV
+// ═══════════════════════════════════════════
+function switchMode(mode) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  if (mode === 'materi') {
+    document.querySelectorAll('.mode-btn')[0].classList.add('active');
+    document.getElementById('materi-panel').classList.add('active');
+  } else {
+    document.querySelectorAll('.mode-btn')[1].classList.add('active');
+    document.getElementById('quiz-panel').classList.add('active');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchTab(idx) {
+  document.querySelectorAll('.materi-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
+}
+
+// Init
+renderAll();
+</script>
+</body>
+</html>
