@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPS SMP — Platform Belajar Interaktif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Beranda</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-trigger">Materi <span class="arrow">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="materials/kelas7.html">Kelas 7</a></li>
+            <li><a href="materials/kelas8.html">Kelas 8</a></li>
+            <li><a href="materials/kelas9.html">Kelas 9</a></li>
+          </ul>
+        </li>
+        <li><a href="quiz/index.html" class="nav-link">Kuis</a></li>
+        <li><a href="#about" class="nav-link">Tentang</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Platform Belajar IPS SMP
+      </div>
+      <h1 class="hero-title">
+        Kuasai Ilmu<br />
+        <em>Pengetahuan Sosial</em><br />
+        dengan Mudah
+      </h1>
+      <p class="hero-sub">
+        Materi lengkap, kuis interaktif, dan penjelasan mendalam untuk siswa
+        SMP Kelas 7, 8, dan 9. Belajar lebih cerdas, bukan lebih keras.
+      </p>
+      <div class="hero-actions">
+        <a href="materials/kelas7.html" class="btn btn-primary">Mulai Belajar</a>
+        <a href="quiz/index.html" class="btn btn-ghost">Coba Kuis <span>→</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Soal Kuis</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Tingkat Kelas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Topik Materi</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Gulir ke bawah</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ========== CLASS CARDS ========== -->
+  <section class="section class-section" id="classes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pilih Kelasmu</span>
+        <h2 class="section-title">Materi Berdasarkan Kelas</h2>
+        <p class="section-desc">Temukan materi yang sesuai dengan tingkat kelasmu, disusun secara sistematis dan mudah dipahami.</p>
+      </div>
+      <div class="class-grid">
+        <!-- Kelas 7 -->
+        <a href="materials/kelas7.html" class="class-card card-7">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <span class="card-number">07</span>
+            <span class="card-tag">Kelas 7</span>
+          </div>
+          <h3 class="card-title">Ilmu Sosial Dasar</h3>
+          <p class="card-desc">Interaksi sosial, kebudayaan, ekonomi, dan lingkungan sebagai fondasi belajar IPS.</p>
+          <ul class="card-topics">
+            <li>Interaksi Sosial & Syaratnya</li>
+            <li>Bentuk Kerjasama & Status Sosial</li>
+            <li>7 Unsur Kebudayaan Universal</li>
+            <li>Kegiatan & Motif Ekonomi</li>
+            <li>Fungsi Uang & Hutan</li>
+          </ul>
+          <div class="card-footer">
+            <span class="topic-count">9 Topik</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+
+        <!-- Kelas 8 -->
+        <a href="materials/kelas8.html" class="class-card card-8">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <span class="card-number">08</span>
+            <span class="card-tag">Kelas 8</span>
+          </div>
+          <h3 class="card-title">Ekonomi & Perdagangan</h3>
+          <p class="card-desc">Memahami literasi finansial dan dinamika perdagangan internasional.</p>
+          <ul class="card-topics">
+            <li>Literasi Finansial & Pembagiannya</li>
+            <li>Manfaat Perdagangan Internasional</li>
+          </ul>
+          <div class="card-footer">
+            <span class="topic-count">2 Topik</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+
+        <!-- Kelas 9 -->
+        <a href="materials/kelas9.html" class="class-card card-9">
+          <div class="card-glow"></div>
+          <div class="card-header">
+            <span class="card-number">09</span>
+            <span class="card-tag">Kelas 9</span>
+          </div>
+          <h3 class="card-title">Modernisasi & Sejarah</h3>
+          <p class="card-desc">Perubahan sosial, modernisasi, dan tonggak sejarah Indonesia.</p>
+          <ul class="card-topics">
+            <li>Pengertian Modernisasi</li>
+            <li>Faktor Internal Perubahan Sosial</li>
+            <li>Kabinet & Pemilu Pertama Indonesia</li>
+          </ul>
+          <div class="card-footer">
+            <span class="topic-count">3 Topik</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUIZ PROMO ========== -->
+  <section class="section quiz-promo">
+    <div class="container">
+      <div class="quiz-promo-inner">
+        <div class="promo-bg-lines"></div>
+        <div class="promo-text">
+          <span class="section-tag">Uji Kemampuan</span>
+          <h2 class="promo-title">Siap Menghadapi Ujian?</h2>
+          <p class="promo-desc">
+            Kerjakan 50 soal kuis interaktif — pilihan ganda, pilihan ganda kompleks, dan benar/salah.
+            Dapatkan skor, penjelasan jawaban, dan pantau perkembanganmu.
+          </p>
+          <div class="promo-features">
+            <div class="feat-item">
+              <span class="feat-icon">📝</span>
+              <span>30 Pilihan Ganda</span>
+            </div>
+            <div class="feat-item">
+              <span class="feat-icon">🧩</span>
+              <span>10 PGK (Kompleks)</span>
+            </div>
+            <div class="feat-item">
+              <span class="feat-icon">✅</span>
+              <span>10 Benar/Salah</span>
+            </div>
+          </div>
+          <a href="quiz/index.html" class="btn btn-primary">Mulai Kuis Sekarang</a>
+        </div>
+        <div class="promo-visual">
+          <div class="score-mockup">
+            <div class="score-ring">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" class="ring-bg"/>
+                <circle cx="60" cy="60" r="54" class="ring-fill" style="stroke-dasharray:254;stroke-dashoffset:50"/>
+              </svg>
+              <div class="score-text">
+                <span class="score-num">80</span>
+                <span class="score-unit">/ 100</span>
+              </div>
+            </div>
+            <div class="score-label">Skor Akhir</div>
+            <div class="score-badge">🏆 Sangat Baik</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="section features-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Keunggulan Platform</span>
+        <h2 class="section-title">Kenapa Belajar di Sini?</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feat-icon-box">📚</div>
+          <h4>Materi Lengkap</h4>
+          <p>Konten terstruktur mencakup seluruh topik IPS SMP yang sesuai kurikulum.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon-box">⚡</div>
+          <h4>Kuis Interaktif</h4>
+          <p>Latihan soal dengan umpan balik langsung dan penjelasan jawaban yang detail.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon-box">📊</div>
+          <h4>Pantau Progres</h4>
+          <p>Lacak skor dan perkembanganmu setiap mengerjakan kuis.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon-box">🔍</div>
+          <h4>Cari Materi</h4>
+          <p>Filter dan cari topik yang ingin dipelajari dengan cepat dan mudah.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon-box">📱</div>
+          <h4>Responsif</h4>
+          <p>Belajar dari perangkat apa pun — laptop, tablet, maupun smartphone.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feat-icon-box">🎯</div>
+          <h4>Fokus Ujian</h4>
+          <p>Materi dan soal disesuaikan dengan kisi-kisi ujian sekolah dan nasional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon">⬡</span>
+          <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+          <p class="footer-tagline">Platform belajar IPS terlengkap untuk siswa SMP Indonesia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Materi</h5>
+            <a href="materials/kelas7.html">Kelas 7</a>
+            <a href="materials/kelas8.html">Kelas 8</a>
+            <a href="materials/kelas9.html">Kelas 9</a>
+          </div>
+          <div class="footer-col">
+            <h5>Latihan</h5>
+            <a href="quiz/index.html">Kuis Interaktif</a>
+            <a href="quiz/index.html#pgk">Pilihan Ganda Kompleks</a>
+            <a href="quiz/index.html#tf">Benar / Salah</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 IPS SMP Platform · Dibuat untuk kemajuan pendidikan Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

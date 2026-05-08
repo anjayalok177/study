@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelas 9 — IPS SMP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html" class="nav-link">Beranda</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-trigger active">Materi <span class="arrow">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="kelas7.html">Kelas 7</a></li>
+            <li><a href="kelas8.html">Kelas 8</a></li>
+            <li><a href="kelas9.html">Kelas 9</a></li>
+          </ul>
+        </li>
+        <li><a href="../quiz/index.html" class="nav-link">Kuis</a></li>
+        <li><a href="../index.html#about" class="nav-link">Tentang</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="material-hero" style="background:var(--navy-950);">
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="material-hero-tag">
+        <span>🏛️</span> Kelas 9
+      </div>
+      <h1 class="material-hero-title">Materi IPS <em>Kelas 9</em></h1>
+      <p class="material-hero-desc">
+        Pelajari perubahan sosial, modernisasi, dan tonggak sejarah penting Indonesia menuju demokrasi.
+      </p>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="materialSearch" placeholder="Cari topik materi…" />
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="material-content">
+    <div class="material-container">
+      <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:40px 0;font-size:0.95rem;">
+        Tidak ada materi yang cocok dengan pencarianmu.
+      </p>
+
+      <!-- ══════════════════════════════════════
+           TOPIK 1: Pengertian Modernisasi
+           ══════════════════════════════════════ -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-meta">
+            <span class="topic-num">01</span>
+            <h3 class="topic-title">Pengertian Modernisasi</h3>
+          </div>
+          <div class="topic-toggle">▼</div>
+        </div>
+        <div class="topic-body">
+          <div class="topic-inner">
+            <p>
+              Modernisasi adalah proses perubahan dari cara-cara tradisional ke cara-cara baru yang lebih modern dalam berbagai aspek kehidupan masyarakat, baik sosial, ekonomi, budaya, maupun teknologi.
+            </p>
+
+            <h4>Definisi Menurut Para Ahli</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Wilbert E. Moore</strong> — Modernisasi adalah transformasi total masyarakat tradisional atau pra-modern menjadi tipe masyarakat teknologi dan organisasi sosial yang menyerupai kemajuan dunia Barat.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Soerjono Soekanto</strong> — Modernisasi adalah suatu bentuk dari perubahan sosial yang terarah dan didasarkan pada suatu perencanaan untuk mencapai standar hidup yang dianggap lebih tinggi.</p>
+              </div>
+            </div>
+
+            <h4>Syarat-syarat Modernisasi (J.W. Schoorl)</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Cara Berpikir Ilmiah</strong> — Masyarakat harus menerapkan pola pikir rasional dan ilmiah dalam memecahkan masalah, bukan berdasarkan mitos atau tradisi semata.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Sistem Administrasi yang Baik</strong> — Diperlukan birokrasi yang efisien, transparan, dan bebas dari korupsi untuk mendukung pengelolaan negara yang modern.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Sistem Pengumpulan Data yang Baik</strong> — Informasi yang akurat dan terpercaya diperlukan sebagai dasar pengambilan keputusan pembangunan.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Menciptakan Iklim yang Favorable</strong> — Lingkungan sosial yang mendukung perubahan, keterbukaan terhadap inovasi, dan semangat berprestasi.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Tingkat Organisasi yang Tinggi</strong> — Masyarakat yang terorganisir dengan baik mampu melaksanakan rencana pembangunan secara efektif.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Sentralisasi Wewenang</strong> — Pada masa awal modernisasi diperlukan otoritas terpusat untuk mengarahkan perubahan secara terencana.</p>
+              </div>
+            </div>
+
+            <h4>Ciri-ciri Manusia Modern (Alex Inkeles)</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Terbuka terhadap Pengalaman Baru</strong>
+                <span>Mau menerima inovasi dan perubahan dengan pikiran terbuka.</span>
+              </div>
+              <div class="info-box">
+                <strong>Berorientasi ke Masa Depan</strong>
+                <span>Memiliki perencanaan jangka panjang dan optimisme terhadap kemajuan.</span>
+              </div>
+              <div class="info-box">
+                <strong>Percaya pada Ilmu Pengetahuan</strong>
+                <span>Menggunakan sains dan teknologi sebagai solusi atas berbagai masalah.</span>
+              </div>
+              <div class="info-box">
+                <strong>Menghargai Waktu</strong>
+                <span>Disiplin, tepat waktu, dan memandang waktu sebagai sumber daya berharga.</span>
+              </div>
+              <div class="info-box">
+                <strong>Bersikap Demokratis</strong>
+                <span>Menghormati hak-hak orang lain dan berpartisipasi aktif dalam kehidupan sosial.</span>
+              </div>
+              <div class="info-box">
+                <strong>Berambisi dalam Karir</strong>
+                <span>Memiliki motivasi untuk terus berkembang dan meningkatkan kompetensi diri.</span>
+              </div>
+            </div>
+
+            <h4>Dampak Positif dan Negatif Modernisasi</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Dampak Positif</strong>
+                <span>Kemajuan teknologi, peningkatan taraf hidup, efisiensi kerja, perluasan akses pendidikan dan kesehatan.</span>
+              </div>
+              <div class="info-box">
+                <strong>Dampak Negatif</strong>
+                <span>Westernisasi, degradasi budaya lokal, kesenjangan sosial, kerusakan lingkungan, individualisme.</span>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <p>💡 Modernisasi ≠ Westernisasi. Modernisasi berarti kemajuan, sedangkan westernisasi berarti peniruan gaya hidup Barat. Modernisasi yang ideal justru mempertahankan nilai-nilai budaya lokal sambil mengadopsi kemajuan teknologi dan ilmu pengetahuan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TOPIK 2: Faktor Internal Perubahan Sosial
+           ══════════════════════════════════════ -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-meta">
+            <span class="topic-num">02</span>
+            <h3 class="topic-title">Faktor Internal Penyebab Perubahan Sosial</h3>
+          </div>
+          <div class="topic-toggle">▼</div>
+        </div>
+        <div class="topic-body">
+          <div class="topic-inner">
+            <p>
+              Perubahan sosial adalah perubahan yang terjadi dalam struktur dan fungsi masyarakat. Faktor internal adalah penyebab perubahan yang berasal dari dalam masyarakat itu sendiri.
+            </p>
+
+            <h4>Empat Faktor Internal Perubahan Sosial</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">1. Perubahan Jumlah Penduduk (Dinamika Penduduk)</strong> — Pertambahan atau penurunan jumlah penduduk mengubah struktur sosial dan kebutuhan masyarakat. Pertambahan penduduk mendorong kebutuhan akan lahan, pangan, dan lapangan kerja baru, yang memicu perubahan sosial. Sebaliknya, penurunan penduduk dapat menyebabkan kekurangan tenaga kerja.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">2. Penemuan Baru (Discovery dan Invention)</strong> — Penemuan dan inovasi baru oleh anggota masyarakat mendorong perubahan cara hidup.
+                  <br/>• <em>Discovery</em>: Penemuan unsur/ide baru yang belum pernah ada sebelumnya. Contoh: penemuan api, roda.
+                  <br/>• <em>Invention</em>: Pengembangan lebih lanjut dari discovery menjadi sesuatu yang lebih bermanfaat. Contoh: mesin uap dari penemuan api dan panas.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">3. Konflik dalam Masyarakat</strong> — Pertentangan dan konflik antar kelompok sosial dapat menjadi pendorong perubahan sosial. Konflik antar kelas sosial, etnis, atau generasi sering menghasilkan perubahan dalam sistem nilai, norma, dan struktur kekuasaan. Contoh: Revolusi Prancis mengubah tatanan sosial feodal.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">4. Pemberontakan atau Revolusi</strong> — Perubahan besar-besaran dan mendasar yang terjadi secara cepat dan dramatis, biasanya melibatkan penggulingan sistem lama. Revolusi dapat mengubah seluruh tatanan politik, ekonomi, dan sosial budaya suatu masyarakat. Contoh: Proklamasi Kemerdekaan Indonesia 1945.</p>
+              </div>
+            </div>
+
+            <h4>Perbedaan Faktor Internal vs Eksternal</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Faktor Internal</strong>
+                <span>Berasal dari dalam: dinamika penduduk, penemuan baru, konflik, revolusi — murni dari sistem sosial itu sendiri.</span>
+              </div>
+              <div class="info-box">
+                <strong>Faktor Eksternal</strong>
+                <span>Berasal dari luar: difusi budaya, peperangan, pengaruh alam — datang dari luar sistem sosial tersebut.</span>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <p>💡 <strong>Mudah diingat:</strong> Faktor Internal = PDKP (Penduduk – Discovery/Invention – Konflik – Pemberontakan/Revolusi)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TOPIK 3: Kabinet & Pemilu Pertama
+           ══════════════════════════════════════ -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-meta">
+            <span class="topic-num">03</span>
+            <h3 class="topic-title">Kabinet yang Berhasil Menyelenggarakan Pemilu Pertama</h3>
+          </div>
+          <div class="topic-toggle">▼</div>
+        </div>
+        <div class="topic-body">
+          <div class="topic-inner">
+            <p>
+              Pemilihan Umum (Pemilu) pertama Indonesia diselenggarakan pada tahun <strong style="color:var(--gold-300)">1955</strong>. Pemilu ini merupakan tonggak bersejarah demokrasi Indonesia setelah merdeka pada 1945.
+            </p>
+
+            <h4>Kabinet Ali Sastroamidjojo II (1956–1957)</h4>
+            <p>
+              Kabinet yang berhasil mempersiapkan dan menyelenggarakan Pemilu Pertama Indonesia 1955 adalah <strong style="color:var(--gold-300)">Kabinet Ali Sastroamidjojo I (1953–1955)</strong>. Namun, penyelenggaraan teknisnya dilakukan pada masa Kabinet Burhanuddin Harahap (1955–1956).
+            </p>
+            <div class="note-box" style="margin-bottom:18px;">
+              <p>⚠️ <strong>Penting:</strong> Kabinet Burhanuddin Harahap adalah kabinet yang secara langsung menyelenggarakan Pemilu 1955. Program utama kabinet ini adalah melaksanakan pemilu dan mengembalikan kewibawaan pemerintah.</p>
+            </div>
+
+            <h4>Kabinet Burhanuddin Harahap (12 Agustus 1955 – 3 Maret 1956)</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Perdana Menteri</strong> — Burhanuddin Harahap dari Partai Masyumi.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Program Utama</strong> — Menyelenggarakan Pemilu 1955 yang bebas dan jujur, serta memulihkan wibawa pemerintah yang sempat goyah.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Keberhasilan</strong> — Berhasil menyelenggarakan Pemilu 1955, yaitu pemilu pertama dan dianggap paling demokratis dalam sejarah Indonesia.</p>
+              </div>
+            </div>
+
+            <h4>Pemilu 1955: Fakta Penting</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Waktu Pelaksanaan</strong>
+                <span>Tahap I (DPR): 29 September 1955. Tahap II (Konstituante): 15 Desember 1955.</span>
+              </div>
+              <div class="info-box">
+                <strong>Tujuan</strong>
+                <span>Memilih anggota DPR dan Dewan Konstituante (pembuat UUD tetap).</span>
+              </div>
+              <div class="info-box">
+                <strong>Empat Pemenang Terbesar</strong>
+                <span>PNI (22,3%), Masyumi (20,9%), NU (18,4%), PKI (16,4%).</span>
+              </div>
+              <div class="info-box">
+                <strong>Jumlah Partai</strong>
+                <span>28 partai berhasil meraih kursi DPR dari total 172 partai/organisasi peserta.</span>
+              </div>
+              <div class="info-box">
+                <strong>Tingkat Partisipasi</strong>
+                <span>Sangat tinggi — sekitar 87,65% pemilih yang terdaftar menggunakan hak suaranya.</span>
+              </div>
+              <div class="info-box">
+                <strong>Karakteristik</strong>
+                <span>Dianggap paling demokratis, jujur, dan adil dalam sejarah pemilu Indonesia hingga reformasi 1999.</span>
+              </div>
+            </div>
+
+            <h4>Kronologi Kabinet pada Masa Demokrasi Liberal (1950–1959)</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Natsir (Sep 1950 – Mar 1951)</strong> — Kabinet pertama era demokrasi liberal. PM: Mohammad Natsir (Masyumi).</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Sukiman (Apr 1951 – Feb 1952)</strong> — PM: Sukiman Wirjosandjojo (Masyumi). Jatuh akibat skandal MSA.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Wilopo (Apr 1952 – Jun 1953)</strong> — PM: Wilopo (PNI). Dikenal bersih namun jatuh akibat Peristiwa Tanjung Morawa.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Ali I (Jul 1953 – Jul 1955)</strong> — PM: Ali Sastroamidjojo (PNI). Penyelenggara Konferensi Asia-Afrika 1955 di Bandung.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Burhanuddin (Agus 1955 – Mar 1956)</strong> — PM: Burhanuddin Harahap (Masyumi). <strong>Penyelenggara Pemilu 1955.</strong></p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Ali II (Mar 1956 – Mar 1957)</strong> — PM: Ali Sastroamidjojo (PNI). Jatuh akibat krisis daerah dan desentralisasi.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Kabinet Djuanda (Apr 1957 – Jul 1959)</strong> — PM: Djuanda Kartawidjaja. Kabinet terakhir era demokrasi liberal; diakhiri Dekrit Presiden 5 Juli 1959.</p>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <p>💡 <strong>Kunci:</strong> Kabinet <strong>Burhanuddin Harahap</strong> = Penyelenggara Pemilu 1955. Kabinet <strong>Ali Sastroamidjojo I</strong> = Penyelenggara KAA Bandung 1955.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon">⬡</span>
+          <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+          <p class="footer-tagline">Platform belajar IPS terlengkap untuk siswa SMP Indonesia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Materi</h5>
+            <a href="kelas7.html">Kelas 7</a>
+            <a href="kelas8.html">Kelas 8</a>
+            <a href="kelas9.html">Kelas 9</a>
+          </div>
+          <div class="footer-col">
+            <h5>Latihan</h5>
+            <a href="../quiz/index.html">Kuis Interaktif</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 IPS SMP Platform · Dibuat untuk kemajuan pendidikan Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

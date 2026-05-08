@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelas 8 — IPS SMP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html" class="nav-link">Beranda</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-trigger active">Materi <span class="arrow">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="kelas7.html">Kelas 7</a></li>
+            <li><a href="kelas8.html">Kelas 8</a></li>
+            <li><a href="kelas9.html">Kelas 9</a></li>
+          </ul>
+        </li>
+        <li><a href="../quiz/index.html" class="nav-link">Kuis</a></li>
+        <li><a href="../index.html#about" class="nav-link">Tentang</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="material-hero" style="background:var(--navy-950);">
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="material-hero-tag">
+        <span>💰</span> Kelas 8
+      </div>
+      <h1 class="material-hero-title">Materi IPS <em>Kelas 8</em></h1>
+      <p class="material-hero-desc">
+        Pelajari literasi finansial dan dinamika perdagangan internasional yang mempengaruhi kehidupan ekonomi modern.
+      </p>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="materialSearch" placeholder="Cari topik materi…" />
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="material-content">
+    <div class="material-container">
+      <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:40px 0;font-size:0.95rem;">
+        Tidak ada materi yang cocok dengan pencarianmu.
+      </p>
+
+      <!-- ══════════════════════════════════════
+           TOPIK 1: Literasi Finansial
+           ══════════════════════════════════════ -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-meta">
+            <span class="topic-num">01</span>
+            <h3 class="topic-title">Pembagian Literasi Finansial</h3>
+          </div>
+          <div class="topic-toggle">▼</div>
+        </div>
+        <div class="topic-body">
+          <div class="topic-inner">
+            <p>
+              Literasi finansial adalah kemampuan individu untuk memahami dan mengelola keuangan secara efektif. Dalam era modern, literasi finansial menjadi kecakapan hidup yang sangat penting. OJK (Otoritas Jasa Keuangan) membagi tingkat literasi finansial berdasarkan pemahaman masyarakat terhadap produk dan layanan keuangan.
+            </p>
+
+            <h4>Empat Tingkatan Literasi Finansial (OJK)</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">1. Well Literate (Melek Finansial)</strong> — Individu yang memiliki pengetahuan dan keyakinan tentang lembaga jasa keuangan serta produk dan layanannya, termasuk fitur, manfaat, risiko, hak dan kewajiban, serta memiliki keterampilan menggunakan produk dan layanan jasa keuangan. Ini adalah tingkat tertinggi literasi finansial.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">2. Sufficient Literate (Cukup Melek)</strong> — Individu yang memiliki pengetahuan dan keyakinan tentang lembaga jasa keuangan serta produk dan layanannya, termasuk fitur, manfaat, risiko, hak dan kewajiban, namun belum memiliki keterampilan untuk menggunakannya.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">3. Less Literate (Kurang Melek)</strong> — Individu yang hanya memiliki pengetahuan tentang lembaga jasa keuangan, produk, dan layanannya secara terbatas. Pengetahuannya belum lengkap dan pemahaman terhadap risiko masih rendah.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">4. Not Literate (Tidak Melek)</strong> — Individu yang tidak memiliki pengetahuan dan keyakinan tentang lembaga jasa keuangan serta produk dan layanannya, dan tidak memiliki keterampilan menggunakannya.</p>
+              </div>
+            </div>
+
+            <h4>Komponen Utama Literasi Finansial</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Pengetahuan (Knowledge)</strong>
+                <span>Pemahaman tentang konsep keuangan: bunga, inflasi, investasi, asuransi, tabungan.</span>
+              </div>
+              <div class="info-box">
+                <strong>Sikap (Attitude)</strong>
+                <span>Pola pikir dan pandangan positif terhadap pengelolaan keuangan yang bertanggung jawab.</span>
+              </div>
+              <div class="info-box">
+                <strong>Perilaku (Behavior)</strong>
+                <span>Tindakan nyata dalam mengelola keuangan: membuat anggaran, menabung, berinvestasi.</span>
+              </div>
+              <div class="info-box">
+                <strong>Keterampilan (Skill)</strong>
+                <span>Kemampuan praktis menggunakan produk keuangan: rekening bank, kartu debit, investasi reksa dana.</span>
+              </div>
+            </div>
+
+            <h4>Manfaat Memiliki Literasi Finansial Tinggi</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p>Mampu mengelola pengeluaran dan membuat rencana keuangan yang baik.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p>Terhindar dari penipuan keuangan dan investasi bodong.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p>Dapat memanfaatkan produk keuangan (tabungan, asuransi, investasi) secara optimal.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p>Memiliki ketahanan finansial untuk menghadapi kondisi darurat ekonomi.</p>
+              </div>
+            </div>
+
+            <h4>Produk Keuangan yang Perlu Dikenal</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Perbankan</strong>
+                <span>Tabungan, deposito, kredit/pinjaman, kartu kredit, transfer dana.</span>
+              </div>
+              <div class="info-box">
+                <strong>Asuransi</strong>
+                <span>Asuransi jiwa, kesehatan, kendaraan, properti — perlindungan dari risiko.</span>
+              </div>
+              <div class="info-box">
+                <strong>Investasi</strong>
+                <span>Saham, obligasi, reksa dana, emas, properti — menanamkan modal untuk imbal hasil.</span>
+              </div>
+              <div class="info-box">
+                <strong>Dana Pensiun</strong>
+                <span>Program tabungan jangka panjang untuk keamanan finansial di hari tua.</span>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <p>💡 <strong>Tips:</strong> Mulai bangun literasi finansialmu dari sekarang! Pelajari cara membuat anggaran (budgeting), bedakan kebutuhan vs keinginan, dan biasakan menabung minimal 10-20% dari uang jajan/pendapatanmu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TOPIK 2: Perdagangan Internasional
+           ══════════════════════════════════════ -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-meta">
+            <span class="topic-num">02</span>
+            <h3 class="topic-title">Manfaat Perdagangan Internasional</h3>
+          </div>
+          <div class="topic-toggle">▼</div>
+        </div>
+        <div class="topic-body">
+          <div class="topic-inner">
+            <p>
+              Perdagangan internasional adalah kegiatan jual beli barang dan jasa yang dilakukan antara dua negara atau lebih. Kegiatan ini melibatkan ekspor (menjual ke luar negeri) dan impor (membeli dari luar negeri). Perdagangan internasional terjadi karena setiap negara memiliki perbedaan sumber daya, keahlian, dan kebutuhan.
+            </p>
+
+            <h4>Faktor Pendorong Perdagangan Internasional</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Perbedaan Sumber Daya Alam</strong> — Setiap negara memiliki kekayaan alam yang berbeda. Indonesia kaya minyak bumi dan kelapa sawit; Arab Saudi kaya minyak; Brazil kaya kopi dan biji besi.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Perbedaan Teknologi</strong> — Negara maju memiliki teknologi lebih canggih. Perdagangan memungkinkan negara berkembang mendapatkan akses teknologi melalui impor.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Perbedaan Selera dan Kebutuhan</strong> — Konsumen menginginkan produk dari negara lain yang tidak tersedia di negara mereka.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">Keunggulan Komparatif</strong> — Setiap negara lebih efisien dalam memproduksi barang tertentu, sehingga lebih menguntungkan untuk berspesialisasi dan berdagang.</p>
+              </div>
+            </div>
+
+            <h4>Manfaat Perdagangan Internasional</h4>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">1. Mendapatkan Devisa (Pemasukan Negara)</strong> — Ekspor menghasilkan valuta asing (devisa) yang memperkuat cadangan devisa negara dan mendukung pembayaran impor serta utang luar negeri.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">2. Memperluas Pasar bagi Produsen</strong> — Produsen dalam negeri dapat menjual produknya ke pasar internasional yang lebih luas, meningkatkan omzet dan skala produksi.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">3. Memenuhi Kebutuhan yang Tidak Dapat Diproduksi Sendiri</strong> — Setiap negara tidak dapat memproduksi semua kebutuhan. Impor membantu memenuhi kekurangan tersebut.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">4. Alih Teknologi</strong> — Perdagangan membuka peluang transfer teknologi dari negara maju ke negara berkembang melalui investasi asing dan kemitraan bisnis.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">5. Memperluas Lapangan Kerja</strong> — Ekspansi produksi untuk memenuhi permintaan ekspor menciptakan lapangan kerja baru bagi masyarakat.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">6. Meningkatkan Kesejahteraan</strong> — Perdagangan yang menguntungkan meningkatkan pendapatan nasional dan kesejahteraan masyarakat secara keseluruhan.</p>
+              </div>
+              <div class="info-item">
+                <div class="dot"></div>
+                <p><strong style="color:var(--gold-300)">7. Mempererat Hubungan Antar Negara</strong> — Saling ketergantungan ekonomi memperkuat hubungan diplomatik dan kerja sama internasional.</p>
+              </div>
+            </div>
+
+            <h4>Ekspor vs Impor</h4>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Ekspor</strong>
+                <span>Menjual barang/jasa ke luar negeri. Memasukkan devisa. Contoh ekspor Indonesia: minyak sawit, batu bara, karet, tekstil.</span>
+              </div>
+              <div class="info-box">
+                <strong>Impor</strong>
+                <span>Membeli barang/jasa dari luar negeri. Mengeluarkan devisa. Contoh impor Indonesia: gandum, kedelai, mesin industri, elektronik.</span>
+              </div>
+              <div class="info-box">
+                <strong>Neraca Perdagangan</strong>
+                <span>Selisih ekspor dan impor. Surplus = ekspor > impor (positif). Defisit = impor > ekspor (negatif).</span>
+              </div>
+              <div class="info-box">
+                <strong>Kebijakan Perdagangan</strong>
+                <span>Tarif (bea masuk), kuota impor, subsidi ekspor, hambatan non-tarif untuk mengatur arus perdagangan.</span>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <p>💡 Indonesia adalah anggota berbagai organisasi perdagangan internasional: WTO (World Trade Organization), ASEAN Free Trade Area (AFTA), dan RCEP (Regional Comprehensive Economic Partnership).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon">⬡</span>
+          <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+          <p class="footer-tagline">Platform belajar IPS terlengkap untuk siswa SMP Indonesia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Materi</h5>
+            <a href="kelas7.html">Kelas 7</a>
+            <a href="kelas8.html">Kelas 8</a>
+            <a href="kelas9.html">Kelas 9</a>
+          </div>
+          <div class="footer-col">
+            <h5>Latihan</h5>
+            <a href="../quiz/index.html">Kuis Interaktif</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 IPS SMP Platform · Dibuat untuk kemajuan pendidikan Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
