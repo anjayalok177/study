@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis IPS SMP — Uji Kemampuanmu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── Quiz-specific styles ── */
+    :root {
+      --quiz-radius: 16px;
+      --quiz-gap: 1rem;
+    }
+
+    /* ── Quiz Page Layout ── */
+    .quiz-page {
+      min-height: 100vh;
+      padding-top: 80px;
+      background: var(--bg);
+    }
+
+    /* ════════════════════════════════
+       START SCREEN
+    ════════════════════════════════ */
+    .quiz-start {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .quiz-start-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 640px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-start-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 60%);
+      pointer-events: none;
+    }
+
+    .quiz-start-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin: 0 auto 1.5rem;
+    }
+
+    .quiz-start h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .quiz-start p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-info-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .quiz-info-item .info-icon { font-size: 1.4rem; }
+    .quiz-info-item .info-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .quiz-info-item .info-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quiz-rules {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .quiz-rules h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .quiz-rules ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-rules ul li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .quiz-rules ul li::before {
+      content: '▸';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ════════════════════════════════
+       QUIZ ARENA
+    ════════════════════════════════ */
+    .quiz-arena {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Progress bar */
+    .quiz-progress-bar-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .progress-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .progress-type-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 99px;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+
+    .progress-counter {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .progress-track {
+      height: 6px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 0.4rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #fff));
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .progress-score-live {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+    }
+
+    .progress-score-live span:first-child {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .progress-score-live span:last-child {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--quiz-radius);
+      overflow: hidden;
+      animation: slideIn 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-header {
+      padding: 1.5rem 1.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .question-number {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .question-text {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.65;
+    }
+
+    .question-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .question-body {
+      padding: 1.25rem 1.75rem 1.5rem;
+    }
+
+    /* Answer Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .option-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      transform: translateX(3px);
+    }
+
+    .option-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) .option-key {
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Selected state (PG) */
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+    }
+
+    .option-btn.selected .option-key {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Checked state (PGK) */
+    .option-btn.checked {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+    }
+
+    .option-btn.checked .option-key {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* After submit: correct */
+    .option-btn.correct {
+      border-color: #22c55e;
+      background: color-mix(in srgb, #22c55e 8%, var(--bg));
+    }
+
+    .option-btn.correct .option-key {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #fff;
+    }
+
+    /* After submit: wrong */
+    .option-btn.wrong {
+      border-color: #ef4444;
+      background: color-mix(in srgb, #ef4444 8%, var(--bg));
+    }
+
+    .option-btn.wrong .option-key {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+    }
+
+    .option-btn:disabled { cursor: default; transform: none; }
+
+    /* True/False buttons */
+    .tf-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .tf-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1.2rem;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-primary);
+    }
+
+    .tf-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .tf-btn.true-btn:hover:not(:disabled) {
+      border-color: #22c55e;
+      background: color-mix(in srgb, #22c55e 8%, var(--bg));
+      color: #22c55e;
+    }
+
+    .tf-btn.false-btn:hover:not(:disabled) {
+      border-color: #ef4444;
+      background: color-mix(in srgb, #ef4444 8%, var(--bg));
+      color: #ef4444;
+    }
+
+    .tf-btn.selected.true-btn {
+      border-color: #22c55e;
+      background: color-mix(in srgb, #22c55e 12%, var(--bg));
+      color: #22c55e;
+    }
+
+    .tf-btn.selected.false-btn {
+      border-color: #ef4444;
+      background: color-mix(in srgb, #ef4444 12%, var(--bg));
+      color: #ef4444;
+    }
+
+    .tf-btn.correct {
+      border-color: #22c55e;
+      background: color-mix(in srgb, #22c55e 12%, var(--bg));
+      color: #22c55e;
+    }
+
+    .tf-btn.wrong {
+      border-color: #ef4444;
+      background: color-mix(in srgb, #ef4444 12%, var(--bg));
+      color: #ef4444;
+    }
+
+    .tf-btn:disabled { cursor: default; transform: none; }
+
+    /* Explanation box */
+    .explanation-box {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      border-left: 3px solid transparent;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      animation: fadeIn 0.3s ease;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-box.correct-exp {
+      background: color-mix(in srgb, #22c55e 8%, var(--bg));
+      border-color: #22c55e;
+      color: color-mix(in srgb, #22c55e 80%, var(--text-primary));
+    }
+
+    .explanation-box.wrong-exp {
+      background: color-mix(in srgb, #ef4444 8%, var(--bg));
+      border-color: #ef4444;
+      color: color-mix(in srgb, #ef4444 80%, var(--text-primary));
+    }
+
+    .explanation-box.show { display: block; }
+
+    .explanation-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Submit / Next buttons */
+    .question-footer {
+      padding: 1rem 1.75rem 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-submit {
+      padding: 0.7rem 1.6rem;
+      border-radius: 99px;
+      border: none;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .btn-submit.ready {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-submit.ready:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .btn-next {
+      padding: 0.7rem 1.6rem;
+      border-radius: 99px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: none;
+    }
+
+    .btn-next:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-next.show { display: block; }
+
+    /* ════════════════════════════════
+       RESULTS SCREEN
+    ════════════════════════════════ */
+    .quiz-results {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .result-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, color-mix(in srgb, var(--accent) 10%, transparent), transparent 65%);
+      pointer-events: none;
+    }
+
+    .result-emoji { font-size: 3rem; margin-bottom: 0.75rem; }
+
+    .result-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-grade {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* Score ring */
+    .score-ring-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .score-ring-svg {
+      width: 150px;
+      height: 150px;
+      position: relative;
+    }
+
+    .score-ring-svg svg {
+      transform: rotate(-90deg);
+      width: 150px;
+      height: 150px;
+    }
+
+    .ring-bg-r {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 10;
+    }
+
+    .ring-fill-r {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .ring-center-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ring-score-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .ring-score-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Breakdown */
+    .score-breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .breakdown-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .breakdown-icon { font-size: 1.2rem; }
+
+    .breakdown-frac {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .breakdown-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Review list */
+    .review-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .review-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .review-toggle-btn {
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .review-list { padding: 0.75rem; }
+
+    .review-item {
+      padding: 1rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .review-item:last-child { margin-bottom: 0; }
+
+    .review-item:hover { border-color: var(--accent); }
+
+    .review-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .review-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .review-dot.correct-dot { background: #22c55e; }
+    .review-dot.wrong-dot { background: #ef4444; }
+
+    .review-q-num {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .review-q-text {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      line-height: 1.55;
+    }
+
+    .review-exp {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .review-item.expanded .review-exp { display: block; }
+
+    /* Hidden utility */
+    .hidden { display: none !important; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .quiz-info-grid { grid-template-columns: repeat(3, 1fr); }
+      .quiz-start-card { padding: 2rem 1.25rem; }
+      .question-header,
+      .question-body,
+      .question-footer { padding-left: 1.1rem; padding-right: 1.1rem; }
+      .quiz-progress-bar-wrap { flex-wrap: wrap; }
+      .tf-options { grid-template-columns: 1fr 1fr; }
+      .score-breakdown { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html" class="nav-link">Beranda</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-trigger">Materi <span class="arrow">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../materials/kelas7.html">Kelas 7</a></li>
+            <li><a href="../materials/kelas8.html">Kelas 8</a></li>
+            <li><a href="../materials/kelas9.html">Kelas 9</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html" class="nav-link active">Kuis</a></li>
+        <li><a href="../index.html#about" class="nav-link">Tentang</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== QUIZ PAGE ========== -->
+  <div class="quiz-page">
+
+    <!-- ── START SCREEN ── -->
+    <div id="startScreen" class="quiz-start">
+      <div class="quiz-start-card">
+        <div class="quiz-start-icon">📝</div>
+        <h1>Kuis IPS SMP</h1>
+        <p>Uji pemahamanmu dengan 50 soal yang mencakup materi Kelas 7, 8, dan 9. Kerjakan dengan teliti dan dapatkan penjelasan untuk setiap jawaban.</p>
+
+        <div class="quiz-info-grid">
+          <div class="quiz-info-item">
+            <span class="info-icon">📋</span>
+            <span class="info-count" id="pgCount">30</span>
+            <span class="info-label">Pilihan Ganda</span>
+          </div>
+          <div class="quiz-info-item">
+            <span class="info-icon">🧩</span>
+            <span class="info-count" id="pgkCount">10</span>
+            <span class="info-label">PGK Kompleks</span>
+          </div>
+          <div class="quiz-info-item">
+            <span class="info-icon">✅</span>
+            <span class="info-count" id="tfCount">10</span>
+            <span class="info-label">Benar / Salah</span>
+          </div>
+        </div>
+
+        <div class="quiz-rules">
+          <h4>Petunjuk Pengerjaan</h4>
+          <ul>
+            <li>Pilihan Ganda (PG): Pilih satu jawaban yang paling tepat.</li>
+            <li>PGK Kompleks: Pilih semua jawaban yang benar (bisa lebih dari satu).</li>
+            <li>Benar / Salah: Tentukan apakah pernyataan benar atau salah.</li>
+            <li>Tekan <strong>Konfirmasi</strong> setelah memilih jawaban untuk melihat hasilnya.</li>
+          </ul>
+        </div>
+
+        <button class="btn btn-primary" id="startBtn" style="width:100%">Mulai Kuis →</button>
+      </div>
+    </div>
+
+    <!-- ── QUIZ ARENA ── -->
+    <div id="quizArena" class="quiz-arena hidden">
+
+      <!-- Progress -->
+      <div class="quiz-progress-bar-wrap">
+        <div class="progress-info">
+          <div class="progress-label">
+            <span id="progressTypeBadge" class="progress-type-badge">Pilihan Ganda</span>
+            <span id="progressCounter" class="progress-counter">1 / 50</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width:2%"></div>
+          </div>
+        </div>
+        <div class="progress-score-live">
+          <span id="liveScore">0</span>
+          <span>Benar</span>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card" id="questionCard">
+        <div class="question-header">
+          <div id="questionNumber" class="question-number">Soal 1</div>
+          <div id="questionText" class="question-text">–</div>
+          <div id="questionHint" class="question-hint hidden"></div>
+        </div>
+        <div class="question-body">
+          <div id="optionsContainer"></div>
+          <div id="explanationBox" class="explanation-box"></div>
+        </div>
+        <div class="question-footer">
+          <button class="btn-submit" id="submitBtn">Konfirmasi</button>
+          <button class="btn-next" id="nextBtn">Soal Berikutnya →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RESULTS SCREEN ── -->
+    <div id="resultsScreen" class="quiz-results hidden">
+
+      <div class="result-hero">
+        <div id="resultEmoji" class="result-emoji">🏆</div>
+        <div id="resultTitle" class="result-title">Luar Biasa!</div>
+        <div id="resultGrade" class="result-grade">–</div>
+
+        <div class="score-ring-wrap">
+          <div class="score-ring-svg">
+            <svg viewBox="0 0 150 150">
+              <circle cx="75" cy="75" r="62" class="ring-bg-r" />
+              <circle cx="75" cy="75" r="62" class="ring-fill-r" id="resultRing"
+                stroke-dasharray="389.6" stroke-dashoffset="389.6" />
+            </svg>
+            <div class="ring-center-text">
+              <span class="ring-score-num" id="ringScoreNum">0</span>
+              <span class="ring-score-label">/ 100</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-breakdown">
+          <div class="breakdown-item">
+            <span class="breakdown-icon">📋</span>
+            <span class="breakdown-frac" id="pgScore">0/30</span>
+            <span class="breakdown-label">PG</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-icon">🧩</span>
+            <span class="breakdown-frac" id="pgkScore">0/10</span>
+            <span class="breakdown-label">PGK</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-icon">✅</span>
+            <span class="breakdown-frac" id="tfScore">0/10</span>
+            <span class="breakdown-label">B/S</span>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary" id="restartBtn">Ulangi Kuis</button>
+          <a href="../index.html" class="btn btn-ghost">Kembali ke Beranda</a>
+        </div>
+      </div>
+
+      <!-- Review -->
+      <div class="review-section">
+        <div class="review-header">
+          <h3>Pembahasan Soal</h3>
+          <button class="review-toggle-btn" id="reviewToggleAll">Tampilkan Semua</button>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+    </div>
+
+  </div><!-- /quiz-page -->
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon">⬡</span>
+          <span class="brand-text">IPS<span class="brand-accent">SMP</span></span>
+          <p class="footer-tagline">Platform belajar IPS terlengkap untuk siswa SMP Indonesia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Materi</h5>
+            <a href="../materials/kelas7.html">Kelas 7</a>
+            <a href="../materials/kelas8.html">Kelas 8</a>
+            <a href="../materials/kelas9.html">Kelas 9</a>
+          </div>
+          <div class="footer-col">
+            <h5>Latihan</h5>
+            <a href="index.html">Kuis Interaktif</a>
+            <a href="index.html#pgk">Pilihan Ganda Kompleks</a>
+            <a href="index.html#tf">Benar / Salah</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 IPS SMP Platform · Dibuat untuk kemajuan pendidikan Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── External scripts ── -->
+  <script src="../questions.js"></script>
+  <script src="../script.js"></script>
+
+  <!-- ── Quiz Engine ── -->
+  <script>
+  (() => {
+    /* ────────────────────────────────────────────────
+       EXPECTED questions.js structure:
+       const questions = [
+         {
+           id: 1,
+           type: 'pg',          // 'pg' | 'pgk' | 'tf'
+           question: '...',
+           options: ['A. ...', 'B. ...', 'C. ...', 'D. ...'], // pg & pgk only
+           answer: 'A',         // pg → letter string; tf → 'true' or 'false'
+           answers: ['A','C'],  // pgk → array of correct letters
+           explanation: '...'
+         },
+         ...
+       ];
+    ──────────────────────────────────────────────── */
+
+    /* Guard: questions.js must be loaded */
+    if (typeof questions === 'undefined' || !Array.isArray(questions)) {
+      document.getElementById('startScreen').innerHTML =
+        '<div style="text-align:center;padding:4rem 1.5rem;color:var(--text-muted)">' +
+        '<p style="font-size:2rem">⚠️</p>' +
+        '<p>File <code>questions.js</code> tidak ditemukan atau kosong.</p>' +
+        '<p style="margin-top:.5rem;font-size:.85rem">Pastikan file questions.js sudah tersedia di folder yang benar.</p>' +
+        '</div>';
+      return;
+    }
+
+    /* ── State ── */
+    let currentIndex = 0;
+    let score = { pg: 0, pgk: 0, tf: 0 };
+    let answers = [];           // user answers per question
+    let submitted = [];         // boolean per question
+    let allExpanded = false;
+
+    /* ── Count by type ── */
+    const countPG  = questions.filter(q => q.type === 'pg').length;
+    const countPGK = questions.filter(q => q.type === 'pgk').length;
+    const countTF  = questions.filter(q => q.type === 'tf').length;
+
+    document.getElementById('pgCount').textContent  = countPG;
+    document.getElementById('pgkCount').textContent = countPGK;
+    document.getElementById('tfCount').textContent  = countTF;
+
+    /* ── DOM refs ── */
+    const startScreen   = document.getElementById('startScreen');
+    const quizArena     = document.getElementById('quizArena');
+    const resultsScreen = document.getElementById('resultsScreen');
+
+    const progressTypeBadge = document.getElementById('progressTypeBadge');
+    const progressCounter   = document.getElementById('progressCounter');
+    const progressFill      = document.getElementById('progressFill');
+    const liveScoreEl       = document.getElementById('liveScore');
+
+    const questionNumberEl = document.getElementById('questionNumber');
+    const questionTextEl   = document.getElementById('questionText');
+    const questionHintEl   = document.getElementById('questionHint');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const explanationBox   = document.getElementById('explanationBox');
+
+    const submitBtn = document.getElementById('submitBtn');
+    const nextBtn   = document.getElementById('nextBtn');
+
+    /* ── START ── */
+    document.getElementById('startBtn').addEventListener('click', () => {
+      startScreen.classList.add('hidden');
+      quizArena.classList.remove('hidden');
+      renderQuestion(0);
+    });
+
+    /* ── RENDER QUESTION ── */
+    function renderQuestion(idx) {
+      const q = questions[idx];
+      if (!q) { showResults(); return; }
+
+      // Reset card animation
+      const card = document.getElementById('questionCard');
+      card.style.animation = 'none';
+      card.offsetHeight; // reflow
+      card.style.animation = '';
+
+      // Progress
+      const pct = Math.round(((idx) / questions.length) * 100);
+      progressFill.style.width = Math.max(pct, 2) + '%';
+      progressCounter.textContent = `${idx + 1} / ${questions.length}`;
+      progressTypeBadge.textContent = typeLabel(q.type);
+
+      // Live score
+      const totalCorrect = score.pg + score.pgk + score.tf;
+      liveScoreEl.textContent = totalCorrect;
+
+      // Question text
+      questionNumberEl.textContent = `Soal ${idx + 1}`;
+      questionTextEl.textContent   = q.question;
+
+      // Hint
+      if (q.type === 'pgk') {
+        questionHintEl.textContent = '💡 Pilih semua jawaban yang benar (bisa lebih dari satu pilihan).';
+        questionHintEl.classList.remove('hidden');
+      } else {
+        questionHintEl.classList.add('hidden');
+      }
+
+      // Explanation reset
+      explanationBox.className = 'explanation-box';
+      explanationBox.innerHTML = '';
+
+      // Buttons reset
+      submitBtn.className = 'btn-submit';
+      nextBtn.className   = 'btn-next';
+
+      // Render options
+      if (q.type === 'pg')  renderPG(q, idx);
+      if (q.type === 'pgk') renderPGK(q, idx);
+      if (q.type === 'tf')  renderTF(q, idx);
+    }
+
+    /* ── PILIHAN GANDA ── */
+    function renderPG(q, idx) {
+      optionsContainer.innerHTML = '';
+      const list = document.createElement('div');
+      list.className = 'options-list';
+
+      const letters = ['A','B','C','D','E'];
+
+      q.options.forEach((opt, i) => {
+        const letter = letters[i];
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.dataset.letter = letter;
+        btn.innerHTML = `<span class="option-key">${letter}</span><span>${opt}</span>`;
+
+        btn.addEventListener('click', () => {
+          list.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          answers[idx] = letter;
+          submitBtn.classList.add('ready');
+        });
+
+        list.appendChild(btn);
+      });
+
+      optionsContainer.appendChild(list);
+
+      submitBtn.addEventListener('click', onSubmitPG.bind(null, q, idx), { once: true });
+    }
+
+    function onSubmitPG(q, idx) {
+      if (!submitBtn.classList.contains('ready')) return;
+      submitted[idx] = true;
+      const userAns = answers[idx];
+      const correct = userAns === q.answer;
+
+      if (correct) score.pg++;
+
+      optionsContainer.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = true;
+        const l = btn.dataset.letter;
+        if (l === q.answer) btn.classList.add('correct');
+        else if (l === userAns && !correct) btn.classList.add('wrong');
+        btn.classList.remove('selected');
+      });
+
+      showExplanation(correct, q.explanation, q.answer);
+      afterSubmit(idx);
+    }
+
+    /* ── PGK (KOMPLEKS) ── */
+    function renderPGK(q, idx) {
+      optionsContainer.innerHTML = '';
+      const list = document.createElement('div');
+      list.className = 'options-list';
+      const letters = ['A','B','C','D','E'];
+      const checked = new Set();
+
+      q.options.forEach((opt, i) => {
+        const letter = letters[i];
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.dataset.letter = letter;
+        btn.innerHTML = `<span class="option-key">${letter}</span><span>${opt}</span>`;
+
+        btn.addEventListener('click', () => {
+          if (checked.has(letter)) {
+            checked.delete(letter);
+            btn.classList.remove('checked');
+          } else {
+            checked.add(letter);
+            btn.classList.add('checked');
+          }
+          answers[idx] = [...checked];
+          submitBtn.classList.toggle('ready', checked.size > 0);
+        });
+
+        list.appendChild(btn);
+      });
+
+      optionsContainer.appendChild(list);
+      submitBtn.addEventListener('click', onSubmitPGK.bind(null, q, idx, checked), { once: true });
+    }
+
+    function onSubmitPGK(q, idx, checked) {
+      if (!submitBtn.classList.contains('ready')) return;
+      submitted[idx] = true;
+      const correctSet = new Set(q.answers);
+      const userSet    = checked;
+      const correct    = setsEqual(correctSet, userSet);
+
+      if (correct) score.pgk++;
+
+      optionsContainer.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = true;
+        const l = btn.dataset.letter;
+        if (correctSet.has(l)) btn.classList.add('correct');
+        else if (userSet.has(l)) btn.classList.add('wrong');
+        btn.classList.remove('checked');
+      });
+
+      const ansLabel = q.answers.join(', ');
+      showExplanation(correct, q.explanation, ansLabel);
+      afterSubmit(idx);
+    }
+
+    /* ── BENAR / SALAH ── */
+    function renderTF(q, idx) {
+      optionsContainer.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'tf-options';
+
+      ['true','false'].forEach(val => {
+        const btn = document.createElement('button');
+        btn.className = `tf-btn ${val}-btn`;
+        btn.dataset.val = val;
+        btn.innerHTML = val === 'true' ? '✔ Benar' : '✖ Salah';
+
+        btn.addEventListener('click', () => {
+          wrap.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          answers[idx] = val;
+          submitBtn.classList.add('ready');
+        });
+
+        wrap.appendChild(btn);
+      });
+
+      optionsContainer.appendChild(wrap);
+      submitBtn.addEventListener('click', onSubmitTF.bind(null, q, idx), { once: true });
+    }
+
+    function onSubmitTF(q, idx) {
+      if (!submitBtn.classList.contains('ready')) return;
+      submitted[idx] = true;
+      const userAns = answers[idx];
+      const correct = userAns === q.answer;
+
+      if (correct) score.tf++;
+
+      optionsContainer.querySelectorAll('.tf-btn').forEach(btn => {
+        btn.disabled = true;
+        const v = btn.dataset.val;
+        if (v === q.answer) btn.classList.add('correct');
+        else if (v === userAns && !correct) btn.classList.add('wrong');
+        btn.classList.remove('selected');
+      });
+
+      const ansLabel = q.answer === 'true' ? 'Benar' : 'Salah';
+      showExplanation(correct, q.explanation, ansLabel);
+      afterSubmit(idx);
+    }
+
+    /* ── AFTER SUBMIT ── */
+    function afterSubmit(idx) {
+      submitBtn.classList.remove('ready');
+      submitBtn.style.display = 'none';
+      nextBtn.classList.add('show');
+
+      const isLast = (idx === questions.length - 1);
+      nextBtn.textContent = isLast ? 'Lihat Hasil →' : 'Soal Berikutnya →';
+
+      nextBtn.addEventListener('click', () => {
+        if (isLast) {
+          showResults();
+        } else {
+          currentIndex++;
+          renderQuestion(currentIndex);
+        }
+      }, { once: true });
+    }
+
+    /* ── EXPLANATION ── */
+    function showExplanation(correct, text, correctAns) {
+      explanationBox.className = 'explanation-box show ' + (correct ? 'correct-exp' : 'wrong-exp');
+      const icon = correct ? '✅' : '❌';
+      const title = correct ? 'Jawaban Benar!' : `Jawaban Salah — Jawaban yang benar: ${correctAns}`;
+      explanationBox.innerHTML = `
+        <div class="explanation-title">${icon} ${title}</div>
+        ${text ? `<div>${text}</div>` : ''}
+      `;
+    }
+
+    /* ── RESULTS ── */
+    function showResults() {
+      quizArena.classList.add('hidden');
+      resultsScreen.classList.remove('hidden');
+
+      const total    = questions.length;
+      const correct  = score.pg + score.pgk + score.tf;
+      const pct      = Math.round((correct / total) * 100);
+
+      // Ring animation
+      const circumference = 2 * Math.PI * 62; // 389.6
+      const ring = document.getElementById('resultRing');
+      setTimeout(() => {
+        ring.style.strokeDashoffset = circumference - (pct / 100) * circumference;
+      }, 300);
+
+      document.getElementById('ringScoreNum').textContent = pct;
+
+      // Grade
+      let emoji, title, grade;
+      if (pct >= 90)      { emoji = '🏆'; title = 'Luar Biasa!';       grade = `Nilai ${pct} — Sangat Baik`; }
+      else if (pct >= 75) { emoji = '🎉'; title = 'Bagus Sekali!';     grade = `Nilai ${pct} — Baik`; }
+      else if (pct >= 60) { emoji = '👍'; title = 'Cukup Baik!';       grade = `Nilai ${pct} — Cukup`; }
+      else if (pct >= 40) { emoji = '📚'; title = 'Perlu Belajar Lagi'; grade = `Nilai ${pct} — Kurang`; }
+      else                { emoji = '💪'; title = 'Ayo Semangat!';      grade = `Nilai ${pct} — Perlu Ditingkatkan`; }
+
+      document.getElementById('resultEmoji').textContent = emoji;
+      document.getElementById('resultTitle').textContent  = title;
+      document.getElementById('resultGrade').textContent  = grade;
+
+      document.getElementById('pgScore').textContent  = `${score.pg}/${countPG}`;
+      document.getElementById('pgkScore').textContent = `${score.pgk}/${countPGK}`;
+      document.getElementById('tfScore').textContent  = `${score.tf}/${countTF}`;
+
+      // Build review
+      buildReview();
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── REVIEW LIST ── */
+    function buildReview() {
+      const list = document.getElementById('reviewList');
+      list.innerHTML = '';
+
+      questions.forEach((q, i) => {
+        const userAns = answers[i];
+        let isCorrect = false;
+
+        if (q.type === 'pg')  isCorrect = (userAns === q.answer);
+        if (q.type === 'tf')  isCorrect = (userAns === q.answer);
+        if (q.type === 'pgk') isCorrect = Array.isArray(userAns) && setsEqual(new Set(q.answers), new Set(userAns));
+
+        const item = document.createElement('div');
+        item.className = 'review-item';
+
+        const correctLabel = q.type === 'pgk'
+          ? q.answers.join(', ')
+          : (q.type === 'tf' ? (q.answer === 'true' ? 'Benar' : 'Salah') : q.answer);
+
+        item.innerHTML = `
+          <div class="review-item-header">
+            <div class="review-dot ${isCorrect ? 'correct-dot' : 'wrong-dot'}"></div>
+            <span class="review-q-num">Soal ${i + 1} · ${typeLabel(q.type)}</span>
+          </div>
+          <div class="review-q-text">${q.question}</div>
+          <div class="review-exp">
+            <strong>Jawaban benar:</strong> ${correctLabel}<br/>
+            ${q.explanation || ''}
+          </div>
+        `;
+
+        item.addEventListener('click', () => item.classList.toggle('expanded'));
+        list.appendChild(item);
+      });
+    }
+
+    /* Toggle all explanations in review */
+    document.getElementById('reviewToggleAll').addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.review-item').forEach(el => {
+        el.classList.toggle('expanded', allExpanded);
+      });
+      document.getElementById('reviewToggleAll').textContent =
+        allExpanded ? 'Sembunyikan Semua' : 'Tampilkan Semua';
+    });
+
+    /* ── RESTART ── */
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      currentIndex = 0;
+      score = { pg: 0, pgk: 0, tf: 0 };
+      answers = [];
+      submitted = [];
+      allExpanded = false;
+
+      resultsScreen.classList.add('hidden');
+      quizArena.classList.remove('hidden');
+      renderQuestion(0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── HELPERS ── */
+    function typeLabel(type) {
+      return type === 'pg' ? 'Pilihan Ganda' : type === 'pgk' ? 'PGK Kompleks' : 'Benar / Salah';
+    }
+
+    function setsEqual(a, b) {
+      if (a.size !== b.size) return false;
+      for (const v of a) if (!b.has(v)) return false;
+      return true;
+    }
+
+  })();
+  </script>
+
+</body>
+</html>
